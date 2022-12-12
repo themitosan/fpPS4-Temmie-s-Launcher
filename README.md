@@ -4,7 +4,7 @@ A simple launcher for <a href="https://github.com/red-prig/fpPS4/">fpPS4 project
 ## How to install
 - Download / Clone this repo
 - Download <a href="https://nwjs.io/">nw.js</a>
-- Extract all files from nw where "package.json" is located
+- Extract all files from nw where <code>package.json</code> is located
 - Run <code>nw.exe</code>
 - Insert <code>fpPS4.exe</code> inside "Emu" folder
 
