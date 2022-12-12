@@ -75,17 +75,17 @@ temp_DESIGN = {
 			});
 
 			APP.gameList.selectedGame = gameName;
-			APP.design.updateRunButtons();
+			APP.design.update();
 
 		}
 
 	},
 
-	// Enable or Disable Run / Stop buttons
-	updateRunButtons: function(){
+	// Update GUI
+	update: function(){
 
 		// Check if emu is present before allowing to run
-		if (APP.fs.existsSync(APP.settings.data.emuPath) === !0){
+		if (APP.fs.existsSync(APP.settings.data.emuPath) === !0 && APP.gameList.selectedGame !== ''){
 
 			var btnRun = '',
 				logHeight = '248px',
@@ -117,6 +117,10 @@ temp_DESIGN = {
 			document.getElementById('BTN_KILL').disabled = btnKill;
 
 		}
+
+		// Scroll log
+		var tx = document.getElementById('APP_LOG');
+		tx.scrollTop = tx.scrollHeight;
 
 	}
 

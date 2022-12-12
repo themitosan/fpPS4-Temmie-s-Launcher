@@ -77,8 +77,8 @@ var APP = {
 			APP.execProcess.on('close', function(code){
 				process.chdir(APP.settings.data.nwPath);
 				APP.emuManager.emuRunning = !1;
+				APP.design.update();
 				APP.log('INFO - ' + APP.path.parse(exe).base + ' was closed returning code ' + code);
-				APP.design.updateRunButtons();
 				return code;
 			});
 

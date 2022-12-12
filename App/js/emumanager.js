@@ -34,7 +34,7 @@ temp_EMUMANAGER = {
 			this.emuRunning = !0;
 
 			// Update GUI
-			APP.design.updateRunButtons();
+			APP.design.update();
 		
 		}
 
