@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>fpPS4 Temmie's Launcher</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+	
+		<!-- Top Menu -->
+		<div class="DIV_ACTIONS">
+			
+			<input type="button" class="APP_btn" onclick="APP.gameList.selectPath();" value="Select game path">
+			<input type="button" class="APP_btn" onclick="APP.gameList.openFolder();" value="Open game folder">
+			<input type="button" class="APP_btn" onclick="APP.gameList.load();" value="Refresh game list">
+			<input type="button" class="APP_btn" onclick="APP.about();" value="About">
+
+		</div>
+
+		<!-- fpPS4 Options -->
+		<div class="DIV_OPTIONS" id="DIV_OPTIONS">
+			
+			<div class="DIV_TITLE"><label class="LABEL_emuColor">fp</label>PS4 Options</div>
+
+			<div id="DIV_HACK_LIST">
+				<!-- Hacks goes here -->
+			</div>
+
+			<!-- Run fpPS4 -->
+			<div class="DIV_RUN_BTN">
+				<input type="button" class="BTN_RUN" id="BTN_KILL" onclick="APP.emuManager.killEmu();" disabled="disabled" value="Stop fpPS4">
+				<input type="button" class="BTN_RUN" id="BTN_RUN" onclick="APP.emuManager.runGame();" disabled="disabled" value="Run fpPS4">
+			</div>
+
+		</div>
+
+		<!-- Game List -->
+		<div class="DIV_LIST" id="DIV_LIST">
+			<div class="DIV_LIST_INTERNAL" id="DIV_LIST_INTERNAL">
+				<!-- Games goes here -->
+			</div>
+		</div>
+
+		<!-- Log -->
+		<div class="DIV_LOG" id="DIV_LOG">
+			<textarea class="APP_LOG" id="APP_LOG" disabled="disabled"></textarea>
+		</div>
+
+		<!-- Hidden Stuff -->
+		<div class="none">
+			
+			<!-- Folder loader -->
+			<input type="file" id="APP_FOLDER_LOADER" nwdirectory/>
+
+			<!-- Scripts -->
+			<script type="text/javascript" src="js/TMS.js"></script>
+			<script type="text/javascript" src="js/filemanager.js"></script>
+			<script type="text/javascript" src="js/gamelist.js"></script>
+			<script type="text/javascript" src="js/settings.js"></script>
+			<script type="text/javascript" src="js/design.js"></script>
+			<script type="text/javascript" src="js/emumanager.js"></script>
+			<script type="text/javascript" src="js/main.js"></script>
+		
+		</div>
+
+	</body>
+</html>

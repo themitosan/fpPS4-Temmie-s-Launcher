@@ -1,0 +1,25 @@
+{
+    "version": "1.0.0",
+    "license": "GPL-2",
+    "main": "App/index.htm",
+    "author": "TemmieHeartz",
+    "name": "fpPS4 Temmie's Launcher",
+    "description": "A simple launcher for fpPS4 project",
+    "repository": "https://github.com/themitosan/fpPS4-Temmie-s-Launcher",
+    "window": {
+        "frame": true,
+        "width": 1180,
+        "height": 710,
+        "toolbar": true,
+        "min_width": 1180,
+        "min_height": 710,
+        "fullscreen": false,
+        "position": "center",
+        "theme-color": "#000",
+        "icon": "App/img/logo.png",
+        "title": "fpPS4 Temmie's Launcher"
+    },
+    "webkit": {
+        "plugin": true
+    }
+}
