@@ -150,6 +150,7 @@ input[disabled="disabled"], input[disabled] {
 	border: none;
 	cursor: text;
 	outline: none;
+	transition: 0.16s;
 	width: calc(100% - 4px);
 	background-repeat: no-repeat;
 	text-shadow: 2px 2px 2px #000;

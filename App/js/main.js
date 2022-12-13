@@ -29,14 +29,23 @@ var APP = {
 				previousLog = textarea.value,
 				newLog = previousLog + '\n' + text;
 
+			// Fix log with white line
 			if (previousLog == ''){
 				newLog = text;
 			}
-
 			if (previousLog.slice(previousLog.length - 1, previousLog.length) === '\n'){
 				newLog = previousLog + text;
 			}
 
+			// If Emu is running and catch an "nop" log, set log color to red
+			if (text.slice(0, 4) === 'nop ' && APP.emuManager.emuRunning === !0){
+				TMS.css('APP_LOG', {
+					'color': '#f00',
+					'background-image': 'linear-gradient(180deg, #000000db, #1b0909)'
+				});
+			}
+
+			// Append log
 			textarea.value = newLog;
 			APP.logData = newLog;
 
