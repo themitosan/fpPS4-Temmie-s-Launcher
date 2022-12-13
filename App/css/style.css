@@ -93,6 +93,7 @@ input[disabled="disabled"], input[disabled] {
 	z-index: 10;
 	height: 100%;
 	overflow: auto;
+	transition: 0.1s;
 	position: absolute;
 	background-size: cover;
 	background-color: #0000;

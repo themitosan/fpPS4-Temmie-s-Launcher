@@ -1,9 +1,9 @@
 # fpPS4 Temmie's Launcher
-A simple launcher for <a href="https://github.com/red-prig/fpPS4/">fpPS4 project</a> - created just for fun.
+A simple launcher for <a href="https://github.com/red-prig/fpPS4/" target="_blank">fpPS4 project</a> - created just for fun.
 
 ## How to install
 - Download / Clone this repo
-- Download <a href="https://nwjs.io/">nw.js</a>
+- Download <a href="https://nwjs.io/" target="_blank">nw.js</a>
 - Extract all files from nw where <code>package.json</code> is located
 - Run <code>nw.exe</code>
 - Insert <code>fpPS4.exe</code> inside "Emu" folder
