@@ -51,8 +51,8 @@ temp_DESIGN = {
 			tempHtml = '';
 
 		Object.keys(gList).forEach(function(cGame){
-			tempHtml = tempHtml + '<div class="GAME_ENTRY" onclick="APP.design.selectGame(\'' + cGame + '\');"><img class="GAME_ICON" src="' + 
-								   gList[cGame].icon + '"><div class="GAME_DETAILS"><label class="LABEL_gameTtitle">' + gList[cGame].name + 
+			tempHtml = tempHtml + '<div class="GAME_ENTRY" onclick="APP.design.selectGame(\'' + cGame + '\');"><img class="IMG_GAME_ICON" src="' + 
+								   gList[cGame].icon + '"><div class="GAME_DETAILS"><label class="LABEL_gameTitle">' + gList[cGame].name + 
 								   '</label><br>' + 'Path: ' + gList[cGame].eboot + '</div></div>';
 		});
 
@@ -69,11 +69,6 @@ temp_DESIGN = {
 
 		if (APP.gameList.list[gameName] !== void 0){
 
-			const cGame = APP.gameList.list[gameName];
-			TMS.css('DIV_LIST_INTERNAL', {
-				'background-image': 'url("' + cGame.bg + '")'
-			});
-
 			APP.gameList.selectedGame = gameName;
 			APP.design.update();
 
@@ -83,6 +78,13 @@ temp_DESIGN = {
 
 	// Update GUI
 	update: function(){
+
+		// Update background image
+		if (APP.gameList.list[APP.gameList.selectedGame] !== ''){
+			TMS.css('DIV_LIST_INTERNAL', {
+				'background-image': 'url("' + APP.gameList.list[APP.gameList.selectedGame].bg + '")'
+			});
+		}
 
 		// Check if emu is present before allowing to run
 		if (APP.fs.existsSync(APP.settings.data.emuPath) === !0 && APP.gameList.selectedGame !== ''){
@@ -99,10 +101,10 @@ temp_DESIGN = {
 	
 				btnKill = '';
 				btnRun = 'disabled';
-				listHeight = '172px';
+				listHeight = '362px';
 				hackDisplay = 'none';
-				optionsHeight = '160px';
-				logHeight = 'calc(100% - 210px)';
+				optionsHeight = '350px';
+				logHeight = 'calc(100% - 400px)';
 	
 			}
 	
@@ -121,6 +123,47 @@ temp_DESIGN = {
 		// Scroll log
 		var tx = document.getElementById('APP_LOG');
 		tx.scrollTop = tx.scrollHeight;
+
+	},
+
+	// Change game list to display mode
+	toggleDisplayMode: function(gameData){
+
+		if (gameData !== void 0){
+			
+			var appIcon = '',
+				gameDetails = {'display': 'flex'},
+				listInternal = {'filter': 'blur(6px)', '-webkit-mask-image': 'linear-gradient(0deg, #0006, #0006)'};
+	
+			// If emu isn't running
+			if (APP.emuManager.emuRunning === !1){
+	
+				gameDetails = {'display': 'none'};
+				listInternal = {'filter': 'none', '-webkit-mask-image': 'none'};
+				APP.design.renderGameList();
+	
+			} else {
+	
+				document.getElementById('DIV_LIST_INTERNAL').innerHTML = '';
+	
+			}
+	
+			// Fix undefined path
+			if (gameData.appIcon === void 0){
+				gameData.appIcon = APP.settings.data.nwPath + '/app/img/404.png';
+			}
+
+			// Set game metadata
+			document.getElementById('IMG_APP_ICON').src = gameData.appIcon;
+			document.getElementById('LABEL_GAME_DETAILS_PATH').innerHTML = gameData.appPath;
+			document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = gameData.appStatus;
+			document.getElementById('LABEL_GAME_DETAILS_APP_NAME').innerHTML = gameData.appName;
+	
+			// Set CSS
+			TMS.css('DIV_GAME_DETAILS', gameDetails);
+			TMS.css('DIV_LIST_INTERNAL', listInternal);
+
+		}
 
 	}
 

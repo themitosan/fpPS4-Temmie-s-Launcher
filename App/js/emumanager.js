@@ -6,13 +6,20 @@ temp_EMUMANAGER = {
 
 	// Emulator is running
 	emuRunning: !1,
+	emuCountdown: 0,
 	
 	// Run emu
 	runGame: function(){
 
+		// Get selected game details
+		const mainGameData = APP.gameList.list[APP.gameList.selectedGame];
+
 		// If user selected a game
-		if (APP.gameList.list[APP.gameList.selectedGame] !== void 0){
-			
+		if (mainGameData !== void 0){
+
+			// Increase emu countdown
+			APP.emuManager.emuCountdown++;
+
 			// Set main variables
 			var ebootPath = APP.gameList.list[APP.gameList.selectedGame].eboot,
 				emuArgs = ['-e', ebootPath],
@@ -33,8 +40,14 @@ temp_EMUMANAGER = {
 			APP.runExec(APP.settings.data.emuPath, emuArgs);
 			this.emuRunning = !0;
 
-			// Update GUI
+			// Update main GUI
 			APP.design.update();
+			APP.design.toggleDisplayMode({
+				appStatus: 'Running',
+				appIcon: mainGameData.icon,
+				appName: mainGameData.name,
+				appPath: mainGameData.eboot
+			});
 		
 		}
 
@@ -52,6 +65,8 @@ temp_EMUMANAGER = {
 			'color': '#0f0',
 			'background-image': 'linear-gradient(180deg, #000000db, #090f1b)'
 		});
+
+		APP.resetLauncher();
 
 	}
 

@@ -6,6 +6,7 @@ var APP = {
 
 	// App version
 	version: '1.0.0',
+	appVersion: void 0,
 
 	// Import nw modules
 	fs: require('fs'),
@@ -21,7 +22,7 @@ var APP = {
 
 	// Log function and variables
 	logData: '',
-	log: function(text, skipLog){
+	log: function(text){
 
 		if (text !== '' && text !== void 0){
 
@@ -37,8 +38,9 @@ var APP = {
 				newLog = previousLog + text;
 			}
 
-			// If Emu is running and catch an "nop" log, set log color to red
+			// If Emu is running and catch an "nop" log, update GUI
 			if (text.slice(0, 4) === 'nop ' && APP.emuManager.emuRunning === !0){
+				document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = 'Error (<label class="user-can-select">' + text + '</label>)';
 				TMS.css('APP_LOG', {
 					'color': '#f00',
 					'background-image': 'linear-gradient(180deg, #000000db, #1b0909)'
@@ -49,16 +51,38 @@ var APP = {
 			textarea.value = newLog;
 			APP.logData = newLog;
 
-			// If true, skip internal log
-			if (skipLog !== !0){
-				console.log(text);
-			}
-
 			// Scroll log
 			textarea.scrollTop = textarea.scrollHeight;
 		
 		}
 
+	},
+
+	// Reset launcher
+	resetLauncher: function(){
+		
+		if (APP.emuManager.emuCountdown > 1){
+
+			// Get current date
+			const d = new Date(),
+				cTime = d.toDateString().replace(RegExp(' ', 'gi'), '_') + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds();
+
+			// Write log file
+			APP.fs.writeFileSync(APP.settings.data.nwPath + '/Logs/Log_' + cTime + '.log', APP.logData, 'utf-8');
+
+			// Reset log
+			APP.logData = APP.appVersion;
+			document.getElementById('APP_LOG').value = APP.appVersion;
+			APP.log('INFO - Current log was cleared. You can see all previous data on Logs/Log_' + cTime + '.log');
+
+			// Reset countdown
+			APP.emuManager.emuCountdown = 0;
+
+			// Reload launcher
+			// chrome.runtime.reload();
+
+		}
+	
 	},
 
 	// Run external software
@@ -76,18 +100,29 @@ var APP = {
 
 			// Log on stdout and stderr
 			APP.execProcess.stdout.on('data', function(data){
-				APP.log(data.toString(), !0);
+				APP.log(data.toString());
 			});
 			APP.execProcess.stderr.on('data', function(data){
-				APP.log(data.toString(), !0);
+				APP.log(data.toString());
 			});
 
 			// Log on close
 			APP.execProcess.on('close', function(code){
 				process.chdir(APP.settings.data.nwPath);
 				APP.emuManager.emuRunning = !1;
+
+				// Update GUI
 				APP.design.update();
+				APP.design.toggleDisplayMode({
+					appStatus: 'idle'
+				});
+				
+				// Log exit code
 				APP.log('INFO - ' + APP.path.parse(exe).base + ' was closed returning code ' + code);
+
+				// Check if need to reset launcher
+				APP.resetLauncher();
+
 				return code;
 			});
 
@@ -118,7 +153,8 @@ delete temp_FILEMANAGER;
 window.onload = function(){
 
 	// Main log
-	APP.log('fpPS4 Temmie\'s Launcher - Version: ' + APP.version + '\nRunning on nw.js (node-webkit) version ' + process.versions.nw);
+	APP.appVersion = 'fpPS4 Temmie\'s Launcher - Version: ' + APP.version + '\nRunning on nw.js (node-webkit) version ' + process.versions.nw;
+	APP.log(APP.appVersion);
 	
 	// Load settings
 	APP.settings.load();

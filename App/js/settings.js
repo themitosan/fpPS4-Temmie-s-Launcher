@@ -38,6 +38,7 @@ temp_SETTINGS = {
 		const mainPath = this.data.nwPath,
 			pathList = [
 				'/Emu',
+				'/Logs',
 				'/Games'
 			];
 

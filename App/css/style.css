@@ -44,6 +44,7 @@ input[disabled="disabled"], input[disabled] {
 .DIV_LIST {
 	top: 38px;
 	left: 0px;
+	overflow: hidden;
 	position: absolute;
 	width: calc(100% - 280px);
 	height: calc(100% - 286px);
@@ -89,9 +90,9 @@ input[disabled="disabled"], input[disabled] {
 	top: 0px;
 	left: 0px;
 	width: 100%;
+	z-index: 10;
 	height: 100%;
 	overflow: auto;
-	transition: 0.4s;
 	position: absolute;
 	background-size: cover;
 	background-color: #0000;
@@ -129,15 +130,37 @@ input[disabled="disabled"], input[disabled] {
 	position: absolute;
 	width: calc(100% - 12px);
 }
+.DIV_GAME_DETAILS {
+	left: 10%;
+	z-index: 100;
+	padding: 6px;
+	height: 256px;
+	display: none;
+	overflow: hidden;
+	flex-wrap: nowrap;
+	position: absolute;
+	border-radius: 6px;
+	align-items: center;
+	top: calc(50% - 128px);
+	width: calc(80% - 12px);
+}
+.DIV_GAME_DETAILS_LABELS {
+	margin-left: 12px;
+}
 
 /*
 	Images
 */
-.GAME_ICON {
+.IMG_GAME_ICON {
 	width: 66px;
 	margin: 6px;
 	cursor: pointer;
 	border-radius: 6px;
+}
+.IMG_APP_ICON {
+	width: 256px;
+	border-radius: 6px;
+	box-shadow: 0px 0px 10px #000;
 }
 
 /*
@@ -168,6 +191,12 @@ input[disabled="disabled"], input[disabled] {
 /*
 	Labels
 */
+.LABEL_detailsGameName {
+	font-size: 28px;
+    margin-top: 10px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
 .LABEL_checkbox {
 	cursor: pointer;
 	font-size: 16px;
@@ -176,7 +205,7 @@ input[disabled="disabled"], input[disabled] {
 .LABEL_emuColor {
 	color: #fffb8e;
 }
-.LABEL_gameTtitle {
+.LABEL_gameTitle {
 	font-size: 20px;
 	cursor: pointer;
 }
@@ -184,6 +213,10 @@ input[disabled="disabled"], input[disabled] {
 /*
 	Misc
 */
+.user-can-select {
+	cursor: text;
+	user-select: all !important;
+}
 .none {
 	display: none;
 }
