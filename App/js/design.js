@@ -92,27 +92,24 @@ temp_DESIGN = {
 			var btnRun = '',
 				logHeight = '248px',
 				btnKill = 'disabled',
-				hackDisplay = 'inline',
-				listHeight = 'calc(100% - 286px)',
-				optionsHeight = 'calc(100% - 298px)';
-	
+				optionsCss = {'height': 'calc(100% - 298px)', 'display': 'block'},
+				listCss = {'width': 'calc(100% - 280px)', 'height': 'calc(100% - 286px)'};
+
 			// If emu is running
 			if (APP.emuManager.emuRunning === !0){
 	
 				btnKill = '';
 				btnRun = 'disabled';
-				listHeight = '362px';
-				hackDisplay = 'none';
-				optionsHeight = '350px';
 				logHeight = 'calc(100% - 400px)';
+				listCss = {'width': '100%', 'height': '362px'};
+				optionsCss = {'height': '350px', 'display': 'none'};
 	
 			}
 	
 			// Update GUI
+			TMS.css('DIV_LIST', listCss);
+			TMS.css('DIV_OPTIONS', optionsCss);
 			TMS.css('DIV_LOG', {'height': logHeight});
-			TMS.css('DIV_LIST', {'height': listHeight});
-			TMS.css('DIV_OPTIONS', {'height': optionsHeight});
-			TMS.css('DIV_HACK_LIST', {'display': hackDisplay});
 	
 			// Update Buttons
 			document.getElementById('BTN_RUN').disabled = btnRun;
@@ -139,7 +136,7 @@ temp_DESIGN = {
 			if (APP.emuManager.emuRunning === !1){
 	
 				gameDetails = {'display': 'none'};
-				listInternal = {'transition': '0.1s', 'filter': 'none', '-webkit-mask-image': 'none'};
+				listInternal = {'transition': 'none', 'filter': 'none', '-webkit-mask-image': 'none'};
 				APP.design.renderGameList();
 	
 			} else {

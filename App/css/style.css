@@ -144,6 +144,7 @@ input[disabled="disabled"], input[disabled] {
 	top: calc(50% - 140px);
 	left: calc(10% - 24px);
 	width: calc(80% - 24px);
+	justify-content: center;
 }
 .DIV_GAME_DETAILS_LABELS {
 	margin-left: 12px;
@@ -187,6 +188,11 @@ input[disabled="disabled"], input[disabled] {
 	height: 50px;
 	font-size: 18px;
 	margin-top: 2px;
+}
+.BTN_STOP {
+	float: right;
+	margin-right: 16px;
+	padding: 1px 98px 1px 100px;
 }
 
 /*

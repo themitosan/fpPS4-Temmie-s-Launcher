@@ -18,6 +18,8 @@
 			<input type="button" class="APP_btn" onclick="APP.gameList.load();" value="Refresh game list">
 			<input type="button" class="APP_btn" onclick="APP.about();" value="About">
 
+			<input type="button" class="APP_btn BTN_STOP" id="BTN_KILL" onclick="APP.emuManager.killEmu();" disabled="disabled" value="Stop fpPS4">
+
 		</div>
 
 		<!-- fpPS4 Options -->
@@ -31,7 +33,6 @@
 
 			<!-- Run fpPS4 -->
 			<div class="DIV_RUN_BTN">
-				<input type="button" class="BTN_RUN" id="BTN_KILL" onclick="APP.emuManager.killEmu();" disabled="disabled" value="Stop fpPS4">
 				<input type="button" class="BTN_RUN" id="BTN_RUN" onclick="APP.emuManager.runGame();" disabled="disabled" value="Run fpPS4">
 			</div>
 

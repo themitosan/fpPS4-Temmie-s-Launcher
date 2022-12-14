@@ -40,7 +40,7 @@ var APP = {
 
 			// If Emu is running and catch an "nop" log, update GUI
 			if (text.slice(0, 4) === 'nop ' && APP.emuManager.emuRunning === !0){
-				document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = 'Error (<label class="user-can-select">' + text + '</label>)';
+				document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = 'Error ( <label class="user-can-select">' + text + '</label>)';
 				TMS.css('APP_LOG', {
 					'color': '#f00',
 					'background-image': 'linear-gradient(180deg, #000000db, #1b0909)'
@@ -61,7 +61,7 @@ var APP = {
 	// Reset launcher
 	resetLauncher: function(){
 		
-		if (APP.emuManager.emuCountdown > 1){
+		if (APP.emuManager.emuCountdown > 2){
 
 			// Get current date
 			const d = new Date(),
