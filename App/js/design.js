@@ -51,8 +51,12 @@ temp_DESIGN = {
 			tempHtml = '';
 
 		Object.keys(gList).forEach(function(cGame){
-			tempHtml = tempHtml + '<div class="GAME_ENTRY" onclick="APP.design.selectGame(\'' + cGame + '\');"><img class="IMG_GAME_ICON" src="' + 
-								   gList[cGame].icon + '"><div class="GAME_DETAILS"><label class="LABEL_gameTitle">' + gList[cGame].name + 
+
+			// Fix bg path
+			const bgPath = gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'');
+
+			tempHtml = tempHtml + '<div class="GAME_ENTRY" onclick="APP.design.selectGame(\'' + cGame + '\');"><div class="GAME_ENTRY_BG" style="background-image: url(\'' + bgPath +
+								  '\');">' + '</div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '"><div class="GAME_DETAILS"><label class="LABEL_gameTitle">' + gList[cGame].name +
 								   '</label><br>' + 'Path: ' + gList[cGame].eboot + '</div></div>';
 		});
 

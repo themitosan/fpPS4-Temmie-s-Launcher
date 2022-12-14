@@ -90,6 +90,14 @@ var APP = {
 	
 	},
 
+	// Clear Log
+	clearLog: function(){
+
+		APP.emuManager.emuCountdown = 3;
+		this.resetLauncher();
+
+	},
+
 	// Run external software
 	execProcess: void 0,
 	runExec: function(exe, args){
