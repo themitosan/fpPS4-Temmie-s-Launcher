@@ -120,8 +120,8 @@ input[disabled="disabled"], input[disabled] {
 	background-image: linear-gradient(90deg, #3a4b6b82, #3a4b6b82);
 }
 .GAME_ENTRY:active {
-	box-shadow: 0px 0px 10px #0006 inset;
 	backdrop-filter: sepia(1) blur(6px);
+	box-shadow: 0px 0px 10px #0006 inset;
 }
 .GAME_ENTRY_BG {
 	top: 0px;
@@ -135,6 +135,10 @@ input[disabled="disabled"], input[disabled] {
 	background-position: center;
 	background-repeat: no-repeat;
 	-webkit-mask-image: linear-gradient(45deg, #0006, #0000, #0000);
+}
+.GAME_ENTRY:hover .GAME_ENTRY_BG {
+	filter: blur(3px);
+	-webkit-mask-image: linear-gradient(45deg, #000b, #00000016, #0000);
 }
 .GAME_DETAILS {
 	z-index: 1;
