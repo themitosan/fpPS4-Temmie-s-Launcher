@@ -120,7 +120,7 @@ input[disabled="disabled"], input[disabled] {
 }
 .GAME_ENTRY:active {
 	box-shadow: 0px 0px 10px #0006 inset;
-	backdrop-filter: invert(0.68) blur(6px);
+	backdrop-filter: sepia(1) blur(6px);
 }
 .GAME_DETAILS {
 	cursor: pointer;
@@ -132,18 +132,18 @@ input[disabled="disabled"], input[disabled] {
 	width: calc(100% - 12px);
 }
 .DIV_GAME_DETAILS {
-	left: 10%;
 	z-index: 100;
-	padding: 6px;
 	height: 256px;
+	padding: 12px;
 	display: none;
 	overflow: hidden;
 	flex-wrap: nowrap;
 	position: absolute;
 	border-radius: 6px;
 	align-items: center;
-	top: calc(50% - 128px);
-	width: calc(80% - 12px);
+	top: calc(50% - 140px);
+	left: calc(10% - 24px);
+	width: calc(80% - 24px);
 }
 .DIV_GAME_DETAILS_LABELS {
 	margin-left: 12px;

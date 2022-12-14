@@ -133,17 +133,18 @@ temp_DESIGN = {
 			
 			var appIcon = '',
 				gameDetails = {'display': 'flex'},
-				listInternal = {'filter': 'blur(6px)', '-webkit-mask-image': 'linear-gradient(0deg, #0006, #0006)'};
+				listInternal = {'transition': '0.4s', 'filter': 'blur(6px)', '-webkit-mask-image': 'linear-gradient(0deg, #0006, #0006)'};
 	
 			// If emu isn't running
 			if (APP.emuManager.emuRunning === !1){
 	
 				gameDetails = {'display': 'none'};
-				listInternal = {'filter': 'none', '-webkit-mask-image': 'none'};
+				listInternal = {'transition': '0.1s', 'filter': 'none', '-webkit-mask-image': 'none'};
 				APP.design.renderGameList();
 	
 			} else {
 	
+				// Clear game list
 				document.getElementById('DIV_LIST_INTERNAL').innerHTML = '';
 	
 			}

@@ -73,12 +73,17 @@ var APP = {
 			// Reset log
 			APP.logData = APP.appVersion;
 			document.getElementById('APP_LOG').value = APP.appVersion;
-			APP.log('INFO - Current log was cleared. You can see all previous data on Logs/Log_' + cTime + '.log');
+			APP.log('INFO - Current log was cleared! You can see all previous data on \"Logs/Log_' + cTime + '.log\"');
 
 			// Reset countdown
 			APP.emuManager.emuCountdown = 0;
 
-			// Reload launcher
+			/*
+				Reload launcher
+				
+				I'm looking after some bugs related for fpPS4 Temmie's launcher not catching some logs...
+				I will keep the line below disabled... for now!
+			*/
 			// chrome.runtime.reload();
 
 		}
