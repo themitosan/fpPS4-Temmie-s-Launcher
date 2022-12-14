@@ -1,6 +1,10 @@
 # fpPS4 Temmie's Launcher
 A simple launcher for <a href="https://github.com/red-prig/fpPS4/" target="_blank">fpPS4 project</a> - created just for fun.
 
+<p align="center">
+<img src="https://pbs.twimg.com/media/Fj55hxUXoAETWrB?format=jpg&name=large" width="800" style="border-radius: 6px">
+</p>
+
 ## How to install
 - Download / Clone this repo
 - Download <a href="https://nwjs.io/" target="_blank">nw.js</a>
