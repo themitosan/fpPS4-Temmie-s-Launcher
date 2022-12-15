@@ -16,6 +16,13 @@ input[type='button'], input[type='checkbox'] {
 input[disabled="disabled"], input[disabled] {
 	cursor: no-drop;
 }
+img {
+	-webkit-user-drag: none;
+}
+
+/*
+	ScrollBar
+*/
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -120,8 +127,8 @@ input[disabled="disabled"], input[disabled] {
 	background-image: linear-gradient(90deg, #3a4b6b82, #3a4b6b82);
 }
 .GAME_ENTRY:active {
-	backdrop-filter: sepia(1) blur(6px);
 	box-shadow: 0px 0px 10px #0006 inset;
+	backdrop-filter: sepia(0.5) blur(6px);
 }
 .GAME_ENTRY_BG {
 	top: 0px;
