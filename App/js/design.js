@@ -4,9 +4,7 @@
 
 temp_DESIGN = {
 
-	/*
-		Hack List
-	*/
+	// Hack List
 	hackList: [
 		'DEPTH_DISABLE_HACK',
 		'COMPUTE_DISABLE_HACK',
@@ -47,14 +45,15 @@ temp_DESIGN = {
 	// Render game list
 	renderGameList: function(){
 
-		var gList = APP.gameList.list,
-			tempHtml = '';
+		var tempHtml = '',
+			gList = APP.gameList.list;
 
 		Object.keys(gList).forEach(function(cGame){
 
 			// Fix bg path
 			const bgPath = gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'');
 
+			// Add entry
 			tempHtml = tempHtml + '<div class="GAME_ENTRY" onclick="APP.design.selectGame(\'' + cGame + '\');"><div class="GAME_ENTRY_BG" style="background-image: url(\'' + bgPath +
 								  '\');">' + '</div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '"><div class="GAME_DETAILS"><label class="LABEL_gameTitle">' + gList[cGame].name +
 								   '</label><br>' + 'Path: ' + gList[cGame].eboot + '</div></div>';
@@ -71,10 +70,43 @@ temp_DESIGN = {
 	// Select game
 	selectGame: function(gameName){
 
+		// Settings file
+		const settingsFile = APP.settings.data.gamePath + '/' + gameName + '/launcherSettings.json';
+
 		if (APP.gameList.list[gameName] !== void 0){
 
+			// Select game and update GUI
 			APP.gameList.selectedGame = gameName;
 			APP.design.update();
+
+			// Check if game config exists
+			if (APP.fs.existsSync(settingsFile) === !1){
+
+				// Get hack list
+				var hList = {};
+				APP.design.hackList.forEach(function(cHack){
+					hList[cHack] = !1;
+				});
+
+				// Create settings file
+				APP.gameList.createGameSettings({
+					hacks: hList,
+					name: gameName,
+					path: settingsFile
+				});
+
+			}
+
+			// Load settings file
+			const gSettings = JSON.parse(APP.fs.readFileSync(settingsFile, 'utf-8'));
+			APP.gameList.cGameSettings = gSettings;
+
+			// Set hacks
+			Object.keys(gSettings.hacks).forEach(function(hackName){
+
+				document.getElementById('CHECK_' + hackName).checked = JSON.parse(gSettings.hacks[hackName]);
+
+			});
 
 		}
 

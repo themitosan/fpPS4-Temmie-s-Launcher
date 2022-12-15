@@ -44,13 +44,17 @@ temp_SETTINGS = {
 
 		// Try create required paths
 		pathList.forEach(function(cPath){
+
 			if (APP.fs.existsSync(mainPath + cPath) !== !0){
+
 				try {
 					APP.fs.mkdirSync(mainPath + cPath);
 				} catch (err) {
 					APP.log('Unable to create path!\n(' + mainPath + cPath + ')\n' + err);
 				}
+				
 			}
+
 		});
 
 		// Set Games / Emu paths and check if fpPS4 exe is present
@@ -58,11 +62,15 @@ temp_SETTINGS = {
 		this.data.emuPath = mainPath + '/Emu/fpPS4.exe';
 
 		if (APP.fs.existsSync(this.data.emuPath) === !0){
+
 			APP.log('INFO - Main fpPS4 was found!');
+
 		} else {
+
 			const errMsg = 'ERROR - Unable to locate main fpPS4 executable!\nMake sure to insert it on \"Emu\" folder and click on ok.';
 			window.alert(errMsg);
 			APP.log(errMsg);
+
 		}
 
 	}

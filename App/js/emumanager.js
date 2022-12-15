@@ -48,6 +48,9 @@ temp_EMUMANAGER = {
 				appName: mainGameData.name,
 				appPath: mainGameData.eboot
 			});
+
+			// Save game settings
+			APP.gameList.saveGameSettings();
 		
 		}
 

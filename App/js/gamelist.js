@@ -10,6 +10,59 @@ temp_GAMELIST = {
 	// Selected game
 	selectedGame: '',
 
+	// Selected game settings
+	cGameSettings: {},
+
+	// Make game settings
+	createGameSettings: function(data){
+
+		// Temp JSON
+		const gameSettings = {
+			name: data.name,
+			hacks: data.hacks
+		}
+
+		// Write file
+		try {
+
+			APP.fs.writeFileSync(data.path, JSON.stringify(gameSettings), 'utf-8');
+			APP.log('INFO - Settings file was created successfully for ' + data.name + '!\nPath: ' + data.path);
+		
+		} catch (err) {
+
+			console.error(err);
+			APP.log('ERROR - Unable to create settings file for ' + data.name + ' at ' + data.path + '!\nReason: ' + err);
+
+		}
+
+	},
+
+	// Save game settings
+	saveGameSettings: function(){
+
+		// Path
+		const fPath = APP.path.parse(this.list[this.selectedGame].eboot).dir + '/launcherSettings.json';
+
+		// Update hack data
+		APP.design.hackList.forEach(function(hName){
+			APP.gameList.cGameSettings.hacks[hName] = JSON.parse(document.getElementById('CHECK_' + hName).checked);
+		});
+
+		// Write file
+		try {
+
+			APP.fs.writeFileSync(fPath, JSON.stringify(APP.gameList.cGameSettings), 'utf-8');
+			APP.log('INFO - (' + APP.gameList.selectedGame + ') Settings file was updated successfully!');
+		
+		} catch (err) {
+
+			console.error(err);
+			APP.log('ERROR - Unable to update settings file for ' + APP.gameList.selectedGame + ' at ' + fPath + '!\nReason: ' + err);
+
+		}
+
+	},
+
 	// Select game path
 	selectPath: function(){
 
@@ -90,12 +143,15 @@ temp_GAMELIST = {
 		
 					// If executable exists, set data
 					if (addGame === !0){
+
+						// Add game to list
 						APP.gameList.list[gPath] = {
 							bg: finalBg,
 							name: gPath,
 							icon: finalIcon,					
-							eboot: APP.settings.data.gamePath + '/' + gPath + '/' + ebootName
+							eboot: pathBase + '/' + ebootName
 						}
+
 					}
 		
 				});
