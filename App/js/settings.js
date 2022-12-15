@@ -58,7 +58,11 @@ temp_SETTINGS = {
 		});
 
 		// Set Games / Emu paths and check if fpPS4 exe is present
-		this.data.gamePath = mainPath + '/Games';
+		if (this.data.gamePath === ''){
+			APP.settings.data.gamePath = mainPath + '/Games';
+		}
+
+		// fpPS4 path
 		this.data.emuPath = mainPath + '/Emu/fpPS4.exe';
 
 		if (APP.fs.existsSync(this.data.emuPath) === !0){
