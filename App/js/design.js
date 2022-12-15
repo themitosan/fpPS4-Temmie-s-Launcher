@@ -54,9 +54,9 @@ temp_DESIGN = {
 			const bgPath = gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'');
 
 			// Add entry
-			tempHtml = tempHtml + '<div class="GAME_ENTRY" onclick="APP.design.selectGame(\'' + cGame + '\');"><div class="GAME_ENTRY_BG" style="background-image: url(\'' + bgPath +
-								  '\');">' + '</div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '"><div class="GAME_DETAILS"><label class="LABEL_gameTitle">' + gList[cGame].name +
-								   '</label><br>' + 'Path: ' + gList[cGame].eboot + '</div></div>';
+			tempHtml = tempHtml + '<div class="GAME_ENTRY" onclick="APP.design.selectGame(\'' + cGame + '\');" id="GAME_ENTRY_' + cGame + '"><div class="GAME_ENTRY_BG" style="background-image: url(\'' +
+								  bgPath + '\');">' + '</div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '"><div class="GAME_DETAILS"><label class="LABEL_gameTitle">' + gList[cGame].name +
+								  '</label><br>' + 'Path: ' + gList[cGame].eboot + '</div></div>';
 		});
 
 		// Insert HTML

@@ -136,7 +136,14 @@ var APP = {
 				// Check if need to reset launcher
 				APP.resetLauncher();
 
+				// Scroll game list to last selected game
+				if (APP.gameList.selectedGame !== ''){
+					TMS.scrollCenter('GAME_ENTRY_' + APP.gameList.selectedGame);
+					APP.design.selectGame(APP.gameList.selectedGame);
+				}
+
 				return code;
+
 			});
 
 		}

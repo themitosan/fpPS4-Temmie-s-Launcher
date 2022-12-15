@@ -140,6 +140,10 @@ input[disabled="disabled"], input[disabled] {
 	filter: blur(3px);
 	-webkit-mask-image: linear-gradient(45deg, #000b, #00000016, #0000);
 }
+.GAME_ENTRY:focus .GAME_ENTRY_BG {
+	filter: blur(3px);
+	-webkit-mask-image: linear-gradient(45deg, #000b, #00000016, #0000);
+}
 .GAME_DETAILS {
 	z-index: 1;
 	cursor: pointer;
