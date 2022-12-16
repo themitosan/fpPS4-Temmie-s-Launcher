@@ -65,7 +65,7 @@ var APP = {
 
 			// Get current date
 			const d = new Date(),
-				cTime = d.toDateString().replace(RegExp(' ', 'gi'), '_') + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds();
+				cTime = d.toDateString().replace(RegExp(' ', 'gi'), '_') + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds();
 
 			// Write log file
 			APP.fs.writeFileSync(APP.settings.data.nwPath + '/Logs/Log_' + cTime + '.log', APP.logData, 'utf-8');
