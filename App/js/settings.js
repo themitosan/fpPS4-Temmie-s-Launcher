@@ -20,8 +20,8 @@ temp_SETTINGS = {
 			bgListOpacity: 0.7,
 
 			// Background Blur
-			bgListBlur: 2,
 			bgEmuBlur: 6,
+			bgListBlur: 2,
 
 			showPathEntry: !0,
 			showPathRunning: !0,
