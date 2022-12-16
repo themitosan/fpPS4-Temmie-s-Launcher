@@ -15,6 +15,14 @@ temp_SETTINGS = {
 		// GUI Settings
 		gui: {
 
+			// Background Opacity
+			bgEmuOpacity: 0.6,
+			bgListOpacity: 0.7,
+
+			// Background Blur
+			bgListBlur: 2,
+			bgEmuBlur: 6,
+
 			showPathEntry: !0,
 			showPathRunning: !0,
 			gameListMode: 'normal'

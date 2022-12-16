@@ -13,8 +13,12 @@ select, input[type='button'], input[type='checkbox'] {
 	outline: none;
 	cursor: pointer;
 }
-input[disabled="disabled"], input[disabled] {
+input[disabled='disabled'], input[disabled] {
 	cursor: no-drop;
+}
+input[type='range'] {
+	outline: none;
+	cursor: col-resize;
 }
 img {
 	-webkit-user-drag: none;
@@ -118,14 +122,25 @@ img {
 	overflow: auto;
 	transition: 0.1s;
 	position: absolute;
-	background-size: cover;
 	background-color: #0000;
+}
+.DIV_GAMELIST_BG {
+	top: -6px;
+	left: -6px;
+	z-index: 1;
+	position: absolute;
+	background-size: cover;
+	background-color: #0006;
+	width: calc(100% + 12px);
+	height: calc(100% + 12px);
 	background-position: center;
 	background-repeat: no-repeat;
 	background-blend-mode: screen;
+	filter: blur(2px) opacity(0.7);
 }
 .GAME_ENTRY {
 	margin: 6px;
+	z-index: 10;
 	height: 80px;
 	display: flex;
 	cursor: pointer;
@@ -247,6 +262,12 @@ img {
 	overflow: hidden;
 	font-style: italic;
 }
+.DIV_settingsEntryFlex {
+	display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: center;
+}
 .DIV_settingsH2 {
 	font-size: 20px;
 	font-style: italic;
@@ -258,6 +279,15 @@ img {
 	z-index: 10;
 	position: absolute;
 	text-align: center;
+}
+.DIV_labelSelectedGame {
+	display: flex;
+	flex-wrap: wrap;
+	font-size: 14px;
+	text-align: center;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
 }
 
 /*

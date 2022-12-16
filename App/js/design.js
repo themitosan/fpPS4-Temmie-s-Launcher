@@ -27,6 +27,19 @@ temp_DESIGN = {
 		document.getElementById(domName).checked = res;
 
 	},
+
+	// Parse percentage
+	parsePercentage: function(current, maximum){
+
+		var res = 0;
+		
+		if (current !== void 0 && maximum !== void 0){
+			res = Math.floor((current / maximum) * 100);
+		}
+		
+		return res;
+
+	},
 	
 	// Render hack list
 	renderHacklist: function(){
@@ -78,7 +91,7 @@ temp_DESIGN = {
 		document.getElementById('DIV_LIST_INTERNAL').innerHTML = tempHtml;
 
 		// Clear BG image
-		TMS.css('DIV_LIST_INTERNAL', {'background-image': 'none'});
+		TMS.css('DIV_GAMELIST_BG', {'background-image': 'none'});
 
 	},
 
@@ -130,7 +143,7 @@ temp_DESIGN = {
 
 		// Update background image
 		if (APP.gameList.list[APP.gameList.selectedGame] !== ''){
-			TMS.css('DIV_LIST_INTERNAL', {
+			TMS.css('DIV_GAMELIST_BG', {
 				'background-image': 'url("' + APP.gameList.list[APP.gameList.selectedGame].bg + '")'
 			});
 		}
@@ -144,6 +157,8 @@ temp_DESIGN = {
 				logHeight = '248px',
 				btnKill = 'disabled',
 				emuRunPath = 'block',
+				bgBlur = APP.settings.data.gui.bgListBlur,
+				bgOpacity = APP.settings.data.gui.bgListOpacity,
 				optionsCss = {'height': 'calc(100% - 298px)', 'display': 'block'},
 				listCss = {'width': 'calc(100% - 280px)', 'height': 'calc(100% - 286px)'};
 
@@ -155,7 +170,9 @@ temp_DESIGN = {
 				btnRefresh = 'disabled';
 				btnSettings = 'disabled';
 				logHeight = 'calc(100% - 400px)';
+				bgBlur = APP.settings.data.gui.bgEmuBlur;
 				listCss = {'width': '100%', 'height': '362px'};
+				bgOpacity = APP.settings.data.gui.bgEmuOpacity;
 				optionsCss = {'height': '350px', 'display': 'none'};
 	
 			}
@@ -170,6 +187,7 @@ temp_DESIGN = {
 			TMS.css('DIV_OPTIONS', optionsCss);
 			TMS.css('DIV_LOG', {'height': logHeight});
 			TMS.css('DIV_GAME_DETAILS_currentExec', {'display': emuRunPath});
+			TMS.css('DIV_GAMELIST_BG', {'filter': 'blur(' + bgBlur + 'px) opacity(' + bgOpacity + ')'});
 	
 			// Update Buttons
 			document.getElementById('BTN_RUN').disabled = btnRun;
@@ -178,6 +196,9 @@ temp_DESIGN = {
 			document.getElementById('BTN_SETTINGS').disabled = btnSettings;
 
 		}
+
+		// Render selected game name
+		document.getElementById('DIV_labelSelectedGame').innerHTML = APP.gameList.selectedGame;
 
 		// Scroll log
 		var tx = document.getElementById('APP_LOG');
@@ -195,13 +216,13 @@ temp_DESIGN = {
 			
 			var appIcon = '',
 				gameDetails = {'display': 'flex'},
-				listInternal = {'transition': '0.4s', 'filter': 'blur(6px)', '-webkit-mask-image': 'linear-gradient(0deg, #0006, #0006)'};
+				listInternal = {'transition': '0.4s', 'filter': 'blur(' + APP.settings.data.gui.bgEmuBlur +'px) opacity(' + APP.settings.data.gui.bgEmuOpacity + ')'};
 	
 			// If emu isn't running
 			if (APP.emuManager.emuRunning === !1){
 	
 				gameDetails = {'display': 'none'};
-				listInternal = {'transition': 'none', 'filter': 'none', '-webkit-mask-image': 'none'};
+				listInternal = {'transition': 'none', 'filter': 'blur(' + APP.settings.data.gui.bgListBlur +'px) opacity(' + APP.settings.data.gui.bgListOpacity + ')'};
 				APP.design.renderGameList();
 	
 			} else {
@@ -224,7 +245,7 @@ temp_DESIGN = {
 	
 			// Set CSS
 			TMS.css('DIV_GAME_DETAILS', gameDetails);
-			TMS.css('DIV_LIST_INTERNAL', listInternal);
+			TMS.css('DIV_GAMELIST_BG', listInternal);
 
 		}
 
@@ -271,23 +292,37 @@ temp_DESIGN = {
 	},
 
 	// Render settings list
-	renderSettings: function(){
+	renderSettings: function(requestSave){
+
+		// If need to save
+		if (requestSave === !0){
+			APP.design.saveSettings(requestSave);
+		}
+
+		// Shortcut
+		const cSettings = APP.settings.data;
 
 		// Labels
-		document.getElementById('LBL_SETTINGS_emuPath').innerHTML = APP.settings.data.emuPath
-		document.getElementById('LBL_SETTINGS_gamePath').innerHTML = APP.settings.data.gamePath;
+		document.getElementById('LBL_SETTINGS_emuPath').innerHTML = cSettings.emuPath
+		document.getElementById('LBL_SETTINGS_gamePath').innerHTML = cSettings.gamePath;
+		document.getElementById('LABEL_settingsGameListBgOpacity').innerHTML = this.parsePercentage(cSettings.gui.bgListOpacity, 1);
+		document.getElementById('LABEL_settingsEmuRunningBgOpacity').innerHTML = this.parsePercentage(cSettings.gui.bgEmuOpacity, 1);
 
 		// Select
-		document.getElementById('SELECT_settingsDisplayMode').value = APP.settings.data.gui.gameListMode;
+		document.getElementById('SELECT_settingsDisplayMode').value = cSettings.gui.gameListMode;
 
 		// Checkbox
-		document.getElementById('CHECKBOX_settingsShowExecList').checked = JSON.parse(APP.settings.data.gui.showPathEntry);
-		document.getElementById('CHECKBOX_settingsShowExecRunning').checked = JSON.parse(APP.settings.data.gui.showPathRunning);
+		document.getElementById('CHECKBOX_settingsShowExecList').checked = JSON.parse(cSettings.gui.showPathEntry);
+		document.getElementById('CHECKBOX_settingsShowExecRunning').checked = JSON.parse(cSettings.gui.showPathRunning);
+
+		// Range
+		document.getElementById('RANGE_settingsGameListBgOpacity').value = cSettings.gui.bgListOpacity;
+		document.getElementById('RANGE_settingsEmuRunningBgOpacity').value = cSettings.gui.bgEmuOpacity;
 
 	},
 
 	// Save user settings
-	saveSettings: function(){
+	saveSettings: function(skipCloseSettings){
 
 		// Select
 		APP.settings.data.gui.gameListMode = document.getElementById('SELECT_settingsDisplayMode').value;
@@ -295,6 +330,10 @@ temp_DESIGN = {
 		// Checkbox
 		APP.settings.data.gui.showPathEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecList').checked);
 		APP.settings.data.gui.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
+
+		// Range
+		APP.settings.data.gui.bgListOpacity = parseFloat(document.getElementById('RANGE_settingsGameListBgOpacity').value);
+		APP.settings.data.gui.bgEmuOpacity = parseFloat(document.getElementById('RANGE_settingsEmuRunningBgOpacity').value);
 
 		/*
 			End
@@ -304,7 +343,9 @@ temp_DESIGN = {
 		APP.settings.save();
 
 		// GUI: Close settings
-		APP.design.toggleSettings(!0);
+		if (skipCloseSettings !== !0){
+			APP.design.toggleSettings(!0);
+		}
 
 	}
 
