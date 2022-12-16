@@ -51,6 +51,7 @@ temp_DESIGN = {
 		Object.keys(gList).forEach(function(cGame){
 
 			var classCompactMode = '',
+				appNameClass = 'LABEL_gameTitle',
 				pathLabel = '<br>Path: ' + gList[cGame].eboot,
 				bgPath = gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\''),
 				gameBgAndIcon = '<div class="GAME_ENTRY_BG" style="background-image: url(\'' + bgPath + '\');">' + '</div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '">';
@@ -64,12 +65,13 @@ temp_DESIGN = {
 			if (APP.settings.data.gui.gameListMode === 'compact'){
 				pathLabel = '';
 				gameBgAndIcon = '';
+				appNameClass = 'LABEL_gameTitleCompact';
 				classCompactMode = 'GAME_ENTRY_COMPACT';
 			}
 
 			// Add entry
 			tempHtml = tempHtml + '<div class="GAME_ENTRY ' + classCompactMode + '" onclick="APP.design.selectGame(\'' + cGame + '\');" id="GAME_ENTRY_' + cGame + '">' + gameBgAndIcon +
-								  '<div class="GAME_DETAILS"><label class="LABEL_gameTitle">' + gList[cGame].name + '</label>' + pathLabel + '</div></div>';
+								  '<div class="GAME_DETAILS"><label class="' + appNameClass + '">' + gList[cGame].name + '</label>' + pathLabel + '</div></div>';
 		});
 
 		// Insert HTML

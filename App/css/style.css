@@ -136,19 +136,20 @@ img {
 	align-items: center;
 	align-content: center;
 	width: calc(100% - 12px);
+	box-shadow: 0px 0px 4px #000;
 	backdrop-filter: blur(4px) invert(0.1);
 	background-image: linear-gradient(90deg, #3a4b6b82, #0000);
 }
 .GAME_ENTRY:hover {
 	box-shadow: 0px 0px 10px #0006;
-	background-image: linear-gradient(90deg, #3a4b6b82, #3a4b6b82);
+	background-image: linear-gradient(45deg, #3a4b6b, #3a4b6b82);
 }
 .GAME_ENTRY:active {
-	box-shadow: 0px 0px 10px #0006 inset;
 	backdrop-filter: sepia(0.5) blur(6px);
+	background-image: linear-gradient(45deg, #080e, #0400, #0000);
 }
 .GAME_ENTRY_COMPACT {
-    max-height: 40.5px !important;
+    max-height: 24px !important;
     padding-left: 10px !important;
     width: calc(100% - 22px) !important;
 }
@@ -347,6 +348,10 @@ img {
 }
 .LABEL_gameTitle {
 	font-size: 20px;
+	cursor: pointer;
+}
+.LABEL_gameTitleCompact {
+	font-size: 16px;
 	cursor: pointer;
 }
 .LABEL_settingsPath {
