@@ -5,7 +5,7 @@
 var APP = {
 
 	// App version
-	version: '1.1.0',
+	version: '1.1.1',
 	appVersion: void 0,
 
 	// Import nw modules
