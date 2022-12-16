@@ -50,13 +50,26 @@ temp_DESIGN = {
 
 		Object.keys(gList).forEach(function(cGame){
 
-			// Fix bg path
-			const bgPath = gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'');
+			var classCompactMode = '',
+				pathLabel = '<br>Path: ' + gList[cGame].eboot,
+				bgPath = gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\''),
+				gameBgAndIcon = '<div class="GAME_ENTRY_BG" style="background-image: url(\'' + bgPath + '\');">' + '</div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '">';
+
+			// Remove executable path
+			if (APP.settings.data.gui.showPathEntry !== !0){
+				pathLabel = '';
+			}
+
+			// If display mode is compact
+			if (APP.settings.data.gui.gameListMode === 'compact'){
+				pathLabel = '';
+				gameBgAndIcon = '';
+				classCompactMode = 'GAME_ENTRY_COMPACT';
+			}
 
 			// Add entry
-			tempHtml = tempHtml + '<div class="GAME_ENTRY" onclick="APP.design.selectGame(\'' + cGame + '\');" id="GAME_ENTRY_' + cGame + '"><div class="GAME_ENTRY_BG" style="background-image: url(\'' +
-								  bgPath + '\');">' + '</div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '"><div class="GAME_DETAILS"><label class="LABEL_gameTitle">' + gList[cGame].name +
-								  '</label><br>' + 'Path: ' + gList[cGame].eboot + '</div></div>';
+			tempHtml = tempHtml + '<div class="GAME_ENTRY ' + classCompactMode + '" onclick="APP.design.selectGame(\'' + cGame + '\');" id="GAME_ENTRY_' + cGame + '">' + gameBgAndIcon +
+								  '<div class="GAME_DETAILS"><label class="LABEL_gameTitle">' + gList[cGame].name + '</label>' + pathLabel + '</div></div>';
 		});
 
 		// Insert HTML
@@ -103,9 +116,7 @@ temp_DESIGN = {
 
 			// Set hacks
 			Object.keys(gSettings.hacks).forEach(function(hackName){
-
 				document.getElementById('CHECK_' + hackName).checked = JSON.parse(gSettings.hacks[hackName]);
-
 			});
 
 		}
@@ -126,8 +137,11 @@ temp_DESIGN = {
 		if (APP.fs.existsSync(APP.settings.data.emuPath) === !0 && APP.gameList.selectedGame !== ''){
 
 			var btnRun = '',
+				btnRefresh = '',
+				btnSettings = '',
 				logHeight = '248px',
 				btnKill = 'disabled',
+				emuRunPath = 'block',
 				optionsCss = {'height': 'calc(100% - 298px)', 'display': 'block'},
 				listCss = {'width': 'calc(100% - 280px)', 'height': 'calc(100% - 286px)'};
 
@@ -136,26 +150,39 @@ temp_DESIGN = {
 	
 				btnKill = '';
 				btnRun = 'disabled';
+				btnRefresh = 'disabled';
+				btnSettings = 'disabled';
 				logHeight = 'calc(100% - 400px)';
 				listCss = {'width': '100%', 'height': '362px'};
 				optionsCss = {'height': '350px', 'display': 'none'};
 	
 			}
-	
+
+			// Show / Hide path on game run
+			if (APP.settings.data.gui.showPathRunning === !1){
+				emuRunPath = 'none';
+			}
+
 			// Update GUI
 			TMS.css('DIV_LIST', listCss);
 			TMS.css('DIV_OPTIONS', optionsCss);
 			TMS.css('DIV_LOG', {'height': logHeight});
+			TMS.css('DIV_GAME_DETAILS_currentExec', {'display': emuRunPath});
 	
 			// Update Buttons
 			document.getElementById('BTN_RUN').disabled = btnRun;
 			document.getElementById('BTN_KILL').disabled = btnKill;
+			document.getElementById('BTN_REFRESH').disabled = btnRefresh;
+			document.getElementById('BTN_SETTINGS').disabled = btnSettings;
 
 		}
 
 		// Scroll log
 		var tx = document.getElementById('APP_LOG');
 		tx.scrollTop = tx.scrollHeight;
+
+		// Render Settings
+		this.renderSettings();
 
 	},
 
@@ -198,6 +225,84 @@ temp_DESIGN = {
 			TMS.css('DIV_LIST_INTERNAL', listInternal);
 
 		}
+
+	},
+
+	// Display / Hide Settings
+	toggleSettings: function(hide){
+
+		var showList = ['DIV_SETTINGS'],
+			hideList = [
+				'DIV_ACTIONS',
+				'DIV_OPTIONS',
+				'DIV_LIST',
+				'DIV_LOG'
+			];
+
+		// Close settings
+		if (hide === !0){
+
+			hideList = ['DIV_SETTINGS'];
+			showList = [
+				'DIV_ACTIONS',
+				'DIV_OPTIONS',
+				'DIV_LIST',
+				'DIV_LOG'
+			];
+
+			// Render game list
+			APP.design.renderGameList();
+
+		}
+
+		hideList.forEach(function(cElement){
+			TMS.css(cElement, {'display': 'none'});
+		});
+
+		showList.forEach(function(cElement){
+			TMS.css(cElement, {'display': 'block'});
+		});
+
+		// Render Settings
+		this.renderSettings();
+
+	},
+
+	// Render settings list
+	renderSettings: function(){
+
+		// Labels
+		document.getElementById('LBL_SETTINGS_emuPath').innerHTML = APP.settings.data.emuPath
+		document.getElementById('LBL_SETTINGS_gamePath').innerHTML = APP.settings.data.gamePath;
+
+		// Select
+		document.getElementById('SELECT_settingsDisplayMode').value = APP.settings.data.gui.gameListMode;
+
+		// Checkbox
+		document.getElementById('CHECKBOX_settingsShowExecList').checked = JSON.parse(APP.settings.data.gui.showPathEntry);
+		document.getElementById('CHECKBOX_settingsShowExecRunning').checked = JSON.parse(APP.settings.data.gui.showPathRunning);
+
+	},
+
+	// Save user settings
+	saveSettings: function(){
+
+		// Select
+		APP.settings.data.gui.gameListMode = document.getElementById('SELECT_settingsDisplayMode').value;
+
+		// Checkbox
+		APP.settings.data.gui.showPathEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecList').checked);
+		APP.settings.data.gui.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
+
+		/*
+			End
+		*/
+
+		// Save settings
+		APP.settings.save();
+
+		// GUI: Close settings
+		APP.design.toggleSettings(!0);
 
 	}
 

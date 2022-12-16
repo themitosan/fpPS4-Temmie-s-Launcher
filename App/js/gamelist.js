@@ -41,36 +41,38 @@ temp_GAMELIST = {
 	saveGameSettings: function(){
 
 		// Path
-		const fPath = APP.path.parse(this.list[this.selectedGame].eboot).dir + '/launcherSettings.json';
+		var cHacks = {},
+			fPath = APP.path.parse(this.list[this.selectedGame].eboot).dir + '/launcherSettings.json';
 
 		// Update hack data
 		APP.design.hackList.forEach(function(hName){
-			APP.gameList.cGameSettings.hacks[hName] = JSON.parse(document.getElementById('CHECK_' + hName).checked);
+			cHacks[hName] = JSON.parse(document.getElementById('CHECK_' + hName).checked);
 		});
 
-		// Write file
-		try {
+		// Check if needs to update hack files
+		if (JSON.stringify(cHacks) !== JSON.stringify(APP.gameList.cGameSettings.hacks)){
 
-			APP.fs.writeFileSync(fPath, JSON.stringify(APP.gameList.cGameSettings), 'utf-8');
-			APP.log('INFO - (' + APP.gameList.selectedGame + ') Settings file was updated successfully!');
-		
-		} catch (err) {
+			// Update variable
+			APP.gameList.cGameSettings.hacks = cHacks;
 
-			console.error(err);
-			APP.log('ERROR - Unable to update settings file for ' + APP.gameList.selectedGame + ' at ' + fPath + '!\nReason: ' + err);
+			// Write file
+			try {
+
+				APP.fs.writeFileSync(fPath, JSON.stringify(APP.gameList.cGameSettings), 'utf-8');
+				APP.log('INFO - (' + APP.gameList.selectedGame + ') Settings file was updated successfully!');
+
+			} catch (err) {
+
+				console.error(err);
+				APP.log('ERROR - Unable to update settings file for ' + APP.gameList.selectedGame + ' at ' + fPath + '!\nReason: ' + err);
+
+			}
+
+		} else {
+
+			APP.log('INFO - (' + APP.gameList.selectedGame + ') Skip updating settings file since it had no changes!');			
 
 		}
-
-	},
-
-	// Select game path
-	selectPath: function(){
-
-		APP.fileManager.selectPath(function(newGamePath){
-			APP.settings.data.gamePath = newGamePath;
-			APP.settings.save();
-			APP.gameList.load();
-		});
 
 	},
 

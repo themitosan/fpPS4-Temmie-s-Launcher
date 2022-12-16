@@ -9,7 +9,7 @@ html, body {
 	background-color: #000;
 	text-shadow: 2px 2px 4px #000;
 }
-input[type='button'], input[type='checkbox'] {
+select, input[type='button'], input[type='checkbox'] {
 	outline: none;
 	cursor: pointer;
 }
@@ -43,6 +43,21 @@ img {
 ::-webkit-scrollbar-thumb:active {
     background: #fff;
     border-radius: 4px;
+}
+
+/*
+	Separator
+*/
+.SEPARATOR_00 {
+	height: 2px;
+	margin-top: 10px;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-radius: 6px;
+	margin-bottom: 20px;
+	width: calc(100% - 4px);
+	background-color: #0000;
+	background-image: linear-gradient(45deg, #fff, #6661, #0000);
 }
 
 /*
@@ -87,6 +102,7 @@ img {
 	background-image: linear-gradient(0deg, #162a50, #2a4a86);
 }
 .DIV_TITLE {
+	z-index: 10;
 	font-size: 28px;
 	margin-top: 10px;
 	font-weight: bold;
@@ -106,6 +122,7 @@ img {
 	background-color: #0000;
 	background-position: center;
 	background-repeat: no-repeat;
+	background-blend-mode: screen;
 }
 .GAME_ENTRY {
 	margin: 6px;
@@ -129,6 +146,11 @@ img {
 .GAME_ENTRY:active {
 	box-shadow: 0px 0px 10px #0006 inset;
 	backdrop-filter: sepia(0.5) blur(6px);
+}
+.GAME_ENTRY_COMPACT {
+    max-height: 40.5px !important;
+    padding-left: 10px !important;
+    width: calc(100% - 22px) !important;
 }
 .GAME_ENTRY_BG {
 	top: 0px;
@@ -179,6 +201,63 @@ img {
 .DIV_GAME_DETAILS_LABELS {
 	margin-left: 12px;
 }
+.DIV_SETTINGS {
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	display: none;
+	position: absolute;
+	text-align: center;
+	background-image: linear-gradient(180deg, #2a3a56, #0d1932);
+}
+.DIV_SETTINGS_BG {
+	top: 0px;
+	left: 0px;
+	z-index: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-size: auto 50%;
+	background-position: center;
+	background-repeat: no-repeat;
+	box-shadow: 0px 0px 10px #0002 inset;
+	background-image: url('../img/logo.png');
+}
+.DIV_SETTINGS_LIST {
+	z-index: 10;
+	padding: 8px;
+	overflow: auto;
+	font-size: 14px;
+	text-align: left;
+	margin-left: 8px;
+	margin-bottom: 8px;
+	border-radius: 6px;
+	font-family: sans-serif;
+	background-color: #111d;
+	width: calc(100% - 32px);
+	height: calc(100% - 146px);
+	backdrop-filter: blur(4px);
+	box-shadow: 0px 0px 10px #0006;
+	background-image: linear-gradient(180deg, #000e2cab, #0000);
+}
+.DIV_settingsEntry {
+	padding: 2px;
+	overflow: hidden;
+	font-style: italic;
+}
+.DIV_settingsH2 {
+	font-size: 20px;
+	font-style: italic;
+	font-family: monospace;
+	margin: 8px 0px 8px 0px;
+}
+.DIV_settingsSave {
+	width: 100%;
+	z-index: 10;
+	position: absolute;
+	text-align: center;
+}
 
 /*
 	Images
@@ -226,6 +305,28 @@ img {
 	margin-right: 16px;
 	padding: 1px 98px 1px 100px;
 }
+.BTN_SAVE {
+	font-size: 18px;
+	min-width: 300px;
+	min-height: 60px;
+}
+.BTN_selectPath {
+    float: right;
+    font-style: italic;
+    border-radius: 4px;
+    padding: 4px 14px 4px 14px;
+    background-image: linear-gradient(180deg, #fff, #bbb);
+}
+.BTN_selectPath:active {
+	background-image: linear-gradient(0deg, #fff, #bbb);	
+}
+.SELECT_settings {
+	float: right;
+	font-style: italic;
+	border-radius: 4px;
+	padding: 4px 10px 4px 10px;
+	background-image: linear-gradient(180deg, #fff, #bbb);
+}
 
 /*
 	Labels
@@ -248,10 +349,21 @@ img {
 	font-size: 20px;
 	cursor: pointer;
 }
+.LABEL_settingsPath {
+	left: 170px;
+	cursor: text;
+	position: sticky;
+	font-style: initial;
+	font-family: monospace;
+	user-select: all !important;
+}
 
 /*
 	Misc
 */
+.align-center {
+	text-align: center;
+}
 .user-can-select {
 	cursor: text;
 	user-select: all !important;

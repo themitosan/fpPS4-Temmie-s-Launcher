@@ -172,18 +172,37 @@ delete temp_FILEMANAGER;
 // Start
 window.onload = function(){
 
-	// Main log
-	APP.appVersion = 'fpPS4 Temmie\'s Launcher - Version: ' + APP.version + '\nRunning on nw.js (node-webkit) version ' + process.versions.nw;
-	APP.log(APP.appVersion);
-	
-	// Load settings
-	APP.settings.load();
-	APP.settings.checkPaths();
+	try {
 
-	// Load game list
-	APP.gameList.load();
+		// Main log
+		APP.appVersion = 'fpPS4 Temmie\'s Launcher - Version: ' + APP.version + '\nRunning on nw.js (node-webkit) version ' + process.versions.nw;
+		APP.log(APP.appVersion);
+		
+		// Load settings
+		APP.settings.load();
+		APP.settings.checkPaths();
+		APP.design.renderSettings();
 
-	// Rener hack list
-	APP.design.renderHacklist();
+		// Load game list
+		APP.gameList.load();
+
+		// Rener hack list
+		APP.design.renderHacklist();
+
+	} catch (err) {
+
+		const conf = window.confirm('ERROR - Unable to start main application!\n\nReason:\n' + err + '\n\nThis probably happened due new settings being added on internal database. Clearing all previous settings may solve this issue.\n\nDo you want to try?');
+		if (conf === !0){
+			
+			// Clear internal storages
+			localStorage.clear();
+			sessionStorage.clear();
+
+			// Restart app
+			chrome.runtime.reload();
+		
+		}
+
+	}
 
 }

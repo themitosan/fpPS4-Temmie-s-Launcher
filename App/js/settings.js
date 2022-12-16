@@ -6,9 +6,21 @@ temp_SETTINGS = {
 	
 	// Settings list
 	data: {
+
+		// Paths
 		nwPath: '',
 		emuPath: '',
-		gamePath: ''
+		gamePath: '',
+		
+		// GUI Settings
+		gui: {
+
+			showPathEntry: !0,
+			showPathRunning: !0,
+			gameListMode: 'normal'
+
+		}
+	
 	},
 
 	// Load settings
@@ -30,7 +42,7 @@ temp_SETTINGS = {
 	},
 
 	// Check paths
-	checkPaths: function(){
+	checkPaths: function() {
 
 		// Fix path
 		this.data.nwPath = nw.__dirname.replace(RegExp('\\\\', 'gi'), '/');
@@ -63,20 +75,45 @@ temp_SETTINGS = {
 		}
 
 		// fpPS4 path
-		this.data.emuPath = mainPath + '/Emu/fpPS4.exe';
-
+		if (this.data.emuPath === '' || APP.fs.existsSync(this.data.emuPath) === !1){
+			APP.settings.data.emuPath = mainPath + '/Emu/fpPS4.exe';
+		}
 		if (APP.fs.existsSync(this.data.emuPath) === !0){
 
-			APP.log('INFO - Main fpPS4 was found!');
+			APP.log('INFO - Main fpPS4 was found!\nPath: ' + APP.settings.data.emuPath);
 
 		} else {
 
-			const errMsg = 'ERROR - Unable to locate main fpPS4 executable!\nMake sure to insert it on \"Emu\" folder and click on ok.';
+			const errMsg = 'ERROR - Unable to locate main fpPS4 executable!\nMake sure to select it on settings or insert it on \"Emu\" folder and click on ok.';
 			window.alert(errMsg);
 			APP.log(errMsg);
 
 		}
 
-	}
+	},
+
+	// Select game path
+	selectGamePath: function() {
+
+		APP.fileManager.selectPath(function(newGamePath){
+			document.getElementById('LBL_SETTINGS_gamePath').innerHTML = newGamePath;
+			APP.settings.data.gamePath = newGamePath;
+			APP.settings.save();
+			APP.gameList.load();
+		});
+
+	},
+
+	// Select fpPS4 path
+	selectEmuPath: function() {
+
+		APP.fileManager.selectFile('.exe', function(newEmuPath){
+			document.getElementById('LBL_SETTINGS_emuPath').innerHTML = newEmuPath;
+			APP.settings.data.emuPath = newEmuPath;
+			APP.settings.save();
+			APP.gameList.load();
+		});
+
+	}	
 
 }

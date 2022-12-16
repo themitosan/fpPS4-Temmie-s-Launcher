@@ -25,6 +25,29 @@ temp_FILEMANAGER = {
 
 		}
 
+	},
+
+	// Select file
+	selectFile: function(extention, postAction){
+
+		if (extention !== void 0 && postAction !== void 0){
+
+			if (extention === ''){
+				extention = '*.*';
+			}
+
+			document.getElementById('APP_FILE_LOADER').value = '';
+			document.getElementById('APP_FILE_LOADER').files = null;
+			document.getElementById('APP_FILE_LOADER').accept = extention;
+			TMS.triggerClick('APP_FILE_LOADER');
+
+			// Start read
+			document.getElementById('APP_FILE_LOADER').onchange = function(){
+				postAction(document.getElementById('APP_FILE_LOADER').files[0].path.replace(RegExp('\\\\', 'gi'), '/'));
+			}
+
+		}
+
 	}
 
 }

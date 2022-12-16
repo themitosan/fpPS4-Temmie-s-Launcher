@@ -33,8 +33,8 @@ temp_EMUMANAGER = {
 				}
 			});
 
-			// Log emu args
-			APP.log('\nINFO - Running fpPS4 with args: ' + emuArgs.toString().replace(RegExp(',', 'gi'), ' ') + '\n\n');
+			// Log emu location and args
+			APP.log('\nINFO - Running fpPS4 with args: ' + emuArgs.toString().replace(RegExp(',', 'gi'), ' ') + '\nEmu location: ' + APP.settings.data.emuPath + '\n\n');
 
 			// Run fpPS4
 			APP.runExec(APP.settings.data.emuPath, emuArgs);

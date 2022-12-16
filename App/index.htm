@@ -10,12 +10,72 @@
 
 	<body>
 	
-		<!-- Top Menu -->
-		<div class="DIV_ACTIONS">
+		<!-- Launcher Settings -->
+		<div class="DIV_SETTINGS" id="DIV_SETTINGS">
 			
-			<input type="button" class="APP_btn" onclick="APP.gameList.selectPath();" value="Select game path">
-			<input type="button" class="APP_btn" onclick="APP.gameList.openFolder();" value="Open game folder">
-			<input type="button" class="APP_btn" onclick="APP.gameList.load();" value="Refresh game list">
+			<div class="DIV_TITLE">Launcher Settings</div>
+
+			<!-- BG -->
+			<div class="DIV_SETTINGS_BG"></div>
+
+			<!-- Settings List -->
+			<div class="DIV_SETTINGS_LIST">
+				
+				<div class="DIV_settingsH2">General</div>
+				<div class="DIV_settingsEntry">
+					Games / Homebrew Path:
+					<label id="LBL_SETTINGS_gamePath" class="LABEL_settingsPath">???</label>
+					<input type="button" class="BTN_selectPath" value="Select path" onclick="APP.settings.selectGamePath();">
+					<input type="button" class="BTN_selectPath" value="Open folder" onclick="APP.gameList.openFolder();">
+				</div>
+				
+				<div class="DIV_settingsEntry">
+					fpPS4 Path:
+					<label id="LBL_SETTINGS_emuPath" class="LABEL_settingsPath">???</label>
+					<input type="button" class="BTN_selectPath" value="Select path" onclick="APP.settings.selectEmuPath();">
+				</div>
+
+				<div class="SEPARATOR_00"></div>
+
+				<div class="DIV_settingsH2">Game List</div>
+				<div class="DIV_settingsEntry">
+					Display mode:
+					<select id="SELECT_settingsDisplayMode" class="SELECT_settings">
+						<option value="normal">Normal</option>
+						<option value="compact">Compact</option>
+					</select>
+				</div>
+
+				<div class="DIV_settingsEntry">
+					<input type="checkbox" id="CHECKBOX_settingsShowExecList">
+					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsShowExecList');">
+						Show executable path for every title in game list
+					</label>
+				</div>
+
+				<div class="DIV_settingsEntry">
+					<input type="checkbox" id="CHECKBOX_settingsShowExecRunning">
+					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsShowExecRunning');">
+						Show executable path on GUI when fpPS4 is running
+					</label>
+				</div>
+
+			</div>
+
+			<!-- Save & Exit Buttons -->
+			<div class="DIV_settingsSave">
+				<input type="button" class="BTN_SAVE" onclick="APP.design.saveSettings();" value="Apply & Close">
+				<input type="button" class="BTN_SAVE" onclick="APP.design.toggleSettings(!0);" value="Close">
+			</div>
+
+		</div>
+
+		<!-- Top Menu -->
+		<div class="DIV_ACTIONS" id="DIV_ACTIONS">
+			
+			<input type="button" class="APP_btn" id="BTN_SETTINGS" onclick="APP.design.toggleSettings();" value="Settings">			
+
+			<input type="button" class="APP_btn" id="BTN_REFRESH" onclick="APP.gameList.load();" value="Refresh game list">
 			<input type="button" class="APP_btn" onclick="APP.clearLog();" value="Clear / Save log">
 			<input type="button" class="APP_btn" onclick="APP.about();" value="About">
 
@@ -26,7 +86,9 @@
 		<!-- fpPS4 Options -->
 		<div class="DIV_OPTIONS" id="DIV_OPTIONS">
 			
-			<div class="DIV_TITLE"><label class="LABEL_emuColor">fp</label>PS4 Options</div>
+			<div class="DIV_TITLE">
+				<label class="LABEL_emuColor">fp</label>PS4 Options
+			</div>
 
 			<div id="DIV_HACK_LIST">
 				<!-- Hacks goes here -->
@@ -54,7 +116,9 @@
 					<div id="LABEL_GAME_DETAILS_APP_NAME" class="LABEL_detailsGameName">
 						???
 					</div>
-					Path: <label id="LABEL_GAME_DETAILS_PATH" class="user-can-select">???</label><br>
+					<div id="DIV_GAME_DETAILS_currentExec">
+						Path: <label id="LABEL_GAME_DETAILS_PATH" class="user-can-select">???</label>
+					</div>
 					Status: <label id="LABEL_GAME_DETAILS_STATUS">???</label>
 				</div>
 			</div>
@@ -70,6 +134,7 @@
 		<div class="none">
 			
 			<!-- Folder loader -->
+			<input type="file" id="APP_FILE_LOADER"/>
 			<input type="file" id="APP_FOLDER_LOADER" nwdirectory/>
 
 			<!-- Scripts -->
