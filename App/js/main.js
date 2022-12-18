@@ -4,14 +4,15 @@
 
 var APP = {
 
-	// App version
-	version: '1.1.1',
-	appVersion: void 0,
-
 	// Import nw modules
 	fs: require('fs'),
 	path: require('path'),
 	childProcess: require('child_process'),
+	packageJson: require('../package.json'),
+
+	// App version
+	version: '',
+	appVersion: void 0,
 
 	// Import app modules
 	design: temp_DESIGN,
@@ -175,7 +176,9 @@ window.onload = function(){
 	try {
 
 		// Main log
-		APP.appVersion = 'fpPS4 Temmie\'s Launcher - Version: ' + APP.version + '\nRunning on nw.js (node-webkit) version ' + process.versions.nw;
+		APP.version = APP.packageJson.version;
+		document.title = APP.packageJson.name + ' - Ver. ' + APP.version + ' [' + process.versions['nw-flavor'].toUpperCase() + ']';
+		APP.appVersion = 'fpPS4 Temmie\'s Launcher - Version: ' + APP.version + '\nRunning on nw.js (node-webkit) version ' + process.versions.nw + ' [' + process.versions['nw-flavor'].toUpperCase() + ']';
 		APP.log(APP.appVersion);
 		
 		// Load settings

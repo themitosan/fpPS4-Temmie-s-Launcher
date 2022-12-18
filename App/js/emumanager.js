@@ -69,6 +69,7 @@ temp_EMUMANAGER = {
 			'background-image': 'linear-gradient(180deg, #000000db, #090f1b)'
 		});
 
+		// Reset launcher
 		APP.resetLauncher();
 
 	}
