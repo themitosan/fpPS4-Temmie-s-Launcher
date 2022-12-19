@@ -74,7 +74,7 @@ temp_DESIGN = {
 			}
 
 			// Background and Icon
-			const gameBgAndIcon = '<div class="GAME_ENTRY_BG" style="background-image: ' + bgPath + '";>' + '</div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '">';
+			var gameBgAndIcon = '<div class="GAME_ENTRY_BG" style="background-image: ' + bgPath + '";>' + '</div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '">';
 
 			// Remove executable path
 			if (APP.settings.data.gui.showPathEntry !== !0){
