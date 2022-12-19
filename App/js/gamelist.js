@@ -100,10 +100,11 @@ temp_GAMELIST = {
 
 						appBg0 = pathBase + '/pic0.png',
 						appBg1 = pathBase + '/pic1.png',
-						appIcon = pathBase + '/icon.png',
+						appIcon0 = pathBase + '/icon.png',
+						appIcon1 = pathBase + '/icon0.png',
 
 						finalBg = appBg0,
-						finalIcon = appIcon,
+						finalIcon = appIcon0,
 
 						ebootFile = pathBase + '/eboot.bin';
 		
@@ -123,7 +124,7 @@ temp_GAMELIST = {
 
 						ebootName = execName;
 
-						// If not found (undefined), skip
+						// If not found (undefined), skip entry
 						if (execName === void 0){
 							addGame = !1;
 						}
@@ -131,16 +132,25 @@ temp_GAMELIST = {
 					}
 		
 					// Set icon
-					if (APP.fs.existsSync(appIcon) === !1){
-						finalIcon = APP.settings.data.nwPath + '/app/img/404.png'; 
+					if (APP.fs.existsSync(appIcon0) === !1){
+						
+						finalIcon = appIcon1;
+						
+						if (APP.fs.existsSync(appIcon1) === !1){
+							finalIcon = APP.settings.data.nwPath + '/app/img/404.png'; 
+						}
+					
 					}
 
 					// Set BG image
 					if (APP.fs.existsSync(appBg0) === !1){
+					
 						finalBg = appBg1;
+					
 						if (APP.fs.existsSync(appBg1) === !1){
 							finalBg = APP.settings.data.nwPath + '/app/img/404_BG.png';
 						}
+					
 					}
 		
 					// If executable exists, set data
