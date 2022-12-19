@@ -213,6 +213,7 @@ img {
 	left: calc(10% - 24px);
 	width: calc(80% - 24px);
 	justify-content: center;
+	max-width: calc(80% - 24px);
 }
 .DIV_GAME_DETAILS_LABELS {
 	margin-left: 12px;

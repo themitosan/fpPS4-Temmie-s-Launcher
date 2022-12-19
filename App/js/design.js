@@ -66,8 +66,15 @@ temp_DESIGN = {
 			var classCompactMode = '',
 				appNameClass = 'LABEL_gameTitle',
 				pathLabel = '<br>Path: ' + gList[cGame].eboot,
-				bgPath = gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\''),
-				gameBgAndIcon = '<div class="GAME_ENTRY_BG" style="background-image: url(\'' + bgPath + '\');">' + '</div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '">';
+				bgPath = 'url(\'' + gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'') + '\')';
+
+			// Disable background image
+			if (APP.settings.data.gui.showBgOnEntry !== !0){
+				bgPath = '';
+			}
+
+			// Background and Icon
+			const gameBgAndIcon = '<div class="GAME_ENTRY_BG" style="background-image: ' + bgPath + '";>' + '</div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '">';
 
 			// Remove executable path
 			if (APP.settings.data.gui.showPathEntry !== !0){
@@ -314,6 +321,7 @@ temp_DESIGN = {
 		// Checkbox
 		document.getElementById('CHECKBOX_settingsShowExecList').checked = JSON.parse(cSettings.gui.showPathEntry);
 		document.getElementById('CHECKBOX_settingsShowExecRunning').checked = JSON.parse(cSettings.gui.showPathRunning);
+		document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked = JSON.parse(cSettings.gui.showBgOnEntry);
 
 		// Range
 		document.getElementById('RANGE_settingsGameListBgOpacity').value = cSettings.gui.bgListOpacity;
@@ -329,6 +337,7 @@ temp_DESIGN = {
 
 		// Checkbox
 		APP.settings.data.gui.showPathEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecList').checked);
+		APP.settings.data.gui.showBgOnEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked);
 		APP.settings.data.gui.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
 
 		// Range
