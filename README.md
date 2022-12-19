@@ -17,3 +17,5 @@ This launcher will recognizes any folder that contains executables (<code>eboot.
 It's just a matter of creating a folder on "Games" dir with app name and placing all files inside.
 
 You can add <code>icon.png</code> or <code>icon0.png</code>, <code>pic0.png</code> or <code>pic1.png</code> at same location to display it properly on list.
+
+<i><b>IMPORTANT</b>: This software does not allow you to obtain free PS4 Games / Apps.</i>
