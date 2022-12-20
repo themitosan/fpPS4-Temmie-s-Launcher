@@ -28,7 +28,16 @@ temp_SETTINGS = {
 			showPathRunning: !0,
 			gameListMode: 'normal'
 
-		}
+		},
+
+		/*
+			Log Options
+			
+			Quick note: If in the future this launcher manages to load .pkg or .sfo files,
+			these options will display TITLE_ID insead of folder name.
+		*/
+		saveLogOnEmuClose: !1,
+		clearLogOnEmuLoad: !1
 	
 	},
 

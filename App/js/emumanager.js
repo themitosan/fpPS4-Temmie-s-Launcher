@@ -6,7 +6,10 @@ temp_EMUMANAGER = {
 
 	// Emulator is running
 	emuRunning: !1,
+
+	// Emu boot counter
 	emuCountdown: 0,
+	emuRunCounter: 0,
 	
 	// Run emu
 	runGame: function(){
@@ -17,7 +20,13 @@ temp_EMUMANAGER = {
 		// If user selected a game
 		if (mainGameData !== void 0){
 
+			// Options: Clear log on emu starts
+			if (APP.settings.data.clearLogOnEmuLoad === !0 && APP.emuManager.emuRunCounter !== 0){
+				APP.clearLog(!0);
+			}
+
 			// Increase emu countdown
+			APP.emuManager.emuRunCounter++;
 			APP.emuManager.emuCountdown++;
 
 			// Set main variables
@@ -69,7 +78,7 @@ temp_EMUMANAGER = {
 			'background-image': 'linear-gradient(180deg, #000000db, #090f1b)'
 		});
 
-		// Reset launcher
+		// Reset log
 		APP.resetLauncher();
 
 	}

@@ -358,7 +358,7 @@ img {
 	background-image: linear-gradient(0deg, #fff, #bbb);	
 }
 .SELECT_settings {
-	float: right;
+	margin-left: 4px;
 	font-style: italic;
 	border-radius: 4px;
 	padding: 4px 10px 4px 10px;

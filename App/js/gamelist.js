@@ -41,7 +41,8 @@ temp_GAMELIST = {
 	saveGameSettings: function(){
 
 		// Path
-		var cHacks = {},
+		var fLog = '',
+			cHacks = {},
 			fPath = APP.path.parse(this.list[this.selectedGame].eboot).dir + '/launcherSettings.json';
 
 		// Update hack data
@@ -59,20 +60,24 @@ temp_GAMELIST = {
 			try {
 
 				APP.fs.writeFileSync(fPath, JSON.stringify(APP.gameList.cGameSettings), 'utf-8');
-				APP.log('INFO - (' + APP.gameList.selectedGame + ') Settings file was updated successfully!');
+				fLog = 'INFO - (' + APP.gameList.selectedGame + ') Settings file was updated successfully!';
 
 			} catch (err) {
 
 				console.error(err);
-				APP.log('ERROR - Unable to update settings file for ' + APP.gameList.selectedGame + ' at ' + fPath + '!\nReason: ' + err);
+				fLog = 'ERROR - Unable to update settings file for ' + APP.gameList.selectedGame + ' at ' + fPath + '!\nReason: ' + err;
 
 			}
 
 		} else {
 
-			APP.log('INFO - (' + APP.gameList.selectedGame + ') Skip updating settings file since it had no changes!');			
+			// Skip updating settings
+			fLog = 'INFO - (' + APP.gameList.selectedGame + ') Skip updating settings file since it had no changes!';			
 
 		}
+
+		// Fix space between launcher logs and main emu logs
+		APP.log(fLog + '\n ');
 
 	},
 

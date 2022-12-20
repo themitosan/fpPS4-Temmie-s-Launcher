@@ -94,6 +94,23 @@
 					<label id="LABEL_settingsEmuRunningBgOpacity">???</label>%
 				</div>
 
+				<div class="SEPARATOR_00"></div>
+				<div class="DIV_settingsH2">Log Options</div>
+
+				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+					<input type="checkbox" id="CHECKBOX_settingsClearLogOnEmuLoad">
+					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsClearLogOnEmuLoad');">
+						Clear log everytime main emu load
+					</label>
+				</div>
+
+				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+					<input type="checkbox" id="CHECKBOX_settingsSaveLogOnEmuClose">
+					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsSaveLogOnEmuClose');">
+						Save log file everytime main emu closes
+					</label>
+				</div>
+
 			</div>
 
 			<!-- Save & Exit Buttons -->

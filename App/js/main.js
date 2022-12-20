@@ -60,21 +60,37 @@ var APP = {
 	},
 
 	// Reset launcher
-	resetLauncher: function(){
+	resetLauncher: function(skipSave){
 		
 		if (APP.emuManager.emuCountdown > 2){
 
 			// Get current date
-			const d = new Date(),
-				cTime = d.toDateString().replace(RegExp(' ', 'gi'), '_') + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds();
+			var d = new Date(),
+				saveInfo = '',
+				cName = '_' + APP.gameList.selectedGame.replace(RegExp(' ', 'gi'), '_'),
+				cTime = '_' + d.toDateString().replace(RegExp(' ', 'gi'), '_') + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds(),
+				logName = 'Log' + cName + cTime + '.log';
 
-			// Write log file
-			APP.fs.writeFileSync(APP.settings.data.nwPath + '/Logs/Log_' + cTime + '.log', APP.logData, 'utf-8');
+			// Skip saving log
+			if (skipSave !== !0){
+
+				// Update log data
+				saveInfo = ' You can see all previous data on \"Logs/' + logName + '\"';
+
+				// Write log file
+				APP.fs.writeFileSync(APP.settings.data.nwPath + '/Logs/' + logName, APP.logData, 'utf-8');
+
+			}
+
+			// Append log info if APP.settings.data.saveLogOnEmuClose is true
+			if (APP.settings.data.saveLogOnEmuClose === !0){
+				saveInfo = saveInfo + '\n\nIMPORTANT - All previous log was cleared because \"Save log file everytime main emu closes\" is active.\nTo Prevent this, you can disable it on settings menu.';
+			}
 
 			// Reset log
 			APP.logData = APP.appVersion;
 			document.getElementById('APP_LOG').value = APP.appVersion;
-			APP.log('INFO - Current log was cleared! You can see all previous data on \"Logs/Log_' + cTime + '.log\"');
+			APP.log('INFO - Previous log was cleared!' + saveInfo);
 
 			// Reset countdown
 			APP.emuManager.emuCountdown = 0;
@@ -92,10 +108,10 @@ var APP = {
 	},
 
 	// Clear Log
-	clearLog: function(){
+	clearLog: function(skipSave){
 
 		APP.emuManager.emuCountdown = 3;
-		this.resetLauncher();
+		this.resetLauncher(skipSave);
 
 	},
 
@@ -122,6 +138,8 @@ var APP = {
 
 			// Log on close
 			APP.execProcess.on('close', function(code){
+
+				// Reset chdir
 				process.chdir(APP.settings.data.nwPath);
 				APP.emuManager.emuRunning = !1;
 
@@ -133,6 +151,11 @@ var APP = {
 				
 				// Log exit code
 				APP.log('INFO - ' + APP.path.parse(exe).base + ' was closed returning code ' + code);
+
+				// Save log if APP.settings.data.saveLogOnEmuClose is true
+				if (APP.settings.data.saveLogOnEmuClose === !0){
+					APP.clearLog();
+				}
 
 				// Check if need to reset launcher
 				APP.resetLauncher();
@@ -194,6 +217,7 @@ window.onload = function(){
 
 	} catch (err) {
 
+		// Asks if user wants to reset launcher settings
 		const conf = window.confirm('ERROR - Unable to start main application!\n\nReason:\n' + err + '\n\nThis probably happened due new settings being added on internal database. Clearing all previous settings may solve this issue.\n\nDo you want to try?');
 		if (conf === !0){
 			

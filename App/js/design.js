@@ -324,6 +324,8 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsShowExecList').checked = JSON.parse(cSettings.gui.showPathEntry);
 		document.getElementById('CHECKBOX_settingsShowExecRunning').checked = JSON.parse(cSettings.gui.showPathRunning);
 		document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked = JSON.parse(cSettings.gui.showBgOnEntry);
+		document.getElementById('CHECKBOX_settingsSaveLogOnEmuClose').checked = JSON.parse(cSettings.saveLogOnEmuClose);
+		document.getElementById('CHECKBOX_settingsClearLogOnEmuLoad').checked = JSON.parse(cSettings.clearLogOnEmuLoad);
 
 		// Range
 		document.getElementById('RANGE_settingsGameListBgBlur').value = cSettings.gui.bgListBlur;
@@ -343,6 +345,8 @@ temp_DESIGN = {
 		APP.settings.data.gui.showPathEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecList').checked);
 		APP.settings.data.gui.showBgOnEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked);
 		APP.settings.data.gui.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
+		APP.settings.data.saveLogOnEmuClose = JSON.parse(document.getElementById('CHECKBOX_settingsSaveLogOnEmuClose').checked);
+		APP.settings.data.clearLogOnEmuLoad = JSON.parse(document.getElementById('CHECKBOX_settingsClearLogOnEmuLoad').checked);
 
 		// Range
 		APP.settings.data.gui.bgListBlur = parseFloat(document.getElementById('RANGE_settingsGameListBgBlur').value);
