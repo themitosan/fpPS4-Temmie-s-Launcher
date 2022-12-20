@@ -293,6 +293,9 @@ temp_DESIGN = {
 			// Render game list
 			APP.design.renderGameList();
 
+			// Update GUI
+			APP.design.update();
+
 		}
 
 		hideList.forEach(function(cElement){
@@ -305,9 +308,6 @@ temp_DESIGN = {
 
 		// Render Settings
 		this.renderSettings();
-
-		// Update GUI
-		this.update();
 
 	},
 
