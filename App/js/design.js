@@ -53,6 +53,8 @@ temp_DESIGN = {
 
 		document.getElementById('DIV_HACK_LIST').innerHTML = htmlTemp;
 
+		this.update();
+
 	},
 
 	// Render game list
@@ -149,9 +151,10 @@ temp_DESIGN = {
 	update: function(){
 
 		// Update background image
-		if (APP.gameList.list[APP.gameList.selectedGame] !== ''){
+		const sGame = APP.gameList.list[APP.gameList.selectedGame];
+		if (sGame !== '' && sGame !== void 0){
 			TMS.css('DIV_GAMELIST_BG', {
-				'background-image': 'url("' + APP.gameList.list[APP.gameList.selectedGame].bg + '")'
+				'background-image': 'url("' + sGame.bg + '")'
 			});
 		}
 
@@ -203,6 +206,13 @@ temp_DESIGN = {
 			document.getElementById('BTN_SETTINGS').disabled = btnSettings;
 
 		}
+
+		// Disable Clear / Save log if clearLogOnEmuLoad or saveLogOnEmuClose are true
+		var disableClearSaveBtn = '';
+		if (APP.settings.data.clearLogOnEmuLoad === !0 || APP.settings.data.saveLogOnEmuClose === !0){
+			disableClearSaveBtn = 'disabled';
+		}
+		document.getElementById('BTN_SAVE_LOG').disabled = disableClearSaveBtn;
 
 		// Render selected game name
 		document.getElementById('DIV_labelSelectedGame').innerHTML = APP.gameList.selectedGame;
@@ -295,6 +305,9 @@ temp_DESIGN = {
 
 		// Render Settings
 		this.renderSettings();
+
+		// Update GUI
+		this.update();
 
 	},
 

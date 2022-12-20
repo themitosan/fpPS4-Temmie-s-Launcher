@@ -217,6 +217,9 @@ window.onload = function(){
 
 	} catch (err) {
 
+		// Log it
+		console.error(err);
+
 		// Asks if user wants to reset launcher settings
 		const conf = window.confirm('ERROR - Unable to start main application!\n\nReason:\n' + err + '\n\nThis probably happened due new settings being added on internal database. Clearing all previous settings may solve this issue.\n\nDo you want to try?');
 		if (conf === !0){
