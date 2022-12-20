@@ -147,6 +147,7 @@ img {
 	overflow: hidden;
 	max-height: 78px;
 	flex-wrap: nowrap;
+	padding-left: 0px;
 	border-radius: 6px;
 	align-items: center;
 	align-content: center;
@@ -183,11 +184,14 @@ img {
 }
 .GAME_ENTRY:hover .GAME_ENTRY_BG {
 	filter: blur(3px);
-	-webkit-mask-image: linear-gradient(45deg, #000b, #00000016, #0000);
+	-webkit-mask-image: linear-gradient(45deg, #000c, #0002, #0000);
 }
 .GAME_ENTRY:focus .GAME_ENTRY_BG {
 	filter: blur(3px);
-	-webkit-mask-image: linear-gradient(45deg, #000b, #00000016, #0000);
+	-webkit-mask-image: linear-gradient(45deg, #000c, #0002, #0000);
+}
+.GAME_ENTRY:active .GAME_ENTRY_BG {
+	-webkit-mask-image: linear-gradient(45deg, #000, #0006, #0000);
 }
 .GAME_DETAILS {
 	z-index: 1;
@@ -273,7 +277,7 @@ img {
 	font-size: 20px;
 	font-style: italic;
 	font-family: monospace;
-	margin: 8px 0px 8px 0px;
+	margin: 8px 0px 8px 2px;
 }
 .DIV_settingsSave {
 	width: 100%;

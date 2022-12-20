@@ -86,11 +86,11 @@ temp_DESIGN = {
 				pathLabel = '';
 				gameBgAndIcon = '';
 				appNameClass = 'LABEL_gameTitleCompact';
-				classCompactMode = 'GAME_ENTRY_COMPACT';
+				classCompactMode = ' GAME_ENTRY_COMPACT';
 			}
 
 			// Add entry
-			tempHtml = tempHtml + '<div class="GAME_ENTRY ' + classCompactMode + '" onclick="APP.design.selectGame(\'' + cGame + '\');" id="GAME_ENTRY_' + cGame + '">' + gameBgAndIcon +
+			tempHtml = tempHtml + '<div class="GAME_ENTRY' + classCompactMode + '" onclick="APP.design.selectGame(\'' + cGame + '\');" id="GAME_ENTRY_' + cGame + '">' + gameBgAndIcon +
 								  '<div class="GAME_DETAILS"><label class="' + appNameClass + '">' + gList[cGame].name + '</label>' + pathLabel + '</div></div>';
 		});
 
@@ -312,6 +312,8 @@ temp_DESIGN = {
 		// Labels
 		document.getElementById('LBL_SETTINGS_emuPath').innerHTML = cSettings.emuPath
 		document.getElementById('LBL_SETTINGS_gamePath').innerHTML = cSettings.gamePath;
+		document.getElementById('LABEL_settingsGameListBgBlur').innerHTML = this.parsePercentage(cSettings.gui.bgListBlur, 6);
+		document.getElementById('LABEL_settingsEmuRunningBgBlur').innerHTML = this.parsePercentage(cSettings.gui.bgEmuBlur, 6);
 		document.getElementById('LABEL_settingsGameListBgOpacity').innerHTML = this.parsePercentage(cSettings.gui.bgListOpacity, 1);
 		document.getElementById('LABEL_settingsEmuRunningBgOpacity').innerHTML = this.parsePercentage(cSettings.gui.bgEmuOpacity, 1);
 
@@ -324,6 +326,8 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked = JSON.parse(cSettings.gui.showBgOnEntry);
 
 		// Range
+		document.getElementById('RANGE_settingsGameListBgBlur').value = cSettings.gui.bgListBlur;
+		document.getElementById('RANGE_settingsEmuRunningBgBlur').value = cSettings.gui.bgEmuBlur;
 		document.getElementById('RANGE_settingsGameListBgOpacity').value = cSettings.gui.bgListOpacity;
 		document.getElementById('RANGE_settingsEmuRunningBgOpacity').value = cSettings.gui.bgEmuOpacity;
 
@@ -341,6 +345,8 @@ temp_DESIGN = {
 		APP.settings.data.gui.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
 
 		// Range
+		APP.settings.data.gui.bgListBlur = parseFloat(document.getElementById('RANGE_settingsGameListBgBlur').value);
+		APP.settings.data.gui.bgEmuBlur = parseFloat(document.getElementById('RANGE_settingsEmuRunningBgBlur').value);
 		APP.settings.data.gui.bgListOpacity = parseFloat(document.getElementById('RANGE_settingsGameListBgOpacity').value);
 		APP.settings.data.gui.bgEmuOpacity = parseFloat(document.getElementById('RANGE_settingsEmuRunningBgOpacity').value);
 

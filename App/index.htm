@@ -21,7 +21,7 @@
 			<!-- Settings List -->
 			<div class="DIV_SETTINGS_LIST">
 				
-				<div class="DIV_settingsH2">General</div>
+				<div class="DIV_settingsH2">Paths</div>
 				<div class="DIV_settingsEntry">
 					Games / Homebrew Path:
 					<label id="LBL_SETTINGS_gamePath" class="LABEL_settingsPath">???</label>
@@ -47,15 +47,15 @@
 				</div>
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					(Game List) Background Opacity: 
-					<input type="range" min="0" max="1" step="0.01" value="0.6" id="RANGE_settingsGameListBgOpacity" oninput="APP.design.renderSettings(!0);"> 
-					<label id="LABEL_settingsGameListBgOpacity">???</label>%
+					Background Blur: 
+					<input type="range" min="0" max="6" step="0.01" value="2" id="RANGE_settingsGameListBgBlur" oninput="APP.design.renderSettings(!0);"> 
+					<label id="LABEL_settingsGameListBgBlur">???</label>%
 				</div>
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					(Emu Running) Background Opacity: 
-					<input type="range" min="0" max="1" step="0.01" value="0.7" id="RANGE_settingsEmuRunningBgOpacity" oninput="APP.design.renderSettings(!0);"> 
-					<label id="LABEL_settingsEmuRunningBgOpacity">???</label>%
+					Background Opacity: 
+					<input type="range" min="0" max="1" step="0.01" value="0.6" id="RANGE_settingsGameListBgOpacity" oninput="APP.design.renderSettings(!0);"> 
+					<label id="LABEL_settingsGameListBgOpacity">???</label>%
 				</div>
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
@@ -72,11 +72,26 @@
 					</label>
 				</div>
 
+				<div class="SEPARATOR_00"></div>
+				<div class="DIV_settingsH2">Emu Running</div>
+
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 					<input type="checkbox" id="CHECKBOX_settingsShowExecRunning">
 					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsShowExecRunning');">
-						Show executable path on GUI when fpPS4 is running
+						Display executable path below app / game title
 					</label>
+				</div>
+
+				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+					Background Blur: 
+					<input type="range" min="0" max="6" step="0.01" value="6" id="RANGE_settingsEmuRunningBgBlur" oninput="APP.design.renderSettings(!0);"> 
+					<label id="LABEL_settingsEmuRunningBgBlur">???</label>%
+				</div>
+
+				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+					Background Opacity: 
+					<input type="range" min="0" max="1" step="0.01" value="0.7" id="RANGE_settingsEmuRunningBgOpacity" oninput="APP.design.renderSettings(!0);"> 
+					<label id="LABEL_settingsEmuRunningBgOpacity">???</label>%
 				</div>
 
 			</div>
