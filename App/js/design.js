@@ -65,8 +65,11 @@ temp_DESIGN = {
 
 		Object.keys(gList).forEach(function(cGame){
 
-			var classCompactMode = '',
+			var appTitle = '',
+				gameBgAndIcon,
+				classDisplayEntryMode = '',
 				appNameClass = 'LABEL_gameTitle',
+				classGameDetailsMode = 'GAME_DETAILS',
 				pathLabel = '<br>Path: ' + gList[cGame].eboot,
 				bgPath = 'url(\'' + gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'') + '\')';
 
@@ -76,24 +79,34 @@ temp_DESIGN = {
 			}
 
 			// Background and Icon
-			var gameBgAndIcon = '<div class="GAME_ENTRY_BG" style="background-image: ' + bgPath + '";>' + '</div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '">';
+			gameBgAndIcon = '<div class="GAME_ENTRY_BG" style="background-image: ' + bgPath + '";></div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '">';
 
 			// Remove executable path
 			if (APP.settings.data.gui.showPathEntry !== !0){
 				pathLabel = '';
 			}
 
-			// If display mode is compact
+			// Display mode: Compact
 			if (APP.settings.data.gui.gameListMode === 'compact'){
 				pathLabel = '';
 				gameBgAndIcon = '';
 				appNameClass = 'LABEL_gameTitleCompact';
-				classCompactMode = ' GAME_ENTRY_COMPACT';
+				classDisplayEntryMode = ' GAME_ENTRY_COMPACT';
 			}
 
-			// Add entry
-			tempHtml = tempHtml + '<div class="GAME_ENTRY' + classCompactMode + '" onclick="APP.design.selectGame(\'' + cGame + '\');" id="GAME_ENTRY_' + cGame + '">' + gameBgAndIcon +
-								  '<div class="GAME_DETAILS"><label class="' + appNameClass + '">' + gList[cGame].name + '</label>' + pathLabel + '</div></div>';
+			// Display mode: Grid
+			if (APP.settings.data.gui.gameListMode === 'grid'){
+				appTitle = gList[cGame].name;
+				classGameDetailsMode = 'none';
+				classDisplayEntryMode = ' GAME_ENTRY_GRID';
+				gameBgAndIcon = '<div class="none" style="background-image: ' + bgPath + '";></div><img class="IMG_GAME_ICON IMG_GRID" src="' + gList[cGame].icon + '">';
+			}
+
+			/*
+				Add entry
+			*/
+			tempHtml = tempHtml + '<div class="GAME_ENTRY' + classDisplayEntryMode + '" title="' + appTitle + '" onclick="APP.design.selectGame(\'' + cGame + '\');" id="GAME_ENTRY_' + cGame + '">' + gameBgAndIcon +
+								  '<div class="' + classGameDetailsMode + '"><label class="' + appNameClass + '">' + gList[cGame].name + '</label>' + pathLabel + '</div></div>';
 		});
 
 		// Insert HTML
@@ -205,6 +218,13 @@ temp_DESIGN = {
 			document.getElementById('BTN_REFRESH').disabled = btnRefresh;
 			document.getElementById('BTN_SETTINGS').disabled = btnSettings;
 
+		}
+
+		// Fix for grid mode
+		if (APP.settings.data.gui.gameListMode === 'grid'){
+			TMS.addClass('DIV_LIST_INTERNAL', 'DIV_LIST_GRID');
+		} else {
+			TMS.removeClass('DIV_LIST_INTERNAL', 'DIV_LIST_GRID');
 		}
 
 		// Disable Clear / Save log if clearLogOnEmuLoad or saveLogOnEmuClose are true
