@@ -37,7 +37,8 @@ temp_SETTINGS = {
 			these options will display TITLE_ID insead of folder name.
 		*/
 		saveLogOnEmuClose: !1,
-		clearLogOnEmuLoad: !1
+		clearLogOnEmuLoad: !1,
+		logOnExternalWindow: !1
 	
 	},
 

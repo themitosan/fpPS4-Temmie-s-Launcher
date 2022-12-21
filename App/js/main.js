@@ -9,6 +9,7 @@ var APP = {
 	path: require('path'),
 	childProcess: require('child_process'),
 	packageJson: require('../package.json'),
+	memoryjs: require('App/node_modules/memoryjs'),
 
 	// App version
 	version: '',
@@ -100,6 +101,8 @@ var APP = {
 				
 				I'm looking after some bugs related for fpPS4 Temmie's launcher not catching some logs...
 				I will keep the line below disabled... for now!
+
+				PS: A simple fix for now is enabling "Log fpPS4 output on external window" on settings menu!
 			*/
 			// chrome.runtime.reload();
 
@@ -116,17 +119,39 @@ var APP = {
 	},
 
 	// Run external software
+	execEmuPID: 0,
 	execProcess: void 0,
 	runExec: function(exe, args){
 
 		if (exe !== void 0 && exe !== ''){
 
 			/*
-				Spawn process
-				It will change running dir to current exe location
+				Change context path to current emu folder
+				This will allow fpPS4 create all required folders (savedata, shader_dump, tmp) on it's current location.
 			*/
 			process.chdir(APP.path.parse(exe).dir);
-			APP.execProcess = APP.childProcess.spawn(exe, args);
+
+			// Check if external log window option is enabled
+			if (APP.settings.data.logOnExternalWindow === !1){
+				
+				APP.execProcess = APP.childProcess.spawn(exe, args);
+				APP.execEmuPID = APP.execProcess.pid;
+
+			} else {
+
+				// Transform args into string
+				var gPath = '"' + args[args.indexOf('-e') + 1] + '"',
+					parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
+					execLine = 'start "Runnning fpPS4 - ' + APP.gameList.selectedGame + '" /MAX "' + exe + '" ' + parseArgs;
+
+				// Warn about fpPS4 logs
+				APP.log('IMPORTANT - Since fpPS4 logs are being displayed on a external window, Temmie\'s launcher aren\'t capable of saving it any information with exception of it\'s ' +
+						'exit code. If you want to keep all data, you can do it by disabling \"Log fpPS4 output on external window\" on Settings menu.\n ');
+
+				// Run
+				APP.execProcess = APP.childProcess.exec(execLine);
+
+			}
 
 			// Log on stdout and stderr
 			APP.execProcess.stdout.on('data', function(data){
@@ -174,9 +199,33 @@ var APP = {
 
 	},
 
+	// MemoryJS - Get Process Info
+	getProcessInfo: function(processName, postAction){
+
+		// Get process list
+		var res, pList = this.memoryjs.getProcesses();
+
+		// Seek process
+		Object.keys(pList).forEach(function(pName){
+
+			if (pList[pName].szExeFile === processName){
+				res = pList[pName];
+			}
+
+		});
+
+		// If found and post-action function is present, execute it!
+		if (postAction !== void 0 && res !== void 0){
+			postAction(res);
+		}
+
+	},
+
 	// About screen
 	about: function(){
-		window.alert('fpPS4 Temmie\'s Launcher - Version: ' + this.version + '\nCreated by TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 main emulator is created by red-prig\n(https://github.com/red-prig/fpPS4)');
+		window.alert('fpPS4 Temmie\'s Launcher - Version: ' + this.version + '\nCreated by TemmieHeartz\n(https://twitter.com/themitosan)\n\n' +
+					 'fpPS4 main emulator is created by red-prig\n(https://github.com/red-prig/fpPS4)\n\n' +
+					 'Plugin memoryjs is created by Rob--\n(https://github.com/rob--/memoryjs)');
 	},
 
 	// Reload app

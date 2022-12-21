@@ -69,8 +69,10 @@ temp_EMUMANAGER = {
 	killEmu: function(){
 		
 		// Kill process and set emu running var to false
-		process.kill(APP.execProcess.pid);
-		this.emuRunning = !1;
+		APP.getProcessInfo('fpPS4.exe', function(pData){
+			process.kill(pData.th32ProcessID);
+			this.emuRunning = !1;
+		});
 		
 		// Reset log color
 		TMS.css('APP_LOG', {

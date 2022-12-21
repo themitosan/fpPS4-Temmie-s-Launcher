@@ -339,6 +339,7 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked = JSON.parse(cSettings.gui.showBgOnEntry);
 		document.getElementById('CHECKBOX_settingsSaveLogOnEmuClose').checked = JSON.parse(cSettings.saveLogOnEmuClose);
 		document.getElementById('CHECKBOX_settingsClearLogOnEmuLoad').checked = JSON.parse(cSettings.clearLogOnEmuLoad);
+		document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked = JSON.parse(cSettings.logOnExternalWindow);
 
 		// Range
 		document.getElementById('RANGE_settingsGameListBgBlur').value = cSettings.gui.bgListBlur;
@@ -360,6 +361,7 @@ temp_DESIGN = {
 		APP.settings.data.gui.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
 		APP.settings.data.saveLogOnEmuClose = JSON.parse(document.getElementById('CHECKBOX_settingsSaveLogOnEmuClose').checked);
 		APP.settings.data.clearLogOnEmuLoad = JSON.parse(document.getElementById('CHECKBOX_settingsClearLogOnEmuLoad').checked);
+		APP.settings.data.logOnExternalWindow = JSON.parse(document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked);
 
 		// Range
 		APP.settings.data.gui.bgListBlur = parseFloat(document.getElementById('RANGE_settingsGameListBgBlur').value);
