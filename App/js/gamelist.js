@@ -161,11 +161,15 @@ temp_GAMELIST = {
 					// If executable exists, set data
 					if (addGame === !0){
 
-						// Add game to list
+						/*
+							Add game to list
+						*/
 						APP.gameList.list[gPath] = {
 							bg: finalBg,
 							name: gPath,
-							icon: finalIcon,					
+							seekSFO: !0,
+							metadata: {},
+							icon: finalIcon,
 							eboot: pathBase + '/' + ebootName
 						}
 

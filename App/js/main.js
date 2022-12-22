@@ -22,6 +22,7 @@ var APP = {
 	settings: temp_SETTINGS,
 	emuManager: temp_EMUMANAGER,
 	fileManager: temp_FILEMANAGER,
+	paramSfo: temp_PARAMSFO_PARSER,
 
 	// Log function and variables
 	logData: '',
@@ -243,6 +244,7 @@ delete temp_SETTINGS;
 delete temp_GAMELIST;
 delete temp_EMUMANAGER;
 delete temp_FILEMANAGER;
+delete temp_PARAMSFO_PARSER;
 
 // Start
 window.onload = function(){
