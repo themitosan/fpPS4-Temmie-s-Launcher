@@ -48,6 +48,46 @@ temp_FILEMANAGER = {
 
 		}
 
+	},
+
+	/*
+		Read PARAM.SFO files [WIP]
+
+		Many thanks to @notzecoxao and PS4 Developer Wiki
+		https://www.psdevwiki.com/ps4/Param.sfo
+	*/
+	
+	rawSFO: '',
+	readParamSfo: function(){
+
+		this.selectFile('.sfo', function(fLocation){
+
+			const sfoHex = APP.fs.readFileSync(fLocation, 'hex');
+			this.rawSFO = sfoHex;
+			
+			var sfoHeader = {
+					magic: 	 	   	   APP.tools.unsolveHex(sfoHex.slice(0, 8)),	// (0x04) " PSF" Magic
+					version: 	   	   APP.tools.unsolveHex(sfoHex.slice(8, 16)),	// (0x04) Version
+					keyTableStart: 	   APP.tools.unsolveHex(sfoHex.slice(16, 24)),	// (0x04) Key table start offset
+					dataTableStart:    APP.tools.unsolveHex(sfoHex.slice(24, 32)),	// (0x04) Data table start offset
+					totalIndexEntries: APP.tools.unsolveHex(sfoHex.slice(32, 40)) 	// (0x04) Total entries in index table
+				}, 
+				sfoIndexTable = {
+
+					keyTableOffset:  APP.tools.unsolveHex(sfoHex.slice(40, 44)),	// (0x02) Key table offset
+					param_fmt: 		 APP.tools.unsolveHex(sfoHex.slice(44, 48)), 	// (0x02) param_fmt (type of data)
+					paramLength: 	 APP.tools.unsolveHex(sfoHex.slice(48, 56)),	// (0x04) Parameter length
+					paramMaxLength:  APP.tools.unsolveHex(sfoHex.slice(56, 64)), 	// (0x04) Parameter max length
+					dataTableOffset: APP.tools.unsolveHex(sfoHex.slice(64, 72)) 	// (0x04) Data table offset
+
+				}
+
+
+			console.table(sfoHeader);
+			console.table(sfoIndexTable);
+
+		});
+
 	}
 
 }

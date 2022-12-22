@@ -227,9 +227,9 @@ temp_DESIGN = {
 			TMS.removeClass('DIV_LIST_INTERNAL', 'DIV_LIST_GRID');
 		}
 
-		// Disable Clear / Save log if clearLogOnEmuLoad or saveLogOnEmuClose are true
+		// Disable Clear / Save log if clearLogOnEmuLoad, saveLogOnEmuClose or logOnExternalWindow are true
 		var disableClearSaveBtn = '';
-		if (APP.settings.data.clearLogOnEmuLoad === !0 || APP.settings.data.saveLogOnEmuClose === !0){
+		if (APP.settings.data.clearLogOnEmuLoad === !0 || APP.settings.data.saveLogOnEmuClose === !0 || APP.settings.data.logOnExternalWindow === !0){
 			disableClearSaveBtn = 'disabled';
 		}
 		document.getElementById('BTN_SAVE_LOG').disabled = disableClearSaveBtn;

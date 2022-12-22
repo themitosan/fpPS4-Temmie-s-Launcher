@@ -25,9 +25,9 @@ temp_EMUMANAGER = {
 				APP.clearLog(!0);
 			}
 
-			// Increase emu countdown
-			APP.emuManager.emuRunCounter++;
+			// Increase emu counters
 			APP.emuManager.emuCountdown++;
+			APP.emuManager.emuRunCounter++;
 
 			// Set main variables
 			var ebootPath = APP.gameList.list[APP.gameList.selectedGame].eboot,

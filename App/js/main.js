@@ -16,6 +16,7 @@ var APP = {
 	appVersion: void 0,
 
 	// Import app modules
+	tools: temp_TOOLS,
 	design: temp_DESIGN,
 	gameList: temp_GAMELIST,
 	settings: temp_SETTINGS,
@@ -236,6 +237,7 @@ var APP = {
 }
 
 // Delete modules
+delete temp_TOOLS;
 delete temp_DESIGN;
 delete temp_SETTINGS;
 delete temp_GAMELIST;
