@@ -2,7 +2,7 @@
 A simple launcher for <a href="https://github.com/red-prig/fpPS4/">fpPS4 project</a> - created just for fun.
 
 <p align="center">
-<img src="https://pbs.twimg.com/media/Fj55hxUXoAETWrB?format=jpg&name=large" width="800">
+<img src="https://pbs.twimg.com/media/Fkt3QiDXgAAoPTy?format=jpg&name=large" width="800">
 </p>
 
 ## How to install
