@@ -154,8 +154,8 @@ temp_DESIGN = {
 				// Create settings file
 				APP.gameList.createGameSettings({
 					hacks: hList,
-					name: gameName,
 					path: settingsFile,
+					name: APP.gameList.list[gameName].name,
 					paramSfo: APP.gameList.list[gameName].paramSfo
 				});
 
