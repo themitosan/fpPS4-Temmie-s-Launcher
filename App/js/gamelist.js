@@ -54,7 +54,7 @@ temp_GAMELIST = {
 		// Path
 		var fLog = '',
 			cHacks = {},
-			fPath = APP.path.parse(this.list[this.selectedGame].eboot).dir + '/launcherSettings.json';
+			fPath = APP.path.parse(this.list[this.selectedGame].exe).dir + '/launcherSettings.json';
 
 		// Update hack data
 		APP.design.hackList.forEach(function(hName){
@@ -197,7 +197,7 @@ temp_GAMELIST = {
 							name: appName,
 							icon: appIcon,
 							paramSfo: paramSfo,
-							eboot: executableName,
+							exe: executableName,
 							paramSfoAvailable: paramSfoAvailable
 						}
 

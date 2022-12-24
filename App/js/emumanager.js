@@ -36,7 +36,7 @@ temp_EMUMANAGER = {
 			APP.emuManager.emuRunCounter++;
 
 			// Set main variables
-			var ebootPath = APP.gameList.list[APP.gameList.selectedGame].eboot,
+			var ebootPath = APP.gameList.list[APP.gameList.selectedGame].exe,
 				emuArgs = ['-e', ebootPath],
 				hList = APP.design.hackList;
 			
@@ -59,9 +59,9 @@ temp_EMUMANAGER = {
 			APP.design.update();
 			APP.design.toggleDisplayMode({
 				appStatus: 'Running',
+				appPath: mainGameData.exe,
 				appIcon: mainGameData.icon,
 				appName: mainGameData.name,
-				appPath: mainGameData.eboot,
 				paramSfo: mainGameData.paramSfo
 			});
 

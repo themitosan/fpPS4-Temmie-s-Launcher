@@ -71,6 +71,7 @@ temp_DESIGN = {
 		var tempHtml = '',
 			gList = APP.gameList.list;
 
+		// Process game list
 		Object.keys(gList).forEach(function(cGame){
 
 			var appTitle = '',
@@ -78,7 +79,7 @@ temp_DESIGN = {
 				classDisplayEntryMode = '',
 				appNameClass = 'LABEL_gameTitle',
 				classGameDetailsMode = 'GAME_DETAILS',
-				gameMetadata = '<br>Path: ' + gList[cGame].eboot,
+				gameMetadata = '<br>Path: ' + gList[cGame].exe,
 				bgPath = 'url(\'' + gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'') + '\')';
 
 			// Disable background image

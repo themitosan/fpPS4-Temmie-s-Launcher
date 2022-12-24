@@ -137,6 +137,59 @@ temp_SETTINGS = {
 			APP.gameList.load();
 		});
 
-	}	
+	},
+
+	// Reset all game settings
+	resetGameSettings: function() {
+
+		// Confirm action
+		const conf = window.confirm('WARN: This option will remove ALL saved settings from your game list.\nDo you want to continue?');
+		if (conf === !0){
+
+			// Get game list
+			var cMessage = '',
+				gList = Object.keys(APP.gameList.list);
+
+			// Check if user has games and apps
+			if (gList.length !== 0){
+
+				// Process game list
+				gList.forEach(function(cGame){
+
+					// Check if settings file exists
+					if (APP.fs.existsSync(APP.path.parse(APP.gameList.list[cGame].exe).dir + '/launcherSettings.json') === !0){
+
+						try {
+
+							APP.fs.unlinkSync(APP.path.parse(APP.gameList.list[cGame].exe).dir + '/launcherSettings.json');
+							cMessage = 'INFO - ( ' + APP.gameList.list[cGame].name + ' ) Settings file was removed sucessfully!';
+
+						} catch (err) {
+
+							cMessage = 'ERROR - ( ' + APP.gameList.list[cGame].name + ' ) Unable to delete settings file!\nReason: ' + err;
+							console.error(err);
+
+						}
+
+					} else {
+
+						// Unable to find settings file
+						cMessage = 'WARN - ( ' + APP.gameList.list[cGame].name + ' ) Unable to find settings for this App / Game!'
+
+					}
+
+					// Log status
+					APP.log(cMessage);
+
+				});
+
+				// Process complete
+				window.alert('INFO - Process Complete!\nCheck log for more details.');
+
+			}			
+
+		}
+
+	}
 
 }
