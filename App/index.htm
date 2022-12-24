@@ -142,18 +142,18 @@
 				<div class="SEPARATOR_00"></div>
 				<div class="DIV_settingsH2">Lib Modules</div>
 
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex none">
-					<input type="checkbox" id="CHECKBOX_settingsSeekMissingModules">
-					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsSeekMissingModules');">
-						Seek for missing modules
-					</label>
-				</div>
-
 				<div class="DIV_settingsEntry">
-					Selected lib version:
+					Current Lib list:
 					<select id="SELECT_settingsSelectedLibPath" class="SELECT_settings">
 						<!-- Module List goes here -->
 					</select>
+				</div>
+
+				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+					<input type="checkbox" id="CHECKBOX_settingsSeekMissingModules">
+					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsSeekMissingModules');">
+						If fpPS4 returns any <code>nop</code> error, seek for missing modules
+					</label>
 				</div>
 
 				<!-- Misc. -->

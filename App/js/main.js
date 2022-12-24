@@ -50,6 +50,13 @@ var APP = {
 
 			// If Emu is running and catch an "nop" log, update GUI
 			if (text.slice(0, 4) === 'nop ' && APP.emuManager.emuRunning === !0){
+
+				// If seek missing modules is active, push current error to list
+				if (APP.settings.data.seekMissingModules === !0){
+					APP.emuManager.emuErrorList.push(text);
+				}
+
+				// Update GUI
 				document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = 'Error ( <label class="user-can-select">' + text + '</label>)';
 				TMS.css('APP_LOG', {
 					'color': '#f00',
@@ -199,6 +206,12 @@ var APP = {
 					APP.design.selectGame(APP.gameList.selectedGame);
 				}
 
+				// Run Check missing modules
+				if (APP.settings.data.seekMissingModules === !0){
+					APP.emuManager.seekMissingModules();
+				}
+
+				// Return exit code
 				return code;
 
 			});
