@@ -1,5 +1,11 @@
 /*
+	******************************************************************************
+	fpPS4 Temmie's Launcher
 	emumanager.js
+
+	This file contains all functions / variablesabout running main project 
+	executable
+	******************************************************************************
 */
 
 temp_EMUMANAGER = {
@@ -55,7 +61,8 @@ temp_EMUMANAGER = {
 				appStatus: 'Running',
 				appIcon: mainGameData.icon,
 				appName: mainGameData.name,
-				appPath: mainGameData.eboot
+				appPath: mainGameData.eboot,
+				paramSfo: mainGameData.paramSfo
 			});
 
 			// Save game settings

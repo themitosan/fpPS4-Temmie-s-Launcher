@@ -1,5 +1,11 @@
 /*
+	******************************************************************************
+	fpPS4 Temmie's Launcher
 	gamelist.js
+
+	This file contains all functions / variables related to creating and managing 
+	gamelist
+	******************************************************************************
 */
 
 temp_GAMELIST = {
@@ -17,23 +23,28 @@ temp_GAMELIST = {
 	createGameSettings: function(data){
 
 		// Temp JSON
-		const gameSettings = {
-			name: data.name,
-			hacks: data.hacks
-		}
+		var logMessage = '',
+			gameSettings = {
+				name: data.name,
+				hacks: data.hacks,
+				paramSfo: data.paramSfo
+			}
 
 		// Write file
 		try {
 
 			APP.fs.writeFileSync(data.path, JSON.stringify(gameSettings), 'utf-8');
-			APP.log('INFO - Settings file was created successfully for ' + data.name + '!\nPath: ' + data.path);
+			logMessage = 'INFO - Settings file was created successfully for ' + data.name + '!\nPath: ' + data.path;
 		
 		} catch (err) {
 
 			console.error(err);
-			APP.log('ERROR - Unable to create settings file for ' + data.name + ' at ' + data.path + '!\nReason: ' + err);
+			logMessage = 'ERROR - Unable to create settings file for ' + data.name + ' at ' + data.path + '!\nReason: ' + err;
 
 		}
+
+		// Log result
+		APP.log(logMessage);
 
 	},
 
@@ -98,28 +109,34 @@ temp_GAMELIST = {
 				// Process game list
 				gList.forEach(function(gPath){
 		
-					var addGame = !0,
-						elfName = '',
-						ebootName = '',
-						pathBase = APP.settings.data.gamePath + '/' + gPath,
-
-						appBg0 = pathBase + '/pic0.png',
-						appBg1 = pathBase + '/pic1.png',
-						appIcon0 = pathBase + '/icon.png',
-						appIcon1 = pathBase + '/icon0.png',
-
-						finalBg = appBg0,
-						finalIcon = appIcon0,
-
-						ebootFile = pathBase + '/eboot.bin';
+					var appBg,
+						appIcon,
+						addGame = !0,
+						paramSfo = {},
+						appName = gPath,
+						paramSfoAvailable = !0,
+						iconList = [
+							'icon.png',
+							'icon0.png',
+							'icon1.png',
+							'sce_sys/icon.png',
+							'sce_sys/icon0.png',
+							'sce_sys/icon1.png'
+						],
+						backgroundList = [
+							'pic0.png',
+							'pic1.png',
+							'sce_sys/pic0.png',
+							'sce_sys/pic1.png'
+						],
+						pathBase = APP.settings.data.gamePath + '/' + gPath + '/',
+						paramSfoPath = pathBase + 'sce_sys/param.sfo',
+						executableName = pathBase + 'eboot.bin';
 		
-					if (APP.fs.existsSync(ebootFile) === !0){
-						ebootName = 'eboot.bin';
-					}
-
 					// If eboot.bin doesn't exists, look for any .elf file
-					if (APP.fs.existsSync(ebootFile) !== !0){
+					if (APP.fs.existsSync(executableName) !== !0){
 
+						// Seek .elf files on root dir
 						var fList = APP.fs.readdirSync(pathBase),
 							execName = fList.filter(function(fName){
 								if (fName.toLowerCase().indexOf('.elf') !== -1){
@@ -127,50 +144,61 @@ temp_GAMELIST = {
 								}
 							})[0];
 
-						ebootName = execName;
-
-						// If not found (undefined), skip entry
+						// Set executable name - if not found (undefined), skip entry!
+						executableName = pathBase + execName;
 						if (execName === void 0){
 							addGame = !1;
 						}
 
 					}
-		
-					// Set icon
-					if (APP.fs.existsSync(appIcon0) === !1){
-						
-						finalIcon = appIcon1;
-						
-						if (APP.fs.existsSync(appIcon1) === !1){
-							finalIcon = APP.settings.data.nwPath + '/app/img/404.png'; 
+
+					// Seek App Icon
+					for (var i = 0; i < iconList.length; i++){
+						if (APP.fs.existsSync(pathBase + iconList[i]) === !0){
+							appIcon = pathBase + iconList[i];
+							break;
 						}
+					}
 					
+					// Seek App Background
+					for (var i = 0; i < backgroundList.length; i++){
+						if (APP.fs.existsSync(pathBase + backgroundList[i]) === !0){
+							appBg = pathBase + backgroundList[i];
+							break;
+						}
 					}
 
-					// Set BG image
-					if (APP.fs.existsSync(appBg0) === !1){
-					
-						finalBg = appBg1;
-					
-						if (APP.fs.existsSync(appBg1) === !1){
-							finalBg = APP.settings.data.nwPath + '/app/img/404_BG.png';
-						}
-					
+					// Check if Icon and Background exists - if not, use 404
+					if (APP.fs.existsSync(appIcon) === !1){
+						appIcon = APP.settings.data.nwPath + '/app/img/404.png'; 
+					}
+					if (APP.fs.existsSync(appBg) === !1){
+						appBg = APP.settings.data.nwPath + '/app/img/404_BG.png';
 					}
 		
+					// Check if PARAM.SFO is present
+					if (APP.settings.data.enableParamSfo === !0 && APP.fs.existsSync(paramSfoPath) === !0){
+						
+						// Set PARAM.SFO variables
+						paramSfoAvailable = !1;
+						paramSfo = APP.paramSfo.parse(paramSfoPath);
+
+						// Set game entry variables
+						appName = paramSfo.TITLE;
+
+					}
+
 					// If executable exists, set data
 					if (addGame === !0){
 
-						/*
-							Add game to list
-						*/
+						// Add game to list
 						APP.gameList.list[gPath] = {
-							bg: finalBg,
-							name: gPath,
-							seekSFO: !0,
-							metadata: {},
-							icon: finalIcon,
-							eboot: pathBase + '/' + ebootName
+							bg: appBg,
+							name: appName,
+							icon: appIcon,
+							paramSfo: paramSfo,
+							eboot: executableName,
+							paramSfoAvailable: paramSfoAvailable
 						}
 
 					}

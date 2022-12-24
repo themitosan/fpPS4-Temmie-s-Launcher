@@ -1,5 +1,13 @@
 /*
+	******************************************************************************
+	fpPS4 Temmie's Launcher
 	design.js
+
+	This file contains tools, functions and variables related for rendering and
+	updating main GUI
+
+	Quick note: This is probably the largest file on this project!
+	******************************************************************************
 */
 
 temp_DESIGN = {
@@ -45,7 +53,6 @@ temp_DESIGN = {
 	renderHacklist: function(){
 
 		var htmlTemp = '';
-
 		this.hackList.forEach(function(hackName){
 			htmlTemp = htmlTemp + '<input type="checkbox" id="CHECK_' + hackName + '"><label class="LABEL_checkbox" onclick="APP.design.processCheckbox(\'CHECK_' + hackName +
 					   '\');">Enable ' + hackName + '</label><br>';
@@ -53,6 +60,7 @@ temp_DESIGN = {
 
 		document.getElementById('DIV_HACK_LIST').innerHTML = htmlTemp;
 
+		// Render GUI
 		this.update();
 
 	},
@@ -70,7 +78,7 @@ temp_DESIGN = {
 				classDisplayEntryMode = '',
 				appNameClass = 'LABEL_gameTitle',
 				classGameDetailsMode = 'GAME_DETAILS',
-				pathLabel = '<br>Path: ' + gList[cGame].eboot,
+				gameMetadata = '<br>Path: ' + gList[cGame].eboot,
 				bgPath = 'url(\'' + gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'') + '\')';
 
 			// Disable background image
@@ -81,14 +89,19 @@ temp_DESIGN = {
 			// Background and Icon
 			gameBgAndIcon = '<div class="GAME_ENTRY_BG" style="background-image: ' + bgPath + '";></div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '">';
 
-			// Remove executable path
+			// If PARAM.SFO metadata exists, show serial and game version instead
+			if (Object.keys(gList[cGame].paramSfo).length !== 0){
+				gameMetadata = '<br>' + gList[cGame].paramSfo.TITLE_ID + ' - Version ' + gList[cGame].paramSfo.VERSION;
+			}
+
+			// Settings: Show App / Game version (or executable path) for every title in game list
 			if (APP.settings.data.gui.showPathEntry !== !0){
-				pathLabel = '';
+				gameMetadata = '';
 			}
 
 			// Display mode: Compact
 			if (APP.settings.data.gui.gameListMode === 'compact'){
-				pathLabel = '';
+				gameMetadata = '';
 				gameBgAndIcon = '';
 				appNameClass = 'LABEL_gameTitleCompact';
 				classDisplayEntryMode = ' GAME_ENTRY_COMPACT';
@@ -106,7 +119,7 @@ temp_DESIGN = {
 				Add entry
 			*/
 			tempHtml = tempHtml + '<div class="GAME_ENTRY' + classDisplayEntryMode + '" title="' + appTitle + '" onclick="APP.design.selectGame(\'' + cGame + '\');" id="GAME_ENTRY_' + cGame + '">' + gameBgAndIcon +
-								  '<div class="' + classGameDetailsMode + '"><label class="' + appNameClass + '">' + gList[cGame].name + '</label>' + pathLabel + '</div></div>';
+								  '<div class="' + classGameDetailsMode + '"><label class="' + appNameClass + '">' + gList[cGame].name + '</label>' + gameMetadata + '</div></div>';
 		});
 
 		// Insert HTML
@@ -142,7 +155,8 @@ temp_DESIGN = {
 				APP.gameList.createGameSettings({
 					hacks: hList,
 					name: gameName,
-					path: settingsFile
+					path: settingsFile,
+					paramSfo: APP.gameList.list[gameName].paramSfo
 				});
 
 			}
@@ -235,7 +249,9 @@ temp_DESIGN = {
 		document.getElementById('BTN_SAVE_LOG').disabled = disableClearSaveBtn;
 
 		// Render selected game name
-		document.getElementById('DIV_labelSelectedGame').innerHTML = APP.gameList.selectedGame;
+		if (APP.gameList.list[APP.gameList.selectedGame] !== void 0){
+			document.getElementById('DIV_labelSelectedGame').innerHTML = APP.gameList.list[APP.gameList.selectedGame].name;
+		}
 
 		// Scroll log
 		var tx = document.getElementById('APP_LOG');
@@ -251,8 +267,8 @@ temp_DESIGN = {
 
 		if (gameData !== void 0){
 			
-			var appIcon = '',
-				gameDetails = {'display': 'flex'},
+			var gameDetails = {'display': 'flex'},
+				gameMetadata = 'Path: <label class="user-can-select">' + gameData.appPath + '</label>',
 				listInternal = {'transition': '0.4s', 'filter': 'blur(' + APP.settings.data.gui.bgEmuBlur +'px) opacity(' + APP.settings.data.gui.bgEmuOpacity + ')'};
 	
 			// If emu isn't running
@@ -263,26 +279,31 @@ temp_DESIGN = {
 				APP.design.renderGameList();
 	
 			} else {
-	
+
+				// If PARAM.SFO metadata exists, display serial and game version instead
+				if (Object.keys(gameData.paramSfo).length !== 0){
+					gameMetadata = gameData.paramSfo.TITLE_ID + ' - Version ' + gameData.paramSfo.VERSION;
+				}
+				
 				// Clear game list
 				document.getElementById('DIV_LIST_INTERNAL').innerHTML = '';
 	
 			}
-	
+
 			// Fix undefined path
 			if (gameData.appIcon === void 0){
-				gameData.appIcon = APP.settings.data.nwPath + '/app/img/404.png';
+				gameData.appIcon = APP.settings.data.nwPath + '/App/img/404.png';
 			}
 
 			// Set game metadata
 			document.getElementById('IMG_APP_ICON').src = gameData.appIcon;
-			document.getElementById('LABEL_GAME_DETAILS_PATH').innerHTML = gameData.appPath;
+			document.getElementById('DIV_GAME_DETAILS_currentExec').innerHTML = gameMetadata;
 			document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = gameData.appStatus;
 			document.getElementById('LABEL_GAME_DETAILS_APP_NAME').innerHTML = gameData.appName;
 	
 			// Set CSS
-			TMS.css('DIV_GAME_DETAILS', gameDetails);
 			TMS.css('DIV_GAMELIST_BG', listInternal);
+			TMS.css('DIV_GAME_DETAILS', gameDetails);
 
 		}
 
@@ -354,6 +375,7 @@ temp_DESIGN = {
 		document.getElementById('SELECT_settingsDisplayMode').value = cSettings.gui.gameListMode;
 
 		// Checkbox
+		document.getElementById('CHECKBOX_settingsEnableParamSfo').checked = JSON.parse(cSettings.enableParamSfo);
 		document.getElementById('CHECKBOX_settingsShowExecList').checked = JSON.parse(cSettings.gui.showPathEntry);
 		document.getElementById('CHECKBOX_settingsShowExecRunning').checked = JSON.parse(cSettings.gui.showPathRunning);
 		document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked = JSON.parse(cSettings.gui.showBgOnEntry);
@@ -376,6 +398,7 @@ temp_DESIGN = {
 		APP.settings.data.gui.gameListMode = document.getElementById('SELECT_settingsDisplayMode').value;
 
 		// Checkbox
+		APP.settings.data.enableParamSfo = JSON.parse(document.getElementById('CHECKBOX_settingsEnableParamSfo').checked);
 		APP.settings.data.gui.showPathEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecList').checked);
 		APP.settings.data.gui.showBgOnEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked);
 		APP.settings.data.gui.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);

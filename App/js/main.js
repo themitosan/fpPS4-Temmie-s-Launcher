@@ -1,5 +1,11 @@
 /*
+	******************************************************************************
+	fpPS4 Temmie's launcher
 	main.js
+
+	This file contains all modules and required functions to initialize 
+	launcher 
+	******************************************************************************
 */
 
 var APP = {

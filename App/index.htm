@@ -61,16 +61,16 @@
 				</div>
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<input type="checkbox" id="CHECKBOX_settingsShowExecList">
-					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsShowExecList');">
-						Show executable path for every title in game list
+					<input type="checkbox" id="CHECKBOX_settingsShowBgOnGameEntry">
+					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsShowBgOnGameEntry');">
+						Show background image for every title in game list
 					</label>
 				</div>
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<input type="checkbox" id="CHECKBOX_settingsShowBgOnGameEntry">
-					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsShowBgOnGameEntry');">
-						Show background image for every title in game list
+					<input type="checkbox" id="CHECKBOX_settingsShowExecList">
+					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsShowExecList');">
+						Show App / Game metadata <i>(or executable path)</i> for every title in game list
 					</label>
 				</div>
 
@@ -119,6 +119,17 @@
 					<input type="checkbox" id="CHECKBOX_settingsSaveLogOnEmuClose">
 					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsSaveLogOnEmuClose');">
 						Save log file everytime main emu closes
+					</label>
+				</div>
+
+				<!-- Misc. -->
+				<div class="SEPARATOR_00"></div>
+				<div class="DIV_settingsH2">Misc.</div>
+
+				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+					<input type="checkbox" id="CHECKBOX_settingsEnableParamSfo">
+					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsEnableParamSfo');">
+						Enable <code>PARAM.SFO</code> support <i>(Delete "launcherSettings.json" from all games and restart launcher to take effect)</i>
 					</label>
 				</div>
 
@@ -185,7 +196,7 @@
 						???
 					</div>
 					<div id="DIV_GAME_DETAILS_currentExec">
-						Path: <label id="LABEL_GAME_DETAILS_PATH" class="user-can-select">???</label>
+						<!-- Game metadata goes here -->
 					</div>
 					Status: <label id="LABEL_GAME_DETAILS_STATUS">???</label>
 				</div>
@@ -209,6 +220,7 @@
 			<script type="text/javascript" src="js/TMS.js"></script>
 			<script type="text/javascript" src="js/tools.js"></script>
 			<script type="text/javascript" src="js/filemanager.js"></script>
+			<script type="text/javascript" src="js/paramSfoDatabase.js"></script>
 			<script type="text/javascript" src="js/paramSfoParser.js"></script>
 			<script type="text/javascript" src="js/gamelist.js"></script>
 			<script type="text/javascript" src="js/settings.js"></script>

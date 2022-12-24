@@ -1,5 +1,11 @@
 /*
+	******************************************************************************
+	fpPS4 Temmie's Launcher
 	settings.js
+
+	This file is contains all functions / variables related to settings menu
+	and Launcher's look / behavior
+	******************************************************************************
 */
 
 temp_SETTINGS = {
@@ -30,12 +36,10 @@ temp_SETTINGS = {
 
 		},
 
-		/*
-			Log Options
-			
-			Quick note: If in the future this launcher manages to load .pkg or .sfo files,
-			these options will display TITLE_ID insead of folder name.
-		*/
+		// Disable PARAM.SFO support
+		enableParamSfo: !0,
+
+		// Log Options
 		saveLogOnEmuClose: !1,
 		clearLogOnEmuLoad: !1,
 		logOnExternalWindow: !1

@@ -1,6 +1,6 @@
 /*
 	*******************************************************************************
-	TMS.js - By @TheMitoSan
+	TMS.js - By TemmieHeartz (@TheMitoSan)
 	
 	This file is an original replacement - Because I don't want to deal with jQuery
 	anymore!

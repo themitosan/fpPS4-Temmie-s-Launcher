@@ -9,6 +9,13 @@ html, body {
 	background-color: #000;
 	text-shadow: 2px 2px 4px #000;
 }
+code {
+    padding: 6px;
+    color: #6bd5f5;
+    font-style: normal;
+    border-radius: 6px;
+	background-color: #000;
+}
 select, input[type='button'], input[type='checkbox'] {
 	outline: none;
 	cursor: pointer;
@@ -236,7 +243,7 @@ img {
 	max-width: calc(80% - 24px);
 }
 .DIV_GAME_DETAILS_LABELS {
-	margin-left: 12px;
+	margin-left: 24px;
 }
 .DIV_SETTINGS {
 	top: 0px;

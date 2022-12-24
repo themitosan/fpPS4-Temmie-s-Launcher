@@ -1,5 +1,10 @@
 /*
+	******************************************************************************
+	fpPS4 Temmie's Launcher
 	filemanager.js
+
+	This file contains all functions for loading files and paths
+	******************************************************************************
 */
 
 temp_FILEMANAGER = {

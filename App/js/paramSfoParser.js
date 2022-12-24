@@ -1,36 +1,26 @@
 /*
+	******************************************************************************
+	fpPS4 Temmie's Launcher
 	paramSfoParser.js
-	PARAM.SFO reader written by TemmieHeartz
-	@themitosan
 
-	Many thanks to @notzecoxao for this sassy-challenge!
+	This file is responsible for holding all funcions / database for reading
+	PARAM.SFO files!
 
-	Projects / Articles used as reference:
+	Many thanks to Control eXecute (@notzecoxao) for this sassy-challenge!
+
+	Article used as reference:
 	https://www.psdevwiki.com/ps4/Param.sfo
+	******************************************************************************
 */
 
 temp_PARAMSFO_PARSER = {
 	
-	/*
-		Variables / Database
-	*/
+	// PARAM.SFO Key Database
+	params: temp_PARAMSFO_DATABASE,
 
 	/*
-		Functions
-	*/
-
-	// [TEMP] Load SFO using file load API
-	selectFile: function(){
-
-		APP.fileManager.selectFile('.sfo', function(pFile){
-			APP.paramSfo.parse(pFile);
-		});
-
-	},
-
-	/*
-		Read PARAM.SFO files [WIP]
-		By TemmieHeartz
+		Read PARAM.SFO files!
+		This function returns all data as object.
 
 		Info: Since all hex data is being read as String, here is a simple explanation:
 		To read 0x04 bytes, Slice current string from starting point (0x00) to selection length (0x04) using it's hex value converted to int * 2
@@ -41,12 +31,10 @@ temp_PARAMSFO_PARSER = {
 
 		JS: sfoHex.slice(0, 8); ---> 00 50 53 46 (" PSF")
 	*/
-	temp: '',
 	parse: function(fLocation){
 
 		// Read file as hex (String)
 		const sfoHex = APP.fs.readFileSync(fLocation, 'hex');
-		this.temp = sfoHex;
 		
 		var sfoMetadata = {},
 
@@ -64,18 +52,13 @@ temp_PARAMSFO_PARSER = {
 		/*
 			Create key list [APP_TYPE, TITLE_ID...]
 		*/
-		var listAttrArray,
-			listAttrString = '',
-			listAttrRaw = sfoHex.slice((parseInt(sfoHeader.keyTableStart, 16) * 2), (parseInt(sfoHeader.dataTableStart, 16) * 2));
-		
-		// Convert hex to string
-		listAttrRaw.match(/.{2,2}/g).forEach(function(cChar){
-			listAttrString = listAttrString + String.fromCharCode(parseInt(cChar, 16));
-		});
+		var listAttrRaw = sfoHex.slice((parseInt(sfoHeader.keyTableStart, 16) * 2), (parseInt(sfoHeader.dataTableStart, 16) * 2)),
+			listAttrArray = APP.tools.convertHexToUft8(listAttrRaw).split('\x00');
 
-		// Set key list
-		listAttrArray = listAttrString.split('\x00');
-		listAttrArray.splice(listAttrArray.indexOf(''), 1);
+		// Remove blank entries [I'm not feeling 100% secure about this method but... Here we go!]
+		while (listAttrArray.indexOf('') !== -1){
+			listAttrArray.splice(listAttrArray.indexOf(''), 1);
+		}
 
 		/*
 			Get reading mode for current entry [Key table offset, param_fmt...]
@@ -86,17 +69,20 @@ temp_PARAMSFO_PARSER = {
 			readerLocation = 0,
 			hexStartLocation = sfoHex.slice(40);
 
+		// Get key table data info
 		listAttrArray.forEach(function(cAttr){
 
 			// Slice Current Data
 			const cReadingMode = hexStartLocation.slice(readerLocation, parseInt(readerLocation + 32));
 
 			readMode[cAttr] = {
+
 				keyTableOffset: cReadingMode.slice(0, 4),   // Key table offset
 				param_fmt: 		cReadingMode.slice(4, 8),   // param_fmt (type of data)
 				paramLength: 	cReadingMode.slice(8, 16),  // Parameter length
 				paramMaxLength: cReadingMode.slice(16, 24), // Parameter Max Length
 				dataOffset: 	cReadingMode.slice(24, 32)  // Data Offset
+			
 			}
 
 			// Update position for next location
@@ -107,13 +93,49 @@ temp_PARAMSFO_PARSER = {
 		/*
 			Set Metadata Info
 		*/
-		readerLocation = 0;
-		listAttrArray.forEach(function(cAttr){
-			sfoMetadata[cAttr] = '';
-		});
+		
+		// Set location to data table start create first slice
+		var pointerLocation = 0,
+			dataTableSlice = sfoHex.slice(parseInt(sfoHeader.dataTableStart, 16) * 2);
 
-		console.table(listAttrArray);
-		console.table(readMode);
+		// Process list
+		listAttrArray.forEach(function(cAttr, cIndex){
+
+			// Get hex file starting from current location
+			var keyData = '',
+				convertUft8 = !1,
+				cSlice = dataTableSlice.slice(pointerLocation),
+				stopLocation = parseInt(pointerLocation + 8); // Default: int32
+			
+			/*
+				Check param length
+
+				If not 32 bits unsigned (0x0404), use paramMaxLength converted to int minus 1 multiplied by 2
+				...and (of course) convert it to utf-8!
+
+				JS: length = ((parseInt(paramMaxLength, 16) - 1) * 2)
+			*/
+			if (readMode[cAttr].param_fmt !== '0404'){
+				convertUft8 = !0;
+				stopLocation = (pointerLocation + ((parseInt(APP.tools.parseEndian(readMode[cAttr].paramLength), 16) - 1)) * 2);
+			}
+
+			// Get attr data
+			keyData = dataTableSlice.slice(pointerLocation, stopLocation);
+
+			// Set key value to attr
+			if (convertUft8 === !0){
+				sfoMetadata[cAttr] = APP.tools.convertHexToUft8(keyData);	
+			} else {
+				sfoMetadata[cAttr] = APP.tools.parseEndian(keyData);
+			}
+
+			// Update reader location
+			if (listAttrArray[(cIndex + 1)] !== void 0){
+				pointerLocation = (parseInt(APP.tools.parseEndian(readMode[listAttrArray[(cIndex + 1)]].dataOffset), 16) * 2);
+			}
+
+		});
 
 		// End
 		return sfoMetadata;
@@ -121,3 +143,5 @@ temp_PARAMSFO_PARSER = {
 	}
 
 }
+
+delete temp_PARAMSFO_DATABASE;
