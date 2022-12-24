@@ -364,8 +364,34 @@ temp_DESIGN = {
 		// Shortcut
 		const cSettings = APP.settings.data;
 
+		// Lib modules path
+		var tempHtml = '<option disabled="disabled">No lib folders detected</option>';
+			libList = APP.fs.readdirSync(cSettings.libPath);
+		
+		// Check if exists lib folders on path
+		if (libList.length !== 0){
+		
+			// Reset lib list
+			tempHtml = '';
+
+			// Process lib list
+			libList.forEach(function(cLib){
+				tempHtml = tempHtml + '<option value="' + cLib + '">' + cLib + '</option>';
+			});
+
+			// If Lib option is not select, use first item on list
+			if (cSettings.selectedLibFolder === ''){
+				cSettings.selectedLibFolder = libList[0];
+			}
+		
+		}
+
+		// Render Lib select option
+		document.getElementById('SELECT_settingsSelectedLibPath').innerHTML = tempHtml;
+
 		// Labels
 		document.getElementById('LBL_SETTINGS_emuPath').innerHTML = cSettings.emuPath
+		document.getElementById('LBL_SETTINGS_libPath').innerHTML = cSettings.libPath;
 		document.getElementById('LBL_SETTINGS_gamePath').innerHTML = cSettings.gamePath;
 		document.getElementById('LABEL_settingsGameListBgBlur').innerHTML = this.parsePercentage(cSettings.gui.bgListBlur, 6);
 		document.getElementById('LABEL_settingsEmuRunningBgBlur').innerHTML = this.parsePercentage(cSettings.gui.bgEmuBlur, 6);
@@ -374,6 +400,7 @@ temp_DESIGN = {
 
 		// Select
 		document.getElementById('SELECT_settingsDisplayMode').value = cSettings.gui.gameListMode;
+		document.getElementById('SELECT_settingsSelectedLibPath').value = cSettings.selectedLibFolder;
 
 		// Checkbox
 		document.getElementById('CHECKBOX_settingsEnableParamSfo').checked = JSON.parse(cSettings.enableParamSfo);
@@ -382,6 +409,7 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked = JSON.parse(cSettings.gui.showBgOnEntry);
 		document.getElementById('CHECKBOX_settingsSaveLogOnEmuClose').checked = JSON.parse(cSettings.saveLogOnEmuClose);
 		document.getElementById('CHECKBOX_settingsClearLogOnEmuLoad').checked = JSON.parse(cSettings.clearLogOnEmuLoad);
+		document.getElementById('CHECKBOX_settingsSeekMissingModules').checked = JSON.parse(cSettings.seekMissingModules);
 		document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked = JSON.parse(cSettings.logOnExternalWindow);
 
 		// Range
@@ -397,6 +425,7 @@ temp_DESIGN = {
 
 		// Select
 		APP.settings.data.gui.gameListMode = document.getElementById('SELECT_settingsDisplayMode').value;
+		APP.settings.data.selectedLibFolder = document.getElementById('SELECT_settingsSelectedLibPath').value;
 
 		// Checkbox
 		APP.settings.data.enableParamSfo = JSON.parse(document.getElementById('CHECKBOX_settingsEnableParamSfo').checked);
@@ -405,6 +434,7 @@ temp_DESIGN = {
 		APP.settings.data.gui.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
 		APP.settings.data.saveLogOnEmuClose = JSON.parse(document.getElementById('CHECKBOX_settingsSaveLogOnEmuClose').checked);
 		APP.settings.data.clearLogOnEmuLoad = JSON.parse(document.getElementById('CHECKBOX_settingsClearLogOnEmuLoad').checked);
+		APP.settings.data.seekMissingModules = JSON.parse(document.getElementById('CHECKBOX_settingsSeekMissingModules').checked);
 		APP.settings.data.logOnExternalWindow = JSON.parse(document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked);
 
 		// Range

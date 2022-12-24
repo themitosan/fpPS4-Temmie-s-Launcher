@@ -65,7 +65,7 @@ img {
 	padding-left: 2px;
 	padding-right: 2px;
 	border-radius: 6px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 	width: calc(100% - 4px);
 	background-color: #0000;
 	background-image: linear-gradient(45deg, #fff, #6661, #0000);
@@ -301,7 +301,7 @@ img {
 	font-size: 20px;
 	font-style: italic;
 	font-family: monospace;
-	margin: 8px 0px 8px 2px;
+	margin: 0px 0px 8px 2px;
 }
 .DIV_settingsSave {
 	width: 100%;
@@ -377,6 +377,7 @@ img {
 }
 .BTN_selectPath {
     float: right;
+    min-width: 100px;
     font-style: italic;
     border-radius: 4px;
     padding: 4px 14px 4px 14px;

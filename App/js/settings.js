@@ -4,7 +4,7 @@
 	settings.js
 
 	This file is contains all functions / variables related to settings menu
-	and Launcher's look / behavior
+	and Launcher's look, behavior and more.
 	******************************************************************************
 */
 
@@ -16,6 +16,7 @@ temp_SETTINGS = {
 		// Paths
 		nwPath: '',
 		emuPath: '',
+		libPath: '',
 		gamePath: '',
 		
 		// GUI Settings
@@ -38,6 +39,10 @@ temp_SETTINGS = {
 
 		// Disable PARAM.SFO support
 		enableParamSfo: !0,
+
+		// Seek missing lib files (.prx or .sprx)
+		selectedLibFolder: '',
+		seekMissingModules: !0,
 
 		// Log Options
 		saveLogOnEmuClose: !1,
@@ -73,6 +78,7 @@ temp_SETTINGS = {
 		const mainPath = this.data.nwPath,
 			pathList = [
 				'/Emu',
+				'/Lib',
 				'/Logs',
 				'/Games'
 			];
@@ -97,6 +103,11 @@ temp_SETTINGS = {
 			APP.settings.data.gamePath = mainPath + '/Games';
 		}
 
+		// Lib path
+		if (this.data.libPath === '' && APP.fs.existsSync(this.data.libPath) === !1){
+			APP.settings.data.libPath = mainPath + '/Lib';
+		}
+
 		// fpPS4 path
 		if (this.data.emuPath === '' || APP.fs.existsSync(this.data.emuPath) === !1){
 			APP.settings.data.emuPath = mainPath + '/Emu/fpPS4.exe';
@@ -115,24 +126,24 @@ temp_SETTINGS = {
 
 	},
 
-	// Select game path
-	selectGamePath: function() {
+	// Select path
+	selectPath: function(data) {
 
 		APP.fileManager.selectPath(function(newGamePath){
-			document.getElementById('LBL_SETTINGS_gamePath').innerHTML = newGamePath;
-			APP.settings.data.gamePath = newGamePath;
+			document.getElementById(data.label).innerHTML = newGamePath;
+			APP.settings.data[data.settings] = newGamePath;
 			APP.settings.save();
 			APP.gameList.load();
 		});
 
 	},
 
-	// Select fpPS4 path
-	selectEmuPath: function() {
+	// Select file
+	selectFile: function(data) {
 
-		APP.fileManager.selectFile('.exe', function(newEmuPath){
-			document.getElementById('LBL_SETTINGS_emuPath').innerHTML = newEmuPath;
-			APP.settings.data.emuPath = newEmuPath;
+		APP.fileManager.selectFile(data.extension, function(newEmuPath){
+			document.getElementById(data.label).innerHTML = newEmuPath;
+			APP.settings.data[data.settings] = newEmuPath;
 			APP.settings.save();
 			APP.gameList.load();
 		});

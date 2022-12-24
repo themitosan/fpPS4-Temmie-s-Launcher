@@ -25,14 +25,30 @@
 				<div class="DIV_settingsEntry">
 					Games / Homebrew Path:
 					<label id="LBL_SETTINGS_gamePath" class="LABEL_settingsPath">???</label>
-					<input type="button" class="BTN_selectPath" value="Select path" onclick="APP.settings.selectGamePath();">
+					<input type="button" class="BTN_selectPath" value="Select path" onclick="APP.settings.selectPath({
+						settings: 'gamePath',
+						label: 'LBL_SETTINGS_gamePath'
+					});">
 					<input type="button" class="BTN_selectPath" value="Open folder" onclick="APP.gameList.openFolder();">
 				</div>
 				
 				<div class="DIV_settingsEntry">
 					fpPS4 Path:
 					<label id="LBL_SETTINGS_emuPath" class="LABEL_settingsPath">???</label>
-					<input type="button" class="BTN_selectPath" value="Select path" onclick="APP.settings.selectEmuPath();">
+					<input type="button" class="BTN_selectPath" value="Select File" onclick="APP.settings.selectFile({
+						extension: '.exe',
+						settings: 'emuPath',
+						label: 'LBL_SETTINGS_emuPath'
+					});">
+				</div>
+
+				<div class="DIV_settingsEntry">
+					Lib Path:
+					<label id="LBL_SETTINGS_libPath" class="LABEL_settingsPath">???</label>
+					<input type="button" class="BTN_selectPath" value="Select path" onclick="APP.settings.selectPath({
+						settings: 'libPath',
+						label: 'LBL_SETTINGS_libPath'
+					});">
 				</div>
 				
 				<!-- Game List -->
@@ -122,6 +138,24 @@
 					</label>
 				</div>
 
+				<!-- Lib Modules -->
+				<div class="SEPARATOR_00"></div>
+				<div class="DIV_settingsH2">Lib Modules</div>
+
+				<div class="DIV_settingsEntry DIV_settingsEntryFlex none">
+					<input type="checkbox" id="CHECKBOX_settingsSeekMissingModules">
+					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsSeekMissingModules');">
+						Seek for missing modules
+					</label>
+				</div>
+
+				<div class="DIV_settingsEntry">
+					Selected lib version:
+					<select id="SELECT_settingsSelectedLibPath" class="SELECT_settings">
+						<!-- Module List goes here -->
+					</select>
+				</div>
+
 				<!-- Misc. -->
 				<div class="SEPARATOR_00"></div>
 				<div class="DIV_settingsH2">Misc.</div>
@@ -129,7 +163,7 @@
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 					<input type="checkbox" id="CHECKBOX_settingsEnableParamSfo">
 					<label class="LABEL_checkbox" onclick="APP.design.processCheckbox('CHECKBOX_settingsEnableParamSfo');">
-						Enable <code>PARAM.SFO</code> support <i>(Delete "launcherSettings.json" from all games and restart launcher to take effect)</i>
+						Enable <code>PARAM.SFO</code> support <i>(Click on "Delete all game settings" and restart launcher to take effect)</i>
 					</label>
 				</div>
 
