@@ -76,7 +76,7 @@ var APP = {
 			// Get current date
 			var d = new Date(),
 				saveInfo = '',
-				cName = '_' + APP.gameList.selectedGame.replace(RegExp(' ', 'gi'), '_'),
+				cName = '_' + APP.gameList.list[APP.gameList.selectedGame].name.replace(RegExp(' ', 'gi'), '_'),
 				cTime = '_' + d.toDateString().replace(RegExp(' ', 'gi'), '_') + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds(),
 				logName = 'Log' + cName + cTime + '.log';
 
