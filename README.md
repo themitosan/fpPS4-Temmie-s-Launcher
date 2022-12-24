@@ -12,14 +12,13 @@ A simple launcher for <a href="https://github.com/red-prig/fpPS4/">fpPS4 project
 - Run <code>nw.exe</code>
 - Insert <code>fpPS4.exe</code> inside <code>Emu</code> folder
 
-### How to display games / apps
-This launcher will recognizes any folder that contains executables (<code>eboot.bin</code> or any <code>.elf</code>) inside.<br>
-It's just a matter of creating a folder on "Games" dir with app name and placing all files inside.
+### How to import games / apps
+If you dump your game using <a href="https://cdn.discordapp.com/attachments/1055964700602544169/1055965069986517032/How_to_Setup_fpPs4_emulator.pdf">addy</a> tutorial, it should display just fine.
 
-#### Display App icon and background
-If you dump your game properly using <a href="https://cdn.discordapp.com/attachments/1055964700602544169/1055965069986517032/How_to_Setup_fpPs4_emulator.pdf">addy</a> tutorial, it should display just fine.
+### How to Import libs
+Create a dir inside <code>Lib</code> folder, name it with current module version and add your <code>.prx</code> / <code>.sprx</code> files inside.
 
-In any case, you can add <code>icon.png</code> or <code>icon0.png</code>, <code>pic0.png</code> or <code>pic1.png</code> on App / Game root to display it properly on list.
+Example: <code>LAUNCHER_ROOT/Lib/modules_version_xx/your_sprx_files</code>
 
 ## External plugins used on this project
 - <a href="https://github.com/rob--/memoryjs">memoryjs</a> - created by <a href="https://github.com/rob--">Rob-- </a>
