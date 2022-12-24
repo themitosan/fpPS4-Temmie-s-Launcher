@@ -16,7 +16,7 @@ A simple launcher for <a href="https://github.com/red-prig/fpPS4/">fpPS4 project
 This launcher will recognizes any folder that contains executables (<code>eboot.bin</code> or any <code>.elf</code>) inside.<br>
 It's just a matter of creating a folder on "Games" dir with app name and placing all files inside.
 
-#### Display Icons and Background
+#### Display App icon and background
 If you dump your game properly using <a href="https://cdn.discordapp.com/attachments/1055964700602544169/1055965069986517032/How_to_Setup_fpPs4_emulator.pdf">addy</a> tutorial, it should display just fine.
 
 In any case, you can add <code>icon.png</code> or <code>icon0.png</code>, <code>pic0.png</code> or <code>pic1.png</code> on App / Game root to display it properly on list.
