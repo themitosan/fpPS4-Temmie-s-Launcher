@@ -22,6 +22,9 @@ temp_SETTINGS = {
 		// GUI Settings
 		gui: {
 
+			// Game search mode (appName or titleId)
+			gameSearchMode: 'appName',
+
 			// Background Opacity
 			bgEmuOpacity: 0.6,
 			bgListOpacity: 0.7,

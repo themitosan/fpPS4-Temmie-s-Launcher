@@ -113,6 +113,7 @@ temp_GAMELIST = {
 						appIcon,
 						addGame = !0,
 						paramSfo = {},
+						appId = gPath,
 						appName = gPath,
 						paramSfoAvailable = !0,
 						iconList = [
@@ -183,8 +184,9 @@ temp_GAMELIST = {
 						paramSfoAvailable = !1;
 						paramSfo = APP.paramSfo.parse(paramSfoPath);
 
-						// Set game entry variables
+						// Set game entry
 						appName = paramSfo.TITLE;
+						appId = paramSfo.TITLE_ID;
 
 					}
 
@@ -192,7 +194,7 @@ temp_GAMELIST = {
 					if (addGame === !0){
 
 						// Add game to list
-						APP.gameList.list[appName] = {
+						APP.gameList.list[appId] = {
 							bg: appBg,
 							name: appName,
 							icon: appIcon,
@@ -243,12 +245,33 @@ temp_GAMELIST = {
 			}
 
 			// Process search query
-			var listRender = {},
+			var tempList, listRender = {};
+			
+			// Case game search mode is TITLE_ID
+			if (APP.settings.data.gui.gameSearchMode === 'titleId'){
+
 				tempList = gameListArray.filter(function(cItem){ 
 					if(cItem.indexOf(searchQuery) !== -1){
 						return cItem;
 					}
 				});
+
+			}
+
+			// If game search mode is APP_NAME
+			if (APP.settings.data.gui.gameSearchMode === 'appName'){
+
+				tempList = [];
+
+				gameListArray.forEach(function(cTitle){
+
+					if (APP.gameList.list[cTitle].name.indexOf(searchQuery) !== -1){
+						tempList.push(cTitle);
+					}
+
+				});
+
+			}
 
 			// Generate a new list
 			tempList.forEach(function(cItem){

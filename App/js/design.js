@@ -417,6 +417,7 @@ temp_DESIGN = {
 
 		// Select
 		document.getElementById('SELECT_settingsDisplayMode').value = cSettings.gui.gameListMode;
+		document.getElementById('SELECT_settingsSearchMode').value = cSettings.gui.gameSearchMode;
 		document.getElementById('SELECT_settingsSelectedLibPath').value = cSettings.selectedLibFolder;
 
 		// Checkbox
@@ -442,6 +443,7 @@ temp_DESIGN = {
 
 		// Select
 		APP.settings.data.gui.gameListMode = document.getElementById('SELECT_settingsDisplayMode').value;
+		APP.settings.data.gui.gameSearchMode = document.getElementById('SELECT_settingsSearchMode').value;
 		APP.settings.data.selectedLibFolder = document.getElementById('SELECT_settingsSelectedLibPath').value;
 
 		// Checkbox
