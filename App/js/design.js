@@ -139,7 +139,8 @@ temp_DESIGN = {
 	selectGame: function(gameName){
 
 		// Settings file
-		const settingsFile = APP.settings.data.gamePath + '/' + gameName + '/launcherSettings.json';
+		var folderName = APP.gameList.list[gameName].folderName, 
+			settingsFile = APP.settings.data.gamePath + '/' + folderName + '/launcherSettings.json';
 
 		if (APP.gameList.list[gameName] !== void 0){
 

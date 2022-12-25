@@ -158,6 +158,9 @@ temp_SETTINGS = {
 		const conf = window.confirm('WARN: This option will remove ALL saved settings from your game list.\nDo you want to continue?');
 		if (conf === !0){
 
+			// Reset search form
+			document.getElementById('INPUT_gameListSearch').value = '';
+
 			// Get game list
 			var cMessage = '',
 				gList = Object.keys(APP.gameList.list);
@@ -197,6 +200,7 @@ temp_SETTINGS = {
 
 				// Process complete
 				window.alert('INFO - Process Complete!\nCheck log for more details.');
+				APP.log('INFO - Reset Game Settings: Process Complete!');
 
 			}			
 

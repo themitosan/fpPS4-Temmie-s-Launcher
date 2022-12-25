@@ -192,10 +192,11 @@ temp_GAMELIST = {
 					if (addGame === !0){
 
 						// Add game to list
-						APP.gameList.list[gPath] = {
+						APP.gameList.list[appName] = {
 							bg: appBg,
 							name: appName,
 							icon: appIcon,
+							folderName: gPath,
 							paramSfo: paramSfo,
 							exe: executableName,
 							paramSfoAvailable: paramSfoAvailable
