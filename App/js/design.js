@@ -96,7 +96,7 @@ temp_DESIGN = {
 
 			// If PARAM.SFO metadata exists, show serial and game version instead
 			if (Object.keys(gList[cGame].paramSfo).length !== 0){
-				gameMetadata = '<br>' + gList[cGame].paramSfo.TITLE_ID + ' - Version ' + gList[cGame].paramSfo.VERSION;
+				gameMetadata = '<br>' + gList[cGame].paramSfo.TITLE_ID + ' - Version ' + gList[cGame].paramSfo.APP_VER;
 			}
 
 			// Settings: Show App / Game version (or executable path) for every title in game list
@@ -300,7 +300,7 @@ temp_DESIGN = {
 
 				// If PARAM.SFO metadata exists, display serial and game version instead
 				if (Object.keys(gameData.paramSfo).length !== 0){
-					gameMetadata = gameData.paramSfo.TITLE_ID + ' - Version ' + gameData.paramSfo.VERSION;
+					gameMetadata = gameData.paramSfo.TITLE_ID + ' - Version ' + gameData.paramSfo.APP_VER;
 				}
 				
 				// Clear game list
