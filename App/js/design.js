@@ -66,10 +66,14 @@ temp_DESIGN = {
 	},
 
 	// Render game list
-	renderGameList: function(){
+	renderGameList: function(customList){
 
 		var tempHtml = '',
+			gList = customList;
+		
+		if (customList === void 0){
 			gList = APP.gameList.list;
+		}
 
 		// Process game list
 		Object.keys(gList).forEach(function(cGame){
@@ -84,7 +88,7 @@ temp_DESIGN = {
 
 			// Disable background image
 			if (APP.settings.data.gui.showBgOnEntry !== !0){
-				bgPath = '';
+				bgPath = 'none';
 			}
 
 			// Background and Icon
@@ -232,7 +236,16 @@ temp_DESIGN = {
 			document.getElementById('BTN_KILL').disabled = btnKill;
 			document.getElementById('BTN_REFRESH').disabled = btnRefresh;
 			document.getElementById('BTN_SETTINGS').disabled = btnSettings;
+			document.getElementById('INPUT_gameListSearch').disabled = btnRun;
 
+		}
+
+		// Selected game name
+		var cGameName = 'No game selected';
+
+		// If no game is selected, disable run button
+		if (APP.gameList.selectedGame === ''){
+			document.getElementById('BTN_RUN').disabled = 'disabled';
 		}
 
 		// Fix for grid mode
@@ -249,10 +262,13 @@ temp_DESIGN = {
 		}
 		document.getElementById('BTN_SAVE_LOG').disabled = disableClearSaveBtn;
 
-		// Render selected game name
+		// If selected game exists, get it's name
 		if (APP.gameList.list[APP.gameList.selectedGame] !== void 0){
-			document.getElementById('DIV_labelSelectedGame').innerHTML = APP.gameList.list[APP.gameList.selectedGame].name;
+			cGameName = APP.gameList.list[APP.gameList.selectedGame].name;
 		}
+		
+		// Render current game name
+		document.getElementById('DIV_labelSelectedGame').innerHTML = cGameName;
 
 		// Scroll log
 		var tx = document.getElementById('APP_LOG');

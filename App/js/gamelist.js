@@ -225,6 +225,49 @@ temp_GAMELIST = {
 		// Spawn explorer
 		APP.childProcess.exec('start "" "' + APP.settings.data.gamePath + '"');
 
+	},
+
+	// Process Search List
+	search: function(){
+
+		var gameListArray = Object.keys(APP.gameList.list),
+			searchQuery = document.getElementById('INPUT_gameListSearch').value;
+
+		// If search query isn't empty and user has more than one game, process search
+		if (searchQuery !== '' && gameListArray.length > 1){
+
+			if (APP.gameList.selectedGame !== ''){
+				APP.gameList.selectedGame = '';
+				APP.design.update();
+			}
+
+			// Process search query
+			var listRender = {},
+				tempList = gameListArray.filter(function(cItem){ 
+					if(cItem.indexOf(searchQuery) !== -1){
+						return cItem;
+					}
+				});
+
+			// Generate a new list
+			tempList.forEach(function(cItem){
+				listRender[cItem] = APP.gameList.list[cItem];
+			});
+
+			// Render new list
+			if (Object.keys(listRender).length !== 0){
+				APP.design.renderGameList(listRender);
+			} else {
+				document.getElementById('DIV_LIST_INTERNAL').innerHTML = '<div class="DIV_noGameFound">Unable to find \"' + searchQuery + '\" :(</div>';
+			}
+
+		} else {
+
+			// Render normal game list
+			APP.gameList.load();
+		
+		}
+
 	}
 
 }

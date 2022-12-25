@@ -1,5 +1,10 @@
 /*
+	******************************************************************************
+	fpPS4 Temmie's Launcher
 	Styles.css
+
+	Main application stylesheet
+	******************************************************************************
 */
 html, body {
 	color: #fff;
@@ -318,6 +323,22 @@ img {
 	align-content: center;
 	justify-content: center;
 }
+.DIV_noGameFound {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	font-size: x-large;
+	font-style: italic;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+	text-shadow: 0px 0px 10px #f00;
+	background-image: linear-gradient(45deg, #f002, #0000);
+}
 
 /*
 	Images
@@ -343,6 +364,24 @@ img {
 /*
 	Input
 */
+.BTN_right {
+	float: right;
+	margin-right: 8px;
+}
+.INPUT_gameListSearch {
+	margin: -8px;
+	border: none;
+	outline: none;
+	color: #fffb8e;
+	font-family: monospace;
+	background-image: none;
+	background-color: #0000;
+	width: calc(100% - 668px);
+	padding: 12px 0px 12px 6px;
+}
+.INPUT_gameListSearch:focus {
+	background-image: linear-gradient(45deg, #36185eb0, #0000);
+}
 .APP_LOG {
 	color: #0f0;
 	height: 100%;
@@ -426,6 +465,33 @@ img {
 	font-style: initial;
 	font-family: monospace;
 	user-select: all !important;
+}
+
+/*
+	Animations
+*/
+@keyframes gameFocus {
+	
+	0% {
+		box-shadow: 0px 0px 0px #0000;
+	}
+
+	25% {
+		box-shadow: 0px 0px 10px #fff6;	
+	}
+
+	50% {
+		box-shadow: 0px 0px 0px #0000;
+	}
+
+	75% {
+		box-shadow: 0px 0px 14px #fffa;
+	}
+
+	100% {
+		box-shadow: 0px 0px 0px #0000;
+	}
+
 }
 
 /*

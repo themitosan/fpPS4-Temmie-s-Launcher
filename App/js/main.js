@@ -203,6 +203,9 @@ var APP = {
 				// Scroll game list to last selected game
 				if (APP.gameList.selectedGame !== ''){
 					TMS.scrollCenter('GAME_ENTRY_' + APP.gameList.selectedGame);
+					TMS.css('GAME_ENTRY_' + APP.gameList.selectedGame, {
+						'animation': '0.8s gameFocus'
+					});
 					APP.design.selectGame(APP.gameList.selectedGame);
 				}
 
@@ -286,6 +289,9 @@ window.onload = function(){
 
 		// Rener hack list
 		APP.design.renderHacklist();
+
+		// Set focus on search Bar
+		TMS.focus('INPUT_gameListSearch', 100);
 
 	} catch (err) {
 

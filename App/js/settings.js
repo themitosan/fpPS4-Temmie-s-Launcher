@@ -59,6 +59,7 @@ temp_SETTINGS = {
 			APP.settings.save();
 		}
 
+		// Load settings from localStorage
 		const settings = localStorage.getItem('settings');
 		this.data = JSON.parse(settings);
 

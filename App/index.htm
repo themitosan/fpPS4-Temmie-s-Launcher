@@ -184,13 +184,14 @@
 		<!-- Top Menu -->
 		<div class="DIV_ACTIONS" id="DIV_ACTIONS">
 			
-			<input type="button" class="APP_btn" id="BTN_SETTINGS" onclick="APP.design.toggleSettings();" value="Settings">			
-
-			<input type="button" class="APP_btn" id="BTN_REFRESH" onclick="APP.gameList.load();" value="Refresh game list">
-			<input type="button" class="APP_btn" id="BTN_SAVE_LOG" onclick="APP.clearLog();" value="Clear / Save log">
-			<input type="button" class="APP_btn" onclick="APP.about();" value="About">
+			<!-- Search -->
+			<input type="text" class="INPUT_gameListSearch" id="INPUT_gameListSearch" placeholder="Search: Insert game name..." oninput="APP.gameList.search();">
 
 			<input type="button" class="APP_btn BTN_STOP" id="BTN_KILL" onclick="APP.emuManager.killEmu();" disabled="disabled" value="Stop fpPS4">
+			<input type="button" class="APP_btn BTN_right" onclick="APP.about();" value="About">
+			<input type="button" class="APP_btn BTN_right" id="BTN_SAVE_LOG" onclick="APP.clearLog();" value="Clear / Save log">
+			<input type="button" class="APP_btn BTN_right" id="BTN_SETTINGS" onclick="APP.design.toggleSettings();" value="Settings">			
+			<input type="button" class="APP_btn BTN_right" id="BTN_REFRESH" onclick="APP.gameList.load();" value="Refresh game list">
 
 		</div>
 
