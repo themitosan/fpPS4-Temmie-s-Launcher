@@ -187,6 +187,11 @@ temp_EMUMANAGER = {
 					// Add process complete + info
 					APP.log('\nINFO - Seek Missing Modules: Process Complete!\nIMPORTANT - If you don\'t want to see these prompts anymore, you can do it by disabling \"If fpPS4 returns any nop error, seek for missing modules\" option on Settings.\n ');
 
+				} else {
+
+					// If no modules were found or files already exists on destination
+					APP.log('INFO - Seek Missing Modules: No matching modules were found or required modules already exists on destination folder!');
+
 				}
 
 			}
