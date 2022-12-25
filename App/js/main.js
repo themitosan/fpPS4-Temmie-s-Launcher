@@ -80,10 +80,15 @@ var APP = {
 		
 		if (APP.emuManager.emuCountdown > 2){
 
+			// (Fix) Avoid log not being saved if launcher doesn't have any game selected
+			var cName = '';
+			if (APP.gameList.selectedGame !== ''){
+				cName = '_' + APP.gameList.list[APP.gameList.selectedGame].name.replace(RegExp(' ', 'gi'), '_');
+			}
+			
 			// Get current date
 			var d = new Date(),
 				saveInfo = '',
-				cName = '_' + APP.gameList.list[APP.gameList.selectedGame].name.replace(RegExp(' ', 'gi'), '_'),
 				cTime = '_' + d.toDateString().replace(RegExp(' ', 'gi'), '_') + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds(),
 				logName = 'Log' + cName + cTime + '.log';
 
