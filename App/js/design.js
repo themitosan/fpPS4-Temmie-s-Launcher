@@ -239,6 +239,11 @@ temp_DESIGN = {
 			document.getElementById('BTN_SETTINGS').disabled = btnSettings;
 			document.getElementById('INPUT_gameListSearch').disabled = btnRun;
 
+		} else {
+
+			TMS.css('DIV_LIST', {'width': '100%'});
+			TMS.css('DIV_OPTIONS', {'display': 'none'});
+
 		}
 
 		// Selected game name
