@@ -99,6 +99,9 @@ temp_GAMELIST = {
 		// Check if path exists
 		if (APP.fs.existsSync(APP.settings.data.gamePath) === !0){
 
+			// Reset search box
+			document.getElementById('INPUT_gameListSearch').value = '';
+
 			// Reset game list
 			APP.gameList.list = {};
 			
@@ -330,6 +333,7 @@ temp_GAMELIST = {
 					APP.gameList.selectedGame = '';
 					APP.gameList.load();
 					APP.design.selectGame(cGame);
+					TMS.scrollCenter('GAME_ENTRY_' + cGame);
 				}, 50);
 
 			} catch (err) {
