@@ -19,14 +19,14 @@ temp_FILEMANAGER = {
 				const cFile = document.getElementById('APP_FOLDER_LOADER').files[0];
 
 				if (cFile.path !== null && cFile.path !== void 0 && cFile.path !== ''){
-					postAction(cFile.path.replace(RegExp('\\\\', 'gi'), '/'));
-					document.getElementById('APP_FOLDER_LOADER').value = '';
 					document.getElementById('APP_FOLDER_LOADER').accept = '';
+					document.getElementById('APP_FOLDER_LOADER').value = '';
+					postAction(APP.tools.fixPath(cFile.path));
 				}
 
 			}
 
-			document.getElementById('APP_FOLDER_LOADER').click();
+			TMS.triggerClick('APP_FOLDER_LOADER');
 
 		}
 
@@ -48,7 +48,7 @@ temp_FILEMANAGER = {
 
 			// Start read
 			document.getElementById('APP_FILE_LOADER').onchange = function(){
-				postAction(document.getElementById('APP_FILE_LOADER').files[0].path.replace(RegExp('\\\\', 'gi'), '/'));
+				postAction(APP.tools.fixPath(document.getElementById('APP_FILE_LOADER').files[0].path));
 			}
 
 		}
@@ -76,7 +76,7 @@ temp_FILEMANAGER = {
 
 					APP.fs.writeFileSync(location, content, mode);
 					if (postAction !== void 0){
-						postAction(location);
+						postAction(APP.tools.fixPath(location));
 					}
 
 				} catch (err) {

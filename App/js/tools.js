@@ -72,6 +72,15 @@ temp_TOOLS = {
 
 		document.getElementById(domName).checked = res;
 
+	},
+
+	// Fix paths
+	fixPath: function(path){
+
+		if (path !== void 0 && path !== ''){
+			return path.replace(RegExp('\\\\', 'gi'), '/');
+		}
+
 	}
 
 }

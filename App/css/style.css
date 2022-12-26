@@ -12,6 +12,7 @@ html, body {
 	user-select: none;
 	font-family: monospace;
 	background-color: #000;
+	scroll-behavior: smooth;
 	text-shadow: 2px 2px 4px #000;
 }
 code {

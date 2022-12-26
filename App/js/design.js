@@ -57,11 +57,11 @@ temp_DESIGN = {
 				appNameClass = 'LABEL_gameTitle',
 				classGameDetailsMode = 'GAME_DETAILS',
 				gameMetadata = '<br>Path: ' + gList[cGame].exe,
-				gridIconSize = APP.settings.data.gui.gridIconSize,
+				gridIconSize = APP.settings.data.gridIconSize,
 				bgPath = 'url(\'' + gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'') + '\')';
 
 			// Disable background image
-			if (APP.settings.data.gui.showBgOnEntry !== !0){
+			if (APP.settings.data.showBgOnEntry !== !0){
 				bgPath = 'none';
 			}
 
@@ -74,12 +74,12 @@ temp_DESIGN = {
 			}
 
 			// Settings: Show App / Game version (or executable path) for every title in game list
-			if (APP.settings.data.gui.showPathEntry !== !0){
+			if (APP.settings.data.showPathEntry !== !0){
 				gameMetadata = '';
 			}
 
 			// Display mode: Compact
-			if (APP.settings.data.gui.gameListMode === 'compact'){
+			if (APP.settings.data.gameListMode === 'compact'){
 				gameMetadata = '';
 				gameBgAndIcon = '';
 				appNameClass = 'LABEL_gameTitleCompact';
@@ -87,7 +87,7 @@ temp_DESIGN = {
 			}
 
 			// Display mode: Grid
-			if (APP.settings.data.gui.gameListMode === 'grid'){
+			if (APP.settings.data.gameListMode === 'grid'){
 				appTitle = gList[cGame].name;
 				classGameDetailsMode = 'none';
 				classDisplayEntryMode = ' GAME_ENTRY_GRID';
@@ -190,8 +190,8 @@ temp_DESIGN = {
 				logHeight = '248px',
 				btnKill = 'disabled',
 				emuRunPath = 'block',
-				bgBlur = APP.settings.data.gui.bgListBlur,
-				bgOpacity = APP.settings.data.gui.bgListOpacity,
+				bgBlur = APP.settings.data.bgListBlur,
+				bgOpacity = APP.settings.data.bgListOpacity,
 				optionsCss = {'height': 'calc(100% - 298px)', 'display': 'block'},
 				listCss = {'width': 'calc(100% - 280px)', 'height': 'calc(100% - 286px)'};
 
@@ -203,15 +203,15 @@ temp_DESIGN = {
 				btnRefresh = 'disabled';
 				btnSettings = 'disabled';
 				logHeight = 'calc(100% - 400px)';
-				bgBlur = APP.settings.data.gui.bgEmuBlur;
+				bgBlur = APP.settings.data.bgEmuBlur;
 				listCss = {'width': '100%', 'height': '362px'};
-				bgOpacity = APP.settings.data.gui.bgEmuOpacity;
+				bgOpacity = APP.settings.data.bgEmuOpacity;
 				optionsCss = {'height': '350px', 'display': 'none'};
 	
 			}
 
 			// Show / Hide path on game run
-			if (APP.settings.data.gui.showPathRunning === !1){
+			if (APP.settings.data.showPathRunning === !1){
 				emuRunPath = 'none';
 			}
 
@@ -245,7 +245,7 @@ temp_DESIGN = {
 		}
 
 		// Fix for grid mode
-		if (APP.settings.data.gui.gameListMode === 'grid'){
+		if (APP.settings.data.gameListMode === 'grid'){
 			TMS.addClass('DIV_LIST_INTERNAL', 'DIV_LIST_GRID');
 		} else {
 			TMS.removeClass('DIV_LIST_INTERNAL', 'DIV_LIST_GRID');
@@ -278,13 +278,13 @@ temp_DESIGN = {
 			
 			var gameDetails = {'display': 'flex'},
 				gameMetadata = 'Path: <label class="user-can-select">' + gameData.appPath + '</label>',
-				listInternal = {'transition': '0.4s', 'filter': 'blur(' + APP.settings.data.gui.bgEmuBlur +'px) opacity(' + APP.settings.data.gui.bgEmuOpacity + ')'};
+				listInternal = {'transition': '0.4s', 'filter': 'blur(' + APP.settings.data.bgEmuBlur +'px) opacity(' + APP.settings.data.bgEmuOpacity + ')'};
 	
 			// If emu isn't running
 			if (APP.emuManager.emuRunning === !1){
 
 				gameDetails = {'display': 'none'};
-				listInternal = {'transition': 'none', 'filter': 'blur(' + APP.settings.data.gui.bgListBlur +'px) opacity(' + APP.settings.data.gui.bgListOpacity + ')'};
+				listInternal = {'transition': 'none', 'filter': 'blur(' + APP.settings.data.bgListBlur +'px) opacity(' + APP.settings.data.bgListOpacity + ')'};
 				APP.design.renderGameList();
 
 				// Reset log color
@@ -410,33 +410,33 @@ temp_DESIGN = {
 		document.getElementById('LBL_SETTINGS_emuPath').innerHTML = cSettings.emuPath
 		document.getElementById('LBL_SETTINGS_libPath').innerHTML = cSettings.libPath;
 		document.getElementById('LBL_SETTINGS_gamePath').innerHTML = cSettings.gamePath;
-		document.getElementById('LABEL_settingsGameListBgBlur').innerHTML = APP.tools.parsePercentage(cSettings.gui.bgListBlur, 6);
-		document.getElementById('LABEL_settingsEmuRunningBgBlur').innerHTML = APP.tools.parsePercentage(cSettings.gui.bgEmuBlur, 6);
-		document.getElementById('LABEL_settingsGridIconSize').innerHTML = APP.tools.parsePercentage(cSettings.gui.gridIconSize, 512);
-		document.getElementById('LABEL_settingsGameListBgOpacity').innerHTML = APP.tools.parsePercentage(cSettings.gui.bgListOpacity, 1);
-		document.getElementById('LABEL_settingsEmuRunningBgOpacity').innerHTML = APP.tools.parsePercentage(cSettings.gui.bgEmuOpacity, 1);
+		document.getElementById('LABEL_settingsGameListBgBlur').innerHTML = APP.tools.parsePercentage(cSettings.bgListBlur, 6);
+		document.getElementById('LABEL_settingsEmuRunningBgBlur').innerHTML = APP.tools.parsePercentage(cSettings.bgEmuBlur, 6);
+		document.getElementById('LABEL_settingsGridIconSize').innerHTML = APP.tools.parsePercentage(cSettings.gridIconSize, 512);
+		document.getElementById('LABEL_settingsGameListBgOpacity').innerHTML = APP.tools.parsePercentage(cSettings.bgListOpacity, 1);
+		document.getElementById('LABEL_settingsEmuRunningBgOpacity').innerHTML = APP.tools.parsePercentage(cSettings.bgEmuOpacity, 1);
 
 		// Select
-		document.getElementById('SELECT_settingsDisplayMode').value = cSettings.gui.gameListMode;
-		document.getElementById('SELECT_settingsSearchMode').value = cSettings.gui.gameSearchMode;
+		document.getElementById('SELECT_settingsDisplayMode').value = cSettings.gameListMode;
+		document.getElementById('SELECT_settingsSearchMode').value = cSettings.gameSearchMode;
 		document.getElementById('SELECT_settingsSelectedLibPath').value = cSettings.selectedLibFolder;
 
 		// Checkbox
+		document.getElementById('CHECKBOX_settingsShowExecList').checked = JSON.parse(cSettings.showPathEntry);
 		document.getElementById('CHECKBOX_settingsEnableParamSfo').checked = JSON.parse(cSettings.enableParamSfo);
-		document.getElementById('CHECKBOX_settingsShowExecList').checked = JSON.parse(cSettings.gui.showPathEntry);
-		document.getElementById('CHECKBOX_settingsShowExecRunning').checked = JSON.parse(cSettings.gui.showPathRunning);
-		document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked = JSON.parse(cSettings.gui.showBgOnEntry);
+		document.getElementById('CHECKBOX_settingsShowExecRunning').checked = JSON.parse(cSettings.showPathRunning);
+		document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked = JSON.parse(cSettings.showBgOnEntry);
 		document.getElementById('CHECKBOX_settingsSaveLogOnEmuClose').checked = JSON.parse(cSettings.saveLogOnEmuClose);
 		document.getElementById('CHECKBOX_settingsClearLogOnEmuLoad').checked = JSON.parse(cSettings.clearLogOnEmuLoad);
 		document.getElementById('CHECKBOX_settingsSeekMissingModules').checked = JSON.parse(cSettings.seekMissingModules);
 		document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked = JSON.parse(cSettings.logOnExternalWindow);
 
 		// Range
-		document.getElementById('RANGE_settingsGridIconSize').value = cSettings.gui.gridIconSize;
-		document.getElementById('RANGE_settingsGameListBgBlur').value = cSettings.gui.bgListBlur;
-		document.getElementById('RANGE_settingsEmuRunningBgBlur').value = cSettings.gui.bgEmuBlur;
-		document.getElementById('RANGE_settingsGameListBgOpacity').value = cSettings.gui.bgListOpacity;
-		document.getElementById('RANGE_settingsEmuRunningBgOpacity').value = cSettings.gui.bgEmuOpacity;
+		document.getElementById('RANGE_settingsGridIconSize').value = cSettings.gridIconSize;
+		document.getElementById('RANGE_settingsGameListBgBlur').value = cSettings.bgListBlur;
+		document.getElementById('RANGE_settingsEmuRunningBgBlur').value = cSettings.bgEmuBlur;
+		document.getElementById('RANGE_settingsGameListBgOpacity').value = cSettings.bgListOpacity;
+		document.getElementById('RANGE_settingsEmuRunningBgOpacity').value = cSettings.bgEmuOpacity;
 
 		// Update settings GUI
 		this.updateLauncherSettingsGUI();
@@ -467,26 +467,26 @@ temp_DESIGN = {
 	saveSettings: function(skipCloseSettings){
 
 		// Select
-		APP.settings.data.gui.gameListMode = document.getElementById('SELECT_settingsDisplayMode').value;
-		APP.settings.data.gui.gameSearchMode = document.getElementById('SELECT_settingsSearchMode').value;
+		APP.settings.data.gameListMode = document.getElementById('SELECT_settingsDisplayMode').value;
+		APP.settings.data.gameSearchMode = document.getElementById('SELECT_settingsSearchMode').value;
 		APP.settings.data.selectedLibFolder = document.getElementById('SELECT_settingsSelectedLibPath').value;
 
 		// Checkbox
 		APP.settings.data.enableParamSfo = JSON.parse(document.getElementById('CHECKBOX_settingsEnableParamSfo').checked);
-		APP.settings.data.gui.showPathEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecList').checked);
-		APP.settings.data.gui.showBgOnEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked);
-		APP.settings.data.gui.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
+		APP.settings.data.showPathEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecList').checked);
+		APP.settings.data.showBgOnEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked);
+		APP.settings.data.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
 		APP.settings.data.saveLogOnEmuClose = JSON.parse(document.getElementById('CHECKBOX_settingsSaveLogOnEmuClose').checked);
 		APP.settings.data.clearLogOnEmuLoad = JSON.parse(document.getElementById('CHECKBOX_settingsClearLogOnEmuLoad').checked);
 		APP.settings.data.seekMissingModules = JSON.parse(document.getElementById('CHECKBOX_settingsSeekMissingModules').checked);
 		APP.settings.data.logOnExternalWindow = JSON.parse(document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked);
 
 		// Range
-		APP.settings.data.gui.bgListBlur = parseFloat(document.getElementById('RANGE_settingsGameListBgBlur').value);
-		APP.settings.data.gui.gridIconSize = parseFloat(document.getElementById('RANGE_settingsGridIconSize').value);
-		APP.settings.data.gui.bgEmuBlur = parseFloat(document.getElementById('RANGE_settingsEmuRunningBgBlur').value);
-		APP.settings.data.gui.bgListOpacity = parseFloat(document.getElementById('RANGE_settingsGameListBgOpacity').value);
-		APP.settings.data.gui.bgEmuOpacity = parseFloat(document.getElementById('RANGE_settingsEmuRunningBgOpacity').value);
+		APP.settings.data.bgListBlur = parseFloat(document.getElementById('RANGE_settingsGameListBgBlur').value);
+		APP.settings.data.gridIconSize = parseFloat(document.getElementById('RANGE_settingsGridIconSize').value);
+		APP.settings.data.bgEmuBlur = parseFloat(document.getElementById('RANGE_settingsEmuRunningBgBlur').value);
+		APP.settings.data.bgListOpacity = parseFloat(document.getElementById('RANGE_settingsGameListBgOpacity').value);
+		APP.settings.data.bgEmuOpacity = parseFloat(document.getElementById('RANGE_settingsEmuRunningBgOpacity').value);
 
 		/*
 			End

@@ -244,7 +244,7 @@ temp_GAMELIST = {
 			var tempList, listRender = {};
 			
 			// Case game search mode is TITLE_ID
-			if (APP.settings.data.gui.gameSearchMode === 'titleId'){
+			if (APP.settings.data.gameSearchMode === 'titleId'){
 
 				tempList = gameListArray.filter(function(cItem){ 
 					if(cItem.indexOf(searchQuery) !== -1){
@@ -255,7 +255,7 @@ temp_GAMELIST = {
 			}
 
 			// If game search mode is APP_NAME
-			if (APP.settings.data.gui.gameSearchMode === 'appName'){
+			if (APP.settings.data.gameSearchMode === 'appName'){
 
 				tempList = [];
 

@@ -212,13 +212,12 @@ var APP = {
 
 				// Scroll game list to last selected game
 				if (APP.gameList.selectedGame !== ''){
-					
-					TMS.scrollCenter('GAME_ENTRY_' + APP.gameList.selectedGame);
 					TMS.css('GAME_ENTRY_' + APP.gameList.selectedGame, {'animation': '0.8s gameFocus'});
 					
 					setTimeout(function(){
 						APP.design.selectGame(APP.gameList.selectedGame);
-					}, 50);
+						TMS.scrollCenter('GAME_ENTRY_' + APP.gameList.selectedGame);
+					}, 100);
 
 				}
 
@@ -305,20 +304,8 @@ window.onload = function(){
 
 		// Log it
 		console.error(err);
-
-		// Asks if user wants to reset launcher settings
-		const conf = window.confirm('ERROR - Unable to start main application!\n\nReason:\n' + err + '\n\nThis probably happened due new settings being added on internal database. Clearing all previous settings may solve this issue.\n\nDo you want to try?');
-		if (conf === !0){
-			
-			// Clear internal storages
-			localStorage.clear();
-			sessionStorage.clear();
-
-			// Restart app
-			chrome.runtime.reload();
+		window.confirm('ERROR - Unable to start main application!\n\nReason:\n' + err + '\n\nTo know more, hit F12 and go to console tab to see more details.');
 		
-		}
-
 	}
 
 }

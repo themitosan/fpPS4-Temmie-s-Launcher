@@ -13,74 +13,127 @@ temp_SETTINGS = {
 	// Settings list
 	data: {
 
+		/*
+			General
+		*/
+
 		// Paths
 		nwPath: '',
 		emuPath: '',
 		libPath: '',
 		gamePath: '',
-		
-		// GUI Settings
-		gui: {
 
-			// Game search mode (appName or titleId)
-			gameSearchMode: 'appName',
-
-			// Background Opacity
-			bgEmuOpacity: 0.6,
-			bgListOpacity: 0.7,
-
-			// Background Blur
-			bgEmuBlur: 6,
-			bgListBlur: 2,
-
-			// (Grid) Icon size
-			gridIconSize: 116,
-
-			showBgOnEntry: !0,
-			showPathEntry: !0,
-			showPathRunning: !0,
-			gameListMode: 'normal'
-
-		},
-
-		// Disable PARAM.SFO support
+		// Enable / Disable PARAM.SFO support
 		enableParamSfo: !0,
 
-		// Seek missing lib files (.prx or .sprx)
+		// [Experimental] Seek missing lib files (.prx or .sprx)
 		selectedLibFolder: '',
 		seekMissingModules: !1,
 
 		// Log Options
 		saveLogOnEmuClose: !1,
 		clearLogOnEmuLoad: !1,
-		logOnExternalWindow: !1
+		logOnExternalWindow: !1,
+
+		/*
+			GUI
+		*/
+
+		// Game search mode (appName or titleId)
+		gameSearchMode: 'appName',
+
+		// Background Opacity
+		bgEmuOpacity: 0.6,
+		bgListOpacity: 0.7,
+
+		// Background Blur
+		bgEmuBlur: 6,
+		bgListBlur: 2,
+
+		// (Grid) Icon size
+		gridIconSize: 116,
+
+		showBgOnEntry: !0,
+		showPathEntry: !0,
+		showPathRunning: !0,
+		gameListMode: 'normal'
 	
 	},
 
 	// Load settings
 	load: function() {
 
+		// Get launcher main dir before settings load
+		var updateSettings = !1,
+			nwPath = APP.tools.fixPath(nw.__dirname);
+
 		// Create save
-		if (localStorage.getItem('settings') === null){
+		if (APP.fs.existsSync(nwPath + '/Settings.json') === !1){
 			APP.settings.save();
 		}
 
 		// Load settings from localStorage
-		const settings = localStorage.getItem('settings');
-		this.data = JSON.parse(settings);
+		try {
+
+			// Read settings file
+			var loadSettings = JSON.parse(APP.fs.readFileSync(nwPath + '/Settings.json', 'utf8'));
+			
+			// Check for obsolete settings
+			Object.keys(loadSettings).forEach(function(cSettings){
+
+				if (APP.settings.data[cSettings] === void 0){
+					delete loadSettings[cSettings];
+					updateSettings = !0;
+				}
+
+			});
+
+			// Fix new settings data
+			Object.keys(this.data).forEach(function(cSettings){
+
+				if (loadSettings[cSettings] === void 0){
+					loadSettings[cSettings] = APP.settings.data[cSettings];
+					updateSettings = !0;
+				}
+
+			});
+
+			// Load settings
+			this.data = loadSettings;
+
+			// Check if need to update settings file
+			if (updateSettings === !0){
+				APP.log('INFO - Settings file was updated successfully!');
+				APP.settings.save();
+			}
+
+		} catch (err) {
+
+			console.error('ERROR - Unable to load settings!\n' + err);
+
+		}
 
 	},
 
 	// Save settings
 	save: function() {
-		localStorage.setItem('settings', JSON.stringify(this.data));
+		
+		// Get launcher main dir before settings load
+		const nwPath = APP.tools.fixPath(nw.__dirname);
+
+		try {
+			APP.fs.writeFileSync(nwPath + '/Settings.json', JSON.stringify(this.data), 'utf8');
+		} catch (err) {
+			console.error('ERROR - Unable to save settings!\n' + err);
+		}
+
 	},
 
 	// Check paths
 	checkPaths: function() {
 
 		// Fix path
-		this.data.nwPath = nw.__dirname.replace(RegExp('\\\\', 'gi'), '/');
+		this.data.nwPath = APP.tools.fixPath(nw.__dirname);
 
 		const mainPath = this.data.nwPath,
 			pathList = [
@@ -161,7 +214,7 @@ temp_SETTINGS = {
 	resetAllGameSettings: function() {
 
 		// Confirm action
-		const conf = window.confirm('WARN: This option will remove ALL saved settings from your game list.\nDo you want to continue?');
+		const conf = window.confirm('WARN - This option will remove ALL saved settings from your game list.\nDo you want to continue?');
 		if (conf === !0){
 
 			// Reset search form
@@ -195,7 +248,7 @@ temp_SETTINGS = {
 					} else {
 
 						// Unable to find settings file
-						cMessage = 'WARN - ( ' + APP.gameList.list[cGame].name + ' ) Unable to find settings for this App / Game!'
+						cMessage = 'WARN - ( ' + APP.gameList.list[cGame].name + ' ) Unable to find settings for this App / Game!';
 
 					}
 
