@@ -41,11 +41,7 @@ temp_TOOLS = {
 
 		var textValue = '';
 		if (hex !== void 0 && hex !== ''){
-
-			hex.match(/.{2,2}/g).forEach(function(cChar){
-				textValue = textValue + String.fromCharCode(parseInt(cChar, 16));
-			});
-
+			textValue = decodeURIComponent('%' + hex.match(/.{2,2}/g).join('%'));
 		}
 
 		return textValue;
