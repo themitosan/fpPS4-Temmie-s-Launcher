@@ -21,40 +21,13 @@ temp_DESIGN = {
 		'IMAGE_LOAD_HACK',
 		'DISABLE_SRGB_HACK'
 	],
-
-	// Process checkbox status
-	processCheckbox: function(domName){
-
-		var res = !1,
-		    domId = document.getElementById(domName).checked;
-
-		if (domId === !1){
-			res = !0;
-		}
-
-		document.getElementById(domName).checked = res;
-
-	},
-
-	// Parse percentage
-	parsePercentage: function(current, maximum){
-
-		var res = 0;
-		
-		if (current !== void 0 && maximum !== void 0){
-			res = Math.floor((current / maximum) * 100);
-		}
-		
-		return res;
-
-	},
 	
 	// Render hack list
 	renderHacklist: function(){
 
 		var htmlTemp = '';
 		this.hackList.forEach(function(hackName){
-			htmlTemp = htmlTemp + '<input type="checkbox" id="CHECK_' + hackName + '"><label class="LABEL_checkbox" onclick="APP.design.processCheckbox(\'CHECK_' + hackName +
+			htmlTemp = htmlTemp + '<input type="checkbox" id="CHECK_' + hackName + '"><label class="LABEL_checkbox" onclick="APP.tools.processCheckbox(\'CHECK_' + hackName +
 					   '\');">Enable ' + hackName + '</label><br>';
 		});
 
@@ -139,7 +112,9 @@ temp_DESIGN = {
 	selectGame: function(gameName){
 
 		// Settings file
-		var folderName = APP.gameList.list[gameName].folderName, 
+		var exportButtonStatus = 'disabled',
+			removeModulesButtonStatus = 'disabled',
+			folderName = APP.gameList.list[gameName].folderName, 
 			settingsFile = APP.settings.data.gamePath + '/' + folderName + '/launcherSettings.json';
 
 		if (APP.gameList.list[gameName] !== void 0){
@@ -161,6 +136,7 @@ temp_DESIGN = {
 				APP.gameList.createGameSettings({
 					hacks: hList,
 					path: settingsFile,
+					importedModules: [],
 					name: APP.gameList.list[gameName].name,
 					paramSfo: APP.gameList.list[gameName].paramSfo
 				});
@@ -175,6 +151,19 @@ temp_DESIGN = {
 			Object.keys(gSettings.hacks).forEach(function(hackName){
 				document.getElementById('CHECK_' + hackName).checked = JSON.parse(gSettings.hacks[hackName]);
 			});
+
+			// If PARAM.SFO exists, enable export button
+			if (APP.gameList.list[gameName].paramSfoAvailable === !0){
+				exportButtonStatus = '';
+			}
+			
+			// If current game contains imported modules, enable remove button
+			if (APP.gameList.cGameSettings.importedModules.length > 0){
+				removeModulesButtonStatus = '';
+			}
+
+			document.getElementById('BTN_launcherOptionsExportMetadata').disabled = exportButtonStatus;
+			document.getElementById('BTN_launcherOptionsRemoveImportedModules').disabled = removeModulesButtonStatus;
 
 		}
 
@@ -276,10 +265,6 @@ temp_DESIGN = {
 		// Render current game name
 		document.getElementById('DIV_labelSelectedGame').innerHTML = cGameName;
 
-		// Scroll log
-		var tx = document.getElementById('APP_LOG');
-		tx.scrollTop = tx.scrollHeight;
-
 		// Render Settings
 		this.renderSettings();
 
@@ -296,12 +281,21 @@ temp_DESIGN = {
 	
 			// If emu isn't running
 			if (APP.emuManager.emuRunning === !1){
-	
+
 				gameDetails = {'display': 'none'};
 				listInternal = {'transition': 'none', 'filter': 'blur(' + APP.settings.data.gui.bgListBlur +'px) opacity(' + APP.settings.data.gui.bgListOpacity + ')'};
 				APP.design.renderGameList();
+
+				// Reset log color
+				TMS.css('APP_LOG', {
+					'color': '#0f0',
+					'background-image': 'linear-gradient(180deg, #000000db, #090f1b)'
+				});
 	
 			} else {
+
+				// Clear search input
+				document.getElementById('INPUT_gameListSearch').value = '';
 
 				// If PARAM.SFO metadata exists, display serial and game version instead
 				if (Object.keys(gameData.paramSfo).length !== 0){
@@ -415,10 +409,10 @@ temp_DESIGN = {
 		document.getElementById('LBL_SETTINGS_emuPath').innerHTML = cSettings.emuPath
 		document.getElementById('LBL_SETTINGS_libPath').innerHTML = cSettings.libPath;
 		document.getElementById('LBL_SETTINGS_gamePath').innerHTML = cSettings.gamePath;
-		document.getElementById('LABEL_settingsGameListBgBlur').innerHTML = this.parsePercentage(cSettings.gui.bgListBlur, 6);
-		document.getElementById('LABEL_settingsEmuRunningBgBlur').innerHTML = this.parsePercentage(cSettings.gui.bgEmuBlur, 6);
-		document.getElementById('LABEL_settingsGameListBgOpacity').innerHTML = this.parsePercentage(cSettings.gui.bgListOpacity, 1);
-		document.getElementById('LABEL_settingsEmuRunningBgOpacity').innerHTML = this.parsePercentage(cSettings.gui.bgEmuOpacity, 1);
+		document.getElementById('LABEL_settingsGameListBgBlur').innerHTML = APP.tools.parsePercentage(cSettings.gui.bgListBlur, 6);
+		document.getElementById('LABEL_settingsEmuRunningBgBlur').innerHTML = APP.tools.parsePercentage(cSettings.gui.bgEmuBlur, 6);
+		document.getElementById('LABEL_settingsGameListBgOpacity').innerHTML = APP.tools.parsePercentage(cSettings.gui.bgListOpacity, 1);
+		document.getElementById('LABEL_settingsEmuRunningBgOpacity').innerHTML = APP.tools.parsePercentage(cSettings.gui.bgEmuOpacity, 1);
 
 		// Select
 		document.getElementById('SELECT_settingsDisplayMode').value = cSettings.gui.gameListMode;

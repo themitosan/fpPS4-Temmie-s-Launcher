@@ -155,7 +155,7 @@ temp_SETTINGS = {
 	},
 
 	// Reset all game settings
-	resetGameSettings: function() {
+	resetAllGameSettings: function() {
 
 		// Confirm action
 		const conf = window.confirm('WARN: This option will remove ALL saved settings from your game list.\nDo you want to continue?');

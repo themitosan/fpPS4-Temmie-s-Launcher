@@ -40,7 +40,6 @@ temp_TOOLS = {
 	convertHexToUft8: function(hex){
 
 		var textValue = '';
-		
 		if (hex !== void 0 && hex !== ''){
 
 			hex.match(/.{2,2}/g).forEach(function(cChar){
@@ -50,6 +49,32 @@ temp_TOOLS = {
 		}
 
 		return textValue;
+
+	},
+
+	// Parse percentage
+	parsePercentage: function(current, maximum){
+
+		var res = 0;
+		if (current !== void 0 && maximum !== void 0){
+			res = Math.floor((current / maximum) * 100);
+		}
+		
+		return res;
+
+	},
+
+	// Process checkbox status
+	processCheckbox: function(domName){
+
+		var res = !1,
+		    domId = document.getElementById(domName).checked;
+
+		if (domId === !1){
+			res = !0;
+		}
+
+		document.getElementById(domName).checked = res;
 
 	}
 

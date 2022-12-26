@@ -86,12 +86,6 @@ temp_EMUMANAGER = {
 			process.kill(pData.th32ProcessID);
 			this.emuRunning = !1;
 		});
-		
-		// Reset log color
-		TMS.css('APP_LOG', {
-			'color': '#0f0',
-			'background-image': 'linear-gradient(180deg, #000000db, #090f1b)'
-		});
 
 		// Reset log
 		APP.resetLauncher();
@@ -156,12 +150,17 @@ temp_EMUMANAGER = {
 
 						// Get original module list
 						var cMessage = '',
-							cGameName = APP.gameList.list[APP.gameList.selectedGame].name,
-							getPreviousFileList = APP.fs.readdirSync(cGameModuleDir).toString().replace(RegExp(',', 'gi'), '\n');
+							cGameName = APP.gameList.list[APP.gameList.selectedGame].name;
 
 						// Process import
 						importModuleList.forEach(function(cModule){
 
+							// Add module to imported list
+							if (APP.gameList.cGameSettings.importedModules.indexOf(cModule) === -1){
+								APP.gameList.cGameSettings.importedModules.push(cModule);
+							}
+
+							// Import module
 							try {
 
 								APP.fs.copyFileSync(libPath + '/' + cModule, cGameModuleDir + '/' + cModule);
@@ -179,13 +178,16 @@ temp_EMUMANAGER = {
 
 						});
 
+						// Update game settings
+						APP.gameList.saveGameSettings(!0);
+
 						// End
 						window.alert('INFO - Process complete!\nTry running ' + cGameName + ' again and see if it works!\n\nYou can check log to see more details.');
 
 					}
 
 					// Add process complete + info
-					APP.log('\nINFO - Seek Missing Modules: Process Complete!\nIMPORTANT - If you don\'t want to see these prompts anymore, you can do it by disabling \"If fpPS4 returns any nop error, seek for missing modules\" option on Settings.\n ');
+					APP.log('INFO - Seek Missing Modules: Process Complete!\nIMPORTANT - If you don\'t want to see these prompts anymore, you can do it by disabling \"If fpPS4 returns any nop error, seek for missing modules\" option on Settings.\n ');
 
 				} else {
 

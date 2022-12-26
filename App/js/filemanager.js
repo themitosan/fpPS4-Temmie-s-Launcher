@@ -33,17 +33,17 @@ temp_FILEMANAGER = {
 	},
 
 	// Select file
-	selectFile: function(extention, postAction){
+	selectFile: function(ext, postAction){
 
-		if (extention !== void 0 && postAction !== void 0){
+		if (ext !== void 0 && postAction !== void 0){
 
-			if (extention === ''){
-				extention = '*.*';
+			if (ext === ''){
+				ext = '*.*';
 			}
 
 			document.getElementById('APP_FILE_LOADER').value = '';
 			document.getElementById('APP_FILE_LOADER').files = null;
-			document.getElementById('APP_FILE_LOADER').accept = extention;
+			document.getElementById('APP_FILE_LOADER').accept = ext;
 			TMS.triggerClick('APP_FILE_LOADER');
 
 			// Start read
@@ -52,6 +52,55 @@ temp_FILEMANAGER = {
 			}
 
 		}
+
+	},
+
+	// Save file
+	saveFile: function(fileName, ext, mode, content, postAction){
+
+		// Fix extension
+		if (ext === '' || typeof ext !== 'string'){
+			ext = '*.*';
+		}
+
+		// Set file info
+		document.getElementById('APP_FILE_SAVE').accept = ext;
+		document.getElementById('APP_FILE_SAVE').nwsaveas = fileName;
+		document.getElementById('APP_FILE_SAVE').onchange = function(){
+
+			var location = document.getElementById('APP_FILE_SAVE').value;
+			if (location.replace(fileName, '') !== ''){
+
+				// Try writing file
+				try {
+
+					APP.fs.writeFileSync(location, content, mode);
+					if (postAction !== void 0){
+						postAction(location);
+					}
+
+				} catch (err) {
+					console.error(err);
+					APP.log('ERROR - Unable to save file!\nReason: ' + err);
+				}
+
+			}
+
+			// Reset DOM
+			document.getElementById('APP_FILE_SAVE').value = '';
+			document.getElementById('APP_FILE_SAVE').accept = '';
+
+		}
+
+		TMS.triggerClick('APP_FILE_SAVE');
+
+	},
+
+	// Open game folder
+	openDir: function(path){
+
+		// Spawn explorer
+		APP.childProcess.exec('start "" "' + path + '"');
 
 	}
 

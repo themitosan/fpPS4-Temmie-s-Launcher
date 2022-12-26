@@ -202,21 +202,24 @@ var APP = {
 					APP.clearLog();
 				}
 
+				// Run Check missing modules
+				if (APP.settings.data.seekMissingModules === !0){
+					APP.emuManager.seekMissingModules();
+				}
+
 				// Check if need to reset launcher
 				APP.resetLauncher();
 
 				// Scroll game list to last selected game
 				if (APP.gameList.selectedGame !== ''){
+					
 					TMS.scrollCenter('GAME_ENTRY_' + APP.gameList.selectedGame);
-					TMS.css('GAME_ENTRY_' + APP.gameList.selectedGame, {
-						'animation': '0.8s gameFocus'
-					});
-					APP.design.selectGame(APP.gameList.selectedGame);
-				}
+					TMS.css('GAME_ENTRY_' + APP.gameList.selectedGame, {'animation': '0.8s gameFocus'});
+					
+					setTimeout(function(){
+						APP.design.selectGame(APP.gameList.selectedGame);
+					}, 50);
 
-				// Run Check missing modules
-				if (APP.settings.data.seekMissingModules === !0){
-					APP.emuManager.seekMissingModules();
 				}
 
 				// Return exit code

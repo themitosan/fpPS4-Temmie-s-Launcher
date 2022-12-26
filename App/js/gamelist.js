@@ -27,7 +27,8 @@ temp_GAMELIST = {
 			gameSettings = {
 				name: data.name,
 				hacks: data.hacks,
-				paramSfo: data.paramSfo
+				paramSfo: data.paramSfo,
+				importedModules: data.importedModules
 			}
 
 		// Write file
@@ -49,7 +50,7 @@ temp_GAMELIST = {
 	},
 
 	// Save game settings
-	saveGameSettings: function(){
+	saveGameSettings: function(bypassCheck){
 
 		// Path
 		var fLog = '',
@@ -62,7 +63,7 @@ temp_GAMELIST = {
 		});
 
 		// Check if needs to update hack files
-		if (JSON.stringify(cHacks) !== JSON.stringify(APP.gameList.cGameSettings.hacks)){
+		if (JSON.stringify(cHacks) !== JSON.stringify(APP.gameList.cGameSettings.hacks) || bypassCheck === !0){
 
 			// Update variable
 			APP.gameList.cGameSettings.hacks = cHacks;
@@ -115,7 +116,7 @@ temp_GAMELIST = {
 						paramSfo = {},
 						appId = gPath,
 						appName = gPath,
-						paramSfoAvailable = !0,
+						paramSfoAvailable = !1,
 						iconList = [
 							'icon.png',
 							'icon0.png',
@@ -181,7 +182,7 @@ temp_GAMELIST = {
 					if (APP.settings.data.enableParamSfo === !0 && APP.fs.existsSync(paramSfoPath) === !0){
 						
 						// Set PARAM.SFO variables
-						paramSfoAvailable = !1;
+						paramSfoAvailable = !0;
 						paramSfo = APP.paramSfo.parse(paramSfoPath);
 
 						// Set game entry
@@ -219,14 +220,6 @@ temp_GAMELIST = {
 			APP.design.renderGameList();
 
 		}
-
-	},
-
-	// Open game folder
-	openFolder: function(){
-
-		// Spawn explorer
-		APP.childProcess.exec('start "" "' + APP.settings.data.gamePath + '"');
 
 	},
 
@@ -290,6 +283,112 @@ temp_GAMELIST = {
 			// Render normal game list
 			APP.gameList.load();
 		
+		}
+
+	},
+
+	// Open selected game location
+	openGameLocation: function(){
+
+		if (this.selectedGame !== ''){
+			APP.fileManager.openDir(APP.settings.data.gamePath + '/' + this.list[this.selectedGame].folderName);
+		}
+
+	},
+
+	// Export game metadata
+	exportGameMetadata: function(){
+
+		if (this.selectedGame !== '' && this.list[this.selectedGame].paramSfoAvailable === !0){
+
+			APP.fileManager.saveFile(this.selectedGame + '_metadata', '.json', 'utf-8', JSON.stringify(this.list[this.selectedGame].paramSfo), function(cPath){
+				window.alert('INFO - Save successfull!\nPath: ' + cPath);
+				APP.log('INFO - Save successfull!\nPath: ' + cPath);
+			});
+
+		}
+
+	},
+
+	// Reset current game settings
+	resetGameSettings: function(){
+
+		const cGame = this.selectedGame,
+			fName = APP.settings.data.gamePath + '/' + this.list[cGame].folderName + '/launcherSettings.json',
+			conf = window.confirm('WARN - This will delete all saved settings this title:\n' + this.list[cGame].name + '\n\nDo you want to continue?');
+
+		if (this.selectedGame !== '' && APP.fs.existsSync(fName) === !0 && conf === !0){
+
+			// Remove file
+			try {
+
+				// Remove settings file
+				APP.fs.unlinkSync(fName);
+
+				// Reload data
+				setTimeout(function(){
+					APP.gameList.selectedGame = '';
+					APP.gameList.load();
+					APP.design.selectGame(cGame);
+				}, 50);
+
+			} catch (err) {
+
+				console.error(err);
+				APP.log('ERROR - Unable to remove settings file!\nReason: ' + err);
+
+			}
+
+		}
+
+	},
+
+	// Removed Imported modules
+	removeImportedModules: function(){
+
+		if (this.selectedGame !== '' && this.cGameSettings.importedModules.length > 0){
+
+			const gName = this.selectedGame,
+				mList = this.cGameSettings.importedModules,
+				conf = window.confirm('WARN - This action will remove all previous modules imported from this title. They are:\n\n' +
+										mList.toString().replace(RegExp(',', 'gi'), '\n') + '\n\nDo you want to continue?');
+
+			if (conf === !0){
+
+				// Base dir
+				var cMessage = '',
+					mDir = APP.settings.data.gamePath + '/' + APP.gameList.list[gName].folderName + '/sce_module/';
+
+				// Try removing modules
+				mList.forEach(function(mName){
+
+					try {
+						
+						APP.fs.unlinkSync(mDir + mName);
+						mList.splice(mList.indexOf(mName), 1);
+						cMessage = 'INFO - (' + gName + ') Removing module: ' + mName
+
+					} catch (err) {
+						
+						console.error(err);
+						cMessage = 'ERROR - Unable to remove modules!\nReason: ' + err;
+						
+					}
+
+					// Log status
+					APP.log(cMessage);
+
+				});
+
+				// Update settings file
+				this.saveGameSettings(!0);
+
+				// End
+				window.alert('INFO - Process complete!\nCheck log for more details.');
+				APP.design.selectGame(this.selectedGame);
+
+			}
+
 		}
 
 	}

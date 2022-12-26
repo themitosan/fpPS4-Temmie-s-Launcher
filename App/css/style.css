@@ -120,6 +120,19 @@ img {
 	height: calc(100% - 298px);
 	background-image: linear-gradient(0deg, #162a50, #2a4a86);
 }
+.DIV_GAME_OPTIONS {
+	width: 268px;
+	bottom: 60px;
+	font-size: 14px;
+	overflow: auto;
+	position: absolute;
+	text-align: center;
+	height: calc(100% - 120px);
+}
+.DIV_HACK_LIST {
+	text-align: left;
+	margin: 10px 0px 10px 0px;
+}
 .DIV_TITLE {
 	z-index: 10;
 	font-size: 28px;
@@ -320,7 +333,7 @@ img {
 .DIV_labelSelectedGame {
 	display: flex;
 	flex-wrap: wrap;
-	font-size: 14px;
+	margin-bottom: 10px;
 	text-align: center;
 	align-items: center;
 	align-content: center;
@@ -367,6 +380,12 @@ img {
 /*
 	Input
 */
+.BTN_launcherOptions {
+	width: 96%;
+	padding-top: 4px;
+	padding-bottom: 4px;
+	margin: 2px 0px 2px 0px;
+}
 .BTN_right {
 	float: right;
 	margin-right: 8px;
