@@ -465,6 +465,11 @@ img {
 /*
 	Labels
 */
+.LABEL_experimental {
+	font-style: normal;
+	font-family: monospace;
+	text-shadow: 0px 0px 10px #f00;
+}
 .LABEL_detailsGameName {
 	font-size: 28px;
     margin-top: 10px;
