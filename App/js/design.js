@@ -472,8 +472,8 @@ temp_DESIGN = {
 		APP.settings.data.selectedLibFolder = document.getElementById('SELECT_settingsSelectedLibPath').value;
 
 		// Checkbox
-		APP.settings.data.enableParamSfo = JSON.parse(document.getElementById('CHECKBOX_settingsEnableParamSfo').checked);
 		APP.settings.data.showPathEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecList').checked);
+		APP.settings.data.enableParamSfo = JSON.parse(document.getElementById('CHECKBOX_settingsEnableParamSfo').checked);
 		APP.settings.data.showBgOnEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked);
 		APP.settings.data.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
 		APP.settings.data.saveLogOnEmuClose = JSON.parse(document.getElementById('CHECKBOX_settingsSaveLogOnEmuClose').checked);

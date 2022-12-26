@@ -72,7 +72,6 @@ temp_SETTINGS = {
 			APP.settings.save();
 		}
 
-		// Load settings from localStorage
 		try {
 
 			// Read settings file
