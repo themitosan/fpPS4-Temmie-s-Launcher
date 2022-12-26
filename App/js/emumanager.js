@@ -142,7 +142,7 @@ temp_EMUMANAGER = {
 				if (importModuleList.length !== 0){
 
 					// Confirm action
-					const conf = window.confirm('INFO - fpPS4 Temmie\'s Launcher detected that \"nop\" errors were presented during emulation and we noticed that ' +
+					const conf = window.confirm('[EXPERIMENTAL] - fpPS4 Temmie\'s Launcher detected that \"nop\" errors were presented during emulation and we noticed that ' +
 												'modules present in errors do not exist in current game modules folder - they are:\n\n' + importModuleList.toString().replace(RegExp(',', 'gi'), '\n') +
 												'\n\nDo you want to import them from your selected Lib folder?\n\n(If you don\'t want to see this prompt anymore, you can disable \"If fpPS4 returns any nop error, ' +
 												'seek for missing modules\" option on Settings menu.)');

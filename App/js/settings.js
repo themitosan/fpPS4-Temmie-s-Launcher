@@ -48,7 +48,7 @@ temp_SETTINGS = {
 
 		// Seek missing lib files (.prx or .sprx)
 		selectedLibFolder: '',
-		seekMissingModules: !0,
+		seekMissingModules: !1,
 
 		// Log Options
 		saveLogOnEmuClose: !1,
