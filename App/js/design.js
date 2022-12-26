@@ -57,6 +57,7 @@ temp_DESIGN = {
 				appNameClass = 'LABEL_gameTitle',
 				classGameDetailsMode = 'GAME_DETAILS',
 				gameMetadata = '<br>Path: ' + gList[cGame].exe,
+				gridIconSize = APP.settings.data.gui.gridIconSize,
 				bgPath = 'url(\'' + gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'') + '\')';
 
 			// Disable background image
@@ -65,7 +66,7 @@ temp_DESIGN = {
 			}
 
 			// Background and Icon
-			gameBgAndIcon = '<div class="GAME_ENTRY_BG" style="background-image: ' + bgPath + '";></div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '">';
+			gameBgAndIcon = '<div class="GAME_ENTRY_BG" style="background-image: ' + bgPath + ';"></div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '">';
 
 			// If PARAM.SFO metadata exists, show serial and game version instead
 			if (Object.keys(gList[cGame].paramSfo).length !== 0){
@@ -90,7 +91,7 @@ temp_DESIGN = {
 				appTitle = gList[cGame].name;
 				classGameDetailsMode = 'none';
 				classDisplayEntryMode = ' GAME_ENTRY_GRID';
-				gameBgAndIcon = '<div class="none" style="background-image: ' + bgPath + '";></div><img class="IMG_GAME_ICON IMG_GRID" src="' + gList[cGame].icon + '">';
+				gameBgAndIcon = '<div class="none" style="background-image: ' + bgPath + '";></div><img class="IMG_GAME_ICON IMG_GRID" style="width: ' + gridIconSize + 'px;" src="' + gList[cGame].icon + '">';
 			}
 
 			/*
@@ -411,6 +412,7 @@ temp_DESIGN = {
 		document.getElementById('LBL_SETTINGS_gamePath').innerHTML = cSettings.gamePath;
 		document.getElementById('LABEL_settingsGameListBgBlur').innerHTML = APP.tools.parsePercentage(cSettings.gui.bgListBlur, 6);
 		document.getElementById('LABEL_settingsEmuRunningBgBlur').innerHTML = APP.tools.parsePercentage(cSettings.gui.bgEmuBlur, 6);
+		document.getElementById('LABEL_settingsGridIconSize').innerHTML = APP.tools.parsePercentage(cSettings.gui.gridIconSize, 512);
 		document.getElementById('LABEL_settingsGameListBgOpacity').innerHTML = APP.tools.parsePercentage(cSettings.gui.bgListOpacity, 1);
 		document.getElementById('LABEL_settingsEmuRunningBgOpacity').innerHTML = APP.tools.parsePercentage(cSettings.gui.bgEmuOpacity, 1);
 
@@ -430,10 +432,34 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked = JSON.parse(cSettings.logOnExternalWindow);
 
 		// Range
+		document.getElementById('RANGE_settingsGridIconSize').value = cSettings.gui.gridIconSize;
 		document.getElementById('RANGE_settingsGameListBgBlur').value = cSettings.gui.bgListBlur;
 		document.getElementById('RANGE_settingsEmuRunningBgBlur').value = cSettings.gui.bgEmuBlur;
 		document.getElementById('RANGE_settingsGameListBgOpacity').value = cSettings.gui.bgListOpacity;
 		document.getElementById('RANGE_settingsEmuRunningBgOpacity').value = cSettings.gui.bgEmuOpacity;
+
+		// Update settings GUI
+		this.updateLauncherSettingsGUI();
+
+	},
+
+	// Update settings GUI without loading / save data
+	updateLauncherSettingsGUI: function(){
+
+		var cDisplayMode = document.getElementById('SELECT_settingsDisplayMode').value;
+		switch (cDisplayMode) {
+
+			case 'normal':
+				TMS.css('DIV_settingsGridIconSize', {'display': 'none'});
+				TMS.css('DIV_settingsShowBgOnGameEntry', {'display': 'flex'});
+				break;
+
+			case 'grid':
+				TMS.css('DIV_settingsGridIconSize', {'display': 'flex'});
+				TMS.css('DIV_settingsShowBgOnGameEntry', {'display': 'none'});
+				break;
+
+		}
 
 	},
 
@@ -457,6 +483,7 @@ temp_DESIGN = {
 
 		// Range
 		APP.settings.data.gui.bgListBlur = parseFloat(document.getElementById('RANGE_settingsGameListBgBlur').value);
+		APP.settings.data.gui.gridIconSize = parseFloat(document.getElementById('RANGE_settingsGridIconSize').value);
 		APP.settings.data.gui.bgEmuBlur = parseFloat(document.getElementById('RANGE_settingsEmuRunningBgBlur').value);
 		APP.settings.data.gui.bgListOpacity = parseFloat(document.getElementById('RANGE_settingsGameListBgOpacity').value);
 		APP.settings.data.gui.bgEmuOpacity = parseFloat(document.getElementById('RANGE_settingsEmuRunningBgOpacity').value);

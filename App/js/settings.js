@@ -33,6 +33,9 @@ temp_SETTINGS = {
 			bgEmuBlur: 6,
 			bgListBlur: 2,
 
+			// (Grid) Icon size
+			gridIconSize: 116,
+
 			showBgOnEntry: !0,
 			showPathEntry: !0,
 			showPathRunning: !0,

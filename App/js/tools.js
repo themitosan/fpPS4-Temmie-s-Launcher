@@ -36,7 +36,7 @@ temp_TOOLS = {
 
 	},
 
-	// Convert Hex values to UTF-8
+	// Convert Hex values to UTF-8 string
 	convertHexToUft8: function(hex){
 
 		var textValue = '';

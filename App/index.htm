@@ -57,7 +57,7 @@
 
 				<div class="DIV_settingsEntry">
 					Display mode:
-					<select id="SELECT_settingsDisplayMode" class="SELECT_settings">
+					<select id="SELECT_settingsDisplayMode" class="SELECT_settings" onchange="APP.design.updateLauncherSettingsGUI();">
 						<option value="normal">Normal</option>
 						<option value="compact">Compact</option>
 						<option value="grid">Grid</option>
@@ -72,6 +72,12 @@
 					</select>
 				</div>
 
+				<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsGridIconSize">
+					Grid Icon size: 
+					<input type="range" min="116" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);"> 
+					<label id="LABEL_settingsGridIconSize">???</label>%
+				</div>
+
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 					Background Blur: 
 					<input type="range" min="0" max="6" step="0.01" value="2" id="RANGE_settingsGameListBgBlur" oninput="APP.design.renderSettings(!0);"> 
@@ -84,10 +90,10 @@
 					<label id="LABEL_settingsGameListBgOpacity">???</label>%
 				</div>
 
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+				<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsShowBgOnGameEntry">
 					<input type="checkbox" id="CHECKBOX_settingsShowBgOnGameEntry">
 					<label class="LABEL_checkbox" onclick="APP.tools.processCheckbox('CHECKBOX_settingsShowBgOnGameEntry');">
-						Show background image for every title in game list
+						Show background image for every game entry on list
 					</label>
 				</div>
 
