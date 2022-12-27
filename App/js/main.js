@@ -36,8 +36,7 @@ var APP = {
 
 		if (text !== '' && text !== void 0){
 
-			var textarea = document.getElementById('APP_LOG'),
-				previousLog = textarea.value,
+			var previousLog = APP.logData,
 				newLog = previousLog + '\n' + text;
 
 			// Fix log with white line
@@ -49,7 +48,7 @@ var APP = {
 			}
 
 			// If Emu is running and catch an "nop" log, update GUI
-			if (text.slice(0, 4) === 'nop ' && APP.emuManager.emuRunning === !0){
+			if (text.slice(0, 4).toLowerCase() === 'nop '){
 
 				// If seek missing modules is active, push current error to list
 				if (APP.settings.data.seekMissingModules === !0){
@@ -62,14 +61,15 @@ var APP = {
 					'color': '#f00',
 					'background-image': 'linear-gradient(180deg, #000000db, #1b0909)'
 				});
+
 			}
 
 			// Append log
-			textarea.value = newLog;
+			document.getElementById('APP_LOG').value = newLog;
 			APP.logData = newLog;
 
 			// Scroll log
-			textarea.scrollTop = textarea.scrollHeight;
+			document.getElementById('APP_LOG').scrollTop = document.getElementById('APP_LOG').scrollHeight;
 		
 		}
 
@@ -239,7 +239,7 @@ var APP = {
 		// Seek process
 		Object.keys(pList).forEach(function(pName){
 
-			if (pList[pName].szExeFile === processName){
+			if (pList[pName].szExeFile.toLowerCase() === processName.toLowerCase()){
 				res = pList[pName];
 			}
 
