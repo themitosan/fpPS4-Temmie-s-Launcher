@@ -99,6 +99,9 @@ temp_GAMELIST = {
 		// Check if path exists
 		if (APP.fs.existsSync(APP.settings.data.gamePath) === !0){
 
+			// Reset selected game
+			this.selectedGame = '';
+
 			// Reset search box
 			document.getElementById('INPUT_gameListSearch').value = '';
 

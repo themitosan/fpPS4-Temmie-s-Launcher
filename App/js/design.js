@@ -53,6 +53,7 @@ temp_DESIGN = {
 
 			var appTitle = '',
 				gameBgAndIcon,
+				gameEntryStyle = '',
 				classDisplayEntryMode = '',
 				appNameClass = 'LABEL_gameTitle',
 				classGameDetailsMode = 'GAME_DETAILS',
@@ -91,14 +92,15 @@ temp_DESIGN = {
 				appTitle = gList[cGame].name;
 				classGameDetailsMode = 'none';
 				classDisplayEntryMode = ' GAME_ENTRY_GRID';
+				gameEntryStyle = 'border-radius: ' + APP.settings.data.gridBorderRadius + 'px;'
 				gameBgAndIcon = '<div class="none" style="background-image: ' + bgPath + '";></div><img class="IMG_GAME_ICON IMG_GRID" style="width: ' + gridIconSize + 'px;" src="' + gList[cGame].icon + '">';
 			}
 
 			/*
 				Add entry
 			*/
-			tempHtml = tempHtml + '<div class="GAME_ENTRY' + classDisplayEntryMode + '" title="' + appTitle + '" onclick="APP.design.selectGame(\'' + cGame + '\');" id="GAME_ENTRY_' + cGame + '">' + gameBgAndIcon +
-								  '<div class="' + classGameDetailsMode + '"><label class="' + appNameClass + '">' + gList[cGame].name + '</label>' + gameMetadata + '</div></div>';
+			tempHtml = tempHtml + '<div class="GAME_ENTRY' + classDisplayEntryMode + '" title="' + appTitle + '" style="' + gameEntryStyle + '" onclick="APP.design.selectGame(\'' + cGame + '\');" id="GAME_ENTRY_' + cGame + '">' +
+								   gameBgAndIcon + '<div class="' + classGameDetailsMode + '"><label class="' + appNameClass + '">' + gList[cGame].name + '</label>' + gameMetadata + '</div></div>';
 		});
 
 		// Insert HTML
@@ -106,6 +108,9 @@ temp_DESIGN = {
 
 		// Clear BG image
 		TMS.css('DIV_GAMELIST_BG', {'background-image': 'none'});
+
+		// Update GUI
+		this.update();
 
 	},
 
@@ -204,8 +209,8 @@ temp_DESIGN = {
 				btnSettings = 'disabled';
 				logHeight = 'calc(100% - 400px)';
 				bgBlur = APP.settings.data.bgEmuBlur;
-				listCss = {'width': '100%', 'height': '362px'};
 				bgOpacity = APP.settings.data.bgEmuOpacity;
+				listCss = {'width': '100%', 'height': '362px'};
 				optionsCss = {'height': '350px', 'display': 'none'};
 	
 			}
@@ -415,6 +420,7 @@ temp_DESIGN = {
 		document.getElementById('LABEL_settingsGridIconSize').innerHTML = APP.tools.parsePercentage(cSettings.gridIconSize, 512);
 		document.getElementById('LABEL_settingsGameListBgOpacity').innerHTML = APP.tools.parsePercentage(cSettings.bgListOpacity, 1);
 		document.getElementById('LABEL_settingsEmuRunningBgOpacity').innerHTML = APP.tools.parsePercentage(cSettings.bgEmuOpacity, 1);
+		document.getElementById('LABEL_settingsGridBorderRadius').innerHTML = APP.tools.parsePercentage(cSettings.gridBorderRadius, 26);
 
 		// Select
 		document.getElementById('SELECT_settingsDisplayMode').value = cSettings.gameListMode;
@@ -437,6 +443,7 @@ temp_DESIGN = {
 		document.getElementById('RANGE_settingsEmuRunningBgBlur').value = cSettings.bgEmuBlur;
 		document.getElementById('RANGE_settingsGameListBgOpacity').value = cSettings.bgListOpacity;
 		document.getElementById('RANGE_settingsEmuRunningBgOpacity').value = cSettings.bgEmuOpacity;
+		document.getElementById('RANGE_settingsGridIconBorderRadius').value = cSettings.gridBorderRadius;
 
 		// Update settings GUI
 		this.updateLauncherSettingsGUI();
@@ -450,12 +457,12 @@ temp_DESIGN = {
 		switch (cDisplayMode) {
 
 			case 'normal':
-				TMS.css('DIV_settingsGridIconSize', {'display': 'none'});
+				TMS.css('DIV_settingsGridOptions', {'display': 'none'});
 				TMS.css('DIV_settingsShowBgOnGameEntry', {'display': 'flex'});
 				break;
 
 			case 'grid':
-				TMS.css('DIV_settingsGridIconSize', {'display': 'flex'});
+				TMS.css('DIV_settingsGridOptions', {'display': 'block'});
 				TMS.css('DIV_settingsShowBgOnGameEntry', {'display': 'none'});
 				break;
 
@@ -487,6 +494,7 @@ temp_DESIGN = {
 		APP.settings.data.bgEmuBlur = parseFloat(document.getElementById('RANGE_settingsEmuRunningBgBlur').value);
 		APP.settings.data.bgListOpacity = parseFloat(document.getElementById('RANGE_settingsGameListBgOpacity').value);
 		APP.settings.data.bgEmuOpacity = parseFloat(document.getElementById('RANGE_settingsEmuRunningBgOpacity').value);
+		APP.settings.data.gridBorderRadius = parseFloat(document.getElementById('RANGE_settingsGridIconBorderRadius').value);
 
 		/*
 			End

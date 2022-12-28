@@ -64,18 +64,31 @@
 					</select>
 				</div>
 
+				<!-- Grid Options -->
+				<div id="DIV_settingsGridOptions">
+					<div class="SEPARATOR_00"></div>
+
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsGridIconSize">
+						Grid Icon size: 
+						<input type="range" min="116" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);"> 
+						<label id="LABEL_settingsGridIconSize">???</label>%
+					</div>
+
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsGridBorderRadius">
+						Grid Border-Radius: 
+						<input type="range" min="0" max="26" step="1" value="8" id="RANGE_settingsGridIconBorderRadius" oninput="APP.design.renderSettings(!0);"> 
+						<label id="LABEL_settingsGridBorderRadius">???</label>%
+					</div>
+
+					<div class="SEPARATOR_00"></div>
+				</div>
+
 				<div class="DIV_settingsEntry">
 					Game search mode:
 					<select id="SELECT_settingsSearchMode" class="SELECT_settings">
 						<option value="appName">Name</option>
 						<option value="titleId">Title ID</option>
 					</select>
-				</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsGridIconSize">
-					Grid Icon size: 
-					<input type="range" min="116" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);"> 
-					<label id="LABEL_settingsGridIconSize">???</label>%
 				</div>
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">

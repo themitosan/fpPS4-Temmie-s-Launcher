@@ -212,7 +212,7 @@ var APP = {
 
 				// Scroll game list to last selected game
 				if (APP.gameList.selectedGame !== ''){
-					TMS.css('GAME_ENTRY_' + APP.gameList.selectedGame, {'animation': '0.8s gameFocus'});
+					TMS.css('GAME_ENTRY_' + APP.gameList.selectedGame, {'animation': '0.8s hintGameFocus'});
 					
 					setTimeout(function(){
 						APP.design.selectGame(APP.gameList.selectedGame);
