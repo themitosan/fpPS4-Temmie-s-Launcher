@@ -164,7 +164,7 @@ temp_DESIGN = {
 			}
 			
 			// If current game contains imported modules, enable remove button
-			if (APP.gameList.cGameSettings.importedModules.length > 0){
+			if (APP.gameList.cGameSettings.importedModules !== void 0 && APP.gameList.cGameSettings.importedModules.length > 0){
 				removeModulesButtonStatus = '';
 			}
 
