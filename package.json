@@ -8,10 +8,10 @@
     "repository": "https://github.com/themitosan/fpPS4-Temmie-s-Launcher",
     "window": {
         "frame": true,
-        "width": 1180,
+        "width": 1186,
         "height": 710,
         "toolbar": true,
-        "min_width": 1180,
+        "min_width": 1186,
         "min_height": 710,
         "fullscreen": false,
         "position": "center",
