@@ -269,7 +269,14 @@ temp_GAMELIST = {
 
 				gameListArray.forEach(function(cTitle){
 
-					if (APP.gameList.list[cTitle].name.indexOf(searchQuery) !== -1){
+					var titleName = APP.gameList.list[cTitle].name;
+
+					if (APP.settings.data.searchCaseSensitive === !1){
+						titleName = APP.gameList.list[cTitle].name.toLowerCase();
+						searchQuery = searchQuery.toLowerCase();
+					}
+
+					if (titleName.indexOf(searchQuery) !== -1){
 						tempList.push(cTitle);
 					}
 

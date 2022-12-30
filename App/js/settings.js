@@ -39,6 +39,7 @@ temp_SETTINGS = {
 
 		// Game search mode (appName or titleId)
 		gameSearchMode: 'appName',
+		searchCaseSensitive: !1,
 
 		// Background Opacity
 		bgEmuOpacity: 0.6,
