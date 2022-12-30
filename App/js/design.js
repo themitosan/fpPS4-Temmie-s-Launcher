@@ -119,7 +119,6 @@ temp_DESIGN = {
 
 		// Settings file
 		var exportButtonStatus = 'disabled',
-			removeModulesButtonStatus = 'disabled',
 			folderName = APP.gameList.list[gameName].folderName, 
 			settingsFile = APP.settings.data.gamePath + '/' + folderName + '/launcherSettings.json';
 
@@ -162,14 +161,8 @@ temp_DESIGN = {
 			if (APP.gameList.list[gameName].paramSfoAvailable === !0){
 				exportButtonStatus = '';
 			}
-			
-			// If current game contains imported modules, enable remove button
-			if (APP.gameList.cGameSettings.importedModules !== void 0 && APP.gameList.cGameSettings.importedModules.length > 0){
-				removeModulesButtonStatus = '';
-			}
 
 			document.getElementById('BTN_launcherOptionsExportMetadata').disabled = exportButtonStatus;
-			document.getElementById('BTN_launcherOptionsRemoveImportedModules').disabled = removeModulesButtonStatus;
 
 		}
 
@@ -385,35 +378,9 @@ temp_DESIGN = {
 
 		// Shortcut
 		const cSettings = APP.settings.data;
-
-		// Lib modules path
-		var tempHtml = '<option disabled="disabled">No lib folders detected</option>';
-			libList = APP.fs.readdirSync(cSettings.libPath);
-		
-		// Check if exists lib folders on path
-		if (libList.length !== 0){
-		
-			// Reset lib list
-			tempHtml = '';
-
-			// Process lib list
-			libList.forEach(function(cLib){
-				tempHtml = tempHtml + '<option value="' + cLib + '">' + cLib + '</option>';
-			});
-
-			// If Lib option is not select, use first item on list
-			if (cSettings.selectedLibFolder === ''){
-				cSettings.selectedLibFolder = libList[0];
-			}
-		
-		}
-
-		// Render Lib select option
-		document.getElementById('SELECT_settingsSelectedLibPath').innerHTML = tempHtml;
-
+	
 		// Labels
 		document.getElementById('LBL_SETTINGS_emuPath').innerHTML = cSettings.emuPath
-		document.getElementById('LBL_SETTINGS_libPath').innerHTML = cSettings.libPath;
 		document.getElementById('LBL_SETTINGS_gamePath').innerHTML = cSettings.gamePath;
 		document.getElementById('LABEL_settingsGameListBgBlur').innerHTML = APP.tools.parsePercentage(cSettings.bgListBlur, 6);
 		document.getElementById('LABEL_settingsEmuRunningBgBlur').innerHTML = APP.tools.parsePercentage(cSettings.bgEmuBlur, 6);
@@ -425,7 +392,6 @@ temp_DESIGN = {
 		// Select
 		document.getElementById('SELECT_settingsDisplayMode').value = cSettings.gameListMode;
 		document.getElementById('SELECT_settingsSearchMode').value = cSettings.gameSearchMode;
-		document.getElementById('SELECT_settingsSelectedLibPath').value = cSettings.selectedLibFolder;
 
 		// Checkbox
 		document.getElementById('CHECKBOX_settingsShowExecList').checked = JSON.parse(cSettings.showPathEntry);
@@ -434,7 +400,6 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked = JSON.parse(cSettings.showBgOnEntry);
 		document.getElementById('CHECKBOX_settingsSaveLogOnEmuClose').checked = JSON.parse(cSettings.saveLogOnEmuClose);
 		document.getElementById('CHECKBOX_settingsClearLogOnEmuLoad').checked = JSON.parse(cSettings.clearLogOnEmuLoad);
-		document.getElementById('CHECKBOX_settingsSeekMissingModules').checked = JSON.parse(cSettings.seekMissingModules);
 		document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked = JSON.parse(cSettings.logOnExternalWindow);
 
 		// Range
@@ -476,7 +441,6 @@ temp_DESIGN = {
 		// Select
 		APP.settings.data.gameListMode = document.getElementById('SELECT_settingsDisplayMode').value;
 		APP.settings.data.gameSearchMode = document.getElementById('SELECT_settingsSearchMode').value;
-		APP.settings.data.selectedLibFolder = document.getElementById('SELECT_settingsSelectedLibPath').value;
 
 		// Checkbox
 		APP.settings.data.showPathEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecList').checked);
@@ -485,7 +449,6 @@ temp_DESIGN = {
 		APP.settings.data.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
 		APP.settings.data.saveLogOnEmuClose = JSON.parse(document.getElementById('CHECKBOX_settingsSaveLogOnEmuClose').checked);
 		APP.settings.data.clearLogOnEmuLoad = JSON.parse(document.getElementById('CHECKBOX_settingsClearLogOnEmuLoad').checked);
-		APP.settings.data.seekMissingModules = JSON.parse(document.getElementById('CHECKBOX_settingsSeekMissingModules').checked);
 		APP.settings.data.logOnExternalWindow = JSON.parse(document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked);
 
 		// Range

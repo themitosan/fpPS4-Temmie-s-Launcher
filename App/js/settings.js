@@ -17,18 +17,16 @@ temp_SETTINGS = {
 			General
 		*/
 
+		// Remove previous imported modules
+		removedLibModules: !1,
+
 		// Paths
 		nwPath: '',
 		emuPath: '',
-		libPath: '',
 		gamePath: '',
 
 		// Enable / Disable PARAM.SFO support
 		enableParamSfo: !0,
-
-		// [Experimental] Seek missing lib files (.prx or .sprx)
-		selectedLibFolder: '',
-		seekMissingModules: !1,
 
 		// Log Options
 		saveLogOnEmuClose: !1,
@@ -138,7 +136,6 @@ temp_SETTINGS = {
 		const mainPath = this.data.nwPath,
 			pathList = [
 				'/Emu',
-				'/Lib',
 				'/Logs',
 				'/Games'
 			];
@@ -161,11 +158,6 @@ temp_SETTINGS = {
 		// Set Games / Emu paths and check if both exists
 		if (this.data.gamePath === '' && APP.fs.existsSync(this.data.gamePath) === !1){
 			APP.settings.data.gamePath = mainPath + '/Games';
-		}
-
-		// Lib path
-		if (this.data.libPath === '' && APP.fs.existsSync(this.data.libPath) === !1){
-			APP.settings.data.libPath = mainPath + '/Lib';
 		}
 
 		// fpPS4 path

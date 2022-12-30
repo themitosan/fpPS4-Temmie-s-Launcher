@@ -50,11 +50,6 @@ var APP = {
 			// If Emu is running and catch an "nop" log, update GUI
 			if (text.slice(0, 4).toLowerCase() === 'nop '){
 
-				// If seek missing modules is active, push current error to list
-				if (APP.settings.data.seekMissingModules === !0){
-					APP.emuManager.emuErrorList.push(text);
-				}
-
 				// Update GUI
 				document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = 'Error ( <label class="user-can-select">' + text + '</label>)';
 				TMS.css('APP_LOG', {
@@ -72,6 +67,19 @@ var APP = {
 			document.getElementById('APP_LOG').scrollTop = document.getElementById('APP_LOG').scrollHeight;
 		
 		}
+
+	},
+
+	/*
+		Process spawn outpui
+		Process std output data (stdout and stderr) to proper log it
+	*/
+	processStdOutput: function(data){
+
+		const dataConverted = data.toString().split('\n');
+		dataConverted.forEach(function(logLine){
+			APP.log(logLine);
+		});
 
 	},
 
@@ -154,7 +162,9 @@ var APP = {
 			// Check if external log window option is enabled
 			if (APP.settings.data.logOnExternalWindow === !1){
 				
-				APP.execProcess = APP.childProcess.spawn(exe, args);
+				APP.execProcess = APP.childProcess.spawn(exe, args, {
+					detached: !1
+				});
 				APP.execEmuPID = APP.execProcess.pid;
 
 			} else {
@@ -175,9 +185,11 @@ var APP = {
 
 			// Log on stdout and stderr
 			APP.execProcess.stdout.on('data', function(data){
+				// APP.processStdOutput(data);
 				APP.log(data.toString());
 			});
 			APP.execProcess.stderr.on('data', function(data){
+				// APP.processStdOutput(data);
 				APP.log(data.toString());
 			});
 
@@ -200,11 +212,6 @@ var APP = {
 				// Save log if APP.settings.data.saveLogOnEmuClose is true
 				if (APP.settings.data.saveLogOnEmuClose === !0){
 					APP.clearLog();
-				}
-
-				// Run Check missing modules
-				if (APP.settings.data.seekMissingModules === !0){
-					APP.emuManager.seekMissingModules();
 				}
 
 				// Check if need to reset launcher
@@ -297,8 +304,14 @@ window.onload = function(){
 		// Rener hack list
 		APP.design.renderHacklist();
 
+		// Kill fpPS4 process if is active
+		APP.emuManager.killEmu(!0);
+
 		// Set focus on search Bar
 		TMS.focus('INPUT_gameListSearch', 100);
+
+		// Remove all previous imported modules
+		APP.gameList.removeAllModules();
 
 	} catch (err) {
 

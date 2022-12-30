@@ -184,7 +184,12 @@ temp_GAMELIST = {
 						appBg = APP.settings.data.nwPath + '/app/img/404_BG.png';
 					}
 		
-					// Check if PARAM.SFO is present
+					// Warn if PARAM.SFO isn't present
+					if (APP.fs.existsSync(paramSfoPath) !== !0){
+						APP.log('WARN - Unable to locate PARAM.SFO for ' + appName + '!\nIf this isn\'t a homebrew, check if this App / Game was dumped properly.');
+					}
+
+					// If PARAM.SFO is present (and enabled), get metadata
 					if (APP.settings.data.enableParamSfo === !0 && APP.fs.existsSync(paramSfoPath) === !0){
 						
 						// Set PARAM.SFO variables
@@ -350,21 +355,43 @@ temp_GAMELIST = {
 
 	},
 
+	// Process remove modules
+	removeAllModules: function(){
+
+		if (APP.settings.data.removedLibModules === !1){
+
+			try {
+
+				const gList = Object.keys(APP.gameList.list);
+				gList.forEach(function(gName){
+
+					APP.design.selectGame(gName);
+					APP.gameList.removeImportedModules();
+
+				}); 
+
+				APP.settings.data.removedLibModules = !0;
+				APP.settings.save();
+
+				APP.log('INFO - All previous imported modules using this launcher was removed since it could be harmfull to your game dumps.');
+
+			} catch (err) {
+				console.error(err);
+			}
+
+		}
+
+	},
+
 	// Removed Imported modules
 	removeImportedModules: function(){
 
 		if (this.selectedGame !== '' && this.cGameSettings.importedModules.length > 0){
 
-			const gName = this.selectedGame,
+			var cMessage = '',
+				gName = this.selectedGame,
 				mList = this.cGameSettings.importedModules,
-				conf = window.confirm('WARN - This action will remove all previous modules imported from this title. They are:\n\n' +
-										mList.toString().replace(RegExp(',', 'gi'), '\n') + '\n\nDo you want to continue?');
-
-			if (conf === !0){
-
-				// Base dir
-				var cMessage = '',
-					mDir = APP.settings.data.gamePath + '/' + APP.gameList.list[gName].folderName + '/sce_module/';
+				mDir = APP.settings.data.gamePath + '/' + APP.gameList.list[gName].folderName + '/sce_module/';
 
 				// Try removing modules
 				mList.forEach(function(mName){
@@ -389,12 +416,6 @@ temp_GAMELIST = {
 
 				// Update settings file
 				this.saveGameSettings(!0);
-
-				// End
-				window.alert('INFO - Process complete!\nCheck log for more details.');
-				APP.design.selectGame(this.selectedGame);
-
-			}
 
 		}
 

@@ -16,9 +16,6 @@ temp_EMUMANAGER = {
 	// Emu boot counter
 	emuCountdown: 0,
 	emuRunCounter: 0,
-
-	// Error List
-	emuErrorList: [],
 	
 	// Run emu
 	runGame: function(){
@@ -40,6 +37,9 @@ temp_EMUMANAGER = {
 			// Increase emu counters
 			APP.emuManager.emuCountdown++;
 			APP.emuManager.emuRunCounter++;
+
+			// If (by some reason) main emu still running, close it!
+			this.killEmu(!0);
 
 			// Set main variables
 			var ebootPath = APP.gameList.list[APP.gameList.selectedGame].exe,
@@ -79,7 +79,7 @@ temp_EMUMANAGER = {
 	},
 
 	// Stop fpPS4
-	killEmu: function(){
+	killEmu: function(skipReset){
 		
 		// Kill process and set emu running var to false
 		APP.getProcessInfo('fpPS4.exe', function(pData){
@@ -88,116 +88,8 @@ temp_EMUMANAGER = {
 		});
 
 		// Reset log
-		APP.resetLauncher();
-
-	},
-
-	// Seek missing modules
-	seekMissingModules: function(){
-
-		// Check if module list existsa and if launcher captured any error
-		if (this.emuErrorList.length !== 0 && APP.fs.existsSync(APP.settings.data.libPath) === !0){
-
-			// Set variables
-			var cMessage = '',
-				importModuleList = [],
-				libPath = APP.settings.data.libPath + '/' + APP.settings.data.selectedLibFolder,
-				cGameModuleDir = APP.path.parse(APP.gameList.list[APP.gameList.selectedGame].exe).dir + '/sce_module',
-				availableModuleList = APP.fs.readdirSync(libPath);
-
-			// Check if current app / game contains module folder (sce_modules)
-			if (APP.fs.existsSync(cGameModuleDir) === !0){
-
-				// Start process
-				APP.log('INFO - Seek Missing Modules: Running...');
-
-				// Generate import list
-				APP.emuManager.emuErrorList.forEach(function(cError){
-
-					// Get Lib name
-					var tempModNameStart = cError.slice(cError.indexOf(':') + 1),
-						moduleName = tempModNameStart.slice(0, tempModNameStart.indexOf(':'));
-					
-					// Check if current module exists on list
-					if (availableModuleList.indexOf(moduleName + '.prx') !== -1){
-						importModuleList.push(moduleName + '.prx');
-					}
-					if (availableModuleList.indexOf(moduleName + '.sprx') !== -1){
-						importModuleList.push(moduleName + '.sprx');
-					}
-
-				});
-
-				/*
-					Check if current modules already exists on current game module folder
-					If so, skip it!
-				*/
-				importModuleList.forEach(function(cModule){
-					if (APP.fs.existsSync(cGameModuleDir + '/' + cModule) === !0){
-						importModuleList.splice(cModule, 1);
-					}
-				});
-
-				// Check if still have modules to import
-				if (importModuleList.length !== 0){
-
-					// Confirm action
-					const conf = window.confirm('[EXPERIMENTAL] - fpPS4 Temmie\'s Launcher detected that \"nop\" errors were presented during emulation and we noticed that ' +
-												'modules present in errors do not exist in current game modules folder - they are:\n\n' + importModuleList.toString().replace(RegExp(',', 'gi'), '\n') +
-												'\n\nDo you want to import them from your selected Lib folder?\n\n(If you don\'t want to see this prompt anymore, you can disable \"If fpPS4 returns any nop error, ' +
-												'seek for missing modules\" option on Settings menu.)');
-					if (conf === !0){
-
-						// Get original module list
-						var cMessage = '',
-							cGameName = APP.gameList.list[APP.gameList.selectedGame].name;
-
-						// Process import
-						importModuleList.forEach(function(cModule){
-
-							// Add module to imported list
-							if (APP.gameList.cGameSettings.importedModules.indexOf(cModule) === -1){
-								APP.gameList.cGameSettings.importedModules.push(cModule);
-							}
-
-							// Import module
-							try {
-
-								APP.fs.copyFileSync(libPath + '/' + cModule, cGameModuleDir + '/' + cModule);
-								cMessage = 'INFO - (' + cGameName + ') Importing module: ' + cModule;
-
-							} catch (err) {
-
-								console.error(err);
-								cMessage = 'ERROR - (' + cGameName + ') Unable to import ' + cModule + '!\nReason: ' + err;
-
-							}
-
-							// Log Message
-							APP.log(cMessage);
-
-						});
-
-						// Update game settings
-						APP.gameList.saveGameSettings(!0);
-
-						// End
-						window.alert('INFO - Process complete!\nTry running ' + cGameName + ' again and see if it works!\n\nYou can check log to see more details.');
-
-					}
-
-					// Add process complete + info
-					APP.log('INFO - Seek Missing Modules: Process Complete!\nIMPORTANT - If you don\'t want to see these prompts anymore, you can do it by disabling \"If fpPS4 returns any nop error, seek for missing modules\" option on Settings.\n ');
-
-				} else {
-
-					// If no modules were found or files already exists on destination
-					APP.log('INFO - Seek Missing Modules: No matching modules were found or required modules already exists on destination folder!');
-
-				}
-
-			}
-
+		if (skipReset === void 0){
+			APP.resetLauncher();
 		}
 
 	}
