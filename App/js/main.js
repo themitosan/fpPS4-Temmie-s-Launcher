@@ -172,7 +172,7 @@ var APP = {
 				// Transform args into string
 				var gPath = '"' + args[args.indexOf('-e') + 1] + '"',
 					parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
-					execLine = 'start "Running fpPS4 - ' + APP.gameList.selectedGame + '" /MAX "' + exe + '" ' + parseArgs;
+					execLine = 'start "Running fpPS4 - ' + APP.gameList.selectedGame + '" /MAX cmd /C fpPS4.exe ' + parseArgs + ' ^& pause';
 
 				// Warn about fpPS4 logs
 				APP.log('IMPORTANT - Since fpPS4 logs are being displayed on a external window, Temmie\'s launcher aren\'t capable of saving it any information with exception of it\'s ' +
