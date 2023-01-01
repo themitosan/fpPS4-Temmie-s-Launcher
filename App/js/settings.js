@@ -31,7 +31,11 @@ temp_SETTINGS = {
 		// Log Options
 		saveLogOnEmuClose: !1,
 		clearLogOnEmuLoad: !1,
+
+		// Log External window
 		logOnExternalWindow: !1,
+		logExternalWindowPrompt: !0,
+		logExternalWindowStartMode: 'normal',
 
 		/*
 			GUI

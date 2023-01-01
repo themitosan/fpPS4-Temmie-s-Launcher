@@ -61,7 +61,7 @@
 
 					<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsGridIconSize">
 						Grid Icon size: 
-						<input type="range" min="116" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);"> 
+						<input type="range" min="116" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);">
 						<label id="LABEL_settingsGridIconSize">???</label>%
 					</div>
 
@@ -111,7 +111,7 @@
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 					<input type="checkbox" id="CHECKBOX_settingsGameSearchCaseSensitive">
 					<label class="LABEL_checkbox" onclick="APP.tools.processCheckbox('CHECKBOX_settingsGameSearchCaseSensitive');">
-						Enable case sentitive search on game list
+						Enable case sentitive search on game
 					</label>
 				</div>
 
@@ -127,7 +127,7 @@
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 					Background Opacity: 
-					<input type="range" min="0" max="1" step="0.01" value="0.7" id="RANGE_settingsEmuRunningBgOpacity" oninput="APP.design.renderSettings(!0);"> 
+					<input type="range" min="0" max="1" step="0.01" value="0.7" id="RANGE_settingsEmuRunningBgOpacity"> 
 					<label id="LABEL_settingsEmuRunningBgOpacity">???</label>%
 				</div>
 				
@@ -142,11 +142,34 @@
 				<div class="SEPARATOR_00"></div>
 				<div class="DIV_settingsH2">Log Options</div>
 
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+				<div class="DIV_settingsEntry DIV_settingsEntryFlex" onclick="APP.design.renderSettings(!0);">
 					<input type="checkbox" id="CHECKBOX_settingsLogOnExternalWindow">
-					<label class="LABEL_checkbox" onclick="APP.tools.processCheckbox('CHECKBOX_settingsLogOnExternalWindow');">
+					<label class="LABEL_checkbox" onclick="APP.tools.processCheckbox('CHECKBOX_settingsLogOnExternalWindow');" >
 						Log fpPS4 output on external window
 					</label>
+				</div>
+
+				<!-- Log on external window options -->
+				<div id="DIV_settingsExternalWindow">
+					<div class="SEPARATOR_00"></div>
+
+					<div class="DIV_settingsEntry">
+						Start console window:
+						<select id="SELECT_settingsStartExternalWindow" class="SELECT_settings" onchange="APP.design.updateLauncherSettingsGUI();">
+							<option value="normal">Normal</option>
+							<option value="max">Maximized</option>
+							<option value="min">Minimized</option>
+						</select>
+					</div>
+
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="checkbox" id="CHECKBOX_settingsExternalWindowPrompt">
+						<label class="LABEL_checkbox" onclick="APP.tools.processCheckbox('CHECKBOX_settingsExternalWindowPrompt');">
+							Prompt user to press any key when fpPS4 closes
+						</label>
+					</div>
+					
+					<div class="SEPARATOR_00"></div>
 				</div>
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">

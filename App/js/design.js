@@ -392,6 +392,7 @@ temp_DESIGN = {
 		// Select
 		document.getElementById('SELECT_settingsDisplayMode').value = cSettings.gameListMode;
 		document.getElementById('SELECT_settingsSearchMode').value = cSettings.gameSearchMode;
+		document.getElementById('SELECT_settingsStartExternalWindow').value = cSettings.logExternalWindowStartMode;
 
 		// Checkbox
 		document.getElementById('CHECKBOX_settingsShowExecList').checked = JSON.parse(cSettings.showPathEntry);
@@ -402,6 +403,7 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsClearLogOnEmuLoad').checked = JSON.parse(cSettings.clearLogOnEmuLoad);
 		document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked = JSON.parse(cSettings.logOnExternalWindow);
 		document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked = JSON.parse(cSettings.searchCaseSensitive);
+		document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked = JSON.parse(cSettings.logExternalWindowPrompt);
 
 		// Range
 		document.getElementById('RANGE_settingsGridIconSize').value = cSettings.gridIconSize;
@@ -419,6 +421,7 @@ temp_DESIGN = {
 	// Update settings GUI without loading / save data
 	updateLauncherSettingsGUI: function(){
 
+		// Grid options
 		var cDisplayMode = document.getElementById('SELECT_settingsDisplayMode').value;
 		switch (cDisplayMode) {
 
@@ -434,6 +437,14 @@ temp_DESIGN = {
 
 		}
 
+		// Log on external window
+		cDisplayMode = 'none';
+		var logOnExternalWindow = JSON.parse(document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked);
+		if (logOnExternalWindow === !0){
+			cDisplayMode = 'block';
+		}
+		TMS.css('DIV_settingsExternalWindow', {'display': cDisplayMode});
+
 	},
 
 	// Save user settings
@@ -442,6 +453,7 @@ temp_DESIGN = {
 		// Select
 		APP.settings.data.gameListMode = document.getElementById('SELECT_settingsDisplayMode').value;
 		APP.settings.data.gameSearchMode = document.getElementById('SELECT_settingsSearchMode').value;
+		APP.settings.data.logExternalWindowStartMode = document.getElementById('SELECT_settingsStartExternalWindow').value;
 
 		// Checkbox
 		APP.settings.data.showPathEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecList').checked);
@@ -452,6 +464,7 @@ temp_DESIGN = {
 		APP.settings.data.clearLogOnEmuLoad = JSON.parse(document.getElementById('CHECKBOX_settingsClearLogOnEmuLoad').checked);
 		APP.settings.data.logOnExternalWindow = JSON.parse(document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked);
 		APP.settings.data.searchCaseSensitive = JSON.parse(document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked);
+		APP.settings.data.logExternalWindowPrompt = JSON.parse(document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked);
 
 		// Range
 		APP.settings.data.bgListBlur = parseFloat(document.getElementById('RANGE_settingsGameListBgBlur').value);

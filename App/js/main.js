@@ -47,18 +47,6 @@ var APP = {
 				newLog = previousLog + text;
 			}
 
-			// If Emu is running and catch an "nop" log, update GUI
-			if (text.slice(0, 4).toLowerCase() === 'nop '){
-
-				// Update GUI
-				document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = 'Error ( <label class="user-can-select">' + text + '</label>)';
-				TMS.css('APP_LOG', {
-					'color': '#f00',
-					'background-image': 'linear-gradient(180deg, #000000db, #1b0909)'
-				});
-
-			}
-
 			// Append log
 			document.getElementById('APP_LOG').value = newLog;
 			APP.logData = newLog;
@@ -78,7 +66,16 @@ var APP = {
 
 		const dataConverted = data.toString().split('\n');
 		dataConverted.forEach(function(logLine){
-			APP.log(logLine);
+
+			// If emu catches an "nop" error, update GUI
+			if (logLine.slice(0, 4).toLowerCase() === 'nop '){
+
+				// Update GUI
+				document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = 'Error ( <label class="user-can-select">' + text + '</label>)';
+
+			}
+
+			console.info(logLine);
 		});
 
 	},
@@ -169,10 +166,34 @@ var APP = {
 
 			} else {
 
+				// Start window mode
+				var winMode;
+				switch (APP.settings.data.logExternalWindowStartMode){
+
+					case 'normal':
+						winMode = '';
+						break;
+
+					case 'max':
+						winMode = '/MAX';
+						break;
+
+					case 'min':
+						winMode = '/MIN';
+						break;
+
+				}
+
+				// Ask user to press any key
+				var pressAnyKey = '';
+				if (APP.settings.data.logExternalWindowPrompt === !0){
+					pressAnyKey = '^& pause';
+				}
+
 				// Transform args into string
 				var gPath = '"' + args[args.indexOf('-e') + 1] + '"',
 					parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
-					execLine = 'start "Running fpPS4 - ' + APP.gameList.selectedGame + '" /MAX cmd /C fpPS4.exe ' + parseArgs + ' ^& pause';
+					execLine = 'start "Running fpPS4 - ' + APP.gameList.selectedGame + '" ' + winMode + ' cmd /C fpPS4.exe ' + parseArgs + ' ' + pressAnyKey;
 
 				// Warn about fpPS4 logs
 				APP.log('IMPORTANT - Since fpPS4 logs are being displayed on a external window, Temmie\'s launcher aren\'t capable of saving it any information with exception of it\'s ' +
@@ -185,11 +206,11 @@ var APP = {
 
 			// Log on stdout and stderr
 			APP.execProcess.stdout.on('data', function(data){
-				// APP.processStdOutput(data);
+				//APP.processStdOutput(data);
 				APP.log(data.toString());
 			});
 			APP.execProcess.stderr.on('data', function(data){
-				// APP.processStdOutput(data);
+				//APP.processStdOutput(data);
 				APP.log(data.toString());
 			});
 
