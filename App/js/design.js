@@ -195,6 +195,7 @@ temp_DESIGN = {
 				btnKill = 'disabled',
 				logDisplay = 'block',
 				emuRunPath = 'block',
+				disableGridIconSize = '',
 				bgBlur = APP.settings.data.bgListBlur,
 				bgOpacity = APP.settings.data.bgListOpacity,
 				optionsCss = {'height': 'calc(100% - 214px)', 'display': 'block'},
@@ -209,6 +210,7 @@ temp_DESIGN = {
 				logDisplay = 'none';
 				btnRefresh = 'disabled';
 				btnSettings = 'disabled';
+				disableGridIconSize = 'disabled';
 				bgBlur = APP.settings.data.bgEmuBlur;
 				bgOpacity = APP.settings.data.bgEmuOpacity;
 				optionsCss = {'height': '350px', 'display': 'none'};
@@ -235,6 +237,7 @@ temp_DESIGN = {
 			document.getElementById('BTN_REFRESH').disabled = btnRefresh;
 			document.getElementById('BTN_SETTINGS').disabled = btnSettings;
 			document.getElementById('INPUT_gameListSearch').disabled = btnRun;
+			document.getElementById('RANGE_settingsGridIconSize').disabled = disableGridIconSize;
 
 		} else {
 
