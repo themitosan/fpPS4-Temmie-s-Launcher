@@ -89,7 +89,7 @@ temp_GAMELIST = {
 		}
 
 		// Fix space between launcher logs and main emu logs
-		APP.log(fLog + '\n ');
+		APP.log(fLog);
 
 	},
 

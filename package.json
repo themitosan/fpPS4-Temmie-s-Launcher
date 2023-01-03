@@ -1,5 +1,5 @@
 {
-    "version": "1.2.0",
+    "version": "1.2.1",
     "license": "GPL-2",
     "main": "App/index.htm",
     "author": "TemmieHeartz",
@@ -11,8 +11,8 @@
         "width": 1186,
         "height": 710,
         "toolbar": true,
-        "min_width": 1186,
-        "min_height": 710,
+        "min_width": 834,
+        "min_height": 626,
         "fullscreen": false,
         "position": "center",
         "theme-color": "#000",

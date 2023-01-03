@@ -28,12 +28,7 @@ temp_SETTINGS = {
 		// Enable / Disable PARAM.SFO support
 		enableParamSfo: !0,
 
-		// Log Options
-		saveLogOnEmuClose: !1,
-		clearLogOnEmuLoad: !1,
-
 		// Log External window
-		logOnExternalWindow: !1,
 		logExternalWindowPrompt: !0,
 		logExternalWindowStartMode: 'normal',
 
@@ -141,7 +136,6 @@ temp_SETTINGS = {
 		const mainPath = this.data.nwPath,
 			pathList = [
 				'/Emu',
-				'/Logs',
 				'/Games'
 			];
 

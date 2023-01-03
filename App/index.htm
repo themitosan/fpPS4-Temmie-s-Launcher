@@ -61,13 +61,13 @@
 
 					<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsGridIconSize">
 						Grid Icon size: 
-						<input type="range" min="116" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);">
+						<input type="range" min="116" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);">
 						<label id="LABEL_settingsGridIconSize">???</label>%
 					</div>
 
 					<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsGridBorderRadius">
 						Grid Border-Radius: 
-						<input type="range" min="0" max="26" step="1" value="8" id="RANGE_settingsGridIconBorderRadius" oninput="APP.design.renderSettings(!0);"> 
+						<input type="range" min="0" max="26" step="1" value="8" id="RANGE_settingsGridIconBorderRadius" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
 						<label id="LABEL_settingsGridBorderRadius">???</label>%
 					</div>
 
@@ -84,14 +84,21 @@
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 					Background Blur: 
-					<input type="range" min="0" max="6" step="0.01" value="2" id="RANGE_settingsGameListBgBlur" oninput="APP.design.renderSettings(!0);"> 
+					<input type="range" min="0" max="6" step="0.01" value="2" id="RANGE_settingsGameListBgBlur" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
 					<label id="LABEL_settingsGameListBgBlur">???</label>%
 				</div>
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 					Background Opacity: 
-					<input type="range" min="0" max="1" step="0.01" value="0.6" id="RANGE_settingsGameListBgOpacity" oninput="APP.design.renderSettings(!0);"> 
+					<input type="range" min="0" max="1" step="0.01" value="0.6" id="RANGE_settingsGameListBgOpacity" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
 					<label id="LABEL_settingsGameListBgOpacity">???</label>%
+				</div>
+
+				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+					<input type="checkbox" id="CHECKBOX_settingsGameSearchCaseSensitive">
+					<label class="LABEL_checkbox" onclick="APP.tools.processCheckbox('CHECKBOX_settingsGameSearchCaseSensitive');">
+						Enable case-sentitive search on game list
+					</label>
 				</div>
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsShowBgOnGameEntry">
@@ -108,26 +115,19 @@
 					</label>
 				</div>
 
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<input type="checkbox" id="CHECKBOX_settingsGameSearchCaseSensitive">
-					<label class="LABEL_checkbox" onclick="APP.tools.processCheckbox('CHECKBOX_settingsGameSearchCaseSensitive');">
-						Enable case sentitive search on game
-					</label>
-				</div>
-
 				<!-- Emu running -->
 				<div class="SEPARATOR_00"></div>
 				<div class="DIV_settingsH2">Emu Running</div>
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 					Background Blur: 
-					<input type="range" min="0" max="6" step="0.01" value="6" id="RANGE_settingsEmuRunningBgBlur" oninput="APP.design.renderSettings(!0);"> 
+					<input type="range" min="0" max="6" step="0.01" value="6" id="RANGE_settingsEmuRunningBgBlur" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
 					<label id="LABEL_settingsEmuRunningBgBlur">???</label>%
 				</div>
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 					Background Opacity: 
-					<input type="range" min="0" max="1" step="0.01" value="0.7" id="RANGE_settingsEmuRunningBgOpacity"> 
+					<input type="range" min="0" max="1" step="0.01" value="0.7" id="RANGE_settingsEmuRunningBgOpacity" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
 					<label id="LABEL_settingsEmuRunningBgOpacity">???</label>%
 				</div>
 				
@@ -142,47 +142,19 @@
 				<div class="SEPARATOR_00"></div>
 				<div class="DIV_settingsH2">Log Options</div>
 
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex" onclick="APP.design.renderSettings(!0);">
-					<input type="checkbox" id="CHECKBOX_settingsLogOnExternalWindow">
-					<label class="LABEL_checkbox" onclick="APP.tools.processCheckbox('CHECKBOX_settingsLogOnExternalWindow');" >
-						Log fpPS4 output on external window
-					</label>
-				</div>
-
-				<!-- Log on external window options -->
-				<div id="DIV_settingsExternalWindow">
-					<div class="SEPARATOR_00"></div>
-
-					<div class="DIV_settingsEntry">
-						Start console window:
-						<select id="SELECT_settingsStartExternalWindow" class="SELECT_settings" onchange="APP.design.updateLauncherSettingsGUI();">
-							<option value="normal">Normal</option>
-							<option value="max">Maximized</option>
-							<option value="min">Minimized</option>
-						</select>
-					</div>
-
-					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-						<input type="checkbox" id="CHECKBOX_settingsExternalWindowPrompt">
-						<label class="LABEL_checkbox" onclick="APP.tools.processCheckbox('CHECKBOX_settingsExternalWindowPrompt');">
-							Prompt user to press any key when fpPS4 closes
-						</label>
-					</div>
-					
-					<div class="SEPARATOR_00"></div>
+				<div class="DIV_settingsEntry">
+					Start console window:
+					<select id="SELECT_settingsStartExternalWindow" class="SELECT_settings" onchange="APP.design.updateLauncherSettingsGUI();">
+						<option value="normal">Normal</option>
+						<option value="max">Maximized</option>
+						<option value="min">Minimized</option>
+					</select>
 				</div>
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<input type="checkbox" id="CHECKBOX_settingsClearLogOnEmuLoad">
-					<label class="LABEL_checkbox" onclick="APP.tools.processCheckbox('CHECKBOX_settingsClearLogOnEmuLoad');">
-						Clear log everytime main emu load
-					</label>
-				</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<input type="checkbox" id="CHECKBOX_settingsSaveLogOnEmuClose">
-					<label class="LABEL_checkbox" onclick="APP.tools.processCheckbox('CHECKBOX_settingsSaveLogOnEmuClose');">
-						Save log file everytime main emu closes
+					<input type="checkbox" id="CHECKBOX_settingsExternalWindowPrompt">
+					<label class="LABEL_checkbox" onclick="APP.tools.processCheckbox('CHECKBOX_settingsExternalWindowPrompt');">
+						Prompt user to press any key when fpPS4 closes
 					</label>
 				</div>
 
@@ -219,7 +191,7 @@
 
 			<input type="button" class="APP_btn BTN_STOP" id="BTN_KILL" onclick="APP.emuManager.killEmu();" disabled="disabled" value="Stop fpPS4">
 			<input type="button" class="APP_btn BTN_right" onclick="APP.about();" value="About">
-			<input type="button" class="APP_btn BTN_right" id="BTN_SAVE_LOG" onclick="APP.clearLog();" value="Clear / Save log">
+			<input type="button" class="APP_btn BTN_right" id="BTN_CLEAR_LOG" onclick="APP.clearLog();" value="Clear log">
 			<input type="button" class="APP_btn BTN_right" id="BTN_SETTINGS" onclick="APP.design.toggleSettings();" value="Settings">			
 			<input type="button" class="APP_btn BTN_right" id="BTN_REFRESH" onclick="APP.gameList.load();" value="Refresh game list">
 

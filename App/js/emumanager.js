@@ -12,10 +12,6 @@ temp_EMUMANAGER = {
 
 	// Emulator is running
 	emuRunning: !1,
-
-	// Emu boot counter
-	emuCountdown: 0,
-	emuRunCounter: 0,
 	
 	// Run emu
 	runGame: function(){
@@ -34,10 +30,6 @@ temp_EMUMANAGER = {
 				APP.clearLog(!0);
 			}
 
-			// Increase emu counters
-			APP.emuManager.emuCountdown++;
-			APP.emuManager.emuRunCounter++;
-
 			// If (by some reason) main emu still running, close it!
 			this.killEmu(!0);
 
@@ -55,10 +47,10 @@ temp_EMUMANAGER = {
 			});
 
 			// Log emu location and args
-			APP.log('\nINFO - Running fpPS4 with args: ' + emuArgs.toString().replace(RegExp(',', 'gi'), ' ') + '\nEmu location: ' + APP.settings.data.emuPath + '\n\n');
+			APP.log('\nINFO - Running fpPS4 with args: ' + emuArgs.toString().replace(RegExp(',', 'gi'), ' ') + '\nEmu location: ' + APP.settings.data.emuPath);
 
 			// Run fpPS4
-			APP.runExec(APP.settings.data.emuPath, emuArgs);
+			APP.runfpPS4(APP.settings.data.emuPath, emuArgs);
 			this.emuRunning = !0;
 
 			// Update main GUI
@@ -79,18 +71,13 @@ temp_EMUMANAGER = {
 	},
 
 	// Stop fpPS4
-	killEmu: function(skipReset){
+	killEmu: function(){
 		
 		// Kill process and set emu running var to false
 		APP.getProcessInfo('fpPS4.exe', function(pData){
 			process.kill(pData.th32ProcessID);
 			this.emuRunning = !1;
 		});
-
-		// Reset log
-		if (skipReset === void 0){
-			APP.resetLauncher();
-		}
 
 	}
 

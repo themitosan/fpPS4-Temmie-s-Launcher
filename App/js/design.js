@@ -183,28 +183,30 @@ temp_DESIGN = {
 		if (APP.fs.existsSync(APP.settings.data.emuPath) === !0 && APP.gameList.selectedGame !== ''){
 
 			var btnRun = '',
+				btnLog = '',
 				btnRefresh = '',
 				btnSettings = '',
-				logHeight = '248px',
 				btnKill = 'disabled',
+				logDisplay = 'block',
 				emuRunPath = 'block',
 				bgBlur = APP.settings.data.bgListBlur,
 				bgOpacity = APP.settings.data.bgListOpacity,
-				optionsCss = {'height': 'calc(100% - 298px)', 'display': 'block'},
-				listCss = {'width': 'calc(100% - 280px)', 'height': 'calc(100% - 286px)'};
+				optionsCss = {'height': 'calc(100% - 214px)', 'display': 'block'},
+				listCss = {'width': 'calc(100% - 280px)', 'height': 'calc(100% - 202px)'};
 
 			// If emu is running
 			if (APP.emuManager.emuRunning === !0){
 	
 				btnKill = '';
+				btnLog = 'disabled';
 				btnRun = 'disabled';
+				logDisplay = 'none';
 				btnRefresh = 'disabled';
 				btnSettings = 'disabled';
-				logHeight = 'calc(100% - 400px)';
 				bgBlur = APP.settings.data.bgEmuBlur;
 				bgOpacity = APP.settings.data.bgEmuOpacity;
-				listCss = {'width': '100%', 'height': '362px'};
 				optionsCss = {'height': '350px', 'display': 'none'};
+				listCss = {'width': '100%', 'height': 'calc(100% - 38px)'};
 	
 			}
 
@@ -216,13 +218,14 @@ temp_DESIGN = {
 			// Update GUI
 			TMS.css('DIV_LIST', listCss);
 			TMS.css('DIV_OPTIONS', optionsCss);
-			TMS.css('DIV_LOG', {'height': logHeight});
+			TMS.css('DIV_LOG', {'display': logDisplay});
 			TMS.css('DIV_GAME_DETAILS_currentExec', {'display': emuRunPath});
 			TMS.css('DIV_GAMELIST_BG', {'filter': 'blur(' + bgBlur + 'px) opacity(' + bgOpacity + ')'});
 	
 			// Update Buttons
 			document.getElementById('BTN_RUN').disabled = btnRun;
 			document.getElementById('BTN_KILL').disabled = btnKill;
+			document.getElementById('BTN_CLEAR_LOG').disabled = btnLog;
 			document.getElementById('BTN_REFRESH').disabled = btnRefresh;
 			document.getElementById('BTN_SETTINGS').disabled = btnSettings;
 			document.getElementById('INPUT_gameListSearch').disabled = btnRun;
@@ -248,13 +251,6 @@ temp_DESIGN = {
 		} else {
 			TMS.removeClass('DIV_LIST_INTERNAL', 'DIV_LIST_GRID');
 		}
-
-		// Disable Clear / Save log if clearLogOnEmuLoad, saveLogOnEmuClose or logOnExternalWindow are true
-		var disableClearSaveBtn = '';
-		if (APP.settings.data.clearLogOnEmuLoad === !0 || APP.settings.data.saveLogOnEmuClose === !0 || APP.settings.data.logOnExternalWindow === !0){
-			disableClearSaveBtn = 'disabled';
-		}
-		document.getElementById('BTN_SAVE_LOG').disabled = disableClearSaveBtn;
 
 		// If selected game exists, get it's name
 		if (APP.gameList.list[APP.gameList.selectedGame] !== void 0){
@@ -399,9 +395,6 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsEnableParamSfo').checked = JSON.parse(cSettings.enableParamSfo);
 		document.getElementById('CHECKBOX_settingsShowExecRunning').checked = JSON.parse(cSettings.showPathRunning);
 		document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked = JSON.parse(cSettings.showBgOnEntry);
-		document.getElementById('CHECKBOX_settingsSaveLogOnEmuClose').checked = JSON.parse(cSettings.saveLogOnEmuClose);
-		document.getElementById('CHECKBOX_settingsClearLogOnEmuLoad').checked = JSON.parse(cSettings.clearLogOnEmuLoad);
-		document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked = JSON.parse(cSettings.logOnExternalWindow);
 		document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked = JSON.parse(cSettings.searchCaseSensitive);
 		document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked = JSON.parse(cSettings.logExternalWindowPrompt);
 
@@ -437,14 +430,6 @@ temp_DESIGN = {
 
 		}
 
-		// Log on external window
-		cDisplayMode = 'none';
-		var logOnExternalWindow = JSON.parse(document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked);
-		if (logOnExternalWindow === !0){
-			cDisplayMode = 'block';
-		}
-		TMS.css('DIV_settingsExternalWindow', {'display': cDisplayMode});
-
 	},
 
 	// Save user settings
@@ -460,9 +445,6 @@ temp_DESIGN = {
 		APP.settings.data.enableParamSfo = JSON.parse(document.getElementById('CHECKBOX_settingsEnableParamSfo').checked);
 		APP.settings.data.showBgOnEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked);
 		APP.settings.data.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
-		APP.settings.data.saveLogOnEmuClose = JSON.parse(document.getElementById('CHECKBOX_settingsSaveLogOnEmuClose').checked);
-		APP.settings.data.clearLogOnEmuLoad = JSON.parse(document.getElementById('CHECKBOX_settingsClearLogOnEmuLoad').checked);
-		APP.settings.data.logOnExternalWindow = JSON.parse(document.getElementById('CHECKBOX_settingsLogOnExternalWindow').checked);
 		APP.settings.data.searchCaseSensitive = JSON.parse(document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked);
 		APP.settings.data.logExternalWindowPrompt = JSON.parse(document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked);
 

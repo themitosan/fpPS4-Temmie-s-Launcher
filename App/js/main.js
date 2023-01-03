@@ -58,95 +58,24 @@ var APP = {
 
 	},
 
-	/*
-		Process spawn outpui
-		Process std output data (stdout and stderr) to proper log it
-	*/
-	processStdOutput: function(data){
-
-		const dataConverted = data.toString().split('\n');
-		dataConverted.forEach(function(logLine){
-
-			// If emu catches an "nop" error, update GUI
-			if (logLine.slice(0, 4).toLowerCase() === 'nop '){
-
-				// Update GUI
-				document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = 'Error ( <label class="user-can-select">' + text + '</label>)';
-
-			}
-
-			console.info(logLine);
-		});
-
-	},
-
-	// Reset launcher
-	resetLauncher: function(skipSave){
-		
-		if (APP.emuManager.emuCountdown > 2){
-
-			// (Fix) Avoid log not being saved if launcher doesn't have any game selected
-			var cName = '';
-			if (APP.gameList.selectedGame !== ''){
-				cName = '_' + APP.gameList.list[APP.gameList.selectedGame].name.replace(RegExp(' ', 'gi'), '_');
-			}
-			
-			// Get current date
-			var d = new Date(),
-				saveInfo = '',
-				cTime = '_' + d.toDateString().replace(RegExp(' ', 'gi'), '_') + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds(),
-				logName = 'Log' + cName + cTime + '.log';
-
-			// Skip saving log
-			if (skipSave !== !0){
-
-				// Update log data
-				saveInfo = ' You can see all previous data on \"Logs/' + logName + '\"';
-
-				// Write log file
-				APP.fs.writeFileSync(APP.settings.data.nwPath + '/Logs/' + logName, APP.logData, 'utf-8');
-
-			}
-
-			// Append log info if APP.settings.data.saveLogOnEmuClose is true
-			if (APP.settings.data.saveLogOnEmuClose === !0){
-				saveInfo = saveInfo + '\n\nIMPORTANT - All previous log was cleared because \"Save log file everytime main emu closes\" is active.\nTo Prevent this, you can disable it on settings menu.';
-			}
-
-			// Reset log
-			APP.logData = APP.appVersion;
-			document.getElementById('APP_LOG').value = APP.appVersion;
-			APP.log('INFO - Previous log was cleared!' + saveInfo);
-
-			// Reset countdown
-			APP.emuManager.emuCountdown = 0;
-
-			/*
-				Reload launcher
-				
-				I'm looking after some bugs related for fpPS4 Temmie's launcher not catching some logs...
-				I will keep the line below disabled... for now!
-
-				PS: A simple fix for now is enabling "Log fpPS4 output on external window" on settings menu!
-			*/
-			// chrome.runtime.reload();
-
-		}
-	
-	},
-
 	// Clear Log
-	clearLog: function(skipSave){
+	clearLog: function(){
 
-		APP.emuManager.emuCountdown = 3;
-		this.resetLauncher(skipSave);
+		// Get current date
+		var saveInfo = '',
+			d = new Date(),
+			logName = 'Log_' + d.toDateString().replace(RegExp(' ', 'gi'), '_') + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds() + '.log';
+
+		// Reset log
+		APP.logData = APP.appVersion;
+		document.getElementById('APP_LOG').value = APP.appVersion;
+		APP.log('INFO - Previous log was cleared!' + saveInfo);
 
 	},
 
-	// Run external software
-	execEmuPID: 0,
+	// Run fpPS4
 	execProcess: void 0,
-	runExec: function(exe, args){
+	runfpPS4: function(exe, args){
 
 		if (exe !== void 0 && exe !== ''){
 
@@ -156,62 +85,44 @@ var APP = {
 			*/
 			process.chdir(APP.path.parse(exe).dir);
 
-			// Check if external log window option is enabled
-			if (APP.settings.data.logOnExternalWindow === !1){
-				
-				APP.execProcess = APP.childProcess.spawn(exe, args, {
-					detached: !1
-				});
-				APP.execEmuPID = APP.execProcess.pid;
+			// Window state
+			var winMode;
+			switch (APP.settings.data.logExternalWindowStartMode){
 
-			} else {
+				case 'normal':
+					winMode = '';
+					break;
 
-				// Start window mode
-				var winMode;
-				switch (APP.settings.data.logExternalWindowStartMode){
+				case 'max':
+					winMode = '/MAX';
+					break;
 
-					case 'normal':
-						winMode = '';
-						break;
-
-					case 'max':
-						winMode = '/MAX';
-						break;
-
-					case 'min':
-						winMode = '/MIN';
-						break;
-
-				}
-
-				// Ask user to press any key
-				var pressAnyKey = '';
-				if (APP.settings.data.logExternalWindowPrompt === !0){
-					pressAnyKey = '^& pause';
-				}
-
-				// Transform args into string
-				var gPath = '"' + args[args.indexOf('-e') + 1] + '"',
-					parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
-					execLine = 'start "Running fpPS4 - ' + APP.gameList.selectedGame + '" ' + winMode + ' cmd /C fpPS4.exe ' + parseArgs + ' ' + pressAnyKey;
-
-				// Warn about fpPS4 logs
-				APP.log('IMPORTANT - Since fpPS4 logs are being displayed on a external window, Temmie\'s launcher aren\'t capable of saving it any information with exception of it\'s ' +
-						'exit code. If you want to keep all data, you can do it by disabling \"Log fpPS4 output on external window\" on Settings menu.\n ');
-
-				// Run
-				APP.execProcess = APP.childProcess.exec(execLine);
+				case 'min':
+					winMode = '/MIN';
+					break;
 
 			}
 
+			// Ask user to press any key
+			var pressAnyKey = '';
+			if (APP.settings.data.logExternalWindowPrompt === !0){
+				pressAnyKey = '^& pause';
+			}
+
+			// Transform args into string
+			var gPath = '"' + args[args.indexOf('-e') + 1] + '"',
+				parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
+				execLine = 'start "Running fpPS4 - ' + APP.gameList.selectedGame + '" ' + winMode + ' cmd /C fpPS4.exe ' + parseArgs + ' ' + pressAnyKey;
+
+			// Run
+			APP.execProcess = APP.childProcess.exec(execLine);
+
 			// Log on stdout and stderr
 			APP.execProcess.stdout.on('data', function(data){
-				//APP.processStdOutput(data);
-				APP.log(data.toString());
+				APP.processStdOutput(data);
 			});
 			APP.execProcess.stderr.on('data', function(data){
-				//APP.processStdOutput(data);
-				APP.log(data.toString());
+				APP.processStdOutput(data);
 			});
 
 			// Log on close
@@ -235,12 +146,10 @@ var APP = {
 					APP.clearLog();
 				}
 
-				// Check if need to reset launcher
-				APP.resetLauncher();
-
 				// Scroll game list to last selected game
 				if (APP.gameList.selectedGame !== ''){
 					TMS.css('GAME_ENTRY_' + APP.gameList.selectedGame, {'animation': '0.8s hintGameFocus'});
+					TMS.focus('INPUT_gameListSearch', 100);
 					
 					setTimeout(function(){
 						APP.design.selectGame(APP.gameList.selectedGame);
