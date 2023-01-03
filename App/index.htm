@@ -61,7 +61,7 @@
 
 					<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsGridIconSize">
 						Grid Icon size: 
-						<input type="range" min="116" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);">
+						
 						<label id="LABEL_settingsGridIconSize">???</label>%
 					</div>
 
@@ -189,11 +189,14 @@
 			<!-- Search -->
 			<input type="text" class="INPUT_gameListSearch" id="INPUT_gameListSearch" placeholder="Search: Insert game name..." oninput="APP.gameList.search();">
 
+			<!-- Grid icon size -->
+			<input type="range" min="116" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);APP.design.renderGameList();" onkeyup="APP.design.renderSettings(!0);APP.design.renderGameList();">
+
+			<input type="button" class="APP_btn BTN_actions" id="BTN_REFRESH" onclick="APP.gameList.load();" value="Refresh game list">
+			<input type="button" class="APP_btn BTN_actions" id="BTN_SETTINGS" onclick="APP.design.toggleSettings();" value="Settings">			
+			<input type="button" class="APP_btn BTN_actions" id="BTN_CLEAR_LOG" onclick="APP.clearLog();" value="Clear Log">
+			<input type="button" class="APP_btn BTN_actions" onclick="APP.about();" value="About">
 			<input type="button" class="APP_btn BTN_STOP" id="BTN_KILL" onclick="APP.emuManager.killEmu();" disabled="disabled" value="Stop fpPS4">
-			<input type="button" class="APP_btn BTN_right" onclick="APP.about();" value="About">
-			<input type="button" class="APP_btn BTN_right" id="BTN_CLEAR_LOG" onclick="APP.clearLog();" value="Clear log">
-			<input type="button" class="APP_btn BTN_right" id="BTN_SETTINGS" onclick="APP.design.toggleSettings();" value="Settings">			
-			<input type="button" class="APP_btn BTN_right" id="BTN_REFRESH" onclick="APP.gameList.load();" value="Refresh game list">
 
 		</div>
 

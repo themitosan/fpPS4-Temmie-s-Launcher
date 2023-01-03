@@ -109,7 +109,12 @@ img {
 	width: 100%;
 	height: 22px;
 	padding: 8px;
+	display: flex;
+	flex-wrap: nowrap;
 	position: absolute;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
 	background-image: linear-gradient(45deg, #28467f, #1c325f);
 }
 .DIV_OPTIONS {
@@ -404,23 +409,25 @@ img {
 	padding-bottom: 4px;
 	margin: 2px 0px 2px 0px;
 }
-.BTN_right {
-	float: right;
-	margin-right: 8px;
+.BTN_actions {
+	margin-left: 2px;
+	margin-right: 2px;
 }
 .INPUT_gameListSearch {
+	width: 196px;
 	margin: -8px;
 	border: none;
 	outline: none;
 	color: #fffb8e;
+	text-align: center;
 	font-family: monospace;
 	background-image: none;
 	background-color: #0000;
-	width: calc(100% - 628px);
+	margin: 0px 16px 0px 16px;
 	padding: 12px 0px 12px 6px;
 }
 .INPUT_gameListSearch:focus {
-	background-image: linear-gradient(45deg, #36185eb0, #0000);
+	background-image: linear-gradient(90deg, #0000, #36185eb0, #0000);
 }
 .APP_LOG {
 	color: #0f0;
@@ -445,9 +452,8 @@ img {
 	margin-top: 2px;
 }
 .BTN_STOP {
-	float: right;
-	margin-right: 16px;
-	padding: 1px 98px 1px 100px;
+	margin: 0px 4px 0px 4px;
+	padding: 1px 70px 1px 70px;
 }
 .BTN_SAVE {
 	font-size: 18px;

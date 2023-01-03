@@ -51,6 +51,7 @@ temp_DESIGN = {
 		// Process game list
 		Object.keys(gList).forEach(function(cGame){
 
+			// Settings for display mode: Normal
 			var appTitle = '',
 				gameBgAndIcon,
 				gameEntryStyle = '',
@@ -79,21 +80,26 @@ temp_DESIGN = {
 				gameMetadata = '';
 			}
 
-			// Display mode: Compact
-			if (APP.settings.data.gameListMode === 'compact'){
-				gameMetadata = '';
-				gameBgAndIcon = '';
-				appNameClass = 'LABEL_gameTitleCompact';
-				classDisplayEntryMode = ' GAME_ENTRY_COMPACT';
-			}
+			// Display modes
+			switch (APP.settings.data.gameListMode){
 
-			// Display mode: Grid
-			if (APP.settings.data.gameListMode === 'grid'){
-				appTitle = gList[cGame].name;
-				classGameDetailsMode = 'none';
-				classDisplayEntryMode = ' GAME_ENTRY_GRID';
-				gameEntryStyle = 'border-radius: ' + APP.settings.data.gridBorderRadius + 'px;'
-				gameBgAndIcon = '<div class="none" style="background-image: ' + bgPath + '";></div><img class="IMG_GAME_ICON IMG_GRID" style="width: ' + gridIconSize + 'px;" src="' + gList[cGame].icon + '">';
+				// Display mode: Compact
+				case 'compact':
+					gameMetadata = '';
+					gameBgAndIcon = '';
+					appNameClass = 'LABEL_gameTitleCompact';
+					classDisplayEntryMode = ' GAME_ENTRY_COMPACT';
+					break;
+
+				// Display mode: Grid
+				case 'grid':
+					appTitle = gList[cGame].name;
+					classGameDetailsMode = 'none';
+					classDisplayEntryMode = ' GAME_ENTRY_GRID';
+					gameEntryStyle = 'border-radius: ' + APP.settings.data.gridBorderRadius + 'px;'
+					gameBgAndIcon = '<div class="none" style="background-image: ' + bgPath + '";></div><img class="IMG_GAME_ICON IMG_GRID" style="width: ' + gridIconSize + 'px;" src="' + gList[cGame].icon + '">';
+					break;
+
 			}
 
 			/*
@@ -356,7 +362,11 @@ temp_DESIGN = {
 		});
 
 		showList.forEach(function(cElement){
-			TMS.css(cElement, {'display': 'block'});
+			if (cElement === 'DIV_ACTIONS'){
+				TMS.css(cElement, {'display': 'flex'});
+			} else {
+				TMS.css(cElement, {'display': 'block'});
+			}
 		});
 
 		// Render Settings
@@ -406,6 +416,11 @@ temp_DESIGN = {
 		document.getElementById('RANGE_settingsEmuRunningBgOpacity').value = cSettings.bgEmuOpacity;
 		document.getElementById('RANGE_settingsGridIconBorderRadius').value = cSettings.gridBorderRadius;
 
+		// Fix for grid size
+		if (cSettings.gridIconSize > 512){
+			cSettings.gridIconSize = 512;
+		}
+
 		// Update settings GUI
 		this.updateLauncherSettingsGUI();
 
@@ -420,12 +435,18 @@ temp_DESIGN = {
 
 			case 'normal':
 				TMS.css('DIV_settingsGridOptions', {'display': 'none'});
+				TMS.css('RANGE_settingsGridIconSize', {'display': 'none'});
 				TMS.css('DIV_settingsShowBgOnGameEntry', {'display': 'flex'});
+				break;
+
+			case 'compact':
+				TMS.css('RANGE_settingsGridIconSize', {'display': 'none'});
 				break;
 
 			case 'grid':
 				TMS.css('DIV_settingsGridOptions', {'display': 'block'});
 				TMS.css('DIV_settingsShowBgOnGameEntry', {'display': 'none'});
+				TMS.css('RANGE_settingsGridIconSize', {'display': 'inline-block'});
 				break;
 
 		}
