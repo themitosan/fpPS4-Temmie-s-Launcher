@@ -112,7 +112,7 @@ var APP = {
 			// Transform args into string
 			var gPath = '"' + args[args.indexOf('-e') + 1] + '"',
 				parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
-				execLine = 'start "Running fpPS4 - ' + APP.gameList.selectedGame + '" ' + winMode + ' cmd /C fpPS4.exe ' + parseArgs + ' ' + pressAnyKey;
+				execLine = 'start "Running fpPS4 - ' + APP.gameList.selectedGame + '" ' + winMode + ' cmd /C ' + APP.path.parse(APP.settings.data.emuPath).base + ' ' + parseArgs + ' ' + pressAnyKey;
 
 			// Run
 			APP.execProcess = APP.childProcess.exec(execLine);

@@ -11,8 +11,8 @@ html, body {
 	overflow: hidden;
 	user-select: none;
 	font-family: monospace;
-	background-color: #000;
 	scroll-behavior: smooth;
+	background-color: #0f1e3e;
 	text-shadow: 2px 2px 4px #000;
 }
 code {
@@ -26,12 +26,12 @@ select, input[type='button'], input[type='checkbox'] {
 	outline: none;
 	cursor: pointer;
 }
-input[disabled='disabled'], input[disabled] {
-	cursor: no-drop;
-}
 input[type='range'] {
 	outline: none;
 	cursor: col-resize;
+}
+input[disabled='disabled'], input[disabled] {
+	cursor: no-drop;
 }
 img {
 	-webkit-user-drag: none;
@@ -85,7 +85,7 @@ img {
 	left: 0px;
 	z-index: 20;
 	width: 100%;
-	transition: 0.1s;
+	transition: 0.2s;
 	overflow: hidden;
 	position: absolute;
 	background-color: #162a50;
