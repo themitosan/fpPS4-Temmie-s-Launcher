@@ -79,6 +79,9 @@ temp_EMUMANAGER = {
 			this.emuRunning = !1;
 		});
 
+		// Update status
+		document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = 'Main process closed - close fpPS4 log window to go back';
+
 	}
 
 }

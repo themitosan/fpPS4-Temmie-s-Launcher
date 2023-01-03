@@ -390,7 +390,6 @@ temp_DESIGN = {
 		document.getElementById('LBL_SETTINGS_gamePath').innerHTML = cSettings.gamePath;
 		document.getElementById('LABEL_settingsGameListBgBlur').innerHTML = APP.tools.parsePercentage(cSettings.bgListBlur, 6);
 		document.getElementById('LABEL_settingsEmuRunningBgBlur').innerHTML = APP.tools.parsePercentage(cSettings.bgEmuBlur, 6);
-		document.getElementById('LABEL_settingsGridIconSize').innerHTML = APP.tools.parsePercentage(cSettings.gridIconSize, 512);
 		document.getElementById('LABEL_settingsGameListBgOpacity').innerHTML = APP.tools.parsePercentage(cSettings.bgListOpacity, 1);
 		document.getElementById('LABEL_settingsEmuRunningBgOpacity').innerHTML = APP.tools.parsePercentage(cSettings.bgEmuOpacity, 1);
 		document.getElementById('LABEL_settingsGridBorderRadius').innerHTML = APP.tools.parsePercentage(cSettings.gridBorderRadius, 26);

@@ -147,7 +147,7 @@ temp_SETTINGS = {
 				try {
 					APP.fs.mkdirSync(mainPath + cPath);
 				} catch (err) {
-					APP.log('Unable to create path!\n(' + mainPath + cPath + ')\n' + err);
+					APP.log('ERROR - Unable to create path!\n(' + mainPath + cPath + ')\n' + err);
 				}
 				
 			}
