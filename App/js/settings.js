@@ -165,7 +165,7 @@ temp_SETTINGS = {
 		}
 		if (APP.fs.existsSync(this.data.emuPath) === !0){
 
-			APP.log('INFO - Main fpPS4 was found!\nPath: ' + APP.settings.data.emuPath);
+			APP.log('INFO - Main fpPS4 was found!\nPath: ' + APP.settings.data.emuPath + '\n ');
 
 		} else {
 

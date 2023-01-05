@@ -62,14 +62,13 @@ var APP = {
 	clearLog: function(){
 
 		// Get current date
-		var saveInfo = '',
-			d = new Date(),
+		var d = new Date(),
 			logName = 'Log_' + d.toDateString().replace(RegExp(' ', 'gi'), '_') + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds() + '.log';
 
 		// Reset log
 		APP.logData = APP.appVersion;
 		document.getElementById('APP_LOG').value = APP.appVersion;
-		APP.log('INFO - Previous log was cleared!' + saveInfo);
+		APP.log('INFO - Previous log was cleared!\n ');
 
 	},
 
@@ -237,7 +236,7 @@ window.onload = function(){
 		// Kill fpPS4 process if is active
 		APP.emuManager.killEmu(!0);
 
-		// Set focus on search Bar
+		// Focus search field
 		TMS.focus('INPUT_gameListSearch', 100);
 
 		// Remove all previous imported modules

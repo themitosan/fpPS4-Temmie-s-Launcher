@@ -42,10 +42,13 @@ temp_DESIGN = {
 	renderGameList: function(customList){
 
 		var tempHtml = '',
-			gList = customList;
+			gList = customList,
+			sQuery = document.getElementById('INPUT_gameListSearch').value,
+			logStatus = 'Searching list for \"' + sQuery + '\"';
 		
 		if (customList === void 0){
 			gList = APP.gameList.list;
+			logStatus = 'Game list was loaded sucessfully!';
 		}
 
 		// Process game list
@@ -112,8 +115,14 @@ temp_DESIGN = {
 		// Insert HTML
 		document.getElementById('DIV_LIST_INTERNAL').innerHTML = tempHtml;
 
+		// Log status
+		APP.log('INFO - ' + logStatus + ' (' + Object.keys(gList).length + ' entries found)');
+
 		// Clear BG image
 		TMS.css('DIV_GAMELIST_BG', {'background-image': 'none'});
+
+		// Focus search field
+		TMS.focus('INPUT_gameListSearch');
 
 		// Update GUI
 		this.update();

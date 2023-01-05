@@ -122,7 +122,6 @@ temp_GAMELIST = {
 						paramSfo = {},
 						appId = gPath,
 						appName = gPath,
-						paramSfoAvailable = !1,
 						iconList = [
 							'sce_sys/icon0.png',
 							'sce_sys/icon1.png'
@@ -132,8 +131,11 @@ temp_GAMELIST = {
 							'sce_sys/pic0.png'
 						],
 						pathBase = APP.settings.data.gamePath + '/' + gPath + '/',
+						executableName = pathBase + 'eboot.bin',
 						paramSfoPath = pathBase + 'sce_sys/param.sfo',
-						executableName = pathBase + 'eboot.bin';
+						playGoPath = pathBase + 'sce_sys/playgo-chunk.dat',
+						playGoAvailable = APP.fs.existsSync(playGoPath),
+						paramSfoAvailable = APP.fs.existsSync(paramSfoPath);
 		
 					// If eboot.bin doesn't exists, look for any .elf file
 					if (APP.fs.existsSync(executableName) !== !0){
@@ -177,14 +179,19 @@ temp_GAMELIST = {
 					if (APP.fs.existsSync(appBg) === !1){
 						appBg = APP.settings.data.nwPath + '/app/img/404_BG.png';
 					}
-		
+
+					// Warn if playgo-chunk isn't available
+					if (playGoAvailable !== !0){
+						APP.log('WARN - Unable to locate playgo-chunk for ' + appName + '!\nIf this isn\'t a homebrew, check if this App / Game was dumped properly.');
+					}
+
 					// Warn if PARAM.SFO isn't present
-					if (APP.fs.existsSync(paramSfoPath) !== !0){
+					if (paramSfoAvailable !== !0){
 						APP.log('WARN - Unable to locate PARAM.SFO for ' + appName + '!\nIf this isn\'t a homebrew, check if this App / Game was dumped properly.');
 					}
 
 					// If PARAM.SFO is present (and enabled), get metadata
-					if (APP.settings.data.enableParamSfo === !0 && APP.fs.existsSync(paramSfoPath) === !0){
+					if (APP.settings.data.enableParamSfo === !0 && paramSfoAvailable === !0){
 						
 						// Set PARAM.SFO variables
 						paramSfoAvailable = !0;
@@ -207,6 +214,7 @@ temp_GAMELIST = {
 							folderName: gPath,
 							paramSfo: paramSfo,
 							exe: executableName,
+							playGoAvailable: playGoAvailable, 
 							paramSfoAvailable: paramSfoAvailable
 						}
 
@@ -217,7 +225,7 @@ temp_GAMELIST = {
 			} else {
 
 				// No games / homebrew found
-				APP.log('INFO - No games / homebrew were detected on current path (' + APP.settings.data.gamePath + ')');
+				APP.log('INFO - No Apps / Games were detected on current path (' + APP.settings.data.gamePath + ')');
 
 			}
 
