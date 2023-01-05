@@ -124,18 +124,12 @@ temp_GAMELIST = {
 						appName = gPath,
 						paramSfoAvailable = !1,
 						iconList = [
-							'sce_sys/icon.png',
 							'sce_sys/icon0.png',
-							'sce_sys/icon1.png',
-							'icon.png',
-							'icon0.png',
-							'icon1.png'
+							'sce_sys/icon1.png'
 						],
 						backgroundList = [
 							'sce_sys/pic1.png',
-							'sce_sys/pic0.png',
-							'pic1.png',
-							'pic0.png'
+							'sce_sys/pic0.png'
 						],
 						pathBase = APP.settings.data.gamePath + '/' + gPath + '/',
 						paramSfoPath = pathBase + 'sce_sys/param.sfo',
