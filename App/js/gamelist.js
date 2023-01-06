@@ -84,7 +84,7 @@ temp_GAMELIST = {
 		} else {
 
 			// Skip updating settings
-			fLog = 'INFO - (' + APP.gameList.selectedGame + ') Skip updating settings file since it had no changes!';			
+			fLog = 'INFO - (' + APP.gameList.selectedGame + ') Skip updating settings file since it has no changes!';			
 
 		}
 
@@ -225,7 +225,7 @@ temp_GAMELIST = {
 			} else {
 
 				// No games / homebrew found
-				APP.log('INFO - No Apps / Games were detected on current path (' + APP.settings.data.gamePath + ')');
+				APP.log('INFO - No apps / games were detected on current path (' + APP.settings.data.gamePath + ')');
 
 			}
 
@@ -295,7 +295,7 @@ temp_GAMELIST = {
 			if (Object.keys(listRender).length !== 0){
 				APP.design.renderGameList(listRender);
 			} else {
-				document.getElementById('DIV_LIST_INTERNAL').innerHTML = '<div class="DIV_noGameFound">Unable to find \"' + searchQuery + '\" :(</div>';
+				document.getElementById('DIV_LIST_INTERNAL').innerHTML = '<div class="DIV_noGameFound">Unable to find \"' + searchQuery + '\" </div>';
 			}
 
 		} else {
@@ -335,7 +335,7 @@ temp_GAMELIST = {
 
 		const cGame = this.selectedGame,
 			fName = APP.settings.data.gamePath + '/' + this.list[cGame].folderName + '/launcherSettings.json',
-			conf = window.confirm('WARN - This will delete all saved settings this title:\n' + this.list[cGame].name + '\n\nDo you want to continue?');
+			conf = window.confirm('WARN - This will delete all saved settings on this title:\n' + this.list[cGame].name + '\n\nDo you want to continue?');
 
 		if (this.selectedGame !== '' && APP.fs.existsSync(fName) === !0 && conf === !0){
 
@@ -382,7 +382,7 @@ temp_GAMELIST = {
 				APP.settings.data.removedLibModules = !0;
 				APP.settings.save();
 
-				APP.log('INFO - All previous imported modules using this launcher was removed since it could be harmfull to your game dumps.');
+				APP.log('INFO - All previous imported modules using this launcher was removed since it could be harmful to your game dumps.');
 
 			} catch (err) {
 				console.error(err);
