@@ -184,7 +184,7 @@
 			<input type="text" class="INPUT_gameListSearch" id="INPUT_gameListSearch" placeholder="Search: Insert game name..." oninput="APP.gameList.search();">
 
 			<!-- Grid icon size -->
-			<input type="range" min="116" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);APP.design.renderGameList();" onkeyup="APP.design.renderSettings(!0);APP.design.renderGameList();">
+			<input type="range" min="50" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);APP.design.renderGameList({displayLog: !1});">
 
 			<input type="button" class="APP_btn BTN_actions" id="BTN_REFRESH" onclick="APP.gameList.load();" value="Refresh game list">
 			<input type="button" class="APP_btn BTN_actions" id="BTN_SETTINGS" onclick="APP.design.toggleSettings();" value="Settings">			
@@ -214,11 +214,16 @@
 					<!-- Hacks goes here -->
 				</div>
 
+				<!-- App / Game integrity -->
+				<div class="DIV_labelSelectedGame">
+					Dump status: <div class="DIV_selectedGameStatus" id="DIV_selectedGameStatus"></div>
+				</div>
+
 				<!-- Launcher Options -->
 				Launcher Options
 				<input type="button" class="BTN_launcherOptions" value="Open App / Game location" onclick="APP.gameList.openGameLocation();">
 				<input type="button" class="BTN_launcherOptions" value="Reset settings file" onclick="APP.gameList.resetGameSettings();">
-				<input type="button" class="BTN_launcherOptions" disabled="disabled" id="BTN_launcherOptionsExportMetadata" value="Export game metadata" onclick="APP.gameList.exportGameMetadata();">
+				<input type="button" class="BTN_launcherOptions" disabled="disabled" id="BTN_launcherOptionsExportMetadata" value="Export metadata" onclick="APP.gameList.exportGameMetadata();">
 
 			</div>
 

@@ -60,7 +60,7 @@ temp_SETTINGS = {
 	},
 
 	// Load settings
-	load: function() {
+	load: function(){
 
 		// Get launcher main dir before settings load
 		var updateSettings = !1,
@@ -114,7 +114,7 @@ temp_SETTINGS = {
 	},
 
 	// Save settings
-	save: function() {
+	save: function(){
 		
 		// Get launcher main dir before settings load
 		const nwPath = APP.tools.fixPath(nw.__dirname);
@@ -128,16 +128,14 @@ temp_SETTINGS = {
 	},
 
 	// Check paths
-	checkPaths: function() {
+	checkPaths: function(){
 
 		// Fix path
 		this.data.nwPath = APP.tools.fixPath(nw.__dirname);
 
-		const mainPath = this.data.nwPath,
-			pathList = [
-				'/Emu',
-				'/Games'
-			];
+		var logMessage = '',
+			mainPath = this.data.nwPath,
+			pathList = ['/Emu', '/Games'];
 
 		// Try create required paths
 		pathList.forEach(function(cPath){
@@ -165,20 +163,22 @@ temp_SETTINGS = {
 		}
 		if (APP.fs.existsSync(this.data.emuPath) === !0){
 
-			APP.log('INFO - Main fpPS4 was found!\nPath: ' + APP.settings.data.emuPath + '\n ');
+			logMessage = 'INFO - Main fpPS4 was found!\nPath: ' + APP.settings.data.emuPath + '\n ';
 
 		} else {
 
-			const errMsg = 'ERROR - Unable to locate main fpPS4 executable!\nMake sure to select it on settings or insert it on \"Emu\" folder and click on ok.';
-			window.alert(errMsg);
-			APP.log(errMsg);
+			logMessage = 'ERROR - Unable to locate main fpPS4 executable!\nMake sure to select it on settings or insert it on \"Emu\" folder and click on ok.';
+			window.alert(logMessage);
 
 		}
+
+		// Log message
+		APP.log(logMessage);
 
 	},
 
 	// Select path
-	selectPath: function(data) {
+	selectPath: function(data){
 
 		APP.fileManager.selectPath(function(newGamePath){
 			document.getElementById(data.label).innerHTML = newGamePath;
@@ -190,7 +190,7 @@ temp_SETTINGS = {
 	},
 
 	// Select file
-	selectFile: function(data) {
+	selectFile: function(data){
 
 		APP.fileManager.selectFile(data.extension, function(newEmuPath){
 			document.getElementById(data.label).innerHTML = newEmuPath;
@@ -202,7 +202,7 @@ temp_SETTINGS = {
 	},
 
 	// Reset all game settings
-	resetAllGameSettings: function() {
+	resetAllGameSettings: function(){
 
 		// Confirm action
 		const conf = window.confirm('WARN - This option will remove ALL saved settings from your game list.\nDo you want to continue?');

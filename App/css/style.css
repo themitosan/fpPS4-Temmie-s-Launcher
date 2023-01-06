@@ -218,8 +218,9 @@ img {
 	padding: 0px;
 	display: table;
 	box-shadow: none;
-	min-width: 116px;
-	min-height: 116px;
+	min-width: 50px;
+	min-height: 50px;
+	height: max-content;
 	border-radius: 8px;
 	max-width: max-content;
 	max-height: max-content;
@@ -358,6 +359,23 @@ img {
 	align-content: center;
 	justify-content: center;
 }
+.DIV_selectedGameStatus {
+	width: 12px;
+	height: 12px;
+	cursor: help;
+	margin-left: 4px;
+	border-radius: 100%;
+	background-color: #000;
+}
+.DIV_ICON_STATUS_OK {
+	background-image: linear-gradient(180deg, #0f0, #080);
+}
+.DIV_ICON_STATUS_WARN {
+	background-image: linear-gradient(180deg, #fbe800, #9f8d0c);
+}
+.DIV_ICON_STATUS_HB {
+	background-image: linear-gradient(180deg, #63fdf6, #28b1ab);
+}
 .DIV_noGameFound {
 	top: 0px;
 	left: 0px;
@@ -484,7 +502,8 @@ img {
 */
 .LABEL_gameTitleOptions {
 	width: 100%;
-	font-size: 16px;
+	font-size: 18px;
+	font-family: system-ui;
 }
 .LABEL_detailsGameName {
 	font-size: 28px;

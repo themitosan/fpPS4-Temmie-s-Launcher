@@ -232,12 +232,13 @@ window.onload = function(){
 
 		// Rener hack list
 		APP.design.renderHacklist();
+		APP.design.renderLabelTitles();
 
 		// Kill fpPS4 process if is active
 		APP.emuManager.killEmu(!0);
 
 		// Focus search field
-		TMS.focus('INPUT_gameListSearch', 100);
+		TMS.focus('INPUT_gameListSearch');
 
 		// Remove all previous imported modules
 		APP.gameList.removeAllModules();

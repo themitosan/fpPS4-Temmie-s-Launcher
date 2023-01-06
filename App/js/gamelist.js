@@ -27,7 +27,7 @@ temp_GAMELIST = {
 			gameSettings = {
 				name: data.name,
 				hacks: data.hacks,
-				paramSfo: data.paramSfo,
+				isHomebrew: data.isHomebrew,
 				importedModules: data.importedModules
 			}
 
@@ -35,7 +35,7 @@ temp_GAMELIST = {
 		try {
 
 			APP.fs.writeFileSync(data.path, JSON.stringify(gameSettings), 'utf-8');
-			logMessage = 'INFO - Settings file was created successfully for ' + data.name + '!\nPath: ' + data.path;
+			logMessage = 'INFO - Settings file was created successfully for ' + data.name;
 		
 		} catch (err) {
 
@@ -122,6 +122,7 @@ temp_GAMELIST = {
 						paramSfo = {},
 						appId = gPath,
 						appName = gPath,
+						isHomebrew = !1,
 						iconList = [
 							'sce_sys/icon0.png',
 							'sce_sys/icon1.png'
@@ -144,6 +145,7 @@ temp_GAMELIST = {
 						var fList = APP.fs.readdirSync(pathBase),
 							execName = fList.filter(function(fName){
 								if (fName.toLowerCase().indexOf('.elf') !== -1){
+									isHomebrew = !0;
 									return fName;
 								}
 							})[0];
@@ -180,13 +182,13 @@ temp_GAMELIST = {
 						appBg = APP.settings.data.nwPath + '/app/img/404_BG.png';
 					}
 
-					// Warn if playgo-chunk isn't available
-					if (playGoAvailable !== !0){
-						APP.log('WARN - Unable to locate playgo-chunk for ' + appName + '!\nIf this isn\'t a homebrew, check if this App / Game was dumped properly.');
+					// Warn if playgo-chunk.dat isn't available
+					if (isHomebrew === !1 && playGoAvailable !== !0){
+						APP.log('WARN - Unable to locate playgo-chunk.dat for ' + appName + '!\nIf this isn\'t a homebrew, check if this App / Game was dumped properly.');
 					}
 
-					// Warn if PARAM.SFO isn't present
-					if (paramSfoAvailable !== !0){
+					// Warn if PARAM.SFO isn't available
+					if (isHomebrew === !1 && paramSfoAvailable !== !0){
 						APP.log('WARN - Unable to locate PARAM.SFO for ' + appName + '!\nIf this isn\'t a homebrew, check if this App / Game was dumped properly.');
 					}
 
@@ -194,7 +196,6 @@ temp_GAMELIST = {
 					if (APP.settings.data.enableParamSfo === !0 && paramSfoAvailable === !0){
 						
 						// Set PARAM.SFO variables
-						paramSfoAvailable = !0;
 						paramSfo = APP.paramSfo.parse(paramSfoPath);
 
 						// Set game entry
@@ -214,8 +215,7 @@ temp_GAMELIST = {
 							folderName: gPath,
 							paramSfo: paramSfo,
 							exe: executableName,
-							playGoAvailable: playGoAvailable, 
-							paramSfoAvailable: paramSfoAvailable
+							isHomebrew: isHomebrew
 						}
 
 					}
@@ -293,7 +293,7 @@ temp_GAMELIST = {
 
 			// Render new list
 			if (Object.keys(listRender).length !== 0){
-				APP.design.renderGameList(listRender);
+				APP.design.renderGameList({customList: listRender, displayLog: !1});
 			} else {
 				document.getElementById('DIV_LIST_INTERNAL').innerHTML = '<div class="DIV_noGameFound">Unable to find \"' + searchQuery + '\" </div>';
 			}
@@ -304,6 +304,49 @@ temp_GAMELIST = {
 			APP.gameList.load();
 		
 		}
+
+	},
+
+	// Check dump status
+	checkDumpStatus: function(){
+
+		var cGameStatus = 'DIV_ICON_STATUS_OK',
+			cGame = this.list[this.selectedGame],
+			fileList = [
+				'param.sfo'
+			],
+			cGameStatusList = ['DIV_ICON_STATUS_OK', 'DIV_ICON_STATUS_WARN', 'DIV_ICON_STATUS_HB'],
+			gPath = APP.settings.data.gamePath + '/' + cGame.folderName;
+
+		// Process check for single files (like param.sfo)
+		fileList.forEach(function(cFile){
+			if (APP.fs.existsSync(gPath + '/sce_sys/' + cFile) !== !0){
+				cGameStatus = 'DIV_ICON_STATUS_WARN';
+			}
+		});
+
+		// Check if playgo-chunk.dat exists
+		if (APP.fs.existsSync(gPath + '/sce_sys/playgo-chunk.dat') !== !0){
+			cGameStatus = 'DIV_ICON_STATUS_WARN';
+			
+			// Check if playgo-chunk.dat is inside app folder
+			if (APP.fs.existsSync(gPath + '/sce_sys/app/playgo-chunk.dat') === !0){
+				APP.fs.copyFileSync(gPath + '/sce_sys/app/playgo-chunk.dat', gPath + '/sce_sys/playgo-chunk.dat');
+				APP.log('INFO - (' + this.list[this.selectedGame].name + ') playgo-chunk.dat was found inside sce_sys/app - a new copy was created on sce_sys.');
+			}
+		
+		}
+
+		// Check if is homebrew (.elf)
+		if (cGame.isHomebrew === !0){
+			cGameStatus = 'DIV_ICON_STATUS_HB';
+		}
+
+		// Set app / game dump status
+		cGameStatusList.forEach(function(cList){
+			TMS.removeClass('DIV_selectedGameStatus', cList)
+		});
+		TMS.addClass('DIV_selectedGameStatus', cGameStatus);
 
 	},
 
@@ -319,7 +362,7 @@ temp_GAMELIST = {
 	// Export game metadata
 	exportGameMetadata: function(){
 
-		if (this.selectedGame !== '' && this.list[this.selectedGame].paramSfoAvailable === !0){
+		if (this.selectedGame !== '' && Object.keys(this.list[this.selectedGame].paramSfo).length !== 0){
 
 			APP.fileManager.saveFile(this.selectedGame + '_metadata', '.json', 'utf-8', JSON.stringify(this.list[this.selectedGame].paramSfo), function(cPath){
 				window.alert('INFO - Save successfull!\nPath: ' + cPath);
@@ -335,7 +378,7 @@ temp_GAMELIST = {
 
 		const cGame = this.selectedGame,
 			fName = APP.settings.data.gamePath + '/' + this.list[cGame].folderName + '/launcherSettings.json',
-			conf = window.confirm('WARN - This will delete all saved settings on this title:\n' + this.list[cGame].name + '\n\nDo you want to continue?');
+			conf = window.confirm('WARN - This will delete all saved settings for \n' + this.list[cGame].name + '\n\nDo you want to continue?');
 
 		if (this.selectedGame !== '' && APP.fs.existsSync(fName) === !0 && conf === !0){
 
@@ -367,6 +410,7 @@ temp_GAMELIST = {
 	// Process remove modules
 	removeAllModules: function(){
 
+		// Check if this process already happened
 		if (APP.settings.data.removedLibModules === !1){
 
 			try {
@@ -379,6 +423,7 @@ temp_GAMELIST = {
 
 				}); 
 
+				// Update settings
 				APP.settings.data.removedLibModules = !0;
 				APP.settings.save();
 
@@ -402,29 +447,29 @@ temp_GAMELIST = {
 				mList = this.cGameSettings.importedModules,
 				mDir = APP.settings.data.gamePath + '/' + APP.gameList.list[gName].folderName + '/sce_module/';
 
-				// Try removing modules
-				mList.forEach(function(mName){
+			// Try removing modules
+			mList.forEach(function(mName){
 
-					try {
-						
-						APP.fs.unlinkSync(mDir + mName);
-						mList.splice(mList.indexOf(mName), 1);
-						cMessage = 'INFO - (' + gName + ') Removing module: ' + mName
+				try {
 
-					} catch (err) {
-						
-						console.error(err);
-						cMessage = 'ERROR - Unable to remove modules!\nReason: ' + err;
-						
-					}
+					APP.fs.unlinkSync(mDir + mName);
+					mList.splice(mList.indexOf(mName), 1);
+					cMessage = 'INFO - (' + gName + ') Removing module: ' + mName;
 
-					// Log status
-					APP.log(cMessage);
+				} catch (err) {
+					
+					console.error(err);
+					cMessage = 'ERROR - Unable to remove modules!\nReason: ' + err;
+					
+				}
 
-				});
+				// Log status
+				APP.log(cMessage);
 
-				// Update settings file
-				this.saveGameSettings(!0);
+			});
+
+			// Update settings file
+			this.saveGameSettings(!0);
 
 		}
 

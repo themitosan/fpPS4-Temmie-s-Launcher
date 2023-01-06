@@ -12,7 +12,10 @@
 
 temp_DESIGN = {
 
-	// Hack List
+	/*
+		Hack List
+		If red-prig implements a new one, just add it on this list!
+	*/
 	hackList: [
 		'DEPTH_DISABLE_HACK',
 		'COMPUTE_DISABLE_HACK',
@@ -31,6 +34,7 @@ temp_DESIGN = {
 					   '\');">Enable ' + hackName + '</label><br>';
 		});
 
+		// Append html
 		document.getElementById('DIV_HACK_LIST').innerHTML = htmlTemp;
 
 		// Render GUI
@@ -38,17 +42,27 @@ temp_DESIGN = {
 
 	},
 
+	// Render label titles
+	renderLabelTitles: function(){
+
+		// App / game status
+		document.getElementById('DIV_selectedGameStatus').title = 'Green: All files are present\nYellow: Some files are missing - check log for more details\nCyan: Executable is a .elf file';
+
+	},
+
 	// Render game list
-	renderGameList: function(customList){
+	renderGameList: function(data){
 
 		var tempHtml = '',
-			gList = customList,
-			sQuery = document.getElementById('INPUT_gameListSearch').value,
-			logStatus = 'Searching list for \"' + sQuery + '\"';
+			gList = APP.gameList.list,
+			sQuery = document.getElementById('INPUT_gameListSearch').value;
 		
-		if (customList === void 0){
-			gList = APP.gameList.list;
-			logStatus = 'Game list was loaded sucessfully!';
+		if (data === void 0){
+			data = {};
+		}
+
+		if (data.customList !== void 0){
+			gList = data.customList;
 		}
 
 		// Process game list
@@ -116,7 +130,9 @@ temp_DESIGN = {
 		document.getElementById('DIV_LIST_INTERNAL').innerHTML = tempHtml;
 
 		// Log status
-		APP.log('INFO - ' + logStatus + ' (' + Object.keys(gList).length + ' entries found)');
+		if (data.displayLog !== !1){
+			APP.log('INFO - Game list was loaded sucessfully! (' + Object.keys(gList).length + ' entries found)');
+		}
 
 		// Clear BG image
 		TMS.css('DIV_GAMELIST_BG', {'background-image': 'none'});
@@ -132,16 +148,17 @@ temp_DESIGN = {
 	// Select game
 	selectGame: function(gameName){
 
-		// Settings file
 		var exportButtonStatus = 'disabled',
-			folderName = APP.gameList.list[gameName].folderName, 
+			gData = APP.gameList.list[gameName],
+			folderName = gData.folderName, 
 			settingsFile = APP.settings.data.gamePath + '/' + folderName + '/launcherSettings.json';
 
-		if (APP.gameList.list[gameName] !== void 0){
+		if (gData !== void 0){
 
 			// Select game and update GUI
 			APP.gameList.selectedGame = gameName;
 			APP.design.update();
+			APP.gameList.checkDumpStatus();
 
 			// Check if game config exists
 			if (APP.fs.existsSync(settingsFile) === !1){
@@ -154,11 +171,11 @@ temp_DESIGN = {
 
 				// Create settings file
 				APP.gameList.createGameSettings({
-					hacks: hList,
+					hacks: hList, 
+					name: gData.name,
 					path: settingsFile,
 					importedModules: [],
-					name: APP.gameList.list[gameName].name,
-					paramSfo: APP.gameList.list[gameName].paramSfo
+					isHomebrew: gData.isHomebrew
 				});
 
 			}
@@ -171,12 +188,6 @@ temp_DESIGN = {
 			Object.keys(gSettings.hacks).forEach(function(hackName){
 				document.getElementById('CHECK_' + hackName).checked = JSON.parse(gSettings.hacks[hackName]);
 			});
-
-			// If PARAM.SFO exists, enable export button
-			if (APP.gameList.list[gameName].paramSfoAvailable === !0){
-				exportButtonStatus = '';
-			}
-			document.getElementById('BTN_launcherOptionsExportMetadata').disabled = exportButtonStatus;
 
 		}
 
@@ -254,15 +265,6 @@ temp_DESIGN = {
 
 		}
 
-		// Get selected game
-		var cGame = APP.gameList.list[APP.gameList.selectedGame],
-			gName = 'No game selected';
-
-		// If no game is selected, disable run button
-		if (APP.gameList.selectedGame === ''){
-			document.getElementById('BTN_RUN').disabled = 'disabled';
-		}
-
 		// Fix for grid mode
 		if (APP.settings.data.gameListMode === 'grid'){
 			TMS.addClass('DIV_LIST_INTERNAL', 'DIV_LIST_GRID');
@@ -270,16 +272,32 @@ temp_DESIGN = {
 			TMS.removeClass('DIV_LIST_INTERNAL', 'DIV_LIST_GRID');
 		}
 
-		// If selected game exists, get it's name
-		if (cGame !== void 0){
-			gName = cGame.name;
+		// Get selected game
+		var cGame = APP.gameList.list[APP.gameList.selectedGame],
+			exportButtonStatus = 'disabled',
+			gName = 'No game selected';
 
-			// If PARAM.SFO exists for selected game, add 
-			if (cGame.paramSfoAvailable === !0){
+		// If no game is selected, disable run button
+		if (APP.gameList.selectedGame === ''){
+			document.getElementById('BTN_RUN').disabled = 'disabled';
+		}
+
+		// If selected game exists
+		if (cGame !== void 0){
+
+			// Set game name
+			gName = '<div class="LABEL_gameTitleOptions">' + cGame.name + '</div>';
+
+			// If PARAM.SFO exists for selected game
+			if (Object.keys(cGame.paramSfo).length !== 0){
+				exportButtonStatus = '';
 				gName = '<div class="LABEL_gameTitleOptions">' + cGame.name + '</div><br><label class="user-can-select">' + cGame.paramSfo.TITLE_ID + '</label>';
 			}
 
 		}
+		
+		// Enable / disable export metadata 
+		document.getElementById('BTN_launcherOptionsExportMetadata').disabled = exportButtonStatus;
 		
 		// Render current game name
 		document.getElementById('DIV_labelSelectedGame').innerHTML = gName;
