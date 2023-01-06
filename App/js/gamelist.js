@@ -270,6 +270,18 @@ temp_GAMELIST = {
 
 					}
 
+					// Check if Project.gp4 exists on root. if so, remove it
+					if (APP.settings.data.removeProjectGp4 === !0 && APP.fs.existsSync(pathBase + 'Project.gp4') === !0){
+						
+						try {
+							APP.fs.unlinkSync(pathBase + 'Project.gp4');
+							APP.log('INFO - (' + appName + ') Removing Project.gp4 since is was generated in PkgEditor and fpPS4 / Launcher does not use it.');
+						} catch (err) {
+							console.error(err);
+						}
+
+					}
+
 					// If executable exists, set data
 					if (addGame === !0){
 

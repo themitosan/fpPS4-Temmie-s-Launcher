@@ -492,6 +492,7 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsEnableParamSfo').checked = JSON.parse(cSettings.enableParamSfo);
 		document.getElementById('CHECKBOX_settingsShowExecRunning').checked = JSON.parse(cSettings.showPathRunning);
 		document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked = JSON.parse(cSettings.showBgOnEntry);
+		document.getElementById('CHECKBOX_settingsRemoveProjectGp4').checked = JSON.parse(cSettings.removeProjectGp4);
 		document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked = JSON.parse(cSettings.searchCaseSensitive);
 		document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked = JSON.parse(cSettings.logExternalWindowPrompt);
 
@@ -553,6 +554,7 @@ temp_DESIGN = {
 		APP.settings.data.enableParamSfo = JSON.parse(document.getElementById('CHECKBOX_settingsEnableParamSfo').checked);
 		APP.settings.data.showBgOnEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked);
 		APP.settings.data.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
+		APP.settings.data.removeProjectGp4 = JSON.parse(document.getElementById('CHECKBOX_settingsRemoveProjectGp4').checked);
 		APP.settings.data.searchCaseSensitive = JSON.parse(document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked);
 		APP.settings.data.logExternalWindowPrompt = JSON.parse(document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked);
 

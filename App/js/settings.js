@@ -17,6 +17,9 @@ temp_SETTINGS = {
 			General
 		*/
 
+		// Remove Project.gp4 on game list load
+		removeProjectGp4: !1,
+
 		// Remove previous imported modules
 		removedLibModules: !1,
 
