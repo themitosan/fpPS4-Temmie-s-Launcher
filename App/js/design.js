@@ -12,6 +12,9 @@
 
 temp_DESIGN = {
 
+	// Game patch loaded
+	gamePatchLoaded: !1,
+
 	/*
 		Hack List
 		If red-prig implements a new one, just add it on this list!
@@ -148,23 +151,26 @@ temp_DESIGN = {
 	// Select game
 	selectGame: function(gameName){
 
-		var exportButtonStatus = 'disabled',
+		// Set game patch loaded to false
+		this.gamePatchLoaded = !1;
+
+		var hList = {},
 			gData = APP.gameList.list[gameName],
 			folderName = gData.folderName, 
+			exportButtonStatus = 'disabled',
 			settingsFile = APP.settings.data.gamePath + '/' + folderName + '/launcherSettings.json';
 
 		if (gData !== void 0){
 
 			// Select game and update GUI
 			APP.gameList.selectedGame = gameName;
-			APP.design.update();
 			APP.gameList.checkDumpStatus();
 
 			// Check if game config exists
 			if (APP.fs.existsSync(settingsFile) === !1){
 
 				// Get hack list
-				var hList = {};
+				hList = {};
 				APP.design.hackList.forEach(function(cHack){
 					hList[cHack] = !1;
 				});
@@ -172,7 +178,9 @@ temp_DESIGN = {
 				// Create settings file
 				APP.gameList.createGameSettings({
 					hacks: hList, 
+					usePatch: !1,
 					name: gData.name,
+					patchLocation: '',
 					path: settingsFile,
 					importedModules: [],
 					isHomebrew: gData.isHomebrew
@@ -189,6 +197,34 @@ temp_DESIGN = {
 				document.getElementById('CHECK_' + hackName).checked = JSON.parse(gSettings.hacks[hackName]);
 			});
 
+			// Load patch data
+			document.getElementById('CHECKBOX_optionsEnablePatch').checked = gSettings.usePatch;
+			if (APP.fs.existsSync(gSettings.patchLocation) === !0){
+
+				// Try reading PARAM.SFO
+				try {
+
+					const paramSfoMetadata = APP.paramSfo.parse(gSettings.patchLocation + '/sce_sys/param.sfo');
+
+					// Update GUI
+					document.getElementById('LABEL_launcherOptionsPatchTitle').innerHTML = paramSfoMetadata.TITLE;
+					document.getElementById('LABEL_launcherOptionsPatchVersion').innerHTML = paramSfoMetadata.VERSION;
+					document.getElementById('LABEL_launcherOptionsPatchType').innerHTML = APP.paramSfo.database.DB_CATEGORY[paramSfoMetadata.CATEGORY];
+
+					APP.design.gamePatchLoaded = !0;
+
+				} catch (err) {
+
+					console.error(err);
+					APP.log('ERROR - Unable to read PARAM.SFO from this patch!\n' + err);
+
+				}
+
+			}
+
+			// Update GUI
+			APP.design.update();
+
 		}
 
 	},
@@ -199,9 +235,7 @@ temp_DESIGN = {
 		// Update background image
 		const sGame = APP.gameList.list[APP.gameList.selectedGame];
 		if (sGame !== '' && sGame !== void 0){
-			TMS.css('DIV_GAMELIST_BG', {
-				'background-image': 'url("' + sGame.bg + '")'
-			});
+			TMS.css('DIV_GAMELIST_BG', {'background-image': 'url("' + sGame.bg + '")'});
 		}
 
 		// Check if emu is present before allowing to run
@@ -275,7 +309,9 @@ temp_DESIGN = {
 		// Get selected game
 		var cGame = APP.gameList.list[APP.gameList.selectedGame],
 			exportButtonStatus = 'disabled',
-			gName = 'No game selected';
+			displayPatchContainer = 'none',
+			gName = 'No game selected',
+			displayPatchData = 'none';
 
 		// If no game is selected, disable run button
 		if (APP.gameList.selectedGame === ''){
@@ -294,11 +330,25 @@ temp_DESIGN = {
 				gName = '<div class="LABEL_gameTitleOptions">' + cGame.name + '</div><br><label class="user-can-select">' + cGame.paramSfo.TITLE_ID + '</label>';
 			}
 
+			// If app / game patch is enabled, show metadata
+			if (APP.gameList.cGameSettings.usePatch === !0){
+				displayPatchContainer = 'block';
+			}
+
 		}
 		
 		// Enable / disable export metadata 
 		document.getElementById('BTN_launcherOptionsExportMetadata').disabled = exportButtonStatus;
 		
+		// Show / hide patch
+		TMS.css('DIV_launcherOptionsPatchVersion', {'display': displayPatchContainer});
+
+		// Show / hide patch details
+		if (this.gamePatchLoaded === !0){
+			displayPatchData = 'block';
+		}
+		TMS.css('DIV_launcherOptionsPatchVersionMetadata', {'display': displayPatchData});
+
 		// Render current game name
 		document.getElementById('DIV_labelSelectedGame').innerHTML = gName;
 
@@ -393,10 +443,12 @@ temp_DESIGN = {
 
 		}
 
+		// Hide elements
 		hideList.forEach(function(cElement){
 			TMS.css(cElement, {'display': 'none'});
 		});
 
+		// Show elements
 		showList.forEach(function(cElement){
 			if (cElement === 'DIV_ACTIONS'){
 				TMS.css(cElement, {'display': 'flex'});

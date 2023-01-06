@@ -16,7 +16,7 @@
 temp_PARAMSFO_PARSER = {
 	
 	// PARAM.SFO Key Database
-	params: temp_PARAMSFO_DATABASE,
+	database: temp_PARAMSFO_DATABASE,
 
 	/*
 		Read PARAM.SFO files!

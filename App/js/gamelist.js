@@ -27,7 +27,9 @@ temp_GAMELIST = {
 			gameSettings = {
 				name: data.name,
 				hacks: data.hacks,
+				usePatch: data.usePatch,
 				isHomebrew: data.isHomebrew,
+				patchLocation: data.patchLocation,
 				importedModules: data.importedModules
 			}
 
@@ -52,44 +54,108 @@ temp_GAMELIST = {
 	// Save game settings
 	saveGameSettings: function(bypassCheck){
 
-		// Path
-		var fLog = '',
-			cHacks = {},
+		// Variables
+		var cHacks = {},
+			logMessage = '',
+			tempData = APP.gameList.cGameSettings,
+			prevSettings = JSON.stringify(APP.gameList.cGameSettings),
 			fPath = APP.path.parse(this.list[this.selectedGame].exe).dir + '/launcherSettings.json';
+
+		/*
+			Update settings
+		*/
 
 		// Update hack data
 		APP.design.hackList.forEach(function(hName){
 			cHacks[hName] = JSON.parse(document.getElementById('CHECK_' + hName).checked);
 		});
+		tempData.hacks = cHacks;
 
-		// Check if needs to update hack files
-		if (JSON.stringify(cHacks) !== JSON.stringify(APP.gameList.cGameSettings.hacks) || bypassCheck === !0){
+		// Update patch data
+		tempData.usePatch = JSON.parse(document.getElementById('CHECKBOX_optionsEnablePatch').checked);
 
-			// Update variable
-			APP.gameList.cGameSettings.hacks = cHacks;
+		/*
+			Check if needs to update settings file
+		*/
+		if (JSON.stringify(tempData) !== prevSettings || bypassCheck === !0){
 
 			// Write file
 			try {
 
-				APP.fs.writeFileSync(fPath, JSON.stringify(APP.gameList.cGameSettings), 'utf-8');
-				fLog = 'INFO - (' + APP.gameList.selectedGame + ') Settings file was updated successfully!';
+				APP.fs.writeFileSync(fPath, JSON.stringify(tempData), 'utf-8');
+				logMessage = 'INFO - (' + APP.gameList.selectedGame + ') Settings file was updated successfully!';
 
 			} catch (err) {
 
 				console.error(err);
-				fLog = 'ERROR - Unable to update settings file for ' + APP.gameList.selectedGame + ' at ' + fPath + '!\nReason: ' + err;
+				logMessage = 'ERROR - Unable to update settings file for ' + APP.gameList.selectedGame + ' at ' + fPath + '!\nReason: ' + err;
 
 			}
 
 		} else {
 
 			// Skip updating settings
-			fLog = 'INFO - (' + APP.gameList.selectedGame + ') Skip updating settings file since it has no changes!';			
+			logMessage = 'INFO - (' + APP.gameList.selectedGame + ') Skip updating settings file since it has no changes!';			
 
 		}
 
-		// Fix space between launcher logs and main emu logs
-		APP.log(fLog);
+		// Log message
+		if (bypassCheck !== !0){
+			APP.log(logMessage);
+		}
+
+	},
+
+	// Load game patch
+	loadGamePatch: function(){
+
+		if (this.selectedGame !== ''){
+
+			// Get current game name
+			const cGame = this.selectedGame;
+			
+			// Read path
+			APP.fileManager.selectPath(function(pLocation){
+
+				var logMessage = '';
+
+				// Check if exists PARAM.SFO
+				if (APP.fs.existsSync(pLocation + '/sce_sys/param.sfo') === !0){
+
+					// Read PARAM.SFO
+					const getParamSfo = APP.paramSfo.parse(pLocation + '/sce_sys/param.sfo');
+
+					// Check if TITLE_ID matches current game
+					if (getParamSfo.TITLE_ID === cGame){
+
+						// Set variables
+						APP.gameList.cGameSettings.patchLocation = pLocation;
+						APP.gameList.saveGameSettings(!0);
+						APP.design.selectGame(cGame);
+
+						// Set log message
+						logMessage = 'INFO - Patch loaded sucessfully!\nName: ' + getParamSfo.TITLE + '\nType: ' + APP.paramSfo.database.DB_CATEGORY[getParamSfo.CATEGORY];
+
+					} else {
+
+						// Version does not match current app / game
+						logMessage = 'ERROR - This patch does not match for this app / game!\nPatch ID: ' + getParamSfo.TITLE_ID + '\nSelected app / game: ' + cGame;
+
+					}
+
+				} else {
+
+					// Unable to find PARAM.SFO
+					logMessage = 'ERROR - Unable to find PARAM.SFO for this patch!';
+
+				}
+
+				// Log message
+				APP.log(logMessage);
+
+			});
+
+		}
 
 	},
 

@@ -8,8 +8,6 @@
 
 	Article used as reference:
 	https://www.psdevwiki.com/ps4/Param.sfo
-
-	INFO: This database is here - but not in use. Well... At least, for now! ;)
 	******************************************************************************
 */
 

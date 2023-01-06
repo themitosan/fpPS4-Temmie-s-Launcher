@@ -38,6 +38,12 @@ temp_EMUMANAGER = {
 				emuArgs = ['-e', ebootPath],
 				hList = APP.design.hackList;
 			
+			// Check if patches are available
+			if (APP.gameList.cGameSettings.usePatch === !0 && APP.design.gamePatchLoaded === !0){
+				emuArgs.push('-p');
+				emuArgs.push(APP.gameList.cGameSettings.patchLocation);	
+			}
+
 			// Get enabled hacks
 			hList.forEach(function(hackName){
 				if (document.getElementById('CHECK_' + hackName).checked === !0){
@@ -65,7 +71,7 @@ temp_EMUMANAGER = {
 
 			// Save game settings
 			APP.gameList.saveGameSettings();
-		
+
 		}
 
 	},
