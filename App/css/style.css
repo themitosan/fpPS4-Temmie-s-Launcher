@@ -482,10 +482,9 @@ img {
 /*
 	Labels
 */
-.LABEL_experimental {
-	font-style: normal;
-	font-family: monospace;
-	text-shadow: 0px 0px 10px #f00;
+.LABEL_gameTitleOptions {
+	width: 100%;
+	font-size: 16px;
 }
 .LABEL_detailsGameName {
 	font-size: 28px;

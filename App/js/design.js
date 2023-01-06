@@ -176,7 +176,6 @@ temp_DESIGN = {
 			if (APP.gameList.list[gameName].paramSfoAvailable === !0){
 				exportButtonStatus = '';
 			}
-
 			document.getElementById('BTN_launcherOptionsExportMetadata').disabled = exportButtonStatus;
 
 		}
@@ -255,8 +254,9 @@ temp_DESIGN = {
 
 		}
 
-		// Selected game name
-		var cGameName = 'No game selected';
+		// Get selected game
+		var cGame = APP.gameList.list[APP.gameList.selectedGame],
+			gName = 'No game selected';
 
 		// If no game is selected, disable run button
 		if (APP.gameList.selectedGame === ''){
@@ -271,12 +271,18 @@ temp_DESIGN = {
 		}
 
 		// If selected game exists, get it's name
-		if (APP.gameList.list[APP.gameList.selectedGame] !== void 0){
-			cGameName = APP.gameList.list[APP.gameList.selectedGame].name;
+		if (cGame !== void 0){
+			gName = cGame.name;
+
+			// If PARAM.SFO exists for selected game, add 
+			if (cGame.paramSfoAvailable === !0){
+				gName = '<div class="LABEL_gameTitleOptions">' + cGame.name + '</div><br><label class="user-can-select">' + cGame.paramSfo.TITLE_ID + '</label>';
+			}
+
 		}
 		
 		// Render current game name
-		document.getElementById('DIV_labelSelectedGame').innerHTML = cGameName;
+		document.getElementById('DIV_labelSelectedGame').innerHTML = gName;
 
 		// Render Settings
 		this.renderSettings();
