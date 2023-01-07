@@ -285,8 +285,7 @@ temp_GAMELIST = {
 					// If executable exists, set data
 					if (addGame === !0){
 
-						// Add game to list
-						APP.gameList.list[appId] = {
+						const metadata = {
 							bg: appBg,
 							name: appName,
 							icon: appIcon,
@@ -294,6 +293,13 @@ temp_GAMELIST = {
 							paramSfo: paramSfo,
 							exe: executableName,
 							isHomebrew: isHomebrew
+						};
+
+						// Add game to list
+						if (APP.gameList.list[appId] === void 0){
+							APP.gameList.list[appId] = metadata;
+						} else {
+							APP.log('WARN - Unable to add ' + appName + ' to game list because another app / game with same title id exists! (' + APP.gameList.list[appId].name + ')');
 						}
 
 					}

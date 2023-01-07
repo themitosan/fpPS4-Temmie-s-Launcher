@@ -12,6 +12,7 @@ var APP = {
 
 	// Import nw modules
 	fs: require('fs'),
+	win: nw.Window.get(),
 	path: require('path'),
 	childProcess: require('child_process'),
 	packageJson: require('../package.json'),
