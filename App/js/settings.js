@@ -141,11 +141,14 @@ temp_SETTINGS = {
 
 		try {
 
-			const cLang = this.data.appLanguage;
-			if (cLang !== 'english'){
+			const cLang = this.data.appLanguage,
+				fileLocation = APP.settings.data.nwPath + '/Lang/' + cLang + '.json';
 
-				// Get selected lang 
-				var getLangFile = APP.fs.readFileSync(APP.settings.data.nwPath + '/Lang/' + cLang + '.json', 'utf8');
+			// Check if lang file exists and if lang isn't english
+			if (cLang !== 'english' && APP.fs.existsSync(fileLocation) === !0){
+
+				// Get selected lang
+				var getLangFile = APP.fs.readFileSync(fileLocation, 'utf8');
 				APP.lang.selected = JSON.parse(getLangFile);
 
 				// Update GUI
