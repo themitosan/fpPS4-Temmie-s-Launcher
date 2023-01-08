@@ -474,7 +474,11 @@ temp_DESIGN = {
 
 		if (gameData !== void 0){
 			
-			var gameDetails = {'display': 'flex'},
+			var gameVersion = '',
+				patchParamSfo = {},
+				gameDetails = {'display': 'flex'},
+				usePatch = APP.gameList.cGameSettings.usePatch,
+				patchLocation = APP.gameList.cGameSettings.patchLocation,
 				gameMetadata = APP.lang.getVariable('path') + ': <label class="user-can-select">' + gameData.appPath + '</label>',
 				listInternal = {'transition': '0.4s', 'filter': 'blur(' + APP.settings.data.bgEmuBlur +'px) opacity(' + APP.settings.data.bgEmuOpacity + ')'};
 	
@@ -490,9 +494,24 @@ temp_DESIGN = {
 				// Clear search input
 				document.getElementById('INPUT_gameListSearch').value = '';
 
+				// Check if PARAM.SFO patch exists
+				if (APP.fs.existsSync(patchLocation) === !0){
+					patchParamSfo = APP.paramSfo.parse(patchLocation + '/sce_sys/param.sfo');
+				}
+				if (Object.keys(patchParamSfo).length !== 0 && usePatch === !0){
+					gameVersion = '<label class="LABEL_emuColor">' + patchParamSfo.APP_VER + '</label>';
+				}
+
 				// If PARAM.SFO metadata exists, display serial and game version instead
 				if (Object.keys(gameData.paramSfo).length !== 0){
-					gameMetadata = gameData.paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameListVersion') + ' ' + gameData.paramSfo.APP_VER;
+
+					// Check if patch is enabled
+					if (usePatch !== !0){
+						gameVersion = gameData.paramSfo.APP_VER;
+					}
+
+					// Set new game data
+					gameMetadata = gameData.paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameListVersion') + ' ' + gameVersion;
 				}
 				
 				// Clear game list
