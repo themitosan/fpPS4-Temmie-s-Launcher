@@ -41,7 +41,7 @@ temp_EMUMANAGER = {
 			// Check if patches are available
 			if (APP.gameList.cGameSettings.usePatch === !0 && APP.design.gamePatchLoaded === !0){
 				emuArgs.push('-p');
-				emuArgs.push(APP.gameList.cGameSettings.patchLocation);
+				emuArgs.push("\"" + APP.gameList.cGameSettings.patchLocation + '\"');
 			}
 
 			// Get enabled hacks
