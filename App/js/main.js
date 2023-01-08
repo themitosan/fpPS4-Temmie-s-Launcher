@@ -24,6 +24,7 @@ var APP = {
 
 	// Import app modules
 	tools: temp_TOOLS,
+	lang: temp_LANGUAGE,
 	design: temp_DESIGN,
 	gameList: temp_GAMELIST,
 	settings: temp_SETTINGS,
@@ -33,11 +34,13 @@ var APP = {
 
 	// Log function and variables
 	logData: '',
+	logLine: '',
 	log: function(text){
 
 		if (text !== '' && text !== void 0){
 
-			var previousLog = APP.logData,
+			var canLog = !0,
+				previousLog = APP.logData,
 				newLog = previousLog + '\n' + text;
 
 			// Fix log with white line
@@ -48,12 +51,25 @@ var APP = {
 				newLog = previousLog + text;
 			}
 
-			// Append log
-			document.getElementById('APP_LOG').value = newLog;
-			APP.logData = newLog;
+			// Fix duplicate lines
+			if (APP.logLine === text){
+				canLog = !1;
+			}
 
-			// Scroll log
-			document.getElementById('APP_LOG').scrollTop = document.getElementById('APP_LOG').scrollHeight;
+			// Check if can append log
+			if (canLog === !0){
+
+				// Set current line
+				APP.logLine = text;
+
+				// Append log
+				document.getElementById('APP_LOG').value = newLog;
+				APP.logData = newLog;
+
+				// Scroll log
+				document.getElementById('APP_LOG').scrollTop = document.getElementById('APP_LOG').scrollHeight;
+
+			}
 		
 		}
 
@@ -69,7 +85,7 @@ var APP = {
 		// Reset log
 		APP.logData = APP.appVersion;
 		document.getElementById('APP_LOG').value = APP.appVersion;
-		APP.log('INFO - Previous log was cleared!\n ');
+		APP.log(APP.lang.getVariable('logCleared'));
 
 	},
 
@@ -112,7 +128,7 @@ var APP = {
 			// Transform args into string
 			var gPath = '"' + args[args.indexOf('-e') + 1] + '"',
 				parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
-				execLine = 'start "Running fpPS4 - ' + APP.gameList.selectedGame + '" ' + winMode + ' cmd /C ' + APP.path.parse(APP.settings.data.emuPath).base + ' ' + parseArgs + ' ' + pressAnyKey;
+				execLine = 'start "' + APP.lang.getVariable('logWindowTitle') + ' - ' + APP.gameList.selectedGame + '" ' + winMode + ' cmd /C ' + APP.path.parse(APP.settings.data.emuPath).base + ' ' + parseArgs + ' ' + pressAnyKey;
 
 			// Run
 			APP.execProcess = APP.childProcess.exec(execLine);
@@ -139,7 +155,7 @@ var APP = {
 				});
 				
 				// Log exit code
-				APP.log('INFO - ' + APP.path.parse(exe).base + ' was closed returning code ' + code);
+				APP.log(APP.lang.getVariable('closeEmuStatus', [APP.path.parse(exe).base, code]));
 
 				// Save log if APP.settings.data.saveLogOnEmuClose is true
 				if (APP.settings.data.saveLogOnEmuClose === !0){
@@ -191,9 +207,7 @@ var APP = {
 
 	// About screen
 	about: function(){
-		window.alert('fpPS4 Temmie\'s Launcher - Version: ' + this.version + '\nCreated by TemmieHeartz\n(https://twitter.com/themitosan)\n\n' +
-					 'fpPS4 main emulator is created by red-prig\n(https://github.com/red-prig/fpPS4)\n\n' +
-					 'Plugin memoryjs is created by Rob--\n(https://github.com/rob--/memoryjs)');
+		window.alert(this.lang.getVariable('about', [this.version]));
 	},
 
 	// Reload app
@@ -208,6 +222,7 @@ delete temp_TOOLS;
 delete temp_DESIGN;
 delete temp_SETTINGS;
 delete temp_GAMELIST;
+delete temp_LANGUAGE;
 delete temp_EMUMANAGER;
 delete temp_FILEMANAGER;
 delete temp_PARAMSFO_PARSER;
@@ -216,15 +231,18 @@ delete temp_PARAMSFO_PARSER;
 window.onload = function(){
 
 	try {
+		
+		// Load settings ( 1 / 2 )
+		APP.settings.load();
+		APP.settings.loadLang();
 
 		// Main log
 		APP.version = APP.packageJson.version;
 		document.title = APP.packageJson.name + ' - Ver. ' + APP.version + ' [' + process.versions['nw-flavor'].toUpperCase() + ']';
-		APP.appVersion = 'fpPS4 Temmie\'s Launcher - Version: ' + APP.version + '\nRunning on nw.js (node-webkit) version ' + process.versions.nw + ' [' + process.versions['nw-flavor'].toUpperCase() + ']';
+		APP.appVersion = APP.lang.getVariable('mainLog', [APP.version, process.versions.nw, process.versions['nw-flavor'].toUpperCase()]);
 		APP.log(APP.appVersion);
 		
-		// Load settings
-		APP.settings.load();
+		// Load settings ( 2 / 2 )
 		APP.settings.checkPaths();
 		APP.design.renderSettings();
 
@@ -233,7 +251,6 @@ window.onload = function(){
 
 		// Rener hack list
 		APP.design.renderHacklist();
-		APP.design.renderLabelTitles();
 
 		// Kill fpPS4 process if is active
 		APP.emuManager.killEmu(!0);
@@ -246,7 +263,7 @@ window.onload = function(){
 
 	} catch (err) {
 
-		// Log it
+		// Log error
 		console.error(err);
 		window.confirm('ERROR - Unable to start main application!\n\nReason:\n' + err + '\n\nTo know more, hit F12 and go to console tab to see more details.');
 		

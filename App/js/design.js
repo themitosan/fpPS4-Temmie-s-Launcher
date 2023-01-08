@@ -34,7 +34,7 @@ temp_DESIGN = {
 		var htmlTemp = '';
 		this.hackList.forEach(function(hackName){
 			htmlTemp = htmlTemp + '<input type="checkbox" id="CHECK_' + hackName + '"><label class="LABEL_checkbox" onclick="APP.tools.processCheckbox(\'CHECK_' + hackName +
-					   '\');">Enable ' + hackName + '</label><br>';
+					   '\');">' + APP.lang.getVariable('labelEnableHack') + ' ' + hackName + '</label><br>';
 		});
 
 		// Append html
@@ -45,12 +45,53 @@ temp_DESIGN = {
 
 	},
 
-	// Render label titles
-	renderLabelTitles: function(){
+	// Update GUI lang
+	updateLang: function(){
 
-		// App / game status
-		document.getElementById('DIV_selectedGameStatus').title = 'Green: All files are present\nYellow: Some files are missing - check log for more details\nCyan: Executable is a .elf file';
+		// Update input text
+		Object.keys(APP.lang.selected.select).forEach(function(domId){
+			if (document.getElementById(domId) !== null){
+				
+				var optionsHtml = '';
+				Object.keys(APP.lang.selected.select[domId]).forEach(function(option){
+					optionsHtml = optionsHtml + '<option value="' + option + '">' + APP.lang.selected.select[domId][option] + '</option>';
+				});
 
+				// Append HTML
+				document.getElementById(domId).innerHTML = optionsHtml;
+
+			}
+		});
+
+		// Update input text
+		Object.keys(APP.lang.selected.input_text).forEach(function(domId){
+			if (document.getElementById(domId) !== null){
+				document.getElementById(domId).value = APP.lang.selected.input_text[domId].value;
+				document.getElementById(domId).placeholder = APP.lang.selected.input_text[domId].placeholder;
+			}
+		});	
+
+		// Update titles
+		Object.keys(APP.lang.selected.title).forEach(function(domId){
+			if (document.getElementById(domId) !== null){
+				document.getElementById(domId).title = APP.lang.selected.title[domId];
+			}
+		});
+
+		// Update innerHTML
+		Object.keys(APP.lang.selected.innerHTML).forEach(function(domId){
+			if (document.getElementById(domId) !== null){
+				document.getElementById(domId).innerHTML = APP.lang.selected.innerHTML[domId];
+			}
+		});
+
+		// Update value
+		Object.keys(APP.lang.selected.value).forEach(function(domId){
+			if (document.getElementById(domId) !== null){
+				document.getElementById(domId).value = APP.lang.selected.value[domId];
+			}
+		});
+		
 	},
 
 	// Render game list
@@ -78,8 +119,8 @@ temp_DESIGN = {
 				classDisplayEntryMode = '',
 				appNameClass = 'LABEL_gameTitle',
 				classGameDetailsMode = 'GAME_DETAILS',
-				gameMetadata = '<br>Path: ' + gList[cGame].exe,
 				gridIconSize = APP.settings.data.gridIconSize,
+				gameMetadata = '<br>' + APP.lang.getVariable('path') + ': ' + gList[cGame].exe,
 				bgPath = 'url(\'' + gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'') + '\')';
 
 			// Disable background image
@@ -92,7 +133,7 @@ temp_DESIGN = {
 
 			// If PARAM.SFO metadata exists, show serial and game version instead
 			if (Object.keys(gList[cGame].paramSfo).length !== 0){
-				gameMetadata = '<br>' + gList[cGame].paramSfo.TITLE_ID + ' - Version ' + gList[cGame].paramSfo.APP_VER;
+				gameMetadata = '<br>' + gList[cGame].paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameListVersion') + ' ' + gList[cGame].paramSfo.APP_VER;
 			}
 
 			// Settings: Show App / Game version (or executable path) for every title in game list
@@ -134,7 +175,7 @@ temp_DESIGN = {
 
 		// Log status
 		if (data.displayLog !== !1){
-			APP.log('INFO - Game list was loaded sucessfully! (' + Object.keys(gList).length + ' entries found)');
+			APP.log(APP.lang.getVariable('gameListLoadSuccessful', [Object.keys(gList).length]));
 		}
 
 		// Clear BG image
@@ -211,12 +252,13 @@ temp_DESIGN = {
 					document.getElementById('LABEL_launcherOptionsPatchVersion').innerHTML = paramSfoMetadata.VERSION;
 					document.getElementById('LABEL_launcherOptionsPatchType').innerHTML = APP.paramSfo.database.DB_CATEGORY[paramSfoMetadata.CATEGORY];
 
+					// Set patch loaded flag
 					APP.design.gamePatchLoaded = !0;
 
 				} catch (err) {
 
 					console.error(err);
-					APP.log('ERROR - Unable to read PARAM.SFO from this patch!\n' + err);
+					APP.log(APP.lang.getVariable('selectGameLoadPatchErrorParamSfo', [err]));
 
 				}
 
@@ -363,7 +405,7 @@ temp_DESIGN = {
 		if (gameData !== void 0){
 			
 			var gameDetails = {'display': 'flex'},
-				gameMetadata = 'Path: <label class="user-can-select">' + gameData.appPath + '</label>',
+				gameMetadata = APP.lang.getVariable('path') + ': <label class="user-can-select">' + gameData.appPath + '</label>',
 				listInternal = {'transition': '0.4s', 'filter': 'blur(' + APP.settings.data.bgEmuBlur +'px) opacity(' + APP.settings.data.bgEmuOpacity + ')'};
 	
 			// If emu isn't running
@@ -386,7 +428,7 @@ temp_DESIGN = {
 
 				// If PARAM.SFO metadata exists, display serial and game version instead
 				if (Object.keys(gameData.paramSfo).length !== 0){
-					gameMetadata = gameData.paramSfo.TITLE_ID + ' - Version ' + gameData.paramSfo.APP_VER;
+					gameMetadata = gameData.paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameListVersion') + ' ' + gameData.paramSfo.APP_VER;
 				}
 				
 				// Clear game list
@@ -472,7 +514,25 @@ temp_DESIGN = {
 
 		// Shortcut
 		const cSettings = APP.settings.data;
-	
+
+		// Get lang files
+		var langSelectHtml = '<option value="english">English (Default)</option>',
+			langList = APP.fs.readdirSync(APP.settings.data.nwPath + '/Lang');
+
+		langList.forEach(function(cEntry){
+
+			if (APP.path.parse(cEntry).ext.toLowerCase() === '.json'){
+			
+				const getLangInfo = JSON.parse(APP.fs.readFileSync(APP.settings.data.nwPath + '/Lang/' + cEntry, 'utf8'));
+				langSelectHtml = langSelectHtml + '<option value="' + APP.path.parse(cEntry).name + '">' + getLangInfo.lang + '</option>';
+			
+			}
+
+		});
+
+		// Append Language list
+		document.getElementById('SELECT_settingsLanguage').innerHTML = langSelectHtml;
+
 		// Labels
 		document.getElementById('LBL_SETTINGS_emuPath').innerHTML = cSettings.emuPath
 		document.getElementById('LBL_SETTINGS_gamePath').innerHTML = cSettings.gamePath;
@@ -483,6 +543,7 @@ temp_DESIGN = {
 		document.getElementById('LABEL_settingsGridBorderRadius').innerHTML = APP.tools.parsePercentage(cSettings.gridBorderRadius, 26);
 
 		// Select
+		document.getElementById('SELECT_settingsLanguage').value = cSettings.appLanguage;
 		document.getElementById('SELECT_settingsDisplayMode').value = cSettings.gameListMode;
 		document.getElementById('SELECT_settingsSearchMode').value = cSettings.gameSearchMode;
 		document.getElementById('SELECT_settingsStartExternalWindow').value = cSettings.logExternalWindowStartMode;
@@ -545,6 +606,7 @@ temp_DESIGN = {
 	saveSettings: function(skipCloseSettings){
 
 		// Select
+		APP.settings.data.appLanguage = document.getElementById('SELECT_settingsLanguage').value;
 		APP.settings.data.gameListMode = document.getElementById('SELECT_settingsDisplayMode').value;
 		APP.settings.data.gameSearchMode = document.getElementById('SELECT_settingsSearchMode').value;
 		APP.settings.data.logExternalWindowStartMode = document.getElementById('SELECT_settingsStartExternalWindow').value;

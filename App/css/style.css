@@ -487,7 +487,7 @@ img {
 }
 .BTN_selectPath {
     float: right;
-    min-width: 100px;
+    min-width: 152px;
     font-style: italic;
     border-radius: 4px;
     padding: 4px 14px 4px 14px;
@@ -498,6 +498,7 @@ img {
 }
 .SELECT_settings {
 	margin-left: 4px;
+	margin-bottom: 4px;
 	font-style: italic;
 	border-radius: 4px;
 	padding: 4px 10px 4px 10px;
@@ -536,7 +537,6 @@ img {
 	cursor: pointer;
 }
 .LABEL_settingsPath {
-	left: 170px;
 	cursor: text;
 	position: sticky;
 	font-style: initial;

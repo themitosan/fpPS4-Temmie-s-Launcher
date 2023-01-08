@@ -41,7 +41,7 @@ temp_EMUMANAGER = {
 			// Check if patches are available
 			if (APP.gameList.cGameSettings.usePatch === !0 && APP.design.gamePatchLoaded === !0){
 				emuArgs.push('-p');
-				emuArgs.push(APP.gameList.cGameSettings.patchLocation);	
+				emuArgs.push(APP.gameList.cGameSettings.patchLocation);
 			}
 
 			// Get enabled hacks
@@ -53,8 +53,8 @@ temp_EMUMANAGER = {
 			});
 
 			// Log emu location and args
-			APP.log('\nINFO - Running fpPS4 with args: ' + emuArgs.toString().replace(RegExp(',', 'gi'), ' ') + '\nEmu location: ' + APP.settings.data.emuPath);
-
+			APP.log(APP.lang.getVariable('runEmuArgs', [emuArgs.toString().replace(RegExp(',', 'gi'), ' '), APP.settings.data.emuPath]));
+			
 			// Run fpPS4
 			APP.runfpPS4(APP.settings.data.emuPath, emuArgs);
 			this.emuRunning = !0;
@@ -62,11 +62,11 @@ temp_EMUMANAGER = {
 			// Update main GUI
 			APP.design.update();
 			APP.design.toggleDisplayMode({
-				appStatus: 'Running',
 				appPath: mainGameData.exe,
 				appIcon: mainGameData.icon,
 				appName: mainGameData.name,
-				paramSfo: mainGameData.paramSfo
+				paramSfo: mainGameData.paramSfo,
+				appStatus: APP.lang.getVariable('emuStatusRunning')
 			});
 
 			// Save game settings
@@ -86,7 +86,7 @@ temp_EMUMANAGER = {
 		});
 
 		// Update status
-		document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = 'Main process closed - close fpPS4 log window to go back';
+		document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = APP.lang.getVariable('killEmuStatus');
 
 	}
 

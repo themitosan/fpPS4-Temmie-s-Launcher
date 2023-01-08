@@ -81,7 +81,7 @@ temp_FILEMANAGER = {
 
 				} catch (err) {
 					console.error(err);
-					APP.log('ERROR - Unable to save file!\nReason: ' + err);
+					APP.log(APP.lang.getVariable('errorSaveFile', [err]));
 				}
 
 			}

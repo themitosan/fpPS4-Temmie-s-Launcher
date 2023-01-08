@@ -17,6 +17,9 @@ temp_SETTINGS = {
 			General
 		*/
 
+		// Language
+		appLanguage: 'english',
+
 		// Remove Project.gp4 on game list load
 		removeProjectGp4: !1,
 
@@ -104,13 +107,16 @@ temp_SETTINGS = {
 
 			// Check if need to update settings file
 			if (updateSettings === !0){
-				APP.log('INFO - Settings file was updated successfully!');
+				APP.log(APP.lang.getVariable('infoSettingsUpdated'));
 				APP.settings.save();
 			}
 
+			// Fix path
+			this.data.nwPath = APP.tools.fixPath(nw.__dirname);
+
 		} catch (err) {
 
-			console.error('ERROR - Unable to load settings!\n' + err);
+			console.error(APP.lang.selected.variables.settingsLoadError.replace('%VARIABLE_00%', err));
 
 		}
 
@@ -125,20 +131,47 @@ temp_SETTINGS = {
 		try {
 			APP.fs.writeFileSync(nwPath + '/Settings.json', JSON.stringify(this.data), 'utf8');
 		} catch (err) {
-			console.error('ERROR - Unable to save settings!\n' + err);
+			console.error(APP.lang.selected.variables.settingsSaveError.replace('%VARIABLE_00%', err));
 		}
+
+	},
+
+	// Load selected language
+	loadLang: function(){
+
+		try {
+
+			const cLang = this.data.appLanguage;
+			if (cLang !== 'english'){
+
+				// Get selected lang 
+				var getLangFile = APP.fs.readFileSync(APP.settings.data.nwPath + '/Lang/' + cLang + '.json', 'utf8');
+				APP.lang.selected = JSON.parse(getLangFile);
+
+				// Update GUI
+				APP.design.updateLang();
+
+			} else {
+
+				// Set english as default lang
+				APP.lang.selected = APP.lang.english;				
+			
+			}
+
+		} catch (err) {
+
+			console.error(err);
+
+		}	
 
 	},
 
 	// Check paths
 	checkPaths: function(){
 
-		// Fix path
-		this.data.nwPath = APP.tools.fixPath(nw.__dirname);
-
 		var logMessage = '',
 			mainPath = this.data.nwPath,
-			pathList = ['/Emu', '/Games'];
+			pathList = ['/Emu', '/Games', '/Lang'];
 
 		// Try create required paths
 		pathList.forEach(function(cPath){
@@ -148,7 +181,7 @@ temp_SETTINGS = {
 				try {
 					APP.fs.mkdirSync(mainPath + cPath);
 				} catch (err) {
-					APP.log('ERROR - Unable to create path!\n(' + mainPath + cPath + ')\n' + err);
+					APP.log(APP.lang.getVariable(settingsErrorCreatePath, [mainPath + cPath, err]));
 				}
 				
 			}
@@ -164,13 +197,9 @@ temp_SETTINGS = {
 		if (this.data.emuPath === '' || APP.fs.existsSync(this.data.emuPath) === !1){
 			APP.settings.data.emuPath = mainPath + '/Emu/fpPS4.exe';
 		}
-		if (APP.fs.existsSync(this.data.emuPath) === !0){
+		if (APP.fs.existsSync(this.data.emuPath) !== !0){
 
-			logMessage = 'INFO - Main fpPS4 was found!\nPath: ' + APP.settings.data.emuPath + '\n ';
-
-		} else {
-
-			logMessage = 'ERROR - Unable to locate main fpPS4 executable!\nMake sure to select it on settings or insert it on \"Emu\" folder and click on ok.';
+			logMessage = APP.lang.getVariable('settingsErrorfpPS4NotFound');
 			window.alert(logMessage);
 
 		}
@@ -178,7 +207,7 @@ temp_SETTINGS = {
 		// Log message
 		APP.log(logMessage);
 
-	},
+	},	
 
 	// Select path
 	selectPath: function(data){
@@ -208,7 +237,7 @@ temp_SETTINGS = {
 	resetAllGameSettings: function(){
 
 		// Confirm action
-		const conf = window.confirm('WARN - This option will remove ALL saved settings from your game list.\nDo you want to continue?');
+		const conf = window.confirm(APP.lang.getVariable('settingsConfirmRemoveAllGameSettings'));
 		if (conf === !0){
 
 			// Reset search form
@@ -230,11 +259,11 @@ temp_SETTINGS = {
 						try {
 
 							APP.fs.unlinkSync(APP.path.parse(APP.gameList.list[cGame].exe).dir + '/launcherSettings.json');
-							cMessage = 'INFO - ( ' + APP.gameList.list[cGame].name + ' ) Settings file was removed sucessfully!';
+							cMessage = APP.lang.getVariable('settingsRemovedGameSettings', [APP.gameList.list[cGame].name]);
 
 						} catch (err) {
 
-							cMessage = 'ERROR - ( ' + APP.gameList.list[cGame].name + ' ) Unable to delete settings file!\nReason: ' + err;
+							cMessage = APP.lang.getVariable('settingsRemoveGameSettingsError', [APP.gameList.list[cGame].name, err]);
 							console.error(err);
 
 						}
@@ -242,7 +271,7 @@ temp_SETTINGS = {
 					} else {
 
 						// Unable to find settings file
-						cMessage = 'WARN - ( ' + APP.gameList.list[cGame].name + ' ) Unable to find settings for this App / Game!';
+						cMessage = APP.lang.getVariable('settingsRemoveGameSettings404', [APP.gameList.list[cGame].name]);
 
 					}
 
@@ -252,10 +281,9 @@ temp_SETTINGS = {
 				});
 
 				// Process complete
-				window.alert('INFO - Process Complete!\nCheck log for more details.');
-				APP.log('INFO - Reset Game Settings: Process Complete!');
+				window.alert(APP.lang.getVariable('infoProcessComplete'));
 
-			}			
+			}
 
 		}
 
