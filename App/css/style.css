@@ -222,10 +222,10 @@ img {
 	z-index: 12;
 	padding: 0px;
 	display: table;
-	min-width: 50px;
-	min-height: 50px;
 	box-shadow: none;
 	border-radius: 8px;
+	min-width: 92.93px;
+	min-height: 92.93px;
 	height: max-content;
 	max-width: max-content;
 	max-height: max-content;
@@ -443,6 +443,7 @@ img {
 	height: auto;
 	padding: 0px;
 	max-width: 512px;
+	min-width: 92.93px;
 	border-radius: 0px;
 	margin: 0px 0px -3px 0px;
 }
