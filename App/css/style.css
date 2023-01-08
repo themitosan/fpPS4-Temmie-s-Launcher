@@ -139,7 +139,7 @@ img {
 }
 .DIV_HACK_LIST {
 	text-align: left;
-	margin: 10px 0px 10px 0px;
+	margin-bottom: 10px;
 }
 .DIV_TITLE {
 	z-index: 10;
@@ -209,6 +209,11 @@ img {
 	background-image: linear-gradient(180deg, #97a7ff85, #6464a578);
 }
 .GAME_ENTRY_COMPACT {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: row;
+    align-content: center;
     max-height: 24px !important;
     padding-left: 10px !important;
     width: calc(100% - 22px) !important;
@@ -217,11 +222,11 @@ img {
 	z-index: 12;
 	padding: 0px;
 	display: table;
-	box-shadow: none;
 	min-width: 50px;
 	min-height: 50px;
-	height: max-content;
+	box-shadow: none;
 	border-radius: 8px;
+	height: max-content;
 	max-width: max-content;
 	max-height: max-content;
 	background-color: #0000;
@@ -260,6 +265,17 @@ img {
 	z-index: 1;
 	cursor: pointer;
 	width: calc(100% - 88px);
+}
+.GAME_DETAILS_COMPACT {
+	width: calc(100% - 10px);
+}
+.GAME_DETAILS_GRID {
+	position: absolute;
+	bottom: 0px;right: 0px;
+	background-color: #000b;
+	padding: 2px 6px 2px 6px;
+	text-shadow: 0px 0px 4px #000;
+	border-radius: 6px 0px 0px 0px;
 }
 .DIV_RUN_BTN {
 	bottom: 4px;
@@ -355,7 +371,7 @@ img {
 	flex-wrap: wrap;
 	text-align: center;
 	align-items: center;
-	margin-bottom: 10px;
+	margin-bottom: 4px;
 	align-content: center;
 	justify-content: center;
 }
@@ -398,6 +414,12 @@ img {
 .DIV_launcherOptionsPatchVersionMetadata {
 	text-align: left;
 	padding: 0px 6px 0px 6px;
+}
+.DIV_launcherOptionsTitle {
+	font-size: 16px;
+	text-align: center;
+	margin-bottom: 2px;
+	font-family: system-ui;
 }
 
 /*
@@ -593,6 +615,9 @@ img {
 /*
 	Misc
 */
+.float-right {
+	float: right;
+}
 .align-center {
 	text-align: center;
 }

@@ -110,14 +110,12 @@ temp_GAMELIST = {
 	loadGamePatch: function(){
 
 		if (this.selectedGame !== ''){
-
-			// Get current game name
-			const cGame = this.selectedGame;
+			
+			var logMessage = '',
+				cGame = this.selectedGame;
 			
 			// Read path
 			APP.fileManager.selectPath(function(pLocation){
-
-				var logMessage = '';
 
 				// Check if exists PARAM.SFO
 				if (APP.fs.existsSync(pLocation + '/sce_sys/param.sfo') === !0){

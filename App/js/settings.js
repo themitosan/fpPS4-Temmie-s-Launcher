@@ -141,7 +141,8 @@ temp_SETTINGS = {
 
 		try {
 
-			const cLang = this.data.appLanguage,
+			// Get lang data
+			var cLang = this.data.appLanguage,
 				fileLocation = APP.settings.data.nwPath + '/Lang/' + cLang + '.json';
 
 			// Check if lang file exists and if lang isn't english
@@ -151,15 +152,15 @@ temp_SETTINGS = {
 				var getLangFile = APP.fs.readFileSync(fileLocation, 'utf8');
 				APP.lang.selected = JSON.parse(getLangFile);
 
-				// Update GUI
-				APP.design.updateLang();
-
 			} else {
 
 				// Set english as default lang
-				APP.lang.selected = APP.lang.english;				
+				APP.lang.selected = APP.lang.english;			
 			
 			}
+
+			// Update GUI
+			APP.design.updateLang();
 
 		} catch (err) {
 

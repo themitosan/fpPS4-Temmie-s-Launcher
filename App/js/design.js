@@ -48,29 +48,6 @@ temp_DESIGN = {
 	// Update GUI lang
 	updateLang: function(){
 
-		// Update input text
-		Object.keys(APP.lang.selected.select).forEach(function(domId){
-			if (document.getElementById(domId) !== null){
-				
-				var optionsHtml = '';
-				Object.keys(APP.lang.selected.select[domId]).forEach(function(option){
-					optionsHtml = optionsHtml + '<option value="' + option + '">' + APP.lang.selected.select[domId][option] + '</option>';
-				});
-
-				// Append HTML
-				document.getElementById(domId).innerHTML = optionsHtml;
-
-			}
-		});
-
-		// Update input text
-		Object.keys(APP.lang.selected.input_text).forEach(function(domId){
-			if (document.getElementById(domId) !== null){
-				document.getElementById(domId).value = APP.lang.selected.input_text[domId].value;
-				document.getElementById(domId).placeholder = APP.lang.selected.input_text[domId].placeholder;
-			}
-		});	
-
 		// Update titles
 		Object.keys(APP.lang.selected.title).forEach(function(domId){
 			if (document.getElementById(domId) !== null){
@@ -78,19 +55,47 @@ temp_DESIGN = {
 			}
 		});
 
-		// Update innerHTML
-		Object.keys(APP.lang.selected.innerHTML).forEach(function(domId){
-			if (document.getElementById(domId) !== null){
-				document.getElementById(domId).innerHTML = APP.lang.selected.innerHTML[domId];
-			}
-		});
+		// If current lang isn't english, update remaining GUI
+		if (APP.settings.data.appLanguage !== 'english'){
 
-		// Update value
-		Object.keys(APP.lang.selected.value).forEach(function(domId){
-			if (document.getElementById(domId) !== null){
-				document.getElementById(domId).value = APP.lang.selected.value[domId];
-			}
-		});
+			// Update input text
+			Object.keys(APP.lang.selected.input_text).forEach(function(domId){
+				if (document.getElementById(domId) !== null){
+					document.getElementById(domId).value = APP.lang.selected.input_text[domId].value;
+					document.getElementById(domId).placeholder = APP.lang.selected.input_text[domId].placeholder;
+				}
+			});	
+
+			// Update select
+			Object.keys(APP.lang.selected.select).forEach(function(domId){
+				if (document.getElementById(domId) !== null){
+
+					var optionsHtml = '';
+					Object.keys(APP.lang.selected.select[domId]).forEach(function(option){
+						optionsHtml = optionsHtml + '<option value="' + option + '">' + APP.lang.selected.select[domId][option] + '</option>';
+					});
+
+					// Append HTML
+					document.getElementById(domId).innerHTML = optionsHtml;
+	
+				}
+			});
+
+			// Update innerHTML
+			Object.keys(APP.lang.selected.innerHTML).forEach(function(domId){
+				if (document.getElementById(domId) !== null){
+					document.getElementById(domId).innerHTML = APP.lang.selected.innerHTML[domId];
+				}
+			});
+
+			// Update value
+			Object.keys(APP.lang.selected.value).forEach(function(domId){
+				if (document.getElementById(domId) !== null){
+					document.getElementById(domId).value = APP.lang.selected.value[domId];
+				}
+			});
+
+		}
 		
 	},
 
@@ -114,6 +119,7 @@ temp_DESIGN = {
 
 			// Settings for display mode: Normal
 			var appTitle = '',
+				gameName = '',
 				gameBgAndIcon,
 				gameEntryStyle = '',
 				classDisplayEntryMode = '',
@@ -150,24 +156,55 @@ temp_DESIGN = {
 					gameBgAndIcon = '';
 					appNameClass = 'LABEL_gameTitleCompact';
 					classDisplayEntryMode = ' GAME_ENTRY_COMPACT';
+					classGameDetailsMode = 'GAME_DETAILS GAME_DETAILS_COMPACT';
+
+					// Check if PARAM.SFO is available
+					if (Object.keys(gList[cGame].paramSfo).length !== 0){
+						gameMetadata = '<div class="float-right">' + gList[cGame].paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameListVersion') + ' ' + gList[cGame].paramSfo.APP_VER + '</div>';
+					}
+
+					// Check if is Homebrew
+					if (gList[cGame].isHomebrew === !0){
+						gameMetadata = '<div class="float-right">Homebrew App</div>';
+					}
 					break;
 
 				// Display mode: Grid
 				case 'grid':
+
+					// Game Version
+					var gameInfo = '';
+
+					// Check if PARAM.SFO is available
+					if (Object.keys(gList[cGame].paramSfo).length !== 0){
+						gameInfo = gList[cGame].paramSfo.APP_VER;
+					}
+
+					// Check if is Homebrew
+					if (gList[cGame].isHomebrew === !0){
+						gameInfo = 'HB';
+					}
+
+					classGameDetailsMode = '';
 					appTitle = gList[cGame].name;
-					classGameDetailsMode = 'none';
 					classDisplayEntryMode = ' GAME_ENTRY_GRID';
-					gameEntryStyle = 'border-radius: ' + APP.settings.data.gridBorderRadius + 'px;'
+					gameMetadata = '<div class="GAME_DETAILS_GRID">' + gameInfo + '</div>';
+					gameEntryStyle = 'border-radius: ' + APP.settings.data.gridBorderRadius + 'px;';
 					gameBgAndIcon = '<div class="none" style="background-image: ' + bgPath + '";></div><img class="IMG_GAME_ICON IMG_GRID" style="width: ' + gridIconSize + 'px;" src="' + gList[cGame].icon + '">';
 					break;
 
+			}
+
+			// Fix for non-grid mode
+			if (APP.settings.data.gameListMode !== 'grid'){
+				gameName = '<label class="' + appNameClass + '">' + gList[cGame].name + '</label>';
 			}
 
 			/*
 				Add entry
 			*/
 			tempHtml = tempHtml + '<div class="GAME_ENTRY' + classDisplayEntryMode + '" title="' + appTitle + '" style="' + gameEntryStyle + '" onclick="APP.design.selectGame(\'' + cGame + '\');" id="GAME_ENTRY_' + cGame + '">' +
-								   gameBgAndIcon + '<div class="' + classGameDetailsMode + '"><label class="' + appNameClass + '">' + gList[cGame].name + '</label>' + gameMetadata + '</div></div>';
+								   gameBgAndIcon + '<div class="' + classGameDetailsMode + '">' + gameName + gameMetadata + '</div></div>';
 		});
 
 		// Insert HTML
@@ -358,8 +395,10 @@ temp_DESIGN = {
 		var cGame = APP.gameList.list[APP.gameList.selectedGame],
 			exportButtonStatus = 'disabled',
 			displayPatchContainer = 'none',
+			displayGameVersion = 'none',
 			gName = 'No game selected',
-			displayPatchData = 'none';
+			displayPatchData = 'none',
+			cGameVersion = '';
 
 		// If no game is selected, disable run button
 		if (APP.gameList.selectedGame === ''){
@@ -374,8 +413,15 @@ temp_DESIGN = {
 
 			// If PARAM.SFO exists for selected game
 			if (Object.keys(cGame.paramSfo).length !== 0){
+				
+				// Enable GUI
 				exportButtonStatus = '';
+				displayGameVersion = 'block';
+
+				// Set data
+				cGameVersion = cGame.paramSfo.APP_VER;
 				gName = '<div class="LABEL_gameTitleOptions">' + cGame.name + '</div><br><label class="user-can-select">' + cGame.paramSfo.TITLE_ID + '</label>';
+			
 			}
 
 			// If app / game patch is enabled, show metadata
@@ -399,6 +445,10 @@ temp_DESIGN = {
 
 		// Render current game name
 		document.getElementById('DIV_labelSelectedGame').innerHTML = gName;
+
+		// Render current game version
+		document.getElementById('LABEL_FPPS4_OPTIONS_APP_VER').innerHTML = cGameVersion;
+		TMS.css('DIV_FPPS4_OPTIONS_APP_VERSION', {'display': displayGameVersion});
 
 		// Render Settings
 		this.renderSettings();
@@ -546,7 +596,7 @@ temp_DESIGN = {
 		document.getElementById('LABEL_settingsEmuRunningBgBlur').innerHTML = APP.tools.parsePercentage(cSettings.bgEmuBlur, 6);
 		document.getElementById('LABEL_settingsGameListBgOpacity').innerHTML = APP.tools.parsePercentage(cSettings.bgListOpacity, 1);
 		document.getElementById('LABEL_settingsEmuRunningBgOpacity').innerHTML = APP.tools.parsePercentage(cSettings.bgEmuOpacity, 1);
-		document.getElementById('LABEL_settingsGridBorderRadius').innerHTML = APP.tools.parsePercentage(cSettings.gridBorderRadius, 26);
+		document.getElementById('LABEL_settingsGridBorderRadius').innerHTML = APP.tools.parsePercentage(cSettings.gridBorderRadius, 15);
 
 		// Select
 		document.getElementById('SELECT_settingsLanguage').value = cSettings.appLanguage;
@@ -571,9 +621,12 @@ temp_DESIGN = {
 		document.getElementById('RANGE_settingsEmuRunningBgOpacity').value = cSettings.bgEmuOpacity;
 		document.getElementById('RANGE_settingsGridIconBorderRadius').value = cSettings.gridBorderRadius;
 
-		// Fix for grid size
+		// Fix for grid size / border-radius
 		if (cSettings.gridIconSize > 512){
 			cSettings.gridIconSize = 512;
+		}
+		if (cSettings.gridBorderRadius > 15){
+			cSettings.gridBorderRadius = 15;
 		}
 
 		// Update settings GUI

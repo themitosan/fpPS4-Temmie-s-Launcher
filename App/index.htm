@@ -83,7 +83,7 @@
 					<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsGridBorderRadius">
 
 						<label id="LABEL_SETTINGS_GRID_BORDER_RADIUS">Grid Border-Radius</label>: 
-						<input type="range" min="0" max="26" step="1" value="8" id="RANGE_settingsGridIconBorderRadius" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
+						<input type="range" min="0" max="15" step="0.1" value="8" id="RANGE_settingsGridIconBorderRadius" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
 						<label id="LABEL_settingsGridBorderRadius">???</label>%
 
 					</div>
@@ -221,7 +221,7 @@
 			<input type="text" class="INPUT_gameListSearch" id="INPUT_gameListSearch" placeholder="Search: Insert game name..." oninput="APP.gameList.search();">
 
 			<!-- Grid icon size -->
-			<input type="range" min="50" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);APP.design.renderGameList({displayLog: !1});">
+			<input type="range" min="92.93" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);APP.design.renderGameList({displayLog: !1});">
 
 			<input type="button" class="APP_btn BTN_actions" id="BTN_REFRESH" onclick="APP.gameList.load();" value="Refresh game list">
 			<input type="button" class="APP_btn BTN_actions" id="BTN_SETTINGS" onclick="APP.design.toggleSettings();" value="Settings">			
@@ -248,14 +248,20 @@
 					No game selected
 				</div>
 
-				<!-- Hack List -->
-				<div class="DIV_HACK_LIST" id="DIV_HACK_LIST">
-					<!-- Hacks goes here -->
+				<!-- App / Game Version -->
+				<div class="DIV_labelSelectedGame" id="DIV_FPPS4_OPTIONS_APP_VERSION">
+					<label id="LABEL_FPPS4_OPTIONS_APP_VERSION">Version</label>: <label id="LABEL_FPPS4_OPTIONS_APP_VER">???</label>
 				</div>
 
-				<!-- App / Game integrity -->
+				<!-- Dump Status -->
 				<div class="DIV_labelSelectedGame">
 					<label id="LABEL_FPPS4_OPTIONS_DUMP_STATUS">Dump status</label>: <div class="DIV_selectedGameStatus" id="DIV_selectedGameStatus"></div>
+				</div>
+
+				<!-- Hack List -->
+				<div class="DIV_launcherOptionsTitle" id="LABEL_FPPS4_OPTIONS_HACKS">Hacks</div>
+				<div class="DIV_HACK_LIST" id="DIV_HACK_LIST">
+					<!-- Hacks goes here -->
 				</div>
 
 				<!-- Patch options -->
@@ -279,7 +285,9 @@
 
 				<!-- Launcher Options -->
 				<div class="DIV_launcherOptions">
-					Launcher Options
+					<div class="DIV_launcherOptionsTitle" id="LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS">
+						Launcher Options
+					</div>
 					<input type="button" class="BTN_launcherOptions" id="BTN_FPPS4_OPTIONS_OPEN_APP_LOCATION" value="Open App / Game location" onclick="APP.gameList.openGameLocation();">
 					<input type="button" class="BTN_launcherOptions" id="BTN_FPPS4_OPTIONS_RESET_SETTINGS" value="Reset settings file" onclick="APP.gameList.resetGameSettings();">
 					<input type="button" class="BTN_launcherOptions" id="BTN_launcherOptionsExportMetadata" value="Export metadata" onclick="APP.gameList.exportGameMetadata();" disabled="disabled">
