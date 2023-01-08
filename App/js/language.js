@@ -19,6 +19,12 @@ temp_LANGUAGE = {
 		var lPatch = [],
 			res = this.selected.variables[name];
 
+		// If variable not found, get english instead
+		if (res === void 0){
+			res = this.english.variables[name];
+		}
+
+		// If list is undefined, set patch list as empty array
 		if (list !== void 0){
 			lPatch = list;
 		}
