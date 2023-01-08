@@ -627,7 +627,6 @@ temp_DESIGN = {
 
 		// Select
 		document.getElementById('SELECT_settingsLanguage').value = cSettings.appLanguage;
-		document.getElementById('SELECT_settingsDisplayMode').value = cSettings.gameListMode;
 		document.getElementById('SELECT_settingsSearchMode').value = cSettings.gameSearchMode;
 		document.getElementById('SELECT_settingsStartExternalWindow').value = cSettings.logExternalWindowStartMode;
 
@@ -664,12 +663,13 @@ temp_DESIGN = {
 	// Update settings GUI without loading / save data
 	updateLauncherSettingsGUI: function(){
 
+		var displayModes = ['normal', 'compact', 'grid'],
+			cDisplayMode = APP.settings.data.gameListMode;
+		
 		// Grid options
-		var cDisplayMode = document.getElementById('SELECT_settingsDisplayMode').value;
 		switch (cDisplayMode) {
 
 			case 'normal':
-				TMS.css('DIV_settingsGridOptions', {'display': 'none'});
 				TMS.css('RANGE_settingsGridIconSize', {'display': 'none'});
 				TMS.css('DIV_settingsShowBgOnGameEntry', {'display': 'flex'});
 				break;
@@ -679,12 +679,17 @@ temp_DESIGN = {
 				break;
 
 			case 'grid':
-				TMS.css('DIV_settingsGridOptions', {'display': 'block'});
 				TMS.css('DIV_settingsShowBgOnGameEntry', {'display': 'none'});
 				TMS.css('RANGE_settingsGridIconSize', {'display': 'inline-block'});
 				break;
 
 		}
+
+		// Reset display modes
+		displayModes.forEach(function(cMode){
+			document.getElementById('BTN_displayMode_' + cMode).disabled = '';
+		});
+		document.getElementById('BTN_displayMode_' + cDisplayMode).disabled = 'disabled';
 
 	},
 
@@ -693,7 +698,6 @@ temp_DESIGN = {
 
 		// Select
 		APP.settings.data.appLanguage = document.getElementById('SELECT_settingsLanguage').value;
-		APP.settings.data.gameListMode = document.getElementById('SELECT_settingsDisplayMode').value;
 		APP.settings.data.gameSearchMode = document.getElementById('SELECT_settingsSearchMode').value;
 		APP.settings.data.logExternalWindowStartMode = document.getElementById('SELECT_settingsStartExternalWindow').value;
 

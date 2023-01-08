@@ -237,6 +237,22 @@ temp_SETTINGS = {
 
 	},
 
+	// Set display mode from buttons
+	setDisplayMode: function(cMode){
+		
+		if (cMode !== void 0){
+			
+			// Update display mode
+			this.data.gameListMode = cMode;
+			
+			// Render GUI
+			APP.design.renderSettings(!0);
+			APP.design.renderGameList({displayLog: !1});
+
+		}
+
+	},
+
 	// Reset all game settings
 	resetAllGameSettings: function(){
 

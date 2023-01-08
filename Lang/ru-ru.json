@@ -8,7 +8,7 @@
 		"logWindowTitle": "Запуск fpPS4",
 		"killEmuStatus": "Основной процесс был закрыт - закройте окно log-а для продолжения работы",
 		"logCleared": "ИНФО - Список log-ов был очищен!\n ",
-		"about": "fpPS4 Temmie's Launcher - Версия: %VARIABLE_0%\nСоздатель - TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4, создатель - red-prig\n(https://github.com/red-prig/fpPS4)\n\nплагин memoryjs - разработан: Rob--\n(https://github.com/rob--/memoryjs)",
+		"about": "fpPS4 Temmie's Launcher - Версия: %VARIABLE_0%\nСоздатель - TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4, создатель - red-prig\n(https://github.com/red-prig/fpPS4)\n\nплагин memoryjs - разработан: Rob--\n(https://github.com/rob--/memoryjs)\n\nИконки SVG были получены с https://www.svgrepo.com/",
 		"mainLog": "fpPS4 Temmie's Launcher - Версия: %VARIABLE_0%\nИспользование nw.js (node-webkit) версия %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ОШИБКА - Папка не может быть создана!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ОШИБКА - Не удалось найти исполняемый файл fpPS4!\nВыберите исполняемый файл в настройках или поместите его внутрь \"Emu\" и нажмите ок.",
@@ -67,7 +67,6 @@
 		"LABEL_SETTINGS_APP_GAMES_PATH": "К папке с Приложениями / играми",
 		"LABEL_SETTINGS_FPPS4_PATH": "К папке с эмулятором (fpPS4)",
 		"DIV_SETTINGS_GAME_LIST": "Макет",
-		"LABEL_SETTINGS_DISPLAY_MODE": "Режим отображения",
 		"LABEL_SETTINGS_GRID_BORDER_RADIUS": "(Сетка) Радиус границы значков",
 		"LABEL_SETTINGS_GAME_SEARCH_MODE": "Режим поиска",
 		"LABEL_SETTINGS_GAME_LIST_BACKGROUND_BLUR": "Размытие фона",
@@ -99,11 +98,6 @@
 
 	"select": {
 
-		"SELECT_settingsDisplayMode": { 
-			"normal": "Нормальный",
-			"compact": "Компактный",
-			"grid": "Сетка (значки)" 
-		},
 		"SELECT_settingsSearchMode": {
 			"appName": "Имя",
 			"titleId": "Последовательный"

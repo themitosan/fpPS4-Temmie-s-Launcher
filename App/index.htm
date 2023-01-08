@@ -67,32 +67,6 @@
 
 				<div class="DIV_settingsEntry">
 					
-					<label id="LABEL_SETTINGS_DISPLAY_MODE">Display mode</label>:
-					<select id="SELECT_settingsDisplayMode" class="SELECT_settings" onchange="APP.design.updateLauncherSettingsGUI();">
-						<option value="normal">Normal</option>
-						<option value="compact">Compact</option>
-						<option value="grid">Grid</option>
-					</select>
-				
-				</div>
-
-				<!-- Grid Options -->
-				<div id="DIV_settingsGridOptions">
-					<div class="SEPARATOR_00"></div>
-
-					<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsGridBorderRadius">
-
-						<label id="LABEL_SETTINGS_GRID_BORDER_RADIUS">Grid Border-Radius</label>: 
-						<input type="range" min="0" max="15" step="0.1" value="8" id="RANGE_settingsGridIconBorderRadius" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
-						<label id="LABEL_settingsGridBorderRadius">???</label>%
-
-					</div>
-
-					<div class="SEPARATOR_00"></div>
-				</div>
-
-				<div class="DIV_settingsEntry">
-					
 					<label id="LABEL_SETTINGS_GAME_SEARCH_MODE">Game search mode</label>:
 					<select id="SELECT_settingsSearchMode" class="SELECT_settings">
 						<option value="appName">Name</option>
@@ -110,13 +84,23 @@
 				
 				</div>
 
+				<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsGridBorderRadius">
+
+					<label id="LABEL_SETTINGS_GRID_BORDER_RADIUS">(Grid) Border-Radius</label>: 
+					<input type="range" min="0" max="15" step="0.1" value="8" id="RANGE_settingsGridIconBorderRadius" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
+					<label id="LABEL_settingsGridBorderRadius">???</label>%
+
+				</div>
+
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 					
 					<label id="LABEL_SETTINGS_GAME_LIST_BACKGROUND_OPACITY">Background Opacity</label>: 
 					
 					<input type="range" min="0" max="1" step="0.01" value="0.6" id="RANGE_settingsGameListBgOpacity" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
 					<label id="LABEL_settingsGameListBgOpacity">???</label>%
+
 				</div>
+
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 					<input type="checkbox" id="CHECKBOX_settingsGameSearchCaseSensitive">
@@ -220,14 +204,20 @@
 			<!-- Search -->
 			<input type="text" class="INPUT_gameListSearch" id="INPUT_gameListSearch" placeholder="Search: Insert game name..." oninput="APP.gameList.search();">
 
-			<!-- Grid icon size -->
-			<input type="range" min="92.93" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);APP.design.renderGameList({displayLog: !1});">
+			<!-- Display modes -->
+			<input type="button" onclick="APP.settings.setDisplayMode('normal');" class="BTN_displayMode BTN_displayMode_normal" id="BTN_displayMode_normal">
+			<input type="button" onclick="APP.settings.setDisplayMode('compact');" class="BTN_displayMode BTN_displayMode_compact" id="BTN_displayMode_compact">
+			<input type="button" onclick="APP.settings.setDisplayMode('grid');" class="BTN_displayMode BTN_displayMode_grid" id="BTN_displayMode_grid">
 
-			<input type="button" class="APP_btn BTN_actions" id="BTN_REFRESH" onclick="APP.gameList.load();" value="Refresh game list">
-			<input type="button" class="APP_btn BTN_actions" id="BTN_SETTINGS" onclick="APP.design.toggleSettings();" value="Settings">			
-			<input type="button" class="APP_btn BTN_actions" id="BTN_CLEAR_LOG" onclick="APP.clearLog();" value="Clear Log">
-			<input type="button" class="APP_btn BTN_actions" id="BTN_ABOUT" onclick="APP.about();" value="About">
-			<input type="button" class="APP_btn BTN_STOP" id="BTN_KILL" onclick="APP.emuManager.killEmu();" disabled="disabled" value="Stop fpPS4">
+			<!-- Grid icon size -->
+			<input type="range" class="none" min="92.93" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);APP.design.renderGameList({displayLog: !1});">
+
+			<!-- Actions -->
+			<input type="button" class="BTN_actions" id="BTN_REFRESH" onclick="APP.gameList.load();" value="Refresh game list">
+			<input type="button" class="BTN_actions" id="BTN_SETTINGS" onclick="APP.design.toggleSettings();" value="Settings">			
+			<input type="button" class="BTN_actions" id="BTN_CLEAR_LOG" onclick="APP.clearLog();" value="Clear Log">
+			<input type="button" class="BTN_actions" id="BTN_ABOUT" onclick="APP.about();" value="About">
+			<input type="button" class="BTN_STOP" id="BTN_KILL" onclick="APP.emuManager.killEmu();" disabled="disabled" value="Stop fpPS4">
 
 		</div>
 

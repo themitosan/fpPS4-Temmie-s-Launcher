@@ -463,8 +463,32 @@ img {
 	margin-left: 2px;
 	margin-right: 2px;
 }
+.BTN_displayMode {
+	width: 32px;
+	height: 32px;
+	min-height: 32px;
+	min-width: 32px;
+	border: initial;
+	margin-left: 2px;
+	margin-right: 2px;
+	border-radius: 4px;
+	background-size: 65%;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+.BTN_displayMode_normal {
+	margin-left: 8px;
+	background-image: url('../img/svg/list-filled-svgrepo-com.svg');
+}
+.BTN_displayMode_compact {
+	background-image: url('../img/svg/view-list-svgrepo-com.svg');
+}
+.BTN_displayMode_grid {
+	margin-right: 8px;
+	background-image: url('../img/svg/app-menu-svgrepo-com.svg');
+}
 .INPUT_gameListSearch {
-	width: 196px;
+	width: 195px;
 	margin: -8px;
 	border: none;
 	outline: none;

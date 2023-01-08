@@ -8,7 +8,7 @@
 		"logWindowTitle": "Exécution de fpPS4",
 		"killEmuStatus": "Le processus principal a été fermé - fermez la fenêtre des logs pour continuer",
 		"logCleared": "INFO - La liste des journaux a été effacée!\n ",
-		"about": "fpPS4 Lanceur de Temmie - Version: %VARIABLE_0%\nCréé par TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 a été créé/développé par red-prig\n(https://github.com/red -prig/fpPS4)\n\nLe plugin Memoryjs a été créé/développé par Rob--\n(https://github.com/rob--/memoryjs)",
+		"about": "fpPS4 Lanceur de Temmie - Version: %VARIABLE_0%\nCréé par TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 a été créé/développé par red-prig\n(https://github.com/red -prig/fpPS4)\n\nLe plugin Memoryjs a été créé/développé par Rob--\n(https://github.com/rob--/memoryjs)\n\nLes icônes SVG ont été obtenues à partir de\nhttps://www.svgrepo.com/",
 		"mainLog": "Lanceur de fpPS4 Temmie - Version: %VARIABLE_0%\nUtilisation de nw.js (node-webkit) version %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ERREUR - Impossible de créer le dossier!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ERREUR - Impossible de trouver l'exécutable fpPS4!\nSélectionnez l'exécutable dans les paramètres ou placez-le dans le dossier \"Emu\" et cliquez sur OK.",
@@ -67,7 +67,6 @@
 		"LABEL_SETTINGS_APP_GAMES_PATH": "Dossier Applications/Jeux",
 		"LABEL_SETTINGS_FPPS4_PATH": "Emplacement de l'émulateur",
 		"DIV_SETTINGS_GAME_LIST": "Liste des applications / jeux",
-		"LABEL_SETTINGS_DISPLAY_MODE": "Mode d'affichage",
 		"LABEL_SETTINGS_GRID_BORDER_RADIUS": "(Grid) Rayon de la bordure des icônes",
 		"LABEL_SETTINGS_GAME_SEARCH_MODE": "Mode de recherche",
 		"LABEL_SETTINGS_GAME_LIST_BACKGROUND_BLUR": "Flou d'arrière-plan",
@@ -99,11 +98,6 @@
 
 	"select": {
 
-		"SELECT_settingsDisplayMode": { 
-			"normal": "Normal",
-			"compact": "Compact",
-			"grid": "Grid (icones)" 
-		},
 		"SELECT_settingsSearchMode": {
 			"appName": "Nom",
 			"titleId": "Serial"

@@ -53,7 +53,7 @@ temp_LANGUAGE = {
 			"logWindowTitle": "Running fpPS4",
 			"killEmuStatus": "Main process closed - close fpPS4 log window to go back",
 			"logCleared": "INFO - Previous log was cleared!\n ",
-			"about": "fpPS4 Temmie\'s Launcher - Version: %VARIABLE_0%\nCreated by TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 main emulator is created by red-prig\n(https://github.com/red-prig/fpPS4)\n\nPlugin memoryjs is created by Rob--\n(https://github.com/rob--/memoryjs)",
+			"about": "fpPS4 Temmie\'s Launcher - Version: %VARIABLE_0%\nCreated by TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 main emulator is created by red-prig\n(https://github.com/red-prig/fpPS4)\n\nPlugin memoryjs is created by Rob--\n(https://github.com/rob--/memoryjs)\n\nSVG icons was obtained from https://www.svgrepo.com/",
 			"mainLog": 'fpPS4 Temmie\'s Launcher - Version: %VARIABLE_0%\nRunning on nw.js (node-webkit) version %VARIABLE_1% [%VARIABLE_2%]',
 			"settingsErrorCreatePath": "ERROR - Unable to create path!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 			"settingsErrorfpPS4NotFound": "ERROR - Unable to locate main fpPS4 executable!\nMake sure to select it on settings or insert it on \"Emu\" folder and click on ok.",
