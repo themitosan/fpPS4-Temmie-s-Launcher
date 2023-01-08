@@ -230,7 +230,7 @@ temp_DESIGN = {
 			}
 
 			// Load settings file
-			const gSettings = JSON.parse(APP.fs.readFileSync(settingsFile, 'utf-8'));
+			const gSettings = JSON.parse(APP.fs.readFileSync(settingsFile, 'utf8'));
 			APP.gameList.cGameSettings = gSettings;
 
 			// Set hacks
@@ -245,11 +245,17 @@ temp_DESIGN = {
 				// Try reading PARAM.SFO
 				try {
 
-					const paramSfoMetadata = APP.paramSfo.parse(gSettings.patchLocation + '/sce_sys/param.sfo');
+					// Get PARAM.SFO data
+					var paramSfoMetadata = APP.paramSfo.parse(gSettings.patchLocation + '/sce_sys/param.sfo'),
+						patchVersion = paramSfoMetadata.VERSION;
+
+					// If App version is available, show it instead
+					if (paramSfoMetadata.APP_VER !== void 0){
+						patchVersion = paramSfoMetadata.APP_VER;
+					}
 
 					// Update GUI
-					document.getElementById('LABEL_launcherOptionsPatchTitle').innerHTML = paramSfoMetadata.TITLE;
-					document.getElementById('LABEL_launcherOptionsPatchVersion').innerHTML = paramSfoMetadata.VERSION;
+					document.getElementById('LABEL_launcherOptionsPatchVersion').innerHTML = patchVersion;
 					document.getElementById('LABEL_launcherOptionsPatchType').innerHTML = APP.paramSfo.database.DB_CATEGORY[paramSfoMetadata.CATEGORY];
 
 					// Set patch loaded flag

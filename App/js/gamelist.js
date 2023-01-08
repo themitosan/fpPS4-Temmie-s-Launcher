@@ -36,7 +36,7 @@ temp_GAMELIST = {
 		// Write file
 		try {
 
-			APP.fs.writeFileSync(data.path, JSON.stringify(gameSettings), 'utf-8');
+			APP.fs.writeFileSync(data.path, JSON.stringify(gameSettings), 'utf8');
 			logMessage = APP.lang.getVariable('createdSettingsFile', [data.name]);
 		
 		} catch (err) {
@@ -82,7 +82,7 @@ temp_GAMELIST = {
 			// Write file
 			try {
 
-				APP.fs.writeFileSync(fPath, JSON.stringify(tempData), 'utf-8');
+				APP.fs.writeFileSync(fPath, JSON.stringify(tempData), 'utf8');
 				logMessage = APP.lang.getVariable('updateGameSettings', [APP.gameList.selectedGame]);
 
 			} catch (err) {
@@ -129,7 +129,7 @@ temp_GAMELIST = {
 					if (getParamSfo.TITLE_ID === cGame){
 
 						// Set variables
-						APP.gameList.cGameSettings.patchLocation = '\"' + pLocation + '\"';
+						APP.gameList.cGameSettings.patchLocation = pLocation;
 						APP.gameList.saveGameSettings(!0);
 						APP.design.selectGame(cGame);
 
@@ -448,7 +448,7 @@ temp_GAMELIST = {
 
 		if (this.selectedGame !== '' && Object.keys(this.list[this.selectedGame].paramSfo).length !== 0){
 
-			APP.fileManager.saveFile(this.selectedGame + '_metadata', '.json', 'utf-8', JSON.stringify(this.list[this.selectedGame].paramSfo), function(cPath){
+			APP.fileManager.saveFile(this.selectedGame + '_metadata', '.json', 'utf8', JSON.stringify(this.list[this.selectedGame].paramSfo), function(cPath){
 				window.alert(APP.lang.getVariable('saveSucessfullPath', [cPath]));
 				APP.log(APP.lang.getVariable('saveSucessfullPath', [cPath]));
 			});
