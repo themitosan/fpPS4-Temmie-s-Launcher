@@ -116,7 +116,7 @@ temp_SETTINGS = {
 
 		} catch (err) {
 
-			console.error(APP.lang.selected.variables.settingsLoadError.replace('%VARIABLE_00%', err));
+			console.error(APP.lang.getVariable('settingsLoadError', [err]));
 
 		}
 
@@ -131,7 +131,7 @@ temp_SETTINGS = {
 		try {
 			APP.fs.writeFileSync(nwPath + '/Settings.json', JSON.stringify(this.data), 'utf8');
 		} catch (err) {
-			console.error(APP.lang.selected.variables.settingsSaveError.replace('%VARIABLE_00%', err));
+			console.error(APP.lang.getVariable('settingsSaveError', [err]));
 		}
 
 	},

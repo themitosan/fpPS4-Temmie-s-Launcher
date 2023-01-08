@@ -265,7 +265,7 @@ window.onload = function(){
 
 		// Log error
 		console.error(err);
-		window.confirm('ERROR - Unable to start main application!\n\nReason:\n' + err + '\n\nTo know more, hit F12 and go to console tab to see more details.');
+		window.alert('ERROR - Unable to start main application!\n\nReason:\n' + err + '\n\nTo know more, hit F12 and go to console tab to see more details.');
 		
 	}
 
