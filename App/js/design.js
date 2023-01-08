@@ -344,12 +344,12 @@ temp_DESIGN = {
 				btnRefresh = '',
 				btnSettings = '',
 				btnKill = 'disabled',
-				logDisplay = 'block',
 				emuRunPath = 'block',
 				disableGridIconSize = '',
 				bgBlur = APP.settings.data.bgListBlur,
 				bgOpacity = APP.settings.data.bgListOpacity,
-				optionsCss = {'height': 'calc(100% - 214px)', 'display': 'block'},
+				logCss = {'display' :'block', 'width': 'calc(100% - 280px)'},
+				optionsCss = {'height': 'calc(100% - 50px)', 'display': 'block'},
 				listCss = {'width': 'calc(100% - 280px)', 'height': 'calc(100% - 202px)'};
 
 			// If emu is running
@@ -358,12 +358,12 @@ temp_DESIGN = {
 				btnKill = '';
 				btnLog = 'disabled';
 				btnRun = 'disabled';
-				logDisplay = 'none';
 				btnRefresh = 'disabled';
 				btnSettings = 'disabled';
 				disableGridIconSize = 'disabled';
 				bgBlur = APP.settings.data.bgEmuBlur;
 				bgOpacity = APP.settings.data.bgEmuOpacity;
+				logCss = {'display' :'none', 'width': '100%'};
 				optionsCss = {'height': '350px', 'display': 'none'};
 				listCss = {'width': '100%', 'height': 'calc(100% - 38px)'};
 	
@@ -375,9 +375,9 @@ temp_DESIGN = {
 			}
 
 			// Update GUI
+			TMS.css('DIV_LOG', logCss);
 			TMS.css('DIV_LIST', listCss);
 			TMS.css('DIV_OPTIONS', optionsCss);
-			TMS.css('DIV_LOG', {'display': logDisplay});
 			TMS.css('DIV_GAME_DETAILS_currentExec', {'display': emuRunPath});
 			TMS.css('DIV_GAMELIST_BG', {'filter': 'blur(' + bgBlur + 'px) opacity(' + bgOpacity + ')'});
 	
@@ -392,6 +392,7 @@ temp_DESIGN = {
 
 		} else {
 
+			TMS.css('DIV_LOG', {'width': '100%'});
 			TMS.css('DIV_LIST', {'width': '100%'});
 			TMS.css('DIV_OPTIONS', {'display': 'none'});
 
@@ -483,12 +484,6 @@ temp_DESIGN = {
 				gameDetails = {'display': 'none'};
 				listInternal = {'transition': 'none', 'filter': 'blur(' + APP.settings.data.bgListBlur +'px) opacity(' + APP.settings.data.bgListOpacity + ')'};
 				APP.design.renderGameList();
-
-				// Reset log color
-				TMS.css('APP_LOG', {
-					'color': '#0f0',
-					'background-image': 'linear-gradient(180deg, #000000db, #090f1b)'
-				});
 	
 			} else {
 

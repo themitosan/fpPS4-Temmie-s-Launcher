@@ -97,7 +97,9 @@ img {
 	bottom: 0px;
 	width: 100%;
 	height: 164px;
+	transition: 0.2s;
 	position: absolute;
+	background-color: #000;
 	background-size: auto 50%;
 	background-position: center;
 	background-repeat: no-repeat;
@@ -483,13 +485,12 @@ img {
 	border: none;
 	cursor: text;
 	outline: none;
-	transition: 0.16s;
 	width: calc(100% - 4px);
 	height: calc(100% - 4px);
 	backdrop-filter: blur(1.4px);
 	background-repeat: no-repeat;
 	text-shadow: 2px 2px 2px #000;
-	background-image: linear-gradient(180deg, #000e, #090f1b);
+	background-image: linear-gradient(180deg, #05050ee8, #010114c7);
 }
 .BTN_RUN {
 	left: 8px;
