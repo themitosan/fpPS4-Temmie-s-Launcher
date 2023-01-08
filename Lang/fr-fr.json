@@ -34,7 +34,7 @@
 		"createdSettingsFile": "INFO - ( %VARIABLE_0% ) Le fichier de paramètres a été généré avec succès!",
 		"errorCreateSettingsFile": "ERREUR - Impossible de créer le fichier de paramètres %VARIABLE_0% dans %VARIABLE_1%!\nDétails: %VARIABLE_2%",
 		"patchLoadedSucessfully": "INFO - Le correctif a été chargé avec succès!\nNom: %VARIABLE_0%\nType: %VARIABLE_1%",
-		"patchLoadErrorMismatch": "ERREUR - Le correctif sélectionné ne correspond pas au jeu actuel!\nIdentifiant du correctif: %VARIABLE_0%\nApplication/jeu actuel: %VARIABLE_1%",
+		"patchLoadErrorMismatch": "ERREUR - Ceci n'est pas un patch - ou si c'est le cas, celui sélectionné ne correspond pas au jeu actuel!\nIdentifiant du patch: %VARIABLE_0%\nApplication/jeu actuel: %VARIABLE_1%",
 		"patchLoadErrorParamSfo404": "ERREUR - Impossible de trouver PARAM.SFO pour ce correctif!",
 		"gameListLoadWarnPlayGo": "AVERTISSEMENT - Impossible de trouver playgo-chunk.dat à partir de %VARIABLE_0%!\nSi cette application/ce jeu n'est pas un homebrew, assurez-vous qu'il a été vidé correctement.",
 		"gameListLoadWarnParamSfo": "AVERTISSEMENT - Impossible de trouver %VARIABLE_0% PARAM.SFO!\nSi cette application/ce jeu n'est pas un homebrew, assurez-vous qu'il a été vidé correctement.",

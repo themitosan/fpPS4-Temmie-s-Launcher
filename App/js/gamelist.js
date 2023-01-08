@@ -110,7 +110,7 @@ temp_GAMELIST = {
 	loadGamePatch: function(){
 
 		if (this.selectedGame !== ''){
-			
+
 			var logMessage = '',
 				cGame = this.selectedGame;
 			
@@ -124,7 +124,7 @@ temp_GAMELIST = {
 					const getParamSfo = APP.paramSfo.parse(pLocation + '/sce_sys/param.sfo');
 
 					// Check if TITLE_ID matches current game
-					if (getParamSfo.TITLE_ID === cGame){
+					if (getParamSfo.TITLE_ID === cGame && getParamSfo.CATEGORY === 'gd'){
 
 						// Set variables
 						APP.gameList.cGameSettings.patchLocation = pLocation;
@@ -187,14 +187,9 @@ temp_GAMELIST = {
 						appId = gPath,
 						appName = gPath,
 						isHomebrew = !1,
-						iconList = [
-							'sce_sys/icon0.png',
-							'sce_sys/icon1.png'
-						],
-						backgroundList = [
-							'sce_sys/pic1.png',
-							'sce_sys/pic0.png'
-						],
+						settingsFile = {},
+						iconList = ['sce_sys/icon0.png', 'sce_sys/icon1.png'],
+						backgroundList = ['sce_sys/pic1.png', 'sce_sys/pic0.png'],
 						pathBase = APP.settings.data.gamePath + '/' + gPath + '/',
 						executableName = pathBase + 'eboot.bin',
 						paramSfoPath = pathBase + 'sce_sys/param.sfo',
@@ -268,6 +263,11 @@ temp_GAMELIST = {
 
 					}
 
+					// Check if settings file exists for current game
+					if (APP.fs.existsSync(pathBase + '/launcherSettings.json') === !0){
+						settingsFile = JSON.parse(APP.fs.readFileSync(pathBase + '/launcherSettings.json'));
+					}
+
 					// Check if Project.gp4 exists on root. if so, remove it
 					if (APP.settings.data.removeProjectGp4 === !0 && APP.fs.existsSync(pathBase + 'Project.gp4') === !0){
 						
@@ -290,7 +290,8 @@ temp_GAMELIST = {
 							folderName: gPath,
 							paramSfo: paramSfo,
 							exe: executableName,
-							isHomebrew: isHomebrew
+							isHomebrew: isHomebrew,
+							settingsFile: settingsFile
 						};
 
 						// Add game to list

@@ -34,7 +34,7 @@
 		"createdSettingsFile": "INFO - 成功保存 (%VARIABLE_0%) 的设置文件",
 		"errorCreateSettingsFile": "ERROR - 无法在 %VARIABLE_1% 中保存 %VARIABLE_0% 的设置文件！\n原因: %VARIABLE_2%",
 		"patchLoadedSucessfully": "INFO - 成功加载补丁！\n标题: %VARIABLE_0%\n类型: %VARIABLE_1%",
-		"patchLoadErrorMismatch": "ERROR - 这不是这个应用／游戏的补丁！\n补丁ID: %VARIABLE_0%\n选择的应用／游戏: %VARIABLE_1%",
+		"patchLoadErrorMismatch": "ERROR - 这不是补丁 - 或者如果是，所选的补丁与当前游戏不匹配！\n补丁 ID：%VARIABLE_0%\n当前应用/游戏：%VARIABLE_1%",
 		"patchLoadErrorParamSfo404": "ERROR - 没有在这个补丁中找到 PARAM.SFO！",
 		"gameListLoadWarnPlayGo": "WARN - 在 %VARIABLE_0% 中无法找到 playgo-chunk.dat！\n如果这不是一个自制软件，请检查这个应用／游戏是否被正确地 Dump。",
 		"gameListLoadWarnParamSfo": "WARN - 在 %VARIABLE_0% 中无法找到 PARAM.SFO！\n如果这不是一个自制软件，请检查这个应用／游戏是否被正确地 Dump。",

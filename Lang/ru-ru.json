@@ -34,7 +34,7 @@
 		"createdSettingsFile": "ИНФО - ( %VARIABLE_0% ) Файл конфигурации успешно создан!",
 		"errorCreateSettingsFile": "ОШИБКА - Невозможно создать файл конфигурации %VARIABLE_0% в %VARIABLE_1%!\nПодробности: %VARIABLE_2%",
 		"patchLoadedSucessfully": "ИНФО - Патч успешно загружен!\nИмя: %VARIABLE_0%\nТип: %VARIABLE_1%",
-		"patchLoadErrorMismatch": "ОШИБКА - Выбранный патч не соответствует текущей игре!\nИдентификатор патча: %VARIABLE_0%\nТекущее приложение / игра: %VARIABLE_1%",
+		"patchLoadErrorMismatch": "ОШИБКА - Это не патч, а если и есть, то выбранный не соответствует текущей игре!\nИдентификатор патча: %VARIABLE_0%\nТекущее приложение/игра: %VARIABLE_1%",
 		"patchLoadErrorParamSfo404": "ОШИБКА - Не удалось найти PARAM.SFO этого патча!",
 		"gameListLoadWarnPlayGo": "УВЕДОМЛЕНИЕ - Невозможно найти файл playgo-chunk.dat из %VARIABLE_0%!\nЕсли это приложение / игра не является homebrew, проверьте , что дамп был сделан правильно.",
 		"gameListLoadWarnParamSfo": "УВЕДОМЛЕНИЕ - Не удалось найти PARAM.SFO из %VARIABLE_0%!\nЕсли это приложение / игра не является homebrew, проверьте, что дамп был сделан правильно.",

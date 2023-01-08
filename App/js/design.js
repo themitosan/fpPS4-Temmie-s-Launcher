@@ -121,10 +121,13 @@ temp_DESIGN = {
 			var appTitle = '',
 				gameName = '',
 				gameBgAndIcon,
+				appVersion = '',
+				patchParamSfo = {},
 				gameEntryStyle = '',
 				classDisplayEntryMode = '',
 				appNameClass = 'LABEL_gameTitle',
 				classGameDetailsMode = 'GAME_DETAILS',
+				settingsFile = gList[cGame].settingsFile,
 				gridIconSize = APP.settings.data.gridIconSize,
 				gameMetadata = '<br>' + APP.lang.getVariable('path') + ': ' + gList[cGame].exe,
 				bgPath = 'url(\'' + gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'') + '\')';
@@ -137,9 +140,27 @@ temp_DESIGN = {
 			// Background and Icon
 			gameBgAndIcon = '<div class="GAME_ENTRY_BG" style="background-image: ' + bgPath + ';"></div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '">';
 
+			// Check if patch is available and active
+			if (Object.keys(settingsFile).length !== 0 && settingsFile.usePatch === !0 && APP.fs.existsSync(settingsFile.patchLocation + '/sce_sys/param.sfo') === !0){
+				patchParamSfo = APP.paramSfo.parse(settingsFile.patchLocation + '/sce_sys/param.sfo');
+
+				// Check if PARAM.SFO from patch is loaded and it's a patch
+				if (Object.keys(patchParamSfo).keys !== 0 && patchParamSfo.CATEGORY === 'gp'){
+					appVersion = '<label class="LABEL_emuColor">' + patchParamSfo.APP_VER + '</label>';
+				}
+
+			}
+
 			// If PARAM.SFO metadata exists, show serial and game version instead
 			if (Object.keys(gList[cGame].paramSfo).length !== 0){
-				gameMetadata = '<br>' + gList[cGame].paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameListVersion') + ' ' + gList[cGame].paramSfo.APP_VER;
+				
+				// If patch isn't enabled
+				if (settingsFile.usePatch !== !0){
+					appVersion = gList[cGame].paramSfo.APP_VER;
+				}
+
+				// Set game data
+				gameMetadata = '<br>' + gList[cGame].paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameListVersion') + ' ' + appVersion;
 			}
 
 			// Settings: Show App / Game version (or executable path) for every title in game list
@@ -160,35 +181,27 @@ temp_DESIGN = {
 
 					// Check if PARAM.SFO is available
 					if (Object.keys(gList[cGame].paramSfo).length !== 0){
-						gameMetadata = '<div class="float-right">' + gList[cGame].paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameListVersion') + ' ' + gList[cGame].paramSfo.APP_VER + '</div>';
+						gameMetadata = '<div class="float-right">' + gList[cGame].paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameListVersion') + ' ' + appVersion + '</div>';
 					}
 
 					// Check if is Homebrew
 					if (gList[cGame].isHomebrew === !0){
-						gameMetadata = '<div class="float-right">Homebrew App</div>';
+						gameMetadata = '<div class="float-right">Homebrew</div>';
 					}
 					break;
 
 				// Display mode: Grid
 				case 'grid':
 
-					// Game Version
-					var gameInfo = '';
-
-					// Check if PARAM.SFO is available
-					if (Object.keys(gList[cGame].paramSfo).length !== 0){
-						gameInfo = gList[cGame].paramSfo.APP_VER;
-					}
-
 					// Check if is Homebrew
 					if (gList[cGame].isHomebrew === !0){
-						gameInfo = 'HB';
+						appVersion = 'HB';
 					}
 
 					classGameDetailsMode = '';
 					appTitle = gList[cGame].name;
 					classDisplayEntryMode = ' GAME_ENTRY_GRID';
-					gameMetadata = '<div class="GAME_DETAILS_GRID">' + gameInfo + '</div>';
+					gameMetadata = '<div class="GAME_DETAILS_GRID">' + appVersion + '</div>';
 					gameEntryStyle = 'border-radius: ' + APP.settings.data.gridBorderRadius + 'px;';
 					gameBgAndIcon = '<div class="none" style="background-image: ' + bgPath + '";></div><img class="IMG_GAME_ICON IMG_GRID" style="width: ' + gridIconSize + 'px;" src="' + gList[cGame].icon + '">';
 					break;

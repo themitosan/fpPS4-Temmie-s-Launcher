@@ -79,7 +79,7 @@ temp_LANGUAGE = {
 			"createdSettingsFile": "INFO - Settings file was created successfully for %VARIABLE_0%",
 			"errorCreateSettingsFile": "ERROR - Unable to create settings file for %VARIABLE_0% at %VARIABLE_1%!\nReason: %VARIABLE_2%",
 			"patchLoadedSucessfully": "INFO - Patch loaded successfully!\nName: %VARIABLE_0%\nType: %VARIABLE_1%",
-			"patchLoadErrorMismatch": "ERROR - This patch does not match for this app / game!\nPatch ID: %VARIABLE_0%\nSelected app / game: %VARIABLE_1%",
+			"patchLoadErrorMismatch": "ERROR - This isn\'t a patch or it does not match for this app / game!\nPatch ID: %VARIABLE_0%\nSelected app / game: %VARIABLE_1%",
 			"patchLoadErrorParamSfo404": "ERROR - Unable to find PARAM.SFO for this patch!",
 			"gameListLoadWarnPlayGo": "WARN - Unable to locate playgo-chunk.dat for %VARIABLE_0%!\nIf this isn\'t a homebrew, check if this App / Game was dumped properly.",
 			"gameListLoadWarnParamSfo": "WARN - Unable to locate PARAM.SFO for %VARIABLE_0%!\nIf this isn\'t a homebrew, check if this App / Game was dumped properly.",
