@@ -1,5 +1,7 @@
 {
+
 	"lang": "简体中文 (ZH-S)",
+
 	"variables": {
 		"labelEnableHack": "启用",
 		"emuStatusRunning": "模拟器运行中",
@@ -46,16 +48,17 @@
 		"selectGameLoadPatchErrorParamSfo": "ERROR - 无法从这个补丁中加载 PARAM.SFO！\n%VARIABLE_0%",
 		"path": "路径"
 	},
+
 	"input_text": {
-		"INPUT_gameListSearch": {
-			"placeholder": "搜索: 游戏标题...",
-			"value": ""
-		}
+		"INPUT_gameListSearch": {"placeholder": "搜索: 游戏标题...","value": ""}
 	},
+
 	"title": {
 		"DIV_selectedGameStatus": "绿色: 所有的文件都存在\n黄色: 缺失一些文件 - 更多细节请查看日志\n青色: 可执行文件是一个 .elf 文件"
 	},
+	
 	"innerHTML": {
+
 		"DIV_SETTINGS_TITLE": "启动器设置",
 		"DIV_SETTINGS_LANGUAGE": "语言",
 		"LABEL_SETTINGS_CURRENT_LANGUAGE": "当前语言",
@@ -88,8 +91,11 @@
 		"LABEL_FPPS4_OPTIONS_PATCH_VERSION": "版本号",
 		"LABEL_FPPS4_OPTIONS_PATCH_TYPE": "类型",
 		"LABEL_EMU_RUNNING_STATUS": "运行状态"
+
 	},
+
 	"select": {
+
 		"SELECT_settingsDisplayMode": {
 			"normal": "常规",
 			"compact": "紧凑",
@@ -104,8 +110,11 @@
 			"max": "最大化",
 			"min": "最小化"
 		}
+
 	},
+	
 	"value": {
+
 		"BTN_SETTINGS_SELECT_APPS_GAMES_PATH": "选择路径",
 		"BTN_SETTINGS_OPEN_APPS_GAMES_PATH": "打开路径",
 		"BTN_SETTINGS_SELECT_FPPS4_PATH": "选择文件",
@@ -122,5 +131,6 @@
 		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "重置设置",
 		"BTN_launcherOptionsExportMetadata": "导出元数据",
 		"BTN_RUN": "运行 fpPS4"
+
 	}
 }
