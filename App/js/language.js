@@ -19,8 +19,8 @@ temp_LANGUAGE = {
 		var lPatch = [],
 			res = this.selected.variables[name];
 
-		// If variable not found, get english instead
-		if (res === void 0){
+		// If variable not found or an empty string, get english instead
+		if (res === void 0 || res === ''){
 			res = this.english.variables[name];
 		}
 

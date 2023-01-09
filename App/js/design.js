@@ -27,6 +27,9 @@ temp_DESIGN = {
 		'IMAGE_LOAD_HACK',
 		'DISABLE_SRGB_HACK'
 	],
+
+	// Game list display modes
+	gameListDisplayModes: ['normal', 'compact', 'grid'],
 	
 	// Render hack list
 	renderHacklist: function(){
@@ -488,11 +491,17 @@ temp_DESIGN = {
 				gameDetails = {'display': 'none'};
 				listInternal = {'transition': 'none', 'filter': 'blur(' + APP.settings.data.bgListBlur +'px) opacity(' + APP.settings.data.bgListOpacity + ')'};
 				APP.design.renderGameList();
+				APP.design.updateLauncherSettingsGUI();
 	
 			} else {
 
 				// Clear search input
 				document.getElementById('INPUT_gameListSearch').value = '';
+
+				// Disable display mode buttons
+				APP.design.gameListDisplayModes.forEach(function(cMode){
+					document.getElementById('BTN_displayMode_' + cMode).disabled = 'disabled';
+				});
 
 				// Check if PARAM.SFO patch exists
 				if (APP.fs.existsSync(patchLocation) === !0){
@@ -663,8 +672,7 @@ temp_DESIGN = {
 	// Update settings GUI without loading / save data
 	updateLauncherSettingsGUI: function(){
 
-		var displayModes = ['normal', 'compact', 'grid'],
-			cDisplayMode = APP.settings.data.gameListMode;
+		var cDisplayMode = APP.settings.data.gameListMode;
 		
 		// Grid options
 		switch (cDisplayMode) {
@@ -686,7 +694,7 @@ temp_DESIGN = {
 		}
 
 		// Reset display modes
-		displayModes.forEach(function(cMode){
+		this.gameListDisplayModes.forEach(function(cMode){
 			document.getElementById('BTN_displayMode_' + cMode).disabled = '';
 		});
 		document.getElementById('BTN_displayMode_' + cDisplayMode).disabled = 'disabled';
