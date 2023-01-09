@@ -54,10 +54,9 @@ temp_EMUMANAGER = {
 
 			// Log emu location and args
 			APP.log(APP.lang.getVariable('runEmuArgs', [emuArgs.toString().replace(RegExp(',', 'gi'), ' '), APP.settings.data.emuPath]));
-			
+
 			// Run fpPS4
 			APP.runfpPS4(APP.settings.data.emuPath, emuArgs);
-			this.emuRunning = !0;
 
 			// Update main GUI
 			APP.design.update();

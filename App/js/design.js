@@ -354,6 +354,7 @@ temp_DESIGN = {
 				btnKill = 'disabled',
 				emuRunPath = 'block',
 				bgBlur = APP.settings.data.bgListBlur,
+				showGuiMetadata = {'display': 'none'},
 				bgOpacity = APP.settings.data.bgListOpacity,
 				logCss = {'display' :'block', 'width': 'calc(100% - 280px)'},
 				optionsCss = {'height': 'calc(100% - 50px)', 'display': 'block'},
@@ -368,6 +369,7 @@ temp_DESIGN = {
 				btnRefresh = 'disabled';
 				btnSettings = 'disabled';
 				bgBlur = APP.settings.data.bgEmuBlur;
+				showGuiMetadata = {'display': 'flex'};
 				bgOpacity = APP.settings.data.bgEmuOpacity;
 				logCss = {'display' :'none', 'width': '100%'};
 				optionsCss = {'height': '350px', 'display': 'none'};
@@ -384,6 +386,7 @@ temp_DESIGN = {
 			TMS.css('DIV_LOG', logCss);
 			TMS.css('DIV_LIST', listCss);
 			TMS.css('DIV_OPTIONS', optionsCss);
+			TMS.css('DIV_GAME_DETAILS', showGuiMetadata);
 			TMS.css('DIV_GAME_DETAILS_currentExec', {'display': emuRunPath});
 			TMS.css('DIV_GAMELIST_BG', {'filter': 'blur(' + bgBlur + 'px) opacity(' + bgOpacity + ')'});
 	
@@ -568,6 +571,9 @@ temp_DESIGN = {
 
 	// Display / Hide Settings
 	toggleSettings: function(hide){
+
+		// Reset selected game
+		APP.gameList.selectedGame = '';
 
 		var showList = ['DIV_SETTINGS'],
 			hideList = [
