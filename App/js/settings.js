@@ -42,6 +42,15 @@ temp_SETTINGS = {
 			GUI
 		*/
 
+		// Game list
+		showBgOnEntry: !0,
+		showPathEntry: !0,
+		gameListMode: 'normal',
+
+		// Emu running
+		showPathRunning: !0,
+		showGuiMetadata: !0,
+
 		// Game search mode (appName or titleId)
 		gameSearchMode: 'appName',
 		searchCaseSensitive: !1,
@@ -56,12 +65,7 @@ temp_SETTINGS = {
 
 		// (Grid)
 		gridIconSize: 116,
-		gridBorderRadius: 8,
-
-		showBgOnEntry: !0,
-		showPathEntry: !0,
-		showPathRunning: !0,
-		gameListMode: 'normal'
+		gridBorderRadius: 8
 	
 	},
 

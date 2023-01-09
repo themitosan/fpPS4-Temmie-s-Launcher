@@ -10,11 +10,13 @@
 
 temp_LANGUAGE = {
 
-	// Selected lang
-	selected: {},
-
 	// Get variable string
 	getVariable: function(name, list){
+
+		// Fix settings
+		if (Object.keys(this.selected).length === 0){
+			this.selected = this.english;
+		}
 
 		var lPatch = [],
 			res = this.selected.variables[name];
@@ -99,6 +101,9 @@ temp_LANGUAGE = {
 			"DIV_selectedGameStatus": "Green: All files are present\nYellow: Some files are missing - check log for more details\nCyan: Executable is a .elf file"
 		}
 
-	}
+	},
+
+	// Selected lang
+	selected: {}
 
 }
