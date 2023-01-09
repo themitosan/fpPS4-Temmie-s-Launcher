@@ -210,7 +210,7 @@
 			<input type="button" onclick="APP.settings.setDisplayMode('grid');" class="BTN_displayMode BTN_displayMode_grid" id="BTN_displayMode_grid">
 
 			<!-- Grid icon size -->
-			<input type="range" class="none" min="92.93" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);APP.design.renderGameList({displayLog: !1});">
+			<input type="range" min="92.93" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);APP.design.renderGameList({displayLog: !1});">
 
 			<!-- Actions -->
 			<input type="button" class="BTN_actions" id="BTN_REFRESH" onclick="APP.gameList.load();" value="Refresh game list">

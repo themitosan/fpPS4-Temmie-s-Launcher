@@ -124,7 +124,7 @@ temp_GAMELIST = {
 					const getParamSfo = APP.paramSfo.parse(pLocation + '/sce_sys/param.sfo');
 
 					// Check if TITLE_ID matches current game
-					if (getParamSfo.TITLE_ID === cGame && getParamSfo.CATEGORY === 'gd'){
+					if (getParamSfo.TITLE_ID === cGame && getParamSfo.CATEGORY !== 'ac'){
 
 						// Set variables
 						APP.gameList.cGameSettings.patchLocation = pLocation;

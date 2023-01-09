@@ -245,6 +245,9 @@ temp_SETTINGS = {
 			// Update display mode
 			this.data.gameListMode = cMode;
 			
+			// Clear previous search
+			document.getElementById('INPUT_gameListSearch').value = '';
+
 			// Render GUI
 			APP.design.renderSettings(!0);
 			APP.design.renderGameList({displayLog: !1});

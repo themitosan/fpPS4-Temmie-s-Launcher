@@ -144,8 +144,8 @@ temp_DESIGN = {
 			if (Object.keys(settingsFile).length !== 0 && settingsFile.usePatch === !0 && APP.fs.existsSync(settingsFile.patchLocation + '/sce_sys/param.sfo') === !0){
 				patchParamSfo = APP.paramSfo.parse(settingsFile.patchLocation + '/sce_sys/param.sfo');
 
-				// Check if PARAM.SFO from patch is loaded and it's a patch
-				if (Object.keys(patchParamSfo).keys !== 0 && patchParamSfo.CATEGORY === 'gp'){
+				// Check if PARAM.SFO from patch is loaded and isn't an DLC
+				if (Object.keys(patchParamSfo).keys !== 0 && patchParamSfo.CATEGORY !== 'ac'){
 					appVersion = '<label class="LABEL_emuColor">' + patchParamSfo.APP_VER + '</label>';
 				}
 
@@ -670,17 +670,17 @@ temp_DESIGN = {
 		switch (cDisplayMode) {
 
 			case 'normal':
-				TMS.css('RANGE_settingsGridIconSize', {'display': 'none'});
+				document.getElementById('RANGE_settingsGridIconSize').disabled = 'disabled';
 				TMS.css('DIV_settingsShowBgOnGameEntry', {'display': 'flex'});
 				break;
 
 			case 'compact':
-				TMS.css('RANGE_settingsGridIconSize', {'display': 'none'});
+				document.getElementById('RANGE_settingsGridIconSize').disabled = 'disabled';
 				break;
 
 			case 'grid':
 				TMS.css('DIV_settingsShowBgOnGameEntry', {'display': 'none'});
-				TMS.css('RANGE_settingsGridIconSize', {'display': 'inline-block'});
+				document.getElementById('RANGE_settingsGridIconSize').disabled = '';
 				break;
 
 		}
