@@ -90,6 +90,11 @@ var APP = {
 
 	},
 
+	// Process fpPS4 output data
+	processStdOutput: function(data){
+		console.log(data);
+	},
+
 	// Run fpPS4
 	execProcess: void 0,
 	runfpPS4: function(exe, args){
@@ -135,6 +140,8 @@ var APP = {
 			APP.execProcess = APP.childProcess.exec(execLine);
 
 			// Log on stdout and stderr
+			APP.execProcess.setEncoding('utf8');
+
 			APP.execProcess.stdout.on('data', function(data){
 				APP.processStdOutput(data);
 			});
