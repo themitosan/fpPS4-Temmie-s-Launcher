@@ -273,10 +273,12 @@ img {
 	width: calc(100% - 10px);
 }
 .GAME_DETAILS_GRID {
+	right: 0px;
+	bottom: 0px;
 	position: absolute;
-	bottom: 0px;right: 0px;
-	background-color: #000b;
+	background-color: #000a;
 	padding: 2px 6px 2px 6px;
+	backdrop-filter: blur(4px);
 	text-shadow: 0px 0px 4px #000;
 	border-radius: 6px 0px 0px 0px;
 }

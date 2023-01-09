@@ -6,7 +6,7 @@
 		<title>fpPS4 Temmie's Launcher - Loading...</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" type="image/png" href="img/logo.png" sizes="551x547"/>
+		<link rel="shortcut icon" type="image/png" href="img/logo.png" sizes="551x547"/>
 	</head>
 
 	<body>
@@ -139,11 +139,18 @@
 					<input type="range" min="0" max="1" step="0.01" value="0.7" id="RANGE_settingsEmuRunningBgOpacity" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
 					<label id="LABEL_settingsEmuRunningBgOpacity">???</label>%
 				</div>
-				
+
+				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+					<input type="checkbox" id="CHECKBOX_settingsShowGameMetadata">
+					<label class="LABEL_checkbox" id="LABEL_SETTINGS_SHOW_METADATA_GUI" onclick="APP.tools.processCheckbox('CHECKBOX_settingsShowGameMetadata');">
+						Display icon / name GUI while fpPS4 is running
+					</label>
+				</div>
+
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 					<input type="checkbox" id="CHECKBOX_settingsShowExecRunning">
 					<label class="LABEL_checkbox" id="LABEL_SETTINGS_SHOW_METADATA_EMU_RUNNING" onclick="APP.tools.processCheckbox('CHECKBOX_settingsShowExecRunning');">
-						Display App Game metadata (or executable path) below game title
+						Display app / game metadata (or executable path) below game title
 					</label>
 				</div>
 
@@ -187,6 +194,7 @@
 
 				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 					<input type="button" class="SELECT_settings" id="BTN_SETTINGS_DELETE_ALL_GAME_SETTINGS" value="Delete all game settings" onclick="APP.settings.resetAllGameSettings();">
+					<input type="button" class="SELECT_settings" id="BTN_SETTINGS_RESTART_LAUNCHER" value="Restart launcher" onclick="chrome.runtime.reload();">
 				</div>
 
 			</div>

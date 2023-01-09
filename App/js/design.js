@@ -53,7 +53,7 @@ temp_DESIGN = {
 
 		// Update titles
 		Object.keys(APP.lang.selected.title).forEach(function(domId){
-			if (document.getElementById(domId) !== null){
+			if (document.getElementById(domId) !== null && APP.lang.selected.title[domId] !== ''){
 				document.getElementById(domId).title = APP.lang.selected.title[domId];
 			}
 		});
@@ -86,14 +86,14 @@ temp_DESIGN = {
 
 			// Update innerHTML
 			Object.keys(APP.lang.selected.innerHTML).forEach(function(domId){
-				if (document.getElementById(domId) !== null){
+				if (document.getElementById(domId) !== null && APP.lang.selected.innerHTML[domId] !== ''){
 					document.getElementById(domId).innerHTML = APP.lang.selected.innerHTML[domId];
 				}
 			});
 
 			// Update value
 			Object.keys(APP.lang.selected.value).forEach(function(domId){
-				if (document.getElementById(domId) !== null){
+				if (document.getElementById(domId) !== null && APP.lang.selected.value[domId] !== ''){
 					document.getElementById(domId).value = APP.lang.selected.value[domId];
 				}
 			});
@@ -145,6 +145,8 @@ temp_DESIGN = {
 
 			// Check if patch is available and active
 			if (Object.keys(settingsFile).length !== 0 && settingsFile.usePatch === !0 && APP.fs.existsSync(settingsFile.patchLocation + '/sce_sys/param.sfo') === !0){
+				
+				// Get PARAM.SFO patch data
 				patchParamSfo = APP.paramSfo.parse(settingsFile.patchLocation + '/sce_sys/param.sfo');
 
 				// Check if PARAM.SFO from patch is loaded and isn't an DLC
@@ -164,6 +166,7 @@ temp_DESIGN = {
 
 				// Set game data
 				gameMetadata = '<br>' + gList[cGame].paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameListVersion') + ' ' + appVersion;
+			
 			}
 
 			// Settings: Show App / Game version (or executable path) for every title in game list
@@ -233,6 +236,8 @@ temp_DESIGN = {
 
 		// Clear BG image
 		TMS.css('DIV_GAMELIST_BG', {'background-image': 'none'});
+
+		TMS.css('DIV_GAME_DETAILS', {'display': 'none'});
 
 		// Focus search field
 		TMS.focus('INPUT_gameListSearch');
@@ -348,7 +353,6 @@ temp_DESIGN = {
 				btnSettings = '',
 				btnKill = 'disabled',
 				emuRunPath = 'block',
-				disableGridIconSize = '',
 				bgBlur = APP.settings.data.bgListBlur,
 				bgOpacity = APP.settings.data.bgListOpacity,
 				logCss = {'display' :'block', 'width': 'calc(100% - 280px)'},
@@ -363,13 +367,12 @@ temp_DESIGN = {
 				btnRun = 'disabled';
 				btnRefresh = 'disabled';
 				btnSettings = 'disabled';
-				disableGridIconSize = 'disabled';
 				bgBlur = APP.settings.data.bgEmuBlur;
 				bgOpacity = APP.settings.data.bgEmuOpacity;
 				logCss = {'display' :'none', 'width': '100%'};
 				optionsCss = {'height': '350px', 'display': 'none'};
 				listCss = {'width': '100%', 'height': 'calc(100% - 38px)'};
-	
+
 			}
 
 			// Show / Hide path on game run
@@ -391,7 +394,6 @@ temp_DESIGN = {
 			document.getElementById('BTN_REFRESH').disabled = btnRefresh;
 			document.getElementById('BTN_SETTINGS').disabled = btnSettings;
 			document.getElementById('INPUT_gameListSearch').disabled = btnRun;
-			document.getElementById('RANGE_settingsGridIconSize').disabled = disableGridIconSize;
 
 		} else {
 
@@ -479,6 +481,7 @@ temp_DESIGN = {
 			
 			var gameVersion = '',
 				patchParamSfo = {},
+				disableGridIconSize = '',
 				gameDetails = {'display': 'flex'},
 				usePatch = APP.gameList.cGameSettings.usePatch,
 				patchLocation = APP.gameList.cGameSettings.patchLocation,
@@ -490,10 +493,25 @@ temp_DESIGN = {
 
 				gameDetails = {'display': 'none'};
 				listInternal = {'transition': 'none', 'filter': 'blur(' + APP.settings.data.bgListBlur +'px) opacity(' + APP.settings.data.bgListOpacity + ')'};
+				
+				// Restore app title
+				document.title = APP.title;
+				
 				APP.design.renderGameList();
 				APP.design.updateLauncherSettingsGUI();
 	
 			} else {
+
+				// Disable grid size
+				disableGridIconSize = 'disabled';
+
+				// Update app title
+				document.title = APP.title + ' - ' + APP.lang.getVariable('logWindowTitle') + ' [ ' + APP.gameList.selectedGame + ' ]';
+
+				// Hide game metadata
+				if (APP.settings.data.showGuiMetadata === !1){
+					gameDetails.display = 'none';
+				}
 
 				// Clear search input
 				document.getElementById('INPUT_gameListSearch').value = '';
@@ -538,6 +556,7 @@ temp_DESIGN = {
 			document.getElementById('DIV_GAME_DETAILS_currentExec').innerHTML = gameMetadata;
 			document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = gameData.appStatus;
 			document.getElementById('LABEL_GAME_DETAILS_APP_NAME').innerHTML = gameData.appName;
+			document.getElementById('RANGE_settingsGridIconSize').disabled = disableGridIconSize;
 	
 			// Set CSS
 			TMS.css('DIV_GAMELIST_BG', listInternal);
@@ -644,6 +663,7 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsEnableParamSfo').checked = JSON.parse(cSettings.enableParamSfo);
 		document.getElementById('CHECKBOX_settingsShowExecRunning').checked = JSON.parse(cSettings.showPathRunning);
 		document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked = JSON.parse(cSettings.showBgOnEntry);
+		document.getElementById('CHECKBOX_settingsShowGameMetadata').checked = JSON.parse(cSettings.showGuiMetadata);
 		document.getElementById('CHECKBOX_settingsRemoveProjectGp4').checked = JSON.parse(cSettings.removeProjectGp4);
 		document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked = JSON.parse(cSettings.searchCaseSensitive);
 		document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked = JSON.parse(cSettings.logExternalWindowPrompt);
@@ -714,6 +734,7 @@ temp_DESIGN = {
 		APP.settings.data.enableParamSfo = JSON.parse(document.getElementById('CHECKBOX_settingsEnableParamSfo').checked);
 		APP.settings.data.showBgOnEntry = JSON.parse(document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked);
 		APP.settings.data.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
+		APP.settings.data.showGuiMetadata = JSON.parse(document.getElementById('CHECKBOX_settingsShowGameMetadata').checked);
 		APP.settings.data.removeProjectGp4 = JSON.parse(document.getElementById('CHECKBOX_settingsRemoveProjectGp4').checked);
 		APP.settings.data.searchCaseSensitive = JSON.parse(document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked);
 		APP.settings.data.logExternalWindowPrompt = JSON.parse(document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked);

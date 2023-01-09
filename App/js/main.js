@@ -19,6 +19,7 @@ var APP = {
 	memoryjs: require('App/node_modules/memoryjs'),
 
 	// App version
+	title: '',
 	version: '',
 	appVersion: void 0,
 
@@ -236,9 +237,12 @@ window.onload = function(){
 		APP.settings.load();
 		APP.settings.loadLang();
 
-		// Main log
+		// App title
 		APP.version = APP.packageJson.version;
-		document.title = APP.packageJson.name + ' - Ver. ' + APP.version + ' [' + process.versions['nw-flavor'].toUpperCase() + ']';
+		APP.title = APP.packageJson.name + ' - Ver. ' + APP.version + ' [' + process.versions['nw-flavor'].toUpperCase() + ']';
+		document.title = APP.title;
+		
+		// App Log
 		APP.appVersion = APP.lang.getVariable('mainLog', [APP.version, process.versions.nw, process.versions['nw-flavor'].toUpperCase()]);
 		APP.log(APP.appVersion);
 		
@@ -246,14 +250,14 @@ window.onload = function(){
 		APP.settings.checkPaths();
 		APP.design.renderSettings();
 
+		// Kill fpPS4 process if is active
+		APP.emuManager.killEmu(!0);
+
 		// Load game list
 		APP.gameList.load();
 
 		// Rener hack list
 		APP.design.renderHacklist();
-
-		// Kill fpPS4 process if is active
-		APP.emuManager.killEmu(!0);
 
 		// Focus search field
 		TMS.focus('INPUT_gameListSearch');

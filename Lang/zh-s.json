@@ -92,7 +92,8 @@
 		"LABEL_EMU_RUNNING_STATUS": "运行状态",
 		"LABEL_FPPS4_OPTIONS_APP_VERSION": "版本号",
 		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "启动器选项",
-		"LABEL_FPPS4_OPTIONS_HACKS": "Hacks"
+		"LABEL_FPPS4_OPTIONS_HACKS": "Hacks",
+		"LABEL_SETTINGS_SHOW_METADATA_GUI": ""
 
 	},
 
@@ -127,7 +128,8 @@
 		"BTN_FPPS4_OPTIONS_OPEN_APP_LOCATION": "打开应用／游戏位置",
 		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "重置设置",
 		"BTN_launcherOptionsExportMetadata": "导出元数据",
-		"BTN_RUN": "运行 fpPS4"
+		"BTN_RUN": "运行 fpPS4",
+		"BTN_SETTINGS_RESTART_LAUNCHER": ""
 
 	}
 }

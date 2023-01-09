@@ -92,7 +92,8 @@
 		"LABEL_EMU_RUNNING_STATUS": "Статус",
 		"LABEL_FPPS4_OPTIONS_APP_VERSION": "Версия",
 		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "Параметры запуска",
-		"LABEL_FPPS4_OPTIONS_HACKS": "Хаки"
+		"LABEL_FPPS4_OPTIONS_HACKS": "Хаки",
+		"LABEL_SETTINGS_SHOW_METADATA_GUI": ""
 
 	},
 
@@ -127,7 +128,8 @@
 		"BTN_FPPS4_OPTIONS_OPEN_APP_LOCATION": "Папка приложения / игры",
 		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "Сброс настроек",
 		"BTN_launcherOptionsExportMetadata": "Экспорт метаданных",
-		"BTN_RUN": "Запустить"
+		"BTN_RUN": "Запустить",
+		"BTN_SETTINGS_RESTART_LAUNCHER": ""
 
 	}
 }

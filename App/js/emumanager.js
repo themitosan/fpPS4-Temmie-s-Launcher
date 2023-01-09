@@ -79,14 +79,15 @@ temp_EMUMANAGER = {
 	// Stop fpPS4
 	killEmu: function(){
 		
+		// Update status
+		document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = APP.lang.getVariable('killEmuStatus');
+		TMS.css('DIV_GAME_DETAILS', {'display': 'flex'});
+
 		// Kill process and set emu running var to false
 		APP.getProcessInfo('fpPS4.exe', function(pData){
 			process.kill(pData.th32ProcessID);
 			this.emuRunning = !1;
 		});
-
-		// Update status
-		document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = APP.lang.getVariable('killEmuStatus');
 
 	}
 

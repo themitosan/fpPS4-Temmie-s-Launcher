@@ -63,7 +63,7 @@
 		"DIV_SETTINGS_LANGUAGE": "Langue",
 		"LABEL_SETTINGS_CURRENT_LANGUAGE": "langue actuelle",
 		"LABEL_SETTINGS_LANGUAGE_RESTART": "Vous devez redémarrer le lanceur pour appliquer ce paramètre",
-		"DIV_SETTINGS_PATHS": "chemin",
+		"DIV_SETTINGS_PATHS": "Chemin",
 		"LABEL_SETTINGS_APP_GAMES_PATH": "Dossier Applications/Jeux",
 		"LABEL_SETTINGS_FPPS4_PATH": "Emplacement de l'émulateur",
 		"DIV_SETTINGS_GAME_LIST": "Liste des applications / jeux",
@@ -92,7 +92,8 @@
 		"LABEL_EMU_RUNNING_STATUS": "Status",
 		"LABEL_FPPS4_OPTIONS_APP_VERSION": "Version",
 		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "Options du lanceur",
-		"LABEL_FPPS4_OPTIONS_HACKS": "Hacks"
+		"LABEL_FPPS4_OPTIONS_HACKS": "Hacks",
+		"LABEL_SETTINGS_SHOW_METADATA_GUI": ""
 
 	},
 
@@ -127,7 +128,8 @@
 		"BTN_FPPS4_OPTIONS_OPEN_APP_LOCATION": "Ouvrir l'emplacement de l'application / du jeu",
 		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "Réinitialiser les options",
 		"BTN_launcherOptionsExportMetadata": "Exporter les métadonnées",
-		"BTN_RUN": "Démarrer fpPS4"
+		"BTN_RUN": "Démarrer fpPS4",
+		"BTN_SETTINGS_RESTART_LAUNCHER": ""
 
 	}
 }
