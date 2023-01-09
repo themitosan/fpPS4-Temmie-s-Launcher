@@ -154,8 +154,8 @@ temp_DESIGN = {
 			// If PARAM.SFO metadata exists, show serial and game version instead
 			if (Object.keys(gList[cGame].paramSfo).length !== 0){
 				
-				// If patch isn't enabled
-				if (settingsFile.usePatch !== !0){
+				// If patch isn't enabled or patch location does not exists but is enabled
+				if (settingsFile.usePatch !== !0 || settingsFile.usePatch === !0 && APP.fs.existsSync(settingsFile.patchLocation + '/sce_sys/param.sfo') !== !0){
 					appVersion = gList[cGame].paramSfo.APP_VER;
 				}
 

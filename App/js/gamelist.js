@@ -106,6 +106,23 @@ temp_GAMELIST = {
 
 	},
 
+	// Toggle enable / disable game patch
+	toggleGamePatch: function(){
+
+		// Get current game id
+		const cGame = this.selectedGame;
+
+		// Update GUI
+		APP.tools.processCheckbox('CHECKBOX_optionsEnablePatch');
+		this.saveGameSettings(!0);
+		APP.design.update();
+		this.load();
+
+		// Select current game
+		APP.design.selectGame(cGame);
+
+	},
+
 	// Load game patch
 	loadGamePatch: function(){
 
@@ -129,6 +146,7 @@ temp_GAMELIST = {
 						// Set variables
 						APP.gameList.cGameSettings.patchLocation = pLocation;
 						APP.gameList.saveGameSettings(!0);
+						APP.gameList.load();
 						APP.design.selectGame(cGame);
 
 						// Set log message

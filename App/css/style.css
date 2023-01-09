@@ -169,6 +169,7 @@ img {
 	text-align: center;
 	align-items: center;
 	flex-direction: row;
+	align-content: stretch;
 	justify-content: center;
 }
 .DIV_GAMELIST_BG {

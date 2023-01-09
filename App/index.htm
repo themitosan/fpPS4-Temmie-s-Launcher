@@ -256,7 +256,7 @@
 
 				<!-- Patch options -->
 				<input type="checkbox" id="CHECKBOX_optionsEnablePatch" oninput="APP.gameList.saveGameSettings(!0);APP.design.update();">
-				<label class="LABEL_checkbox" id="LABEL_FPPS4_OPTIONS_ENABLE_PATCHES" onclick="APP.tools.processCheckbox('CHECKBOX_optionsEnablePatch');APP.gameList.saveGameSettings(!0);APP.design.update();"> Enable game patch</label>
+				<label class="LABEL_checkbox" id="LABEL_FPPS4_OPTIONS_ENABLE_PATCHES" onclick="APP.gameList.toggleGamePatch();"> Enable game patch</label>
 				
 				<div class="DIV_launcherOptions" id="DIV_launcherOptionsPatchVersion">
 					<input type="button" id="BTN_FPPS4_OPTIONS_SELECT_PATCH_LOCATION" class="BTN_launcherOptions" value="Select patch location" onclick="APP.gameList.loadGamePatch();">
