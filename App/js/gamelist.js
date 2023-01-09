@@ -110,7 +110,8 @@ temp_GAMELIST = {
 	toggleGamePatch: function(){
 
 		// Get current game id
-		const cGame = this.selectedGame;
+		const cGame = this.selectedGame,
+			listTop = document.getElementById('DIV_LIST_INTERNAL').scrollTop;
 
 		// Update GUI
 		APP.tools.processCheckbox('CHECKBOX_optionsEnablePatch');
@@ -120,6 +121,9 @@ temp_GAMELIST = {
 
 		// Select current game
 		APP.design.selectGame(cGame);
+
+		// Update scroll
+		document.getElementById('DIV_LIST_INTERNAL').scrollTop = listTop;
 
 	},
 
