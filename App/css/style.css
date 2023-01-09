@@ -355,9 +355,9 @@ img {
 }
 .DIV_settingsEntryFlex {
 	display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    align-content: center;
+	flex-wrap: nowrap;
+	align-items: center;
+	align-content: center;
 }
 .DIV_settingsH2 {
 	font-size: 20px;
@@ -593,6 +593,13 @@ img {
 	font-style: initial;
 	font-family: monospace;
 	user-select: all !important;
+}
+.LABEL_settingsExperimental {
+	padding: 6px;
+	cursor: pointer;
+	font-family: math;
+	background-color: #000;
+	text-shadow: 0px 0px 10px #f00;
 }
 
 /*

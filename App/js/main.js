@@ -90,9 +90,18 @@ var APP = {
 
 	},
 
-	// Process fpPS4 output data
-	processStdOutput: function(data){
-		console.log(data);
+	// DEBUG: Process fpPS4 output data
+	processStdOutput: function(data, type){
+		
+		const logSplit = data.split('\n');
+		logSplit.forEach(function(logLine){
+
+			if (logLine !== '' && logLine !== '\r'){
+				console[type](logLine);
+			}
+
+		});
+
 	},
 
 	// Run fpPS4
@@ -107,45 +116,47 @@ var APP = {
 			*/
 			process.chdir(APP.path.parse(exe).dir);
 
-			// Window state
-			var winMode;
-			switch (APP.settings.data.logExternalWindowStartMode){
-
-				case 'normal':
-					winMode = '';
-					break;
-
-				case 'max':
-					winMode = '/MAX';
-					break;
-
-				case 'min':
-					winMode = '/MIN';
-					break;
-
-			}
-
-			// Ask user to press any key
-			var pressAnyKey = '';
-			if (APP.settings.data.logExternalWindowPrompt === !0){
-				pressAnyKey = '^& pause';
-			}
-
-			// Transform args into string
-			var gPath = '"' + args[args.indexOf('-e') + 1] + '"',
-				parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
-				execLine = 'start "' + APP.lang.getVariable('logWindowTitle') + ' - ' + APP.gameList.selectedGame + '" ' + winMode + ' cmd /C ' + APP.path.parse(APP.settings.data.emuPath).base + ' ' + parseArgs + ' ' + pressAnyKey;
-
-			// Run
+			// Run external window
 			if (APP.settings.data.debugTestLog === !1){
+
+				// Window state
+				var winMode;
+				switch (APP.settings.data.logExternalWindowStartMode){
+	
+					case 'normal':
+						winMode = '';
+						break;
+	
+					case 'max':
+						winMode = '/MAX';
+						break;
+	
+					case 'min':
+						winMode = '/MIN';
+						break;
+	
+				}
+	
+				// Ask user to press any key
+				var pressAnyKey = '';
+				if (APP.settings.data.logExternalWindowPrompt === !0){
+					pressAnyKey = '^& pause';
+				}
+	
+				// Transform args into string
+				var gPath = '"' + args[args.indexOf('-e') + 1] + '"',
+					parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
+					execLine = 'start "' + APP.lang.getVariable('logWindowTitle') + ' - ' + APP.gameList.selectedGame + '" ' + winMode + ' cmd /C ' + APP.path.parse(APP.settings.data.emuPath).base + ' ' + parseArgs + ' ' + pressAnyKey;
 				
 				APP.execProcess = APP.childProcess.exec(execLine);
 				
 			} else {
 
+				/*
+					Debug
+				*/
 				console.clear();
-				APP.execProcess = APP.childProcess.spawn(exe, args);
-				console.info(APP.execProcess);
+				APP.execProcess = APP.childProcess.spawn(exe, args, { detached: !0 });
 
 			}
 
@@ -158,10 +169,10 @@ var APP = {
 
 			// Log on stdout and stderr
 			APP.execProcess.stdout.on('data', function(data){
-				APP.processStdOutput(data);
+				APP.processStdOutput(data, 'info');
 			});
 			APP.execProcess.stderr.on('data', function(data){
-				APP.processStdOutput(data);
+				APP.processStdOutput(data, 'error');
 			});
 
 			// Log on close

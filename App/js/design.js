@@ -674,6 +674,9 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked = JSON.parse(cSettings.searchCaseSensitive);
 		document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked = JSON.parse(cSettings.logExternalWindowPrompt);
 
+		// Debug
+		document.getElementById('CHECKBOX_settingsExperimentalIntLog').checked = JSON.parse(cSettings.debugTestLog);
+
 		// Range
 		document.getElementById('RANGE_settingsGridIconSize').value = cSettings.gridIconSize;
 		document.getElementById('RANGE_settingsGameListBgBlur').value = cSettings.bgListBlur;
@@ -744,6 +747,9 @@ temp_DESIGN = {
 		APP.settings.data.removeProjectGp4 = JSON.parse(document.getElementById('CHECKBOX_settingsRemoveProjectGp4').checked);
 		APP.settings.data.searchCaseSensitive = JSON.parse(document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked);
 		APP.settings.data.logExternalWindowPrompt = JSON.parse(document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked);
+
+		// Debug
+		APP.settings.data.debugTestLog = JSON.parse(document.getElementById('CHECKBOX_settingsExperimentalIntLog').checked);
 
 		// Range
 		APP.settings.data.bgListBlur = parseFloat(document.getElementById('RANGE_settingsGameListBgBlur').value);
