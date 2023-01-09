@@ -65,8 +65,13 @@ temp_SETTINGS = {
 
 		// (Grid)
 		gridIconSize: 116,
-		gridBorderRadius: 8
+		gridBorderRadius: 8,
 	
+		/*
+			Debug
+		*/
+		debugTestLog: !1
+
 	},
 
 	// Load settings

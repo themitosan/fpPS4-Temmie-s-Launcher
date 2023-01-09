@@ -137,11 +137,26 @@ var APP = {
 				execLine = 'start "' + APP.lang.getVariable('logWindowTitle') + ' - ' + APP.gameList.selectedGame + '" ' + winMode + ' cmd /C ' + APP.path.parse(APP.settings.data.emuPath).base + ' ' + parseArgs + ' ' + pressAnyKey;
 
 			// Run
-			APP.execProcess = APP.childProcess.exec(execLine);
+			if (APP.settings.data.debugTestLog === !1){
+				
+				APP.execProcess = APP.childProcess.exec(execLine);
+				
+			} else {
+
+				console.clear();
+				APP.execProcess = APP.childProcess.spawn(exe, args);
+				console.info(APP.execProcess);
+
+			}
+
+			// Set emu running
+			APP.emuManager.emuRunning = !0;
+			
+			// Set stream as string (UTF-8)
+			APP.execProcess.stdout.setEncoding('utf8');
+			APP.execProcess.stderr.setEncoding('utf8');
 
 			// Log on stdout and stderr
-			APP.execProcess.setEncoding('utf8');
-
 			APP.execProcess.stdout.on('data', function(data){
 				APP.processStdOutput(data);
 			});
@@ -161,7 +176,7 @@ var APP = {
 				APP.design.toggleDisplayMode({
 					appStatus: 'idle'
 				});
-				
+
 				// Log exit code
 				APP.log(APP.lang.getVariable('closeEmuStatus', [APP.path.parse(exe).base, code]));
 
@@ -174,7 +189,7 @@ var APP = {
 				if (APP.gameList.selectedGame !== ''){
 					TMS.css('GAME_ENTRY_' + APP.gameList.selectedGame, {'animation': '0.8s hintGameFocus'});
 					TMS.focus('INPUT_gameListSearch', 100);
-					
+
 					setTimeout(function(){
 						APP.design.selectGame(APP.gameList.selectedGame);
 						TMS.scrollCenter('GAME_ENTRY_' + APP.gameList.selectedGame);
@@ -239,7 +254,7 @@ delete temp_PARAMSFO_PARSER;
 window.onload = function(){
 
 	try {
-		
+
 		// Load settings ( 1 / 2 )
 		APP.settings.load();
 		APP.settings.loadLang();
@@ -248,7 +263,7 @@ window.onload = function(){
 		APP.version = APP.packageJson.version;
 		APP.title = APP.packageJson.name + ' - Ver. ' + APP.version + ' [' + process.versions['nw-flavor'].toUpperCase() + ']';
 		document.title = APP.title;
-		
+
 		// App Log
 		APP.appVersion = APP.lang.getVariable('mainLog', [APP.version, process.versions.nw, process.versions['nw-flavor'].toUpperCase()]);
 		APP.log(APP.appVersion);
