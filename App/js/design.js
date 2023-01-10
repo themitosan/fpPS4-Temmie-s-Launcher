@@ -576,23 +576,13 @@ temp_DESIGN = {
 		APP.gameList.selectedGame = '';
 
 		var showList = ['DIV_SETTINGS'],
-			hideList = [
-				'DIV_ACTIONS',
-				'DIV_OPTIONS',
-				'DIV_LIST',
-				'DIV_LOG'
-			];
+			hideList = [];
 
 		// Close settings
 		if (hide === !0){
 
 			hideList = ['DIV_SETTINGS'];
-			showList = [
-				'DIV_ACTIONS',
-				'DIV_OPTIONS',
-				'DIV_LIST',
-				'DIV_LOG'
-			];
+			showList = [];
 
 			// Render game list
 			APP.design.renderGameList();

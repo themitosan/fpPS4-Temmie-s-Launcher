@@ -120,7 +120,7 @@ var APP = {
 			if (APP.settings.data.debugTestLog === !1){
 
 				// Window state
-				var winMode;
+				var winMode, pressAnyKey = '';
 				switch (APP.settings.data.logExternalWindowStartMode){
 	
 					case 'normal':
@@ -138,7 +138,6 @@ var APP = {
 				}
 	
 				// Ask user to press any key
-				var pressAnyKey = '';
 				if (APP.settings.data.logExternalWindowPrompt === !0){
 					pressAnyKey = '^& pause';
 				}
