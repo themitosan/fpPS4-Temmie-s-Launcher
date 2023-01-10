@@ -11,7 +11,7 @@
 		"about": "fpPS4 Temmie's Launcher - 版本号: %VARIABLE_0%\n由 TemmieHeartz 创建\n(https://twitter.com/themitosan)\n\nfpPS4 由 red-prig 创建\n(https://github.com/red-prig/fpPS4)\n\nmemoryjs 插件由 Rob-- 创建\n(https://github.com/rob--/memoryjs)\n\nSVG 图标来自 https://www.svgrepo.com/",
 		"mainLog": "fpPS4 Temmie's Launcher - 版本号: %VARIABLE_0%\n运行中的 nw.js (node-webkit) 版本号: %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ERROR - 无法创建文件夹！\n(%VARIABLE_0%)\n%VARIABLE_1%",
-		"settingsErrorfpPS4NotFound": "ERROR - 无法找到 fpPS4 的可执行文件！\n\n在设置中选择可执行文件或将其放在 \"Emu\" 文件夹中，然后点击确定。",
+		"settingsErrorfpPS4NotFound": "ERROR - 无法找到 fpPS4 的可执行文件！\n在设置中选择可执行文件或将其放在 \"Emu\" 文件夹中，然后点击确定。",
 		"settingsConfirmRemoveAllGameSettings": "WARN - 即将删除游戏列表中所有的游戏设置。\n\n确定要继续吗?",
 		"settingsConfirmRemoveGameSettings": "WARN - 即将删除 %VARIABLE_0% 的游戏设置\n\n确定要继续吗?",
 		"settingsRemovedGameSettings": "INFO - (%VARIABLE_0%) 的设置文件已被成功删除！",
@@ -77,13 +77,13 @@
 		"DIV_SETTINGS_EMU_RUNNING": "模拟器运行中",
 		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_BLUR": "背景模糊",
 		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_OPACITY": "背景不透明度",
-		"LABEL_SETTINGS_SHOW_METADATA_EMU_RUNNING": "在标题下显示游戏的元数据 (或可执行文件路径)",
+		"LABEL_SETTINGS_SHOW_METADATA_EMU_RUNNING": "在标题下方显示游戏的元数据 (或可执行文件路径)",
 		"DIV_SETTINGS_LOG_OPTIONS": "日志选项",
 		"LABEL_SETTINGS_LOG_START_WINDOW_STATE": "启动日志窗口",
 		"LABEL_SETTINGS_PROMPT_KEY_FPPS4_CLOSES": "fpPS4 关闭后按任意键关闭",
 		"DIV_SETTINGS_MISC": "其它",
 		"LABEL_SETTINGS_ENABLE_PARAMSFO_SUPPORT": "启用 <code>PARAM.SFO</code> 文件支持 (点击 \"删除所有游戏设置\" 并重新启动启动器以生效)",
-		"LABEL_SETTINGS_REMOVE_PROJECT_GP4_FILES": "在加载游戏列表时删除所有游戏中的 <code>Project.gp4</code> 文件",
+		"LABEL_SETTINGS_REMOVE_PROJECT_GP4_FILES": "在加载游戏列表时删除所有游戏的 <code>Project.gp4</code> 文件",
 		"LABEL_FPPS4_OPTIONS": "<label class=\"LABEL_emuColor\">fp</label>PS4 选项",
 		"LABEL_FPPS4_OPTIONS_DUMP_STATUS": "Dump 状态",
 		"LABEL_FPPS4_OPTIONS_ENABLE_PATCHES": "启用游戏补丁",
@@ -93,8 +93,9 @@
 		"LABEL_FPPS4_OPTIONS_APP_VERSION": "版本号",
 		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "启动器选项",
 		"LABEL_FPPS4_OPTIONS_HACKS": "Hacks",
-		"LABEL_SETTINGS_SHOW_METADATA_GUI": "",
-		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": ""
+		"LABEL_SETTINGS_SHOW_METADATA_GUI": "在界面上显示图标和标题",
+		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">实验性功能</label> 在内部控制台显示 fpPS4 进程日志 (<code>stdout</code> 和 <code>stderr</code>) (按 F12 --> Console)"
+
 
 	},
 
@@ -130,7 +131,7 @@
 		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "重置设置",
 		"BTN_launcherOptionsExportMetadata": "导出元数据",
 		"BTN_RUN": "运行 fpPS4",
-		"BTN_SETTINGS_RESTART_LAUNCHER": ""
+		"BTN_SETTINGS_RESTART_LAUNCHER": "重新启动启动器"
 
 	}
 }
