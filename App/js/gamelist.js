@@ -337,6 +337,11 @@ temp_GAMELIST = {
 			// Render game list
 			APP.design.renderGameList();
 
+		} else {
+
+			// Unable to find selected game path
+			APP.log(APP.lang.getVariable('gamelistGamePath404', [APP.settings.data.gamePath]));
+
 		}
 
 	},

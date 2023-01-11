@@ -46,7 +46,8 @@
 		"gameListLoadSuccessful": "ИНФО - Список игр был успешно загружен! ( %VARIABLE_0% названий найдено )",
 		"gameListVersion": "Версия",
 		"selectGameLoadPatchErrorParamSfo": "ОШИБКА - Невозможно загрузить PARAM.SFO из этого патча!\n%VARIABLE_0%",
-		"path": "Путь"
+		"path": "Путь",
+		"gamelistGamePath404": ""
 	},
 
 	"input_text": {

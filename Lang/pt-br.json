@@ -46,7 +46,8 @@
 		"gameListLoadSuccessful": "INFO - Lista de jogos foi carregada com sucesso! ( foram encontrados %VARIABLE_0% títulos )",
 		"gameListVersion": "Versão",
 		"selectGameLoadPatchErrorParamSfo": "ERRO - Não foi possível carregar PARAM.SFO desse patch!\n%VARIABLE_0%",
-		"path": "Caminho"
+		"path": "Caminho",
+		"gamelistGamePath404": "INFO - A pasta de app / games selecionada não existe!\n%VARIABLE_0%"
 	},
 
 	"input_text": {

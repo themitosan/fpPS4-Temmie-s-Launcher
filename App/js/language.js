@@ -94,7 +94,8 @@ temp_LANGUAGE = {
 			"gameListLoadSuccessful": "INFO - Game list was loaded successfully! ( %VARIABLE_0% entries found )",
 			"gameListVersion": "Version",
 			"selectGameLoadPatchErrorParamSfo": "ERROR - Unable to read PARAM.SFO from this patch!\n%VARIABLE_0%",
-			"path": "Path"
+			"path": "Path",
+			"gamelistGamePath404": "ERROR - Unable to find selected app / game path!\n%VARIABLE_0%"
 
 		},
 

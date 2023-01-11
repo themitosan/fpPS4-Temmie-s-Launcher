@@ -46,7 +46,8 @@
 		"gameListLoadSuccessful": "INFO - 游戏列表已成功加载！(%VARIABLE_0% 项已被发现)",
 		"gameListVersion": "版本号",
 		"selectGameLoadPatchErrorParamSfo": "ERROR - 无法从这个补丁中加载 PARAM.SFO！\n%VARIABLE_0%",
-		"path": "路径"
+		"path": "路径",
+		"gamelistGamePath404": ""
 	},
 
 	"input_text": {
