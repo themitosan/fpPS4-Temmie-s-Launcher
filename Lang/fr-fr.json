@@ -46,8 +46,7 @@
 		"gameListLoadSuccessful": "INFO - La liste des jeux a été chargée avec succès! ( %VARIABLE_0% titres trouvés )",
 		"gameListVersion": "Version",
 		"selectGameLoadPatchErrorParamSfo": "ERREUR - Impossible de charger PARAM.SFO de ce correctif!\n%VARIABLE_0%",
-		"path": "Chemin",
-		"gamelistGamePath404": ""
+		"path": "Chemin"
 	},
 
 	"input_text": {
