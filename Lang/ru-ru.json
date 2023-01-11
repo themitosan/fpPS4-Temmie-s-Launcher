@@ -4,20 +4,20 @@
 
 	"variables": {
 		"labelEnableHack": "",
-		"emuStatusRunning": "Выполняется",
+		"emuStatusRunning": "При исполнении",
 		"logWindowTitle": "Запуск fpPS4",
-		"killEmuStatus": "Основной процесс был закрыт - закройте окно лога для продолжения работы",
-		"logCleared": "ИНФО - Список логов был очищен!\n ",
+		"killEmuStatus": "Основной процесс был закрыт - закройте окно log-а для продолжения работы",
+		"logCleared": "ИНФО - Список log-ов был очищен!\n ",
 		"about": "fpPS4 Temmie's Launcher - Версия: %VARIABLE_0%\nСоздатель - TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4, создатель - red-prig\n(https://github.com/red-prig/fpPS4)\n\nплагин memoryjs - разработан: Rob--\n(https://github.com/rob--/memoryjs)\n\nИконки SVG были получены с https://www.svgrepo.com/",
 		"mainLog": "fpPS4 Temmie's Launcher - Версия: %VARIABLE_0%\nИспользование nw.js (node-webkit) версия %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ОШИБКА - Папка не может быть создана!\n(%VARIABLE_0%)\n%VARIABLE_1%",
-		"settingsErrorfpPS4NotFound": "ОШИБКА - Не удалось найти исполняемый файл fpPS4!\nВыберите исполняемый файл в настройках или поместите его внутрь \"Emu\" и нажмите OK.",
+		"settingsErrorfpPS4NotFound": "ОШИБКА - Не удалось найти исполняемый файл fpPS4!\nВыберите исполняемый файл в настройках или поместите его внутрь \"Emu\" и нажмите ок.",
 		"settingsConfirmRemoveAllGameSettings": "ВНИМАНИЕ - Эта опция удалит все настройки из списка игр.\nВы подтверждаете это действие?",
 		"settingsConfirmRemoveGameSettings": "ПРЕДУПРЕЖДЕНИЕ - Это действие удалит все настройки %VARIABLE_0%.\n\nВы подтверждаете это действие?",
 		"settingsRemovedGameSettings": "ИНФО - ( %VARIABLE_0% ) Файл конфигурации успешно удален!",
 		"settingsRemoveGameSettingsError": "ОШИБКА - ( %VARIABLE_0% ) Не удалось удалить этот файл!\nПодробности: %VARIABLE_1%",
 		"settingsRemoveGameSettings404": "ВНИМАНИЕ - ( %VARIABLE_0% ) Не удалось найти файл конфигурации!",
-		"infoProcessComplete": "ИНФО - Процесс завершен!\nСмотрите лог для получения более подробной информации",
+		"infoProcessComplete": "ИНФО - Процесс завершен!\nСмотрите log для получения более подробной информации",
 		"infoSettingsUpdated": "ИНФО - Файл настроек успешно обновлен!",
 		"settingsLoadError": "ОШИБКА - Невозможно загрузить настройки!\n %VARIABLE_0%",
 		"settingsSaveError": "ОШИБКА - Невозможно сохранить настройки!\n %VARIABLE_0%",
@@ -46,7 +46,8 @@
 		"gameListLoadSuccessful": "ИНФО - Список игр был успешно загружен! ( %VARIABLE_0% названий найдено )",
 		"gameListVersion": "Версия",
 		"selectGameLoadPatchErrorParamSfo": "ОШИБКА - Невозможно загрузить PARAM.SFO из этого патча!\n%VARIABLE_0%",
-		"path": "Путь"
+		"path": "Путь",
+		"gamelistGamePath404": ""
 	},
 
 	"input_text": {
@@ -54,7 +55,7 @@
 	},
 
 	"title": {
-		"DIV_selectedGameStatus": "Зеленый: Все файлы присутствуют\nЖелтый: Некоторые файлы отсутствуют - смотрите лог для более подробной информации\nГолубой: исполняемый файл представляет собой файл .elf."
+		"DIV_selectedGameStatus": "Зеленый: Все файлы присутствуют\nЖелтый: Некоторые файлы отсутствуют - смотрите log для более подробной информации\nГолубой: исполняемый файл представляет собой файл .elf."
 	},
 
 	"innerHTML": {
@@ -70,23 +71,23 @@
 		"LABEL_SETTINGS_GRID_BORDER_RADIUS": "(Сетка) Радиус границы значков",
 		"LABEL_SETTINGS_GAME_SEARCH_MODE": "Режим поиска",
 		"LABEL_SETTINGS_GAME_LIST_BACKGROUND_BLUR": "Размытие фона",
-		"LABEL_SETTINGS_GAME_LIST_BACKGROUND_OPACITY": "Прозрачность фона",
+		"LABEL_SETTINGS_GAME_LIST_BACKGROUND_OPACITY": "Непрозрачность фона",
 		"LABEL_SETTINGS_GAME_LIST_SEARCH_CASE_SENSITIVE": "Включить точный поиск (с учетом регистра)",
 		"LABEL_SETTINGS_GAME_LIST_NORMAL_SHOW_BG": "Показать фон для каждой игры в списке",
 		"LABEL_SETTINGS_SHOW_METADATA_GAME_ENTRY": "Показать информацию (или путь к папке) для каждой игры в списке",
 		"DIV_SETTINGS_EMU_RUNNING": "Выполняется эмуляция",
 		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_BLUR": "Размытие фона",
-		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_OPACITY": "Прозрачность фона",
+		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_OPACITY": "Непрозрачность фона",
 		"LABEL_SETTINGS_SHOW_METADATA_EMU_RUNNING": "Показать информацию об игре (или путь к исполняемому файлу) под заголовком",
-		"DIV_SETTINGS_LOG_OPTIONS": "Параметры ведения лога",
-		"LABEL_SETTINGS_LOG_START_WINDOW_STATE": "Запуск окна лога",
-		"LABEL_SETTINGS_PROMPT_KEY_FPPS4_CLOSES": "Нажмите любую клавишу для закрытия после завершения работы fpPS4",
+		"DIV_SETTINGS_LOG_OPTIONS": "Параметры ведения log-a",
+		"LABEL_SETTINGS_LOG_START_WINDOW_STATE": "Запуск окна log-a",
+		"LABEL_SETTINGS_PROMPT_KEY_FPPS4_CLOSES": "Нажмите любую клавишу для закрытия после закрытия fpPS4",
 		"DIV_SETTINGS_MISC": "Другие конфигурации",
-		"LABEL_SETTINGS_ENABLE_PARAMSFO_SUPPORT": "Включить поддержку файлов <code>PARAM.SFO</code> (Нажмите на \"Удалить все игровые настройки\" и перезапустите Launcher, чтобы настройки вступили в силу)",
+		"LABEL_SETTINGS_ENABLE_PARAMSFO_SUPPORT": "Включить поддержку файлов <code>PARAM.SFO</code> (Нажмите на \"Удалить все игровые настройки\" и перезапустите Launcher, чтобы настройки вступила в силу)",
 		"LABEL_SETTINGS_REMOVE_PROJECT_GP4_FILES": "Удалить файлы <code>Project.gp4</code> при загрузке списка игр",
 		"LABEL_FPPS4_OPTIONS": "Настройки <label class=\"LABEL_emuColor\">fp</label>PS4",
 		"LABEL_FPPS4_OPTIONS_DUMP_STATUS": "Состояние дампа",
-		"LABEL_FPPS4_OPTIONS_ENABLE_PATCHES": "Включить патчи",
+		"LABEL_FPPS4_OPTIONS_ENABLE_PATCHES": "Включить исправления",
 		"LABEL_FPPS4_OPTIONS_PATCH_VERSION": "Версия",
 		"LABEL_FPPS4_OPTIONS_PATCH_TYPE": "Тип",
 		"LABEL_EMU_RUNNING_STATUS": "Статус",
@@ -102,12 +103,12 @@
 
 		"SELECT_settingsSearchMode": {
 			"appName": "Имя",
-			"titleId": "Код игры"
+			"titleId": "Последовательный"
 		},
 		"SELECT_settingsStartExternalWindow": {
 			"normal": "Нормальное",
-			"max": "Развернутое",
-			"min": "Свернутое"
+			"max": "Максимальное",
+			"min": "Минимальное"
 		}
 
 	},
@@ -118,11 +119,11 @@
 		"BTN_SETTINGS_OPEN_APPS_GAMES_PATH": "Открыть папку",
 		"BTN_SETTINGS_SELECT_FPPS4_PATH": "Выберите файл",
 		"BTN_SETTINGS_DELETE_ALL_GAME_SETTINGS": "Удалить все игровые настройки",
-		"BTN_SETTINGS_APPLY_CLOSE": "Применить и закрыть",
+		"BTN_SETTINGS_APPLY_CLOSE": "Применять и возврнуться",
 		"BTN_SETTINGS_CLOSE": "Назад",
-		"BTN_REFRESH": "Обновить список игр",
+		"BTN_REFRESH": "обновить",
 		"BTN_SETTINGS": "Настройки",
-		"BTN_CLEAR_LOG": "Очистить лог",
+		"BTN_CLEAR_LOG": "Очистить log",
 		"BTN_ABOUT": "О программе",
 		"BTN_KILL": "Остановить fpPS4",
 		"BTN_FPPS4_OPTIONS_SELECT_PATCH_LOCATION": "Выберите патч",
