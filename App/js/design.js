@@ -17,7 +17,7 @@ temp_DESIGN = {
 
 	/*
 		Hack List
-		If red-prig implements a new one, just add it on this list!
+		If red-prig implements a new one, just add it here!
 	*/
 	hackList: [
 		'DEPTH_DISABLE_HACK',

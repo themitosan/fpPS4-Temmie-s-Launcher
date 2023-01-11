@@ -21,7 +21,7 @@
 		"infoSettingsUpdated": "ИНФО - Файл настроек успешно обновлен!",
 		"settingsLoadError": "ОШИБКА - Невозможно загрузить настройки!\n %VARIABLE_0%",
 		"settingsSaveError": "ОШИБКА - Невозможно сохранить настройки!\n %VARIABLE_0%",
-		"runEmuArgs": "\nИНФО - Запуск fpPS4 с параметрами: %VARIABLE_0%\nПуть исполняемого файла: %VARIABLE_1%",
+		"runEmuArgs": "ИНФО - Запуск fpPS4 с параметрами: %VARIABLE_0%\nПуть исполняемого файла: %VARIABLE_1%",
 		"closeEmuStatus": "ИНФО - %VARIABLE_0% был закрыт с кодом выхода %VARIABLE_1%",
 		"removedLibModules": "ИНФО - Все модули, которые были импортированы ранее, были удалены, так как они могут нанести вред дампам.",
 		"removeLibModule": "ИНФО - ( %VARIABLE_0% ) Удаление модуля: %VARIABLE_1%",

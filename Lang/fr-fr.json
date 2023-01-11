@@ -21,7 +21,7 @@
 		"infoSettingsUpdated": "INFO - Le fichier de paramètres a été mis à jour avec succès!",
 		"settingsLoadError": "ERREUR - Impossible de charger les paramètres !\n %VARIABLE 0%",
 		"settingsSaveError": "ERREUR - Impossible d'enregistrer les paramètres!\n %VARIABLE 0%",
-		"runEmuArgs": "\nINFO - Démarrage de fpPS4 avec les options: %VARIABLE_0%\nChemin de l'exécutable: %VARIABLE_1%",
+		"runEmuArgs": "INFO - Démarrage de fpPS4 avec les options: %VARIABLE_0%\nChemin de l'exécutable: %VARIABLE_1%",
 		"closeEmuStatus": "INFO - %VARIABLE_0% quitté avec le code de sortie %VARIABLE_1%",
 		"removedLibModules": "INFO - Tous les modules précédemment importés ont été supprimés car ils peuvent être nocifs pour les dumps.",
 		"removeLibModule": "INFO - ( %VARIABLE_0% ) Suppression du module: %VARIABLE_1%",

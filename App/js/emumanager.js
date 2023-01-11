@@ -79,8 +79,8 @@ temp_EMUMANAGER = {
 	killEmu: function(){
 		
 		// Update status
-		document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = APP.lang.getVariable('killEmuStatus');
 		if (this.emuRunning === !0){
+			document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = APP.lang.getVariable('killEmuStatus');
 			TMS.css('DIV_GAME_DETAILS', {'display': 'flex'});
 		}
 

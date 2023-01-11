@@ -21,7 +21,7 @@
 		"infoSettingsUpdated": "INFO - 设置文件已成功更新！",
 		"settingsLoadError": "ERROR - 无法加载设置！\n %VARIABLE_0%",
 		"settingsSaveError": "ERROR - 无法保存设置！\n %VARIABLE_0%",
-		"runEmuArgs": "\nINFO - fpPS4 启动选项: %VARIABLE_0%\n可执行文件路径: %VARIABLE_1%",
+		"runEmuArgs": "INFO - fpPS4 启动选项: %VARIABLE_0%\n可执行文件路径: %VARIABLE_1%",
 		"closeEmuStatus": "INFO - %VARIABLE_0% 被关闭，退出代码为 %VARIABLE_1%",
 		"removedLibModules": "INFO - 以前所有导入的模块都已被删除，因为它们可能会有兼容性问题。",
 		"removeLibModule": "INFO - (%VARIABLE_0%) 移除模块: %VARIABLE_1%",

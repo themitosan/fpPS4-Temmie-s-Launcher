@@ -21,7 +21,7 @@
 		"infoSettingsUpdated": "INFO - Arquivo de configurações foi atualizado com sucesso!",
 		"settingsLoadError": "ERRO - Não foi possível carregar as configurações!\n %VARIABLE_0%",
 		"settingsSaveError": "ERRO - Não foi possível salvar as configurações!\n %VARIABLE_0%",
-		"runEmuArgs": "\nINFO - Iniciando fpPS4 com as opções: %VARIABLE_0%\nCaminho do executável: %VARIABLE_1%",
+		"runEmuArgs": "INFO - Iniciando fpPS4 com as opções: %VARIABLE_0%\nCaminho do executável: %VARIABLE_1%",
 		"closeEmuStatus": "INFO - %VARIABLE_0% foi encerrado com o código de saída %VARIABLE_1%",
 		"removedLibModules": "INFO - Todos os modulos que foram importados anteriormente foram removidos visto que eles podem ser prejudiciais para as dumps.",
 		"removeLibModule": "INFO - ( %VARIABLE_0% ) Removendo módulo: %VARIABLE_1%",
