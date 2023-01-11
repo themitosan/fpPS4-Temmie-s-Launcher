@@ -21,7 +21,7 @@ temp_LANGUAGE = {
 		var lPatch = [],
 			res = this.selected.variables[name];
 
-		// If variable not found or an empty string, get english instead
+		// If variable not found or an empty string, get English instead
 		if (res === void 0 || res === ''){
 			res = this.english.variables[name];
 		}
@@ -56,16 +56,16 @@ temp_LANGUAGE = {
 			"logWindowTitle": "Running fpPS4",
 			"killEmuStatus": "Main process closed - close fpPS4 log window to go back",
 			"logCleared": "INFO - Previous log was cleared!\n ",
-			"about": "fpPS4 Temmie\'s Launcher - Version: %VARIABLE_0%\nCreated by TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 main emulator is created by red-prig\n(https://github.com/red-prig/fpPS4)\n\nPlugin memoryjs is created by Rob--\n(https://github.com/rob--/memoryjs)\n\nSVG icons was obtained from https://www.svgrepo.com/",
+			"about": "fpPS4 Temmie\'s Launcher - Version: %VARIABLE_0%\nCreated by TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 is created by red-prig\n(https://github.com/red-prig/fpPS4)\n\nPlugin memoryjs is created by Rob--\n(https://github.com/rob--/memoryjs)\n\nSVG icons were obtained from https://www.svgrepo.com/",
 			"mainLog": 'fpPS4 Temmie\'s Launcher - Version: %VARIABLE_0%\nRunning on nw.js (node-webkit) version %VARIABLE_1% [%VARIABLE_2%]',
 			"settingsErrorCreatePath": "ERROR - Unable to create path!\n(%VARIABLE_0%)\n%VARIABLE_1%",
-			"settingsErrorfpPS4NotFound": "ERROR - Unable to locate main fpPS4 executable!\nMake sure to select it on settings or insert it on \"Emu\" folder and click on ok.",
-			"settingsConfirmRemoveAllGameSettings": "WARN - This option will remove ALL saved settings from your game list.\nDo you want to continue?",
+			"settingsErrorfpPS4NotFound": "ERROR - Unable to locate main fpPS4 executable!\nMake sure to select it in Settings or insert it in \"Emu\" folder and click OK.",
+			"settingsConfirmRemoveAllGameSettings": "WARN - This option will remove all saved settings from your game list.\nDo you want to continue?",
 			"settingsRemovedGameSettings": "INFO - ( %VARIABLE_0% ) Settings file was removed successfully!",
 			"settingsConfirmRemoveGameSettings": "WARN - This action will delete all saved settings for %VARIABLE_0%\n\nDo you want to continue?",
 			"settingsRemoveGameSettingsError": 'ERROR - ( %VARIABLE_0% ) Unable to delete settings file!\nReason: %VARIABLE_1%',
-			"settingsRemoveGameSettings404": 'WARN - ( %VARIABLE_0% ) Unable to find settings for this App / Game!',
-			"infoProcessComplete": "INFO - Process Complete!\nCheck log for more details",
+			"settingsRemoveGameSettings404": 'WARN - ( %VARIABLE_0% ) Unable to find settings for this app / game!',
+			"infoProcessComplete": "INFO - Process complete!\nCheck log for more details",
 			"infoSettingsUpdated": "INFO - Settings file was updated successfully!",
 			"settingsLoadError": "ERROR - Unable to load settings!\n %VARIABLE_0%",
 			"settingsSaveError": "ERROR - Unable to save settings!\n %VARIABLE_0%",
@@ -84,10 +84,10 @@ temp_LANGUAGE = {
 			"patchLoadedSucessfully": "INFO - Patch loaded successfully!\nName: %VARIABLE_0%\nType: %VARIABLE_1%",
 			"patchLoadErrorMismatch": "ERROR - This isn\'t a patch or it does not match for this app / game!\nPatch ID: %VARIABLE_0%\nSelected app / game: %VARIABLE_1%",
 			"patchLoadErrorParamSfo404": "ERROR - Unable to find PARAM.SFO for this patch!",
-			"gameListLoadWarnPlayGo": "WARN - Unable to locate playgo-chunk.dat for %VARIABLE_0%!\nIf this isn\'t a homebrew, check if this App / Game was dumped properly.",
-			"gameListLoadWarnParamSfo": "WARN - Unable to locate PARAM.SFO for %VARIABLE_0%!\nIf this isn\'t a homebrew, check if this App / Game was dumped properly.",
-			"gameListRemoveProjectGp4": "INFO - ( %VARIABLE_0% ) Removing Project.gp4 since is was generated in PkgEditor and he is not necessary anymore.",
-			"gameListDoubleIdError": "WARN - Unable to add %VARIABLE_0% to game list because another app / game with same title id exists! ( %VARIABLE_1% )",
+			"gameListLoadWarnPlayGo": "WARN - Unable to locate playgo-chunk.dat for %VARIABLE_0%!\nIf this isn\'t a homebrew, check if this app / game was dumped properly.",
+			"gameListLoadWarnParamSfo": "WARN - Unable to locate PARAM.SFO for %VARIABLE_0%!\nIf this isn\'t a homebrew, check if this app / game was dumped properly.",
+			"gameListRemoveProjectGp4": "INFO - ( %VARIABLE_0% ) Removing Project.gp4 since it was generated in PkgEditor and it is not necessary anymore.",
+			"gameListDoubleIdError": "WARN - Unable to add %VARIABLE_0% to game list because another app / game with same title ID exists! ( %VARIABLE_1% )",
 			"gameListNoGameFound": "INFO - No apps / games were detected on current path ( %VARIABLE_0% )",
 			"gameListSearch404": "Unable to find",
 			"checkDumpPlayGoOnApp": "INFO - ( %VARIABLE_0% ) playgo-chunk.dat was found inside sce_sys/app - a new copy was created on sce_sys.",
