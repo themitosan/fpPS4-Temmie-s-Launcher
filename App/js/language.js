@@ -3,7 +3,7 @@
 	fpPS4 Temmie's Launcher
 	language.js
 
-	This file contains a database with all labels and strings for different 
+	This file is a database with all labels and strings for different 
 	languages 
 	******************************************************************************
 */
@@ -21,12 +21,12 @@ temp_LANGUAGE = {
 		var lPatch = [],
 			res = this.selected.variables[name];
 
-		// If variable not found or an empty string, get English instead
+		// If variable is not found or an empty string, get English instead
 		if (res === void 0 || res === ''){
 			res = this.english.variables[name];
 		}
 
-		// If list is undefined, set patch list as empty array
+		// If list is undefined, set patch list as a empty array
 		if (list !== void 0){
 			lPatch = list;
 		}
@@ -60,37 +60,37 @@ temp_LANGUAGE = {
 			"mainLog": 'fpPS4 Temmie\'s Launcher - Version: %VARIABLE_0%\nRunning on nw.js (node-webkit) version %VARIABLE_1% [%VARIABLE_2%]',
 			"settingsErrorCreatePath": "ERROR - Unable to create path!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 			"settingsErrorfpPS4NotFound": "ERROR - Unable to locate main fpPS4 executable!\nMake sure to select it in Settings or insert it in \"Emu\" folder and click OK.",
-			"settingsConfirmRemoveAllGameSettings": "WARN - This option will remove all saved settings from your game list.\nDo you want to continue?",
+			"settingsConfirmRemoveAllGameSettings": "WARNING - This option will remove all saved settings from your game list.\nDo you want to continue?",
 			"settingsRemovedGameSettings": "INFO - ( %VARIABLE_0% ) Settings file was removed successfully!",
-			"settingsConfirmRemoveGameSettings": "WARN - This action will delete all saved settings for %VARIABLE_0%\n\nDo you want to continue?",
+			"settingsConfirmRemoveGameSettings": "WARNING - This action will delete all saved settings for %VARIABLE_0%\n\nDo you want to continue?",
 			"settingsRemoveGameSettingsError": 'ERROR - ( %VARIABLE_0% ) Unable to delete settings file!\nReason: %VARIABLE_1%',
-			"settingsRemoveGameSettings404": 'WARN - ( %VARIABLE_0% ) Unable to find settings for this app / game!',
-			"infoProcessComplete": "INFO - Process complete!\nCheck log for more details",
+			"settingsRemoveGameSettings404": 'WARNING - ( %VARIABLE_0% ) Unable to find settings file for this app / game!',
+			"infoProcessComplete": "INFO - Process complete!\nCheck the log for more details",
 			"infoSettingsUpdated": "INFO - Settings file was updated successfully!",
-			"settingsLoadError": "ERROR - Unable to load settings!\n %VARIABLE_0%",
-			"settingsSaveError": "ERROR - Unable to save settings!\n %VARIABLE_0%",
+			"settingsLoadError": "ERROR - Unable to load settings file!\n %VARIABLE_0%",
+			"settingsSaveError": "ERROR - Unable to save settings file!\n %VARIABLE_0%",
 			"runEmuArgs": "\nINFO - Running fpPS4 with args: %VARIABLE_0%\nEmu location: %VARIABLE_1%",
-			"closeEmuStatus": "INFO - %VARIABLE_0% was closed returning code %VARIABLE_1%",
-			"removedLibModules": "INFO - All previous imported modules using this launcher was removed since it could be harmful to your game dumps.",
+			"closeEmuStatus": "INFO - %VARIABLE_0% was closed, returning code %VARIABLE_1%",
+			"removedLibModules": "INFO - All previous imported modules using this launcher were removed since it can be harmful to your game dumps.",
 			"removeLibModule": "INFO - ( %VARIABLE_0% ) Removing module: %VARIABLE_1%",
 			"removeModuleError": "ERROR - Unable to remove modules!\nReason: %VARIABLE_0%",
 			"updateGameSettings": "INFO - ( %VARIABLE_0% ) Settings file was updated successfully!",
 			"updateGameSettingsError": "ERROR - Unable to update settings file for %VARIABLE_0% at %VARIABLE_1%!\nReason: %VARIABLE_2%",
 			"skipUpdateGameSettings": "INFO - ( %VARIABLE_0% ) Skip updating settings file since it has no changes!",
 			"errorSaveFile": "ERROR - Unable to save file!\nReason: %VARIABLE_0%",
-			"saveSucessfullPath": "INFO - Save successfull!\nPath: %VARIABLE_0%",
+			"saveSucessfullPath": "INFO - Save successful!\nPath: %VARIABLE_0%",
 			"createdSettingsFile": "INFO - Settings file was created successfully for %VARIABLE_0%",
 			"errorCreateSettingsFile": "ERROR - Unable to create settings file for %VARIABLE_0% at %VARIABLE_1%!\nReason: %VARIABLE_2%",
 			"patchLoadedSucessfully": "INFO - Patch loaded successfully!\nName: %VARIABLE_0%\nType: %VARIABLE_1%",
 			"patchLoadErrorMismatch": "ERROR - This isn\'t a patch or it does not match for this app / game!\nPatch ID: %VARIABLE_0%\nSelected app / game: %VARIABLE_1%",
 			"patchLoadErrorParamSfo404": "ERROR - Unable to find PARAM.SFO for this patch!",
-			"gameListLoadWarnPlayGo": "WARN - Unable to locate playgo-chunk.dat for %VARIABLE_0%!\nIf this isn\'t a homebrew, check if this app / game was dumped properly.",
-			"gameListLoadWarnParamSfo": "WARN - Unable to locate PARAM.SFO for %VARIABLE_0%!\nIf this isn\'t a homebrew, check if this app / game was dumped properly.",
+			"gameListLoadWarnPlayGo": "WARNING - Unable to locate playgo-chunk.dat for %VARIABLE_0%!\nIf this isn\'t a homebrew, check if this app / game was dumped properly.",
+			"gameListLoadWarnParamSfo": "WARNING - Unable to locate PARAM.SFO for %VARIABLE_0%!\nIf this isn\'t a homebrew, check if this app / game was dumped properly.",
 			"gameListRemoveProjectGp4": "INFO - ( %VARIABLE_0% ) Removing Project.gp4 since it was generated in PkgEditor and it is not necessary anymore.",
-			"gameListDoubleIdError": "WARN - Unable to add %VARIABLE_0% to game list because another app / game with same title ID exists! ( %VARIABLE_1% )",
+			"gameListDoubleIdError": "WARNING - Unable to add %VARIABLE_0% to game list because another app / game with the same title ID exists! ( %VARIABLE_1% )",
 			"gameListNoGameFound": "INFO - No apps / games were detected on current path ( %VARIABLE_0% )",
 			"gameListSearch404": "Unable to find",
-			"checkDumpPlayGoOnApp": "INFO - ( %VARIABLE_0% ) playgo-chunk.dat was found inside sce_sys/app - a new copy was created on sce_sys.",
+			"checkDumpPlayGoOnApp": "INFO - ( %VARIABLE_0% ) playgo-chunk.dat was found inside sce_sys/app - a new copy was created in sce_sys.",
 			"gameListLoadSuccessful": "INFO - Game list was loaded successfully! ( %VARIABLE_0% entries found )",
 			"gameListVersion": "Version",
 			"selectGameLoadPatchErrorParamSfo": "ERROR - Unable to read PARAM.SFO from this patch!\n%VARIABLE_0%",
