@@ -8,7 +8,7 @@
 		"logWindowTitle": "Exécution de fpPS4",
 		"killEmuStatus": "Le processus principal a été fermé - fermez la fenêtre des logs pour continuer",
 		"logCleared": "INFO - La liste des journaux a été effacée!\n ",
-		"about": "",
+		"about": "fpPS4 Lanceur de Temmie - Version: %VARIABLE_0%\nCréé par TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 a été créé/développé par red-prig\n(https://github.com/red -prig/fpPS4)\n\nLe plugin memoryjs a été créé/développé par Rob--\n(https://github.com/rob--/memoryjs)\n\nLe plugin node-stream-zip a été créé/développé par antelle \n(https://github.com/antelle/node-stream-zip)\n\nLes icônes SVG ont été obtenues à partir de https://www.svgrepo.com/",
 		"mainLog": "Lanceur de fpPS4 Temmie - Version: %VARIABLE_0%\nUtilisation de nw.js (node-webkit) version %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ERREUR - Impossible de créer le dossier!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ERREUR - Impossible de trouver l'exécutable fpPS4!\nSélectionnez l'exécutable dans les paramètres ou placez-le dans le dossier \"Emu\" et cliquez sur OK.",
@@ -47,18 +47,18 @@
 		"gameListVersion": "Version",
 		"selectGameLoadPatchErrorParamSfo": "ERREUR - Impossible de charger PARAM.SFO de ce correctif!\n%VARIABLE_0%",
 		"path": "Chemin",
-		"gamelistGamePath404": "",
-		"updateEmuFetchActionsError": "",
-		"updateEmuIsLatestVersion": "",
-		"updateEmuShaAvailable": "",
-		"updateEmuShaUnavailable": "",
-		"updateEmuDownloadFailed": "",
-		"updateEmuProcessComplete": "",
-		"updateEmu-1-4": "",
-		"updateEmu-2-4": "",
-		"updateEmu-3-4": "",
-		"updateEmu-4-4": "",
-		"settingsLogEmuSha": ""
+		"gamelistGamePath404": "INFO - Le dossier app / jeux sélectionné n'existe pas!\n%VARIABLE_0%",
+		"updateEmuFetchActionsError": "ERREUR - Impossible d'obtenir des informations de GitHub!",
+		"updateEmuIsLatestVersion": "INFO - Vous utilisez déjà la dernière version !\nID de validation (SHA): %VARIABLE_0%",
+		"updateEmuShaAvailable": "INFO - Une nouvelle mise à jour est disponible!\n\nVersion locale:%VARIABLE_0%\nNouvelle version:%VARIABLE_1%\n\nVoulez-vous mettre à jour?",
+		"updateEmuShaUnavailable": "INFO - Le lanceur a détecté qu'aucune mise à jour n'a été effectuée\n(Ou l'exécutable fpPS4 n'a pas été trouvé!)\n\nIl est possible de résoudre ce problème en utilisant la procédure de mise à jour automatique.\n\nVoulez-vous continuer?",
+		"updateEmuDownloadFailed": "ERREUR - Impossible de télécharger la mise à jour fpPS4!\nÉtat de la réponse: %VARIABLE_0% - OK: %VARIABLE_1%",
+		"updateEmuProcessComplete": "INFO - Mise à jour terminée !\nNouvelle version (ID de validation / SHA): %VARIABLE_0%",
+		"updateEmu-1-4": "Télécharger la mise à jour fpPS4 (<label css=\"LABEL_monospace\">%VARIABLE_0%</label>",
+		"updateEmu-2-4": "Extraction de la mise à jour",
+		"updateEmu-3-4": "Suppression des fichiers restants",
+		"updateEmu-4-4": "Mise à jour terminée!",
+		"settingsLogEmuSha": "INFO - Version de fpPS4: (%VARIABLE_0%)"
 	},
 
 	"input_text": {
@@ -105,11 +105,11 @@
 		"LABEL_FPPS4_OPTIONS_APP_VERSION": "Version",
 		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "Options du lanceur",
 		"LABEL_FPPS4_OPTIONS_HACKS": "Hacks",
-		"LABEL_SETTINGS_SHOW_METADATA_GUI": "",
-		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "",
-		"DIV_SETTINGS_FPPS4_UPDATER": "",
-		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "",
-		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": ""
+		"LABEL_SETTINGS_SHOW_METADATA_GUI": "Afficher l'icône et le nom de l'application / du jeu pendant l'émulation",
+		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">EXPERIMENTAL</label> Afficher la sortie de l'émulateur (<code>stdout</code> et <code>stderr</code>) dans le journal interne (Appuyez sur F12 --> Console)",
+		"DIV_SETTINGS_FPPS4_UPDATER": "Mises à jour fpPS4",
+		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Activer le programme de mise à jour fpPS4",
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Recevez les mises à jour de la branche"
 
 	},
 
@@ -145,9 +145,9 @@
 		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "Réinitialiser les options",
 		"BTN_launcherOptionsExportMetadata": "Exporter les métadonnées",
 		"BTN_RUN": "Démarrer fpPS4",
-		"BTN_SETTINGS_RESTART_LAUNCHER": "",
-		"BTN_UPDATE_FPPS4": "",
-		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": ""
+		"BTN_SETTINGS_RESTART_LAUNCHER": "Redémarrer le lanceur",
+		"BTN_UPDATE_FPPS4": "Mettre à jour fpPS4",
+		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": "Forcer la mise à jour fpPs4"
 
 	}
 }
