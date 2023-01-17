@@ -288,14 +288,14 @@ window.onload = function(){
 		// Kill fpPS4 process if is active
 		APP.emuManager.killEmu(!0);
 
-		// Load game list
-		APP.gameList.load();
-
 		// Rener hack list
 		APP.design.renderHacklist();
 
 		// Focus search field
 		TMS.focus('INPUT_gameListSearch');
+
+		// Load game list
+		APP.gameList.load();
 
 		// Remove all previous imported modules
 		APP.gameList.removeAllModules();

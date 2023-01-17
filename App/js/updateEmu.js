@@ -24,11 +24,14 @@ temp_EMU_UPDATE = {
 	check: function(options){
 
 		if (options === void 0){
-			options = {
-				forceUpdate: !1,
-				silent: !1
-			};
+			options = {	forceUpdate: !1, silent: !1 };
 		}
+
+		const optionsList = ['forceUpdate', 'silent'].forEach(function(optId){
+			if (options[optId] === void 0){
+				options[optId] = !1;
+			}
+		});
 
 		// If Emu updates is available, has internet and fpPS4 isn't running
 		if (APP.settings.data.enableEmuUpdates === !0 && navigator.onLine === !0 && APP.emuManager.emuRunning === !1){
@@ -180,7 +183,6 @@ temp_EMU_UPDATE = {
 
 						// Extract emu executable
 						APP.emuManager.update.extractZip({
-							newExecName: 'fpPS4_' + actionsData.workflow_run.head_sha.slice(0, 7) + '.exe',
 							actions: actionsData,
 							path: fPath
 						});
@@ -208,7 +210,7 @@ temp_EMU_UPDATE = {
 
 		// Open and extract zip file
 		const updateFile = new APP.streamZip.async({ file: data.path });
-		updateFile.extract('fpPS4.exe', APP.path.parse(data.path).dir + '/' + data.newExecName, function(err){
+		updateFile.extract(null, APP.path.parse(data.path).dir + '/', function(err){
 			if (err){
 				console.error(err);
 			}
@@ -235,7 +237,7 @@ temp_EMU_UPDATE = {
 
 		// Update settings
 		APP.settings.data.latestCommitSha = data.actions.workflow_run.head_sha;
-		APP.settings.data.emuPath = APP.path.parse(data.path).dir + '/' + data.newExecName;
+		APP.settings.data.emuPath = APP.path.parse(data.path).dir + '/fpPS4.exe';
 
 		// Save settings
 		APP.settings.save();
