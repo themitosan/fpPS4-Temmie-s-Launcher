@@ -8,15 +8,15 @@
 		"logWindowTitle": "Running fpPS4",
 		"killEmuStatus": "主进程被关闭 - 关闭日志窗口以继续",
 		"logCleared": "INFO - 日志已被清除！\n ",
-		"about": "",
-		"mainLog": "fpPS4 Temmie's Launcher - 版本号: %VARIABLE_0%\n运行中的 nw.js (node-webkit) 版本号: %VARIABLE_1% [%VARIABLE_2%]",
+		"about": "fpPS4 Temmie's Launcher - 版本：%VARIABLE_0%\n由 TemmieHeartz 创建\n(https://twitter.com/themitosan)\n\nfpPS4 由 red-prig 创建\n(https://github.com/red-prig/fpPS4)\n\n插件 memoryjs 由 Rob-- 创建\n(https://github.com/rob--/memoryjs)\n\n插件 node-stream-zip 由 antelle 创建\n(https://github.com/antelle/node-stream-zip)\n\nSVG 图标来自 https://www.svgrepo.com/",
+		"mainLog": "fpPS4 Temmie's Launcher - 版本: %VARIABLE_0%\n运行中的 nw.js (node-webkit) 版本: %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ERROR - 无法创建文件夹！\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ERROR - 无法找到 fpPS4 的可执行文件！\n在设置中选择可执行文件或将其放在 \"Emu\" 文件夹中，然后点击确定。",
-		"settingsConfirmRemoveAllGameSettings": "WARN - 即将删除游戏列表中所有的游戏设置。\n\n确定要继续吗?",
-		"settingsConfirmRemoveGameSettings": "WARN - 即将删除 %VARIABLE_0% 的游戏设置\n\n确定要继续吗?",
+		"settingsConfirmRemoveAllGameSettings": "WARNING - 即将删除游戏列表中所有的游戏设置。\n\n确定要继续吗?",
+		"settingsConfirmRemoveGameSettings": "WARNING - 即将删除 %VARIABLE_0% 的游戏设置\n\n确定要继续吗?",
 		"settingsRemovedGameSettings": "INFO - (%VARIABLE_0%) 的设置文件已被成功删除！",
 		"settingsRemoveGameSettingsError": "ERROR - 无法删除 (%VARIABLE_0%) 的设置文件！\n原因: %VARIABLE_1%",
-		"settingsRemoveGameSettings404": "WARN - 无法找到 (%VARIABLE_0%) 的设置文件！",
+		"settingsRemoveGameSettings404": "WARNING - 无法找到 (%VARIABLE_0%) 的设置文件！",
 		"infoProcessComplete": "INFO - 进程已完成！\n\n更多详情见日志",
 		"infoSettingsUpdated": "INFO - 设置文件已成功更新！",
 		"settingsLoadError": "ERROR - 无法加载设置！\n %VARIABLE_0%",
@@ -34,12 +34,12 @@
 		"createdSettingsFile": "INFO - 成功保存 (%VARIABLE_0%) 的设置文件",
 		"errorCreateSettingsFile": "ERROR - 无法在 %VARIABLE_1% 中保存 %VARIABLE_0% 的设置文件！\n原因: %VARIABLE_2%",
 		"patchLoadedSucessfully": "INFO - 成功加载补丁！\n标题: %VARIABLE_0%\n类型: %VARIABLE_1%",
-		"patchLoadErrorMismatch": "ERROR - 这不是补丁 - 或者选择的补丁与当前游戏不匹配！\n补丁ID：%VARIABLE_0%\n当前应用/游戏ID：%VARIABLE_1%",
+		"patchLoadErrorMismatch": "ERROR - 这不是补丁 - 或者选择的补丁与当前游戏不匹配！\n补丁ID：%VARIABLE_0%\n当前应用／游戏ID：%VARIABLE_1%",
 		"patchLoadErrorParamSfo404": "ERROR - 没有在这个补丁中找到 PARAM.SFO！",
-		"gameListLoadWarnPlayGo": "WARN - 在 %VARIABLE_0% 中无法找到 playgo-chunk.dat！\n如果这不是一个自制软件，请检查这个应用／游戏是否被正确地 Dump。",
-		"gameListLoadWarnParamSfo": "WARN - 在 %VARIABLE_0% 中无法找到 PARAM.SFO！\n如果这不是一个自制软件，请检查这个应用／游戏是否被正确地 Dump。",
+		"gameListLoadWarnPlayGo": "WARNING - 在 %VARIABLE_0% 中无法找到 playgo-chunk.dat！\n如果这不是一个自制软件，请检查这个应用／游戏是否被正确地 Dump。",
+		"gameListLoadWarnParamSfo": "WARNING - 在 %VARIABLE_0% 中无法找到 PARAM.SFO！\n如果这不是一个自制软件，请检查这个应用／游戏是否被正确地 Dump。",
 		"gameListRemoveProjectGp4": "INFO - 删除了 (%VARIABLE_0%) 的 Project.gp4 文件，因为它是通过 PkgEditor 生成的，以后不需要这个文件。",
-		"gameListDoubleIdError": "WARN - 无法添加 %VARIABLE_0% 到游戏列表中，因为存在相同游戏ID的应用／游戏！(%VARIABLE_1%)",
+		"gameListDoubleIdError": "WARNING - 无法添加 %VARIABLE_0% 到游戏列表中，因为存在相同游戏ID的应用／游戏！(%VARIABLE_1%)",
 		"gameListNoGameFound": "INFO - 在当前文件夹中没有找到应用／游戏 (%VARIABLE_0%)",
 		"gameListSearch404": "没有找到",
 		"checkDumpPlayGoOnApp": "INFO - 在 (%VARIABLE_0%) 的 sce_sys/app 中发现了 playgo-chunk.dat - 它将被复制到 sce_sys",
@@ -47,18 +47,18 @@
 		"gameListVersion": "版本号",
 		"selectGameLoadPatchErrorParamSfo": "ERROR - 无法从这个补丁中加载 PARAM.SFO！\n%VARIABLE_0%",
 		"path": "路径",
-		"gamelistGamePath404": "",
-		"updateEmuFetchActionsError": "",
-		"updateEmuIsLatestVersion": "",
-		"updateEmuShaAvailable": "",
-		"updateEmuShaUnavailable": "",
-		"updateEmuDownloadFailed": "",
-		"updateEmuProcessComplete": "",
-		"updateEmu-1-4": "",
-		"updateEmu-2-4": "",
-		"updateEmu-3-4": "",
-		"updateEmu-4-4": "",
-		"settingsLogEmuSha": ""
+		"gamelistGamePath404": "ERROR - 没有找到已选择的应用／游戏路径！\n%VARIABLE_0%",
+		"updateEmuFetchActionsError": "ERROR - 无法获取 GitHub actions 数据！",
+		"updateEmuIsLatestVersion": "INFO - fpPS4 已经是最新的版本！\nCommit ID (SHA): %VARIABLE_0%",
+		"updateEmuShaAvailable": "INFO - 检测到新的更新！\n\n本地版本: %VARIABLE_0%\n新版本: %VARIABLE_1%\n\n你想要更新吗？",
+		"updateEmuShaUnavailable": "INFO - 启动器检测到您尚未更新 fpPS4 (或者没有发现 fpPS4 可执行文件)\n\n你可以使用 fpPS4 更新程序进行修复。\n你想要执行更新程序吗？",
+		"updateEmuDownloadFailed": "ERROR - 无法下载 fpPS4 更新！\nResponse status: %VARIABLE_0% - OK: %VARIABLE_1%",
+		"updateEmuProcessComplete": "INFO - 更新成功！\n新的 fpPS4 版本 (commit id / sha): %VARIABLE_0%",
+		"updateEmu-1-4": "正在下载 fpPS4 更新 (<label class=\"LABEL_monospace\">%VARIABLE_0%</label>)",
+		"updateEmu-2-4": "提取更新",
+		"updateEmu-3-4": "删除多余文件",
+		"updateEmu-4-4": "更新成功！",
+		"settingsLogEmuSha": "INFO - fpPS4 版本：(%VARIABLE_0%)"
 	},
 
 	"input_text": {
@@ -107,9 +107,9 @@
 		"LABEL_FPPS4_OPTIONS_HACKS": "Hacks",
 		"LABEL_SETTINGS_SHOW_METADATA_GUI": "在界面上显示图标和标题",
 		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">实验性功能</label> 在内部控制台显示 fpPS4 进程日志 (<code>stdout</code> 和 <code>stderr</code>) (按 F12 --> Console)",
-		"DIV_SETTINGS_FPPS4_UPDATER": "",
-		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "",
-		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": ""
+		"DIV_SETTINGS_FPPS4_UPDATER": "fpPS4 更新程序",
+		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "启用 fpPS4 更新程序",
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "检测更新的分支"
 
 	},
 
@@ -146,8 +146,8 @@
 		"BTN_launcherOptionsExportMetadata": "导出元数据",
 		"BTN_RUN": "运行 fpPS4",
 		"BTN_SETTINGS_RESTART_LAUNCHER": "重新启动启动器",
-		"BTN_UPDATE_FPPS4": "",
-		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": ""
+		"BTN_UPDATE_FPPS4": "更新 fpPS4",
+		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": "强制更新 fpPS4"
 
 	}
 }
