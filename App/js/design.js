@@ -347,10 +347,7 @@ temp_DESIGN = {
 		// Check if emu is present before allowing to run
 		if (APP.fs.existsSync(APP.settings.data.emuPath) === !0 && APP.gameList.selectedGame !== ''){
 
-			var btnRun = '',
-				btnLog = '',
-				btnRefresh = '',
-				btnSettings = '',
+			var btnDisabled = '',
 				btnKill = 'disabled',
 				emuRunPath = 'block',
 				bgBlur = APP.settings.data.bgListBlur,
@@ -364,10 +361,7 @@ temp_DESIGN = {
 			if (APP.emuManager.emuRunning === !0){
 	
 				btnKill = '';
-				btnLog = 'disabled';
-				btnRun = 'disabled';
-				btnRefresh = 'disabled';
-				btnSettings = 'disabled';
+				btnDisabled = 'disabled';
 				bgBlur = APP.settings.data.bgEmuBlur;
 				showGuiMetadata = {'display': 'flex'};
 				bgOpacity = APP.settings.data.bgEmuOpacity;
@@ -391,12 +385,13 @@ temp_DESIGN = {
 			TMS.css('DIV_GAMELIST_BG', {'filter': 'blur(' + bgBlur + 'px) opacity(' + bgOpacity + ')'});
 	
 			// Update Buttons
-			document.getElementById('BTN_RUN').disabled = btnRun;
 			document.getElementById('BTN_KILL').disabled = btnKill;
-			document.getElementById('BTN_CLEAR_LOG').disabled = btnLog;
-			document.getElementById('BTN_REFRESH').disabled = btnRefresh;
-			document.getElementById('BTN_SETTINGS').disabled = btnSettings;
-			document.getElementById('INPUT_gameListSearch').disabled = btnRun;
+			document.getElementById('BTN_RUN').disabled = btnDisabled;
+			document.getElementById('BTN_REFRESH').disabled = btnDisabled;
+			document.getElementById('BTN_SETTINGS').disabled = btnDisabled;
+			document.getElementById('BTN_CLEAR_LOG').disabled = btnDisabled;
+			document.getElementById('BTN_UPDATE_FPPS4').disabled = btnDisabled;
+			document.getElementById('INPUT_gameListSearch').disabled = btnDisabled;
 
 		} else {
 
@@ -661,6 +656,7 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsShowBgOnGameEntry').checked = JSON.parse(cSettings.showBgOnEntry);
 		document.getElementById('CHECKBOX_settingsShowGameMetadata').checked = JSON.parse(cSettings.showGuiMetadata);
 		document.getElementById('CHECKBOX_settingsRemoveProjectGp4').checked = JSON.parse(cSettings.removeProjectGp4);
+		document.getElementById('CHECKBOX_settingsEnableFpps4Updates').checked = JSON.parse(cSettings.enableEmuUpdates);
 		document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked = JSON.parse(cSettings.searchCaseSensitive);
 		document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked = JSON.parse(cSettings.logExternalWindowPrompt);
 
@@ -674,6 +670,9 @@ temp_DESIGN = {
 		document.getElementById('RANGE_settingsGameListBgOpacity').value = cSettings.bgListOpacity;
 		document.getElementById('RANGE_settingsEmuRunningBgOpacity').value = cSettings.bgEmuOpacity;
 		document.getElementById('RANGE_settingsGridIconBorderRadius').value = cSettings.gridBorderRadius;
+
+		// Text
+		document.getElementById('INPUT_settingsUpdateFpps4Branch').value = cSettings.fpps4BranchName;
 
 		// Fix for grid size / border-radius
 		if (cSettings.gridIconSize > 512){
@@ -735,6 +734,7 @@ temp_DESIGN = {
 		APP.settings.data.showPathRunning = JSON.parse(document.getElementById('CHECKBOX_settingsShowExecRunning').checked);
 		APP.settings.data.showGuiMetadata = JSON.parse(document.getElementById('CHECKBOX_settingsShowGameMetadata').checked);
 		APP.settings.data.removeProjectGp4 = JSON.parse(document.getElementById('CHECKBOX_settingsRemoveProjectGp4').checked);
+		APP.settings.data.enableEmuUpdates = JSON.parse(document.getElementById('CHECKBOX_settingsEnableFpps4Updates').checked);
 		APP.settings.data.searchCaseSensitive = JSON.parse(document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked);
 		APP.settings.data.logExternalWindowPrompt = JSON.parse(document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked);
 
@@ -749,6 +749,9 @@ temp_DESIGN = {
 		APP.settings.data.bgEmuOpacity = parseFloat(document.getElementById('RANGE_settingsEmuRunningBgOpacity').value);
 		APP.settings.data.gridBorderRadius = parseFloat(document.getElementById('RANGE_settingsGridIconBorderRadius').value);
 
+		// Text
+		APP.settings.data.fpps4BranchName = document.getElementById('INPUT_settingsUpdateFpps4Branch').value;
+
 		/*
 			End
 		*/
@@ -761,6 +764,44 @@ temp_DESIGN = {
 			APP.design.toggleSettings(!0);
 		}
 
+	},
+
+	/*
+		Updater
+	*/
+
+	// Display / Hide GUI
+	toggleEmuUpdateGUI: function(mode){
+
+		var cssData;
+		switch (mode) {
+
+			case 'show':
+				cssData = {'display': 'flex'};
+				break;
+
+			case 'hide':
+				cssData = {'display': 'none'};
+				break;
+
+			default:
+				cssData = {'display': 'none'};
+				break;
+
+		}
+
+		// Reset progressbar status
+		TMS.css('DIV_PROGRESSBAR_UPDATE_FPPS4', {'width': '0%'});
+
+		// Update display mode
+		TMS.css('DIV_FPPS4_UPDATER', cssData);
+
+	},
+
+	// Update status
+	updateProgressbarStatus: function(percentage, status){
+		TMS.css('DIV_PROGRESSBAR_UPDATE_FPPS4', {'width': percentage + '%'});
+		document.getElementById('LABEL_FPPS4_UPDATER_STATUS').innerHTML = status;
 	}
 
 }

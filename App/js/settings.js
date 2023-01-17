@@ -45,7 +45,7 @@ temp_SETTINGS = {
 		// Game list
 		showBgOnEntry: !0,
 		showPathEntry: !0,
-		gameListMode: 'normal',
+		gameListMode: 'compact',
 
 		// Emu running
 		showPathRunning: !0,
@@ -66,7 +66,14 @@ temp_SETTINGS = {
 		// (Grid)
 		gridIconSize: 116,
 		gridBorderRadius: 8,
-	
+
+		/*
+			fpPS4 Update
+		*/
+		enableEmuUpdates: !0,
+		latestCommitSha: '',
+		fpps4BranchName: 'trunk',
+
 		/*
 			Debug
 		*/
@@ -210,11 +217,16 @@ temp_SETTINGS = {
 		if (this.data.emuPath === '' || APP.fs.existsSync(this.data.emuPath) === !1){
 			APP.settings.data.emuPath = mainPath + '/Emu/fpPS4.exe';
 		}
+
+		// If fpPS4 is not found, reset latest commit sha and request update 
 		if (APP.fs.existsSync(this.data.emuPath) !== !0){
+			this.data.latestCommitSha = '';
+			APP.emuManager.update.check();
+		}
 
-			logMessage = APP.lang.getVariable('settingsErrorfpPS4NotFound');
-			window.alert(logMessage);
-
+		// If latestCommitSha isn't empty, log it
+		if (this.data.latestCommitSha !== ''){
+			APP.log(APP.lang.getVariable('settingsLogEmuSha', [APP.settings.data.latestCommitSha.slice(0, 7)]));
 		}
 
 		// Log message

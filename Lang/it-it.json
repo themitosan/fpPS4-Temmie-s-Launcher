@@ -8,7 +8,7 @@
 		"logWindowTitle": "Eseguendo fpPS4",
 		"killEmuStatus": "Il processo principale è stato chiuso: chiudi la finestra del log per continuare",
 		"logCleared": "INFO - L'elenco dei log è stato cancellato!\n",
-		"about": "fpPS4 Temmie's Launcher - Versione: %VARIABLE_0%\nCreato da TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 è stato creato/sviluppato da red-prig\n(https://github.com/red-prig/fpPS4)\n\nIl plugin Memoryjs è stato creato/sviluppato da Rob--\n(https://github.com/rob--/memoryjs)\n\nLe icone SVG sono state ottenute da https://www.svgrepo.com/",
+		"about": "",
 		"mainLog": "fpPS4 Temmie's Launcher - Versione: %VARIABLE_0%\nUsando nw.js (node-webkit) versione %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ERRORE - Impossibile creare la cartella!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ERRORE - Impossibile trovare l'eseguibile fpPS4!\nSelezionare l'eseguibile nelle impostazioni o posizionarlo all'interno della cartella \"Emu\" e fare clic su ok.",
@@ -47,7 +47,18 @@
 		"gameListVersion": "Versione",
 		"selectGameLoadPatchErrorParamSfo": "ERRORE - Impossibile caricare PARAM.SFO di questa patch!\n%VARIABLE_0%",
 		"path": "Percorso",
-		"gamelistGamePath404": "INFO - La cartella app/giochi selezionata non esiste!\n%VARIABLE_0%"
+		"gamelistGamePath404": "INFO - La cartella app/giochi selezionata non esiste!\n%VARIABLE_0%",
+		"updateEmuFetchActionsError": "",
+		"updateEmuIsLatestVersion": "",
+		"updateEmuShaAvailable": "",
+		"updateEmuShaUnavailable": "",
+		"updateEmuDownloadFailed": "",
+		"updateEmuProcessComplete": "",
+		"updateEmu-1-4": "",
+		"updateEmu-2-4": "",
+		"updateEmu-3-4": "",
+		"updateEmu-4-4": "",
+		"settingsLogEmuSha": ""
 	},
 
 	"input_text": {
@@ -95,7 +106,10 @@
 		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "Opzioni del launcher",
 		"LABEL_FPPS4_OPTIONS_HACKS": "Hacks",
 		"LABEL_SETTINGS_SHOW_METADATA_GUI": "Mostra l'icona e il nome dell'app/gioco durante l'emulazione",
-		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">SPERIMENTALE</label> Visualizza l'output dell'emulatore (<code>stdout</code> e <code>stderr</code>) nel log interno (premi F12 --> Console)"
+		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">SPERIMENTALE</label> Visualizza l'output dell'emulatore (<code>stdout</code> e <code>stderr</code>) nel log interno (premi F12 --> Console)",
+		"DIV_SETTINGS_FPPS4_UPDATER": "",
+		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "",
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": ""
 
 	},
 
@@ -131,7 +145,9 @@
 		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "Ripristina le impostazioni",
 		"BTN_launcherOptionsExportMetadata": "Esportare i metadati",
 		"BTN_RUN": "Avvia fpPS4",
-		"BTN_SETTINGS_RESTART_LAUNCHER": "Riavvia il launcher"
+		"BTN_SETTINGS_RESTART_LAUNCHER": "Riavvia il launcher",
+		"BTN_UPDATE_FPPS4": "",
+		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": ""
 
 	}
 }

@@ -11,210 +11,254 @@
 
 	<body>
 	
+		<!-- fpPS4 Updater -->
+		<div class="DIV_FPPS4_UPDATER" id="DIV_FPPS4_UPDATER">
+
+			<!-- GUI Design -->
+			<div class="DIV_DESIGN_LINES LINE_TOP"></div>
+			<div class="DIV_DESIGN_LINES LINE_BOTTOM"></div>
+
+			<!-- Status -->
+			<label class="LABEL_FLEX_MARGIN">
+				<label id="LABEL_FPPS4_UPDATER_STATUS_LANG">Status</label>:
+			</label>
+			<label id="LABEL_FPPS4_UPDATER_STATUS">???</label>
+
+			<!-- Progressbar -->
+			<div class="DIV_PROGRESSBAR">
+				<div class="DIV_PROGRESSBAR_INTERNAL" id="DIV_PROGRESSBAR_UPDATE_FPPS4"></div>
+			</div>
+
+		</div>		
+
 		<!-- Launcher Settings -->
 		<div class="DIV_SETTINGS_HOLDER" id="DIV_SETTINGS">
-			<div class="DIV_SETTINGS">
 			
-			<div class="DIV_TITLE" id="DIV_SETTINGS_TITLE">Launcher Settings</div>
-
-			<!-- BG -->
-			<div class="DIV_SETTINGS_BG"></div>
-
-			<!-- Settings List -->
-			<div class="DIV_SETTINGS_LIST">
-				
-				<!-- Language -->
-				<div class="DIV_settingsH2" id="DIV_SETTINGS_LANGUAGE">Language</div>
-				
-				<div class="DIV_settingsEntry">
-					<label id="LABEL_SETTINGS_CURRENT_LANGUAGE">Current Language</label>:
-					<select id="SELECT_settingsLanguage" class="SELECT_settings">
-						<!-- Language goes here -->
-					</select><br>
-					<label id="LABEL_SETTINGS_LANGUAGE_RESTART">You must restart launcher to take effect</label>
-				</div>
-				<div class="SEPARATOR_00"></div>
-
-				<!-- Paths -->
-				<div class="DIV_settingsH2" id="DIV_SETTINGS_PATHS">Paths</div>
-				<div class="DIV_settingsEntry">
-
-					<label id="LABEL_SETTINGS_APP_GAMES_PATH">App / Games Path</label>:
-					<label id="LBL_SETTINGS_gamePath" class="LABEL_settingsPath">???</label>
-
-					<input type="button" class="BTN_selectPath" id="BTN_SETTINGS_SELECT_APPS_GAMES_PATH" value="Select path" onclick="APP.settings.selectPath({
-						settings: 'gamePath',
-						label: 'LBL_SETTINGS_gamePath'
-					});">
-
-					<input type="button" class="BTN_selectPath" id="BTN_SETTINGS_OPEN_APPS_GAMES_PATH" value="Open folder" onclick="APP.fileManager.openDir(APP.settings.data.gamePath);">
-				</div>
-				
-				<div class="DIV_settingsEntry">
-
-					<label id="LABEL_SETTINGS_FPPS4_PATH">fpPS4 Path</label>:
-					<label id="LBL_SETTINGS_emuPath" class="LABEL_settingsPath">???</label>
-
-					<input type="button" class="BTN_selectPath" id="BTN_SETTINGS_SELECT_FPPS4_PATH" value="Select File" onclick="APP.settings.selectFile({
-						extension: '.exe',
-						settings: 'emuPath',
-						label: 'LBL_SETTINGS_emuPath'
-					});">
-
-				</div>
-				
-				<!-- Game List -->
-				<div class="SEPARATOR_00"></div>
-				<div class="DIV_settingsH2" id="DIV_SETTINGS_GAME_LIST">Game List</div>
-
-				<div class="DIV_settingsEntry">
+			<div class="DIV_SETTINGS">		
+				<div class="DIV_TITLE" id="DIV_SETTINGS_TITLE">Launcher Settings</div>
+	
+				<!-- BG -->
+				<div class="DIV_SETTINGS_BG"></div>
+	
+				<!-- Settings List -->
+				<div class="DIV_SETTINGS_LIST">
 					
-					<label id="LABEL_SETTINGS_GAME_SEARCH_MODE">Game search mode</label>:
-					<select id="SELECT_settingsSearchMode" class="SELECT_settings">
-						<option value="appName">Name</option>
-						<option value="titleId">Title ID</option>
-					</select>
-				
-				</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-				
-					<label id="LABEL_SETTINGS_GAME_LIST_BACKGROUND_BLUR">Background Blur</label>: 
-
-					<input type="range" min="0" max="6" step="0.01" value="2" id="RANGE_settingsGameListBgBlur" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
-					<label id="LABEL_settingsGameListBgBlur">???</label>%
-				
-				</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsGridBorderRadius">
-
-					<label id="LABEL_SETTINGS_GRID_BORDER_RADIUS">(Grid) Border-Radius</label>: 
-					<input type="range" min="0" max="15" step="0.1" value="8" id="RANGE_settingsGridIconBorderRadius" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
-					<label id="LABEL_settingsGridBorderRadius">???</label>%
-
-				</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+					<!-- Language -->
+					<div class="DIV_settingsH2" id="DIV_SETTINGS_LANGUAGE">Language</div>
 					
-					<label id="LABEL_SETTINGS_GAME_LIST_BACKGROUND_OPACITY">Background Opacity</label>: 
+					<div class="DIV_settingsEntry">
+						<label id="LABEL_SETTINGS_CURRENT_LANGUAGE">Current Language</label>:
+						<select id="SELECT_settingsLanguage" class="SELECT_settings">
+							<!-- Language goes here -->
+						</select><br>
+						(<label id="LABEL_SETTINGS_LANGUAGE_RESTART">You must restart launcher to take effect</label>)
+					</div>
+					<div class="SEPARATOR_00"></div>
+	
+					<!-- Paths -->
+					<div class="DIV_settingsH2" id="DIV_SETTINGS_PATHS">Paths</div>
+					<div class="DIV_settingsEntry">
+	
+						<label id="LABEL_SETTINGS_APP_GAMES_PATH">App / Games Path</label>:
+						<label id="LBL_SETTINGS_gamePath" class="LABEL_settingsPath">???</label>
+	
+						<input type="button" class="BTN_selectPath" id="BTN_SETTINGS_SELECT_APPS_GAMES_PATH" value="Select path" onclick="APP.settings.selectPath({
+							settings: 'gamePath',
+							label: 'LBL_SETTINGS_gamePath'
+						});">
+	
+						<input type="button" class="BTN_selectPath" id="BTN_SETTINGS_OPEN_APPS_GAMES_PATH" value="Open folder" onclick="APP.fileManager.openDir(APP.settings.data.gamePath);">
+					</div>
 					
-					<input type="range" min="0" max="1" step="0.01" value="0.6" id="RANGE_settingsGameListBgOpacity" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
-					<label id="LABEL_settingsGameListBgOpacity">???</label>%
+					<div class="DIV_settingsEntry">
+	
+						<label id="LABEL_SETTINGS_FPPS4_PATH">fpPS4 Path</label>:
+						<label id="LBL_SETTINGS_emuPath" class="LABEL_settingsPath">???</label>
+	
+						<input type="button" class="BTN_selectPath" id="BTN_SETTINGS_SELECT_FPPS4_PATH" value="Select File" onclick="APP.settings.selectFile({
+							extension: '.exe',
+							settings: 'emuPath',
+							label: 'LBL_SETTINGS_emuPath'
+						});">
+	
+					</div>
+					
+					<!-- Game List -->
+					<div class="SEPARATOR_00"></div>
+					<div class="DIV_settingsH2" id="DIV_SETTINGS_GAME_LIST">Game List</div>
+	
+					<div class="DIV_settingsEntry">
+						
+						<label id="LABEL_SETTINGS_GAME_SEARCH_MODE">Game search mode</label>:
+						<select id="SELECT_settingsSearchMode" class="SELECT_settings">
+							<option value="appName">Name</option>
+							<option value="titleId">Title ID</option>
+						</select>
+					
+					</div>
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+					
+						<label id="LABEL_SETTINGS_GAME_LIST_BACKGROUND_BLUR">Background Blur</label>: 
+	
+						<input type="range" min="0" max="6" step="0.01" value="2" id="RANGE_settingsGameListBgBlur" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings	(!0);"> 
+						<label id="LABEL_settingsGameListBgBlur">???</label>%
+					
+					</div>
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsGridBorderRadius">
+	
+						<label id="LABEL_SETTINGS_GRID_BORDER_RADIUS">(Grid) Border-Radius</label>: 
+						<input type="range" min="0" max="15" step="0.1" value="8" id="RANGE_settingsGridIconBorderRadius" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.	renderSettings(!0);"> 
+						<label id="LABEL_settingsGridBorderRadius">???</label>%
+	
+					</div>
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						
+						<label id="LABEL_SETTINGS_GAME_LIST_BACKGROUND_OPACITY">Background Opacity</label>: 
+						
+						<input type="range" min="0" max="1" step="0.01" value="0.6" id="RANGE_settingsGameListBgOpacity" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.	renderSettings(!0);"> 
+						<label id="LABEL_settingsGameListBgOpacity">???</label>%
+	
+					</div>
+	
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="checkbox" id="CHECKBOX_settingsGameSearchCaseSensitive">
+						<label class="LABEL_checkbox" id="LABEL_SETTINGS_GAME_LIST_SEARCH_CASE_SENSITIVE" onclick="APP.tools.processCheckbox('CHECKBOX_settingsGameSearchCaseSensitive');">
+							Enable case-sentitive search on game list
+						</label>
+					</div>
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsShowBgOnGameEntry">
+						<input type="checkbox" id="CHECKBOX_settingsShowBgOnGameEntry">
+						<label class="LABEL_checkbox" id="LABEL_SETTINGS_GAME_LIST_NORMAL_SHOW_BG" onclick="APP.tools.processCheckbox('CHECKBOX_settingsShowBgOnGameEntry');">
+							Show background image for every game entry on list
+						</label>
+					</div>
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="checkbox" id="CHECKBOX_settingsShowExecList">
+						<label class="LABEL_checkbox" id="LABEL_SETTINGS_SHOW_METADATA_GAME_ENTRY" onclick="APP.tools.processCheckbox('CHECKBOX_settingsShowExecList');">
+							Show app / game metadata (or executable path) for every title in game list
+						</label>
+					</div>
+	
+					<!-- Emu running -->
+					<div class="SEPARATOR_00"></div>
+					<div class="DIV_settingsH2" id="DIV_SETTINGS_EMU_RUNNING">Emu Running</div>
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<label id="LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_BLUR">Background Blur</label>: 
+						<input type="range" min="0" max="6" step="0.01" value="6" id="RANGE_settingsEmuRunningBgBlur" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.	renderSettings(!0);"> 
+						<label id="LABEL_settingsEmuRunningBgBlur">???</label>%
+					</div>
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<label id="LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_OPACITY">Background Opacity</label>: 
+						<input type="range" min="0" max="1" step="0.01" value="0.7" id="RANGE_settingsEmuRunningBgOpacity" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.	renderSettings(!0);"> 
+						<label id="LABEL_settingsEmuRunningBgOpacity">???</label>%
+					</div>
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="checkbox" id="CHECKBOX_settingsShowGameMetadata">
+						<label class="LABEL_checkbox" id="LABEL_SETTINGS_SHOW_METADATA_GUI" onclick="APP.tools.processCheckbox('CHECKBOX_settingsShowGameMetadata');">
+							Display icon / name GUI while fpPS4 is running
+						</label>
+					</div>
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="checkbox" id="CHECKBOX_settingsShowExecRunning">
+						<label class="LABEL_checkbox" id="LABEL_SETTINGS_SHOW_METADATA_EMU_RUNNING" onclick="APP.tools.processCheckbox('CHECKBOX_settingsShowExecRunning');">
+							Display app / game metadata (or executable path) below game title
+						</label>
+					</div>
+	
+					<!-- Log options -->
+					<div class="SEPARATOR_00"></div>
+					<div class="DIV_settingsH2" id="DIV_SETTINGS_LOG_OPTIONS">Log Options</div>
+	
+					<div class="DIV_settingsEntry">
+						<label id="LABEL_SETTINGS_LOG_START_WINDOW_STATE">Start console window</label>:
+						<select id="SELECT_settingsStartExternalWindow" class="SELECT_settings" onchange="APP.design.updateLauncherSettingsGUI();">
+							<option value="normal">Normal</option>
+							<option value="max">Maximized</option>
+							<option value="min">Minimized</option>
+						</select>
+					</div>
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="checkbox" id="CHECKBOX_settingsExternalWindowPrompt">
+						<label class="LABEL_checkbox" id="LABEL_SETTINGS_PROMPT_KEY_FPPS4_CLOSES" onclick="APP.tools.processCheckbox('CHECKBOX_settingsExternalWindowPrompt');">
+							Prompt user to press any key when fpPS4 closes
+						</label>
+					</div>
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="checkbox" id="CHECKBOX_settingsExperimentalIntLog">
+						<label class="LABEL_checkbox" id="LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG" onclick="APP.tools.processCheckbox('CHECKBOX_settingsExperimentalIntLog');">
+							<label class="LABEL_settingsExperimental">EXPERIMENTAL</label> Log fpPS4 process output (<code>stdout</code> and <code>stderr</code>) on intenal log (Press F12 --> Console)
+						</label>
+					</div>
 
+					<!-- fpPS4 Updater -->
+					<div class="SEPARATOR_00"></div>
+					<div class="DIV_settingsH2" id="DIV_SETTINGS_FPPS4_UPDATER">fpPS4 Updater</div>
+
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="checkbox" id="CHECKBOX_settingsEnableFpps4Updates">
+						<label class="LABEL_checkbox" id="LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES" onclick="APP.tools.processCheckbox('CHECKBOX_settingsEnableFpps4Updates');">
+							Enable fpPS4 updater
+						</label>
+					</div>
+
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<label class="LABEL_checkbox" id="LABEL_SETTINGS_FPPS4_UPDATE_BRANCH">
+							Search updates from branch
+						</label>:
+						<input type="text" placeholder="main, trunk..." class="SETTINGS_TEXT" id="INPUT_settingsUpdateFpps4Branch">
+					</div>
+
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="button" class="SELECT_settings" id="BTN_SETTINGS_FORCE_FPPS4_UPDATE" value="Force fpPS4 update" onclick="APP.emuManager.update.check({forceUpdate: !0});">
+					</div>
+
+					<!-- Misc. -->
+					<div class="SEPARATOR_00"></div>
+					<div class="DIV_settingsH2" id="DIV_SETTINGS_MISC">Misc.</div>
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="checkbox" id="CHECKBOX_settingsEnableParamSfo">
+						<label class="LABEL_checkbox" id="LABEL_SETTINGS_ENABLE_PARAMSFO_SUPPORT" onclick="APP.tools.processCheckbox('CHECKBOX_settingsEnableParamSfo');">
+							Enable <code>PARAM.SFO</code> support <i>(Click on "Delete all game settings" and restart launcher to take effect)</i>
+						</label>
+					</div>
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="checkbox" id="CHECKBOX_settingsRemoveProjectGp4">
+						<label class="LABEL_checkbox" id="LABEL_SETTINGS_REMOVE_PROJECT_GP4_FILES" onclick="APP.tools.processCheckbox('CHECKBOX_settingsRemoveProjectGp4');">
+							Remove <code>Project.gp4</code> from every game on game list load
+						</label>
+					</div>
+	
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="button" class="SELECT_settings" id="BTN_SETTINGS_DELETE_ALL_GAME_SETTINGS" value="Delete all game settings" onclick="APP.settings.resetAllGameSettings();">
+						<input type="button" class="SELECT_settings" id="BTN_SETTINGS_RESTART_LAUNCHER" value="Restart launcher" onclick="chrome.runtime.reload();">
+					</div>
+	
 				</div>
-
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<input type="checkbox" id="CHECKBOX_settingsGameSearchCaseSensitive">
-					<label class="LABEL_checkbox" id="LABEL_SETTINGS_GAME_LIST_SEARCH_CASE_SENSITIVE" onclick="APP.tools.processCheckbox('CHECKBOX_settingsGameSearchCaseSensitive');">
-						Enable case-sentitive search on game list
-					</label>
-				</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsShowBgOnGameEntry">
-					<input type="checkbox" id="CHECKBOX_settingsShowBgOnGameEntry">
-					<label class="LABEL_checkbox" id="LABEL_SETTINGS_GAME_LIST_NORMAL_SHOW_BG" onclick="APP.tools.processCheckbox('CHECKBOX_settingsShowBgOnGameEntry');">
-						Show background image for every game entry on list
-					</label>
-				</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<input type="checkbox" id="CHECKBOX_settingsShowExecList">
-					<label class="LABEL_checkbox" id="LABEL_SETTINGS_SHOW_METADATA_GAME_ENTRY" onclick="APP.tools.processCheckbox('CHECKBOX_settingsShowExecList');">
-						Show app / game metadata (or executable path) for every title in game list
-					</label>
-				</div>
-
-				<!-- Emu running -->
-				<div class="SEPARATOR_00"></div>
-				<div class="DIV_settingsH2" id="DIV_SETTINGS_EMU_RUNNING">Emu Running</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<label id="LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_BLUR">Background Blur</label>: 
-					<input type="range" min="0" max="6" step="0.01" value="6" id="RANGE_settingsEmuRunningBgBlur" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
-					<label id="LABEL_settingsEmuRunningBgBlur">???</label>%
-				</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<label id="LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_OPACITY">Background Opacity</label>: 
-					<input type="range" min="0" max="1" step="0.01" value="0.7" id="RANGE_settingsEmuRunningBgOpacity" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
-					<label id="LABEL_settingsEmuRunningBgOpacity">???</label>%
-				</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<input type="checkbox" id="CHECKBOX_settingsShowGameMetadata">
-					<label class="LABEL_checkbox" id="LABEL_SETTINGS_SHOW_METADATA_GUI" onclick="APP.tools.processCheckbox('CHECKBOX_settingsShowGameMetadata');">
-						Display icon / name GUI while fpPS4 is running
-					</label>
-				</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<input type="checkbox" id="CHECKBOX_settingsShowExecRunning">
-					<label class="LABEL_checkbox" id="LABEL_SETTINGS_SHOW_METADATA_EMU_RUNNING" onclick="APP.tools.processCheckbox('CHECKBOX_settingsShowExecRunning');">
-						Display app / game metadata (or executable path) below game title
-					</label>
-				</div>
-
-				<!-- Log options -->
-				<div class="SEPARATOR_00"></div>
-				<div class="DIV_settingsH2" id="DIV_SETTINGS_LOG_OPTIONS">Log Options</div>
-
-				<div class="DIV_settingsEntry">
-					<label id="LABEL_SETTINGS_LOG_START_WINDOW_STATE">Start console window</label>:
-					<select id="SELECT_settingsStartExternalWindow" class="SELECT_settings" onchange="APP.design.updateLauncherSettingsGUI();">
-						<option value="normal">Normal</option>
-						<option value="max">Maximized</option>
-						<option value="min">Minimized</option>
-					</select>
-				</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<input type="checkbox" id="CHECKBOX_settingsExternalWindowPrompt">
-					<label class="LABEL_checkbox" id="LABEL_SETTINGS_PROMPT_KEY_FPPS4_CLOSES" onclick="APP.tools.processCheckbox('CHECKBOX_settingsExternalWindowPrompt');">
-						Prompt user to press any key when fpPS4 closes
-					</label>
-				</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<input type="checkbox" id="CHECKBOX_settingsExperimentalIntLog">
-					<label class="LABEL_checkbox" id="LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG" onclick="APP.tools.processCheckbox('CHECKBOX_settingsExperimentalIntLog');">
-						<label class="LABEL_settingsExperimental">EXPERIMENTAL</label> Log fpPS4 process output (<code>stdout</code> and <code>stderr</code>) on intenal log (Press F12 --> Console)
-					</label>
-				</div>
-
-				<!-- Misc. -->
-				<div class="SEPARATOR_00"></div>
-				<div class="DIV_settingsH2" id="DIV_SETTINGS_MISC">Misc.</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<input type="checkbox" id="CHECKBOX_settingsEnableParamSfo">
-					<label class="LABEL_checkbox" id="LABEL_SETTINGS_ENABLE_PARAMSFO_SUPPORT" onclick="APP.tools.processCheckbox('CHECKBOX_settingsEnableParamSfo');">
-						Enable <code>PARAM.SFO</code> support <i>(Click on "Delete all game settings" and restart launcher to take effect)</i>
-					</label>
-				</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<input type="checkbox" id="CHECKBOX_settingsRemoveProjectGp4">
-					<label class="LABEL_checkbox" id="LABEL_SETTINGS_REMOVE_PROJECT_GP4_FILES" onclick="APP.tools.processCheckbox('CHECKBOX_settingsRemoveProjectGp4');">
-						Remove <code>Project.gp4</code> from every game on game list load
-					</label>
-				</div>
-
-				<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-					<input type="button" class="SELECT_settings" id="BTN_SETTINGS_DELETE_ALL_GAME_SETTINGS" value="Delete all game settings" onclick="APP.settings.resetAllGameSettings();">
-					<input type="button" class="SELECT_settings" id="BTN_SETTINGS_RESTART_LAUNCHER" value="Restart launcher" onclick="chrome.runtime.reload();">
+	
+				<!-- Save & Exit Buttons -->
+				<div class="DIV_settingsSave">
+					<input type="button" class="BTN_SAVE" id="BTN_SETTINGS_APPLY_CLOSE" onclick="APP.design.saveSettings();" value="Apply & Close">
+					<input type="button" class="BTN_SAVE" id="BTN_SETTINGS_CLOSE" onclick="APP.design.toggleSettings(!0);" value="Close">
 				</div>
 
 			</div>
 
-			<!-- Save & Exit Buttons -->
-			<div class="DIV_settingsSave">
-				<input type="button" class="BTN_SAVE" id="BTN_SETTINGS_APPLY_CLOSE" onclick="APP.design.saveSettings();" value="Apply & Close">
-				<input type="button" class="BTN_SAVE" id="BTN_SETTINGS_CLOSE" onclick="APP.design.toggleSettings(!0);" value="Close">
-			</div>
-
-			</div>
 		</div>
+
 		<!-- Top Menu -->
 		<div class="DIV_ACTIONS" id="DIV_ACTIONS">
 			
@@ -233,6 +277,7 @@
 			<input type="button" class="BTN_actions" id="BTN_REFRESH" onclick="APP.gameList.load();" value="Refresh game list">
 			<input type="button" class="BTN_actions" id="BTN_SETTINGS" onclick="APP.design.toggleSettings();" value="Settings">			
 			<input type="button" class="BTN_actions" id="BTN_CLEAR_LOG" onclick="APP.clearLog();" value="Clear Log">
+			<input type="button" class="BTN_actions" id="BTN_UPDATE_FPPS4" onclick="APP.emuManager.update.check();" value="Update fpPS4" disabled="disabled">
 			<input type="button" class="BTN_actions" id="BTN_ABOUT" onclick="APP.about();" value="About">
 			<input type="button" class="BTN_STOP" id="BTN_KILL" onclick="APP.emuManager.killEmu();" disabled="disabled" value="Stop fpPS4">
 
@@ -358,10 +403,11 @@
 			<script type="text/javascript" src="js/paramSfoParser.js"></script>
 			<script type="text/javascript" src="js/gamelist.js"></script>
 			<script type="text/javascript" src="js/settings.js"></script>
-			<script type="text/javascript" src="js/design.js"></script>
+			<script type="text/javascript" src="js/updateEmu.js"></script>
 			<script type="text/javascript" src="js/emumanager.js"></script>
+			<script type="text/javascript" src="js/design.js"></script>
 			<script type="text/javascript" src="js/main.js"></script>
-		
+
 		</div>
 
 	</body>

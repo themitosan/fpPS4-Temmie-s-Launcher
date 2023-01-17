@@ -8,7 +8,7 @@
 		"logWindowTitle": "Running fpPS4",
 		"killEmuStatus": "主进程被关闭 - 关闭日志窗口以继续",
 		"logCleared": "INFO - 日志已被清除！\n ",
-		"about": "fpPS4 Temmie's Launcher - 版本号: %VARIABLE_0%\n由 TemmieHeartz 创建\n(https://twitter.com/themitosan)\n\nfpPS4 由 red-prig 创建\n(https://github.com/red-prig/fpPS4)\n\nmemoryjs 插件由 Rob-- 创建\n(https://github.com/rob--/memoryjs)\n\nSVG 图标来自 https://www.svgrepo.com/",
+		"about": "",
 		"mainLog": "fpPS4 Temmie's Launcher - 版本号: %VARIABLE_0%\n运行中的 nw.js (node-webkit) 版本号: %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ERROR - 无法创建文件夹！\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ERROR - 无法找到 fpPS4 的可执行文件！\n在设置中选择可执行文件或将其放在 \"Emu\" 文件夹中，然后点击确定。",
@@ -47,7 +47,18 @@
 		"gameListVersion": "版本号",
 		"selectGameLoadPatchErrorParamSfo": "ERROR - 无法从这个补丁中加载 PARAM.SFO！\n%VARIABLE_0%",
 		"path": "路径",
-		"gamelistGamePath404": ""
+		"gamelistGamePath404": "",
+		"updateEmuFetchActionsError": "",
+		"updateEmuIsLatestVersion": "",
+		"updateEmuShaAvailable": "",
+		"updateEmuShaUnavailable": "",
+		"updateEmuDownloadFailed": "",
+		"updateEmuProcessComplete": "",
+		"updateEmu-1-4": "",
+		"updateEmu-2-4": "",
+		"updateEmu-3-4": "",
+		"updateEmu-4-4": "",
+		"settingsLogEmuSha": ""
 	},
 
 	"input_text": {
@@ -95,8 +106,10 @@
 		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "启动器选项",
 		"LABEL_FPPS4_OPTIONS_HACKS": "Hacks",
 		"LABEL_SETTINGS_SHOW_METADATA_GUI": "在界面上显示图标和标题",
-		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">实验性功能</label> 在内部控制台显示 fpPS4 进程日志 (<code>stdout</code> 和 <code>stderr</code>) (按 F12 --> Console)"
-
+		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">实验性功能</label> 在内部控制台显示 fpPS4 进程日志 (<code>stdout</code> 和 <code>stderr</code>) (按 F12 --> Console)",
+		"DIV_SETTINGS_FPPS4_UPDATER": "",
+		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "",
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": ""
 
 	},
 
@@ -132,7 +145,9 @@
 		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "重置设置",
 		"BTN_launcherOptionsExportMetadata": "导出元数据",
 		"BTN_RUN": "运行 fpPS4",
-		"BTN_SETTINGS_RESTART_LAUNCHER": "重新启动启动器"
+		"BTN_SETTINGS_RESTART_LAUNCHER": "重新启动启动器",
+		"BTN_UPDATE_FPPS4": "",
+		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": ""
 
 	}
 }

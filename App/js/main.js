@@ -14,9 +14,11 @@ var APP = {
 	fs: require('fs'),
 	win: nw.Window.get(),
 	path: require('path'),
+	https: require('https'),
 	childProcess: require('child_process'),
 	packageJson: require('../package.json'),
 	memoryjs: require('App/node_modules/memoryjs'),
+	streamZip: require('App/node_modules/node-stream-zip'),
 
 	// App version
 	title: '',
@@ -257,6 +259,7 @@ delete temp_SETTINGS;
 delete temp_GAMELIST;
 delete temp_LANGUAGE;
 delete temp_EMUMANAGER;
+delete temp_EMU_UPDATE;
 delete temp_FILEMANAGER;
 delete temp_PARAMSFO_PARSER;
 
@@ -296,6 +299,9 @@ window.onload = function(){
 
 		// Remove all previous imported modules
 		APP.gameList.removeAllModules();
+
+		// Check if fpPS4 have any update (silenty)
+		APP.emuManager.update.check({silent: !0});
 
 	} catch (err) {
 

@@ -4,7 +4,7 @@
 	emumanager.js
 
 	This file contains all functions / variables about running main project 
-	executable and game module checks.
+	executable, game module checks and updating fpPS4 executable.
 	******************************************************************************
 */
 
@@ -13,6 +13,9 @@ temp_EMUMANAGER = {
 	// Emulator is running
 	emuRunning: !1,
 	
+	// Update functions
+	update: temp_EMU_UPDATE,
+
 	// Run emu
 	runGame: function(){
 
@@ -85,7 +88,7 @@ temp_EMUMANAGER = {
 		}
 
 		// Kill process and set emu running var to false
-		APP.getProcessInfo('fpPS4.exe', function(pData){
+		APP.getProcessInfo(APP.path.parse(APP.settings.data.emuPath).base, function(pData){
 			process.kill(pData.th32ProcessID);
 			this.emuRunning = !1;
 		});

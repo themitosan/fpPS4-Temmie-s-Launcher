@@ -8,7 +8,7 @@
 		"logWindowTitle": "Executando fpPS4",
 		"killEmuStatus": "Processo principal foi fechado - feche a janela do log para continuar",
 		"logCleared": "INFO - A lista de log foi limpa!\n ",
-		"about": "fpPS4 Temmie's Launcher - Versão: %VARIABLE_0%\nCriado por TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 foi criado / desenvolvido por red-prig\n(https://github.com/red-prig/fpPS4)\n\nPlugin memoryjs foi criado / desenvolvido por Rob--\n(https://github.com/rob--/memoryjs)\n\nIcones SVG foram obtidos através do site https://www.svgrepo.com/",
+		"about": "fpPS4 Temmie's Launcher - Versão: %VARIABLE_0%\nCriado por TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 foi criado / desenvolvido por red-prig\n(https://github.com/red-prig/fpPS4)\n\nPlugin memoryjs foi criado / desenvolvido por Rob--\n(https://github.com/rob--/memoryjs)\n\nPlugin node-stream-zip foi criado / desenvolvido por antelle\n(https://github.com/antelle/node-stream-zip)\n\nÍcones SVG foram obtidos através do site https://www.svgrepo.com/",
 		"mainLog": "fpPS4 Temmie's Launcher - Versão: %VARIABLE_0%\nUsando nw.js (node-webkit) versão %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ERRO - Não foi possível criar a pasta!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ERRO - Não foi possível encontrar o executável do fpPS4!\nSelecione o executável nas configurações ou coloque ele dentro da pasta \"Emu\" e clique em ok.",
@@ -47,7 +47,18 @@
 		"gameListVersion": "Versão",
 		"selectGameLoadPatchErrorParamSfo": "ERRO - Não foi possível carregar PARAM.SFO desse patch!\n%VARIABLE_0%",
 		"path": "Caminho",
-		"gamelistGamePath404": "INFO - A pasta de app / games selecionada não existe!\n%VARIABLE_0%"
+		"gamelistGamePath404": "INFO - A pasta de app / games selecionada não existe!\n%VARIABLE_0%",
+		"updateEmuFetchActionsError": "ERRO - Não foi possível obter informações do GitHub Actions!",
+		"updateEmuIsLatestVersion": "INFO - Você já está usando a versão mais recente!\nCommit ID (SHA): %VARIABLE_0%",
+		"updateEmuShaAvailable": "INFO - Uma nova atualização está disponível!\n\nVersão local: %VARIABLE_0%\nNova versão: %VARIABLE_1%\n\nVocê gostaria de atualizar?",
+		"updateEmuShaUnavailable": "INFO - O launcher detectou que nenhuma atualização foi feita\n(Ou o executável do fpPS4 não foi encontrado!)\n\nÉ possível corrigir esse problema usando o procedimento de atualização automática.\n\nVocê deseja prosseguir?",
+		"updateEmuDownloadFailed": "ERRO - Não foi possível baixar a atualização do fpPS4!\nStatus de resposta: %VARIABLE_0% - OK: %VARIABLE_1%",
+		"updateEmuProcessComplete": "INFO - Update concluído!\nNova versão (Commit ID / SHA): %VARIABLE_0%",
+		"updateEmu-1-4": "Baixando update do fpPS4 (<label class=\"LABEL_monospace\">%VARIABLE_0%</label>)",
+		"updateEmu-2-4": "Extraíndo update",
+		"updateEmu-3-4": "Removendo arquivos de sobra",
+		"updateEmu-4-4": "Update concluído!",
+		"settingsLogEmuSha": "INFO - Versão do fpPS4: (%VARIABLE_0%)"
 	},
 
 	"input_text": {
@@ -95,7 +106,10 @@
 		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "Opções do Launcher",
 		"LABEL_FPPS4_OPTIONS_HACKS": "Hacks",
 		"LABEL_SETTINGS_SHOW_METADATA_GUI": "Mostrar ícone e nome do app / game durante a emulação",
-		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">EXPERIMENTAL</label> Exibir output do emulador (<code>stdout</code> e <code>stderr</code>) no log interno (Aperte F12 --> Console)"
+		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">EXPERIMENTAL</label> Exibir output do emulador (<code>stdout</code> e <code>stderr</code>) no log interno (Aperte F12 --> Console)",
+		"DIV_SETTINGS_FPPS4_UPDATER": "Atualizações do fpPS4",
+		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Habilitar atualizador do fpPS4",
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Obter atualizações da branch"
 
 	},
 
@@ -131,7 +145,9 @@
 		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "Resetar configurações",
 		"BTN_launcherOptionsExportMetadata": "Exportar metadados",
 		"BTN_RUN": "Iniciar fpPS4",
-		"BTN_SETTINGS_RESTART_LAUNCHER": "Reiniciar launcher"
+		"BTN_SETTINGS_RESTART_LAUNCHER": "Reiniciar launcher",
+		"BTN_UPDATE_FPPS4": "Atualizar fpPS4",
+		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": "Fazer atualização forçada"
 
 	}
 }

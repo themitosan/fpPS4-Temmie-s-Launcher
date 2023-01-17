@@ -56,7 +56,7 @@ temp_LANGUAGE = {
 			"logWindowTitle": "Running fpPS4",
 			"killEmuStatus": "Main process closed - close fpPS4 log window to go back",
 			"logCleared": "INFO - Previous log was cleared!\n ",
-			"about": "fpPS4 Temmie\'s Launcher - Version: %VARIABLE_0%\nCreated by TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 is created by red-prig\n(https://github.com/red-prig/fpPS4)\n\nPlugin memoryjs is created by Rob--\n(https://github.com/rob--/memoryjs)\n\nSVG icons were obtained from https://www.svgrepo.com/",
+			"about": "fpPS4 Temmie\'s Launcher - Version: %VARIABLE_0%\nCreated by TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 is created by red-prig\n(https://github.com/red-prig/fpPS4)\n\nPlugin memoryjs is created by Rob--\n(https://github.com/rob--/memoryjs)\n\nPlugin node-stream-zip is created by antelle\n(https://github.com/antelle/node-stream-zip)\n\nSVG icons were obtained from https://www.svgrepo.com/",
 			"mainLog": 'fpPS4 Temmie\'s Launcher - Version: %VARIABLE_0%\nRunning on nw.js (node-webkit) version %VARIABLE_1% [%VARIABLE_2%]',
 			"settingsErrorCreatePath": "ERROR - Unable to create path!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 			"settingsErrorfpPS4NotFound": "ERROR - Unable to locate main fpPS4 executable!\nMake sure to select it in Settings or insert it in \"Emu\" folder and click OK.",
@@ -95,7 +95,19 @@ temp_LANGUAGE = {
 			"gameListVersion": "Version",
 			"selectGameLoadPatchErrorParamSfo": "ERROR - Unable to read PARAM.SFO from this patch!\n%VARIABLE_0%",
 			"path": "Path",
-			"gamelistGamePath404": "ERROR - Unable to find selected app / game path!\n%VARIABLE_0%"
+			"gamelistGamePath404": "ERROR - Unable to find selected app / game path!\n%VARIABLE_0%",
+
+			"updateEmuFetchActionsError": "ERROR - Unable to fetch GitHub actions data!",
+			"updateEmuIsLatestVersion": "INFO - You are using the latest fpPS4 version available!\nCommit ID (SHA): %VARIABLE_0%",
+			"updateEmuShaAvailable": "INFO - A new update is available!\n\nLocal version: %VARIABLE_0%\nNew version: %VARIABLE_1%\n\nDo you want to update?",
+			"updateEmuShaUnavailable": "INFO - This Launcher detected that you didn\'t updated fpPS4 yet (or fpPS4 executable was not found!)\n\nYou can fix this by running fpPS4 updater process.\nDo you want to proceed?",
+			"updateEmuDownloadFailed": "ERROR - Unable to download fpPS4 update!\nResponse status: %VARIABLE_0% - OK: %VARIABLE_1%",
+			"updateEmuProcessComplete": "INFO - Update complete!\nNew fpPS4 version (commit id / sha): %VARIABLE_0%",
+			"updateEmu-1-4": "Downloading fpPS4 update (<label class=\"LABEL_monospace\">%VARIABLE_0%</label>)",
+			"updateEmu-2-4": "Extracting update",
+			"updateEmu-3-4": "Removing leftover files",
+			"updateEmu-4-4": "Update complete!",
+			"settingsLogEmuSha": "INFO - fpPS4 version: (%VARIABLE_0%)"
 
 		},
 

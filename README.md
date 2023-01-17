@@ -17,6 +17,7 @@ If you dump your game using <a href="https://cdn.discordapp.com/attachments/1055
 
 ## External plugins used on this project
 - <a href="https://github.com/rob--/memoryjs">memoryjs</a> - created by <a href="https://github.com/rob--">Rob-- </a>
-- <a href="https://github.com/themitosan/TMS.js">TMS.js</a> by <a href="https://github.com/themitosan/">TemmieHeartz</a> <sup><i>(hi!)</i></sup>
+- <a href="https://github.com/antelle/node-stream-zip">node-stream-zip</a> - created by <a href="https://github.com/antelle">antelle</a>
+- <a href="https://github.com/temmieheartz/TMS.js">TMS.js</a> by <a href="https://github.com/temmieheartz/">TemmieHeartz</a> <sup><i>(Hi!)</i></sup>
 
 <u><i><b>IMPORTANT</b>: This software does not allow you to obtain free PS4 Games / Apps.</i></u>

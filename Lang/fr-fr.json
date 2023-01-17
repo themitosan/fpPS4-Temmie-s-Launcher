@@ -8,7 +8,7 @@
 		"logWindowTitle": "Exécution de fpPS4",
 		"killEmuStatus": "Le processus principal a été fermé - fermez la fenêtre des logs pour continuer",
 		"logCleared": "INFO - La liste des journaux a été effacée!\n ",
-		"about": "fpPS4 Lanceur de Temmie - Version: %VARIABLE_0%\nCréé par TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 a été créé/développé par red-prig\n(https://github.com/red -prig/fpPS4)\n\nLe plugin Memoryjs a été créé/développé par Rob--\n(https://github.com/rob--/memoryjs)\n\nLes icônes SVG ont été obtenues à partir de\nhttps://www.svgrepo.com/",
+		"about": "",
 		"mainLog": "Lanceur de fpPS4 Temmie - Version: %VARIABLE_0%\nUtilisation de nw.js (node-webkit) version %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ERREUR - Impossible de créer le dossier!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ERREUR - Impossible de trouver l'exécutable fpPS4!\nSélectionnez l'exécutable dans les paramètres ou placez-le dans le dossier \"Emu\" et cliquez sur OK.",
@@ -47,7 +47,18 @@
 		"gameListVersion": "Version",
 		"selectGameLoadPatchErrorParamSfo": "ERREUR - Impossible de charger PARAM.SFO de ce correctif!\n%VARIABLE_0%",
 		"path": "Chemin",
-		"gamelistGamePath404": ""
+		"gamelistGamePath404": "",
+		"updateEmuFetchActionsError": "",
+		"updateEmuIsLatestVersion": "",
+		"updateEmuShaAvailable": "",
+		"updateEmuShaUnavailable": "",
+		"updateEmuDownloadFailed": "",
+		"updateEmuProcessComplete": "",
+		"updateEmu-1-4": "",
+		"updateEmu-2-4": "",
+		"updateEmu-3-4": "",
+		"updateEmu-4-4": "",
+		"settingsLogEmuSha": ""
 	},
 
 	"input_text": {
@@ -95,7 +106,10 @@
 		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "Options du lanceur",
 		"LABEL_FPPS4_OPTIONS_HACKS": "Hacks",
 		"LABEL_SETTINGS_SHOW_METADATA_GUI": "",
-		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": ""
+		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "",
+		"DIV_SETTINGS_FPPS4_UPDATER": "",
+		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "",
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": ""
 
 	},
 
@@ -131,7 +145,9 @@
 		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "Réinitialiser les options",
 		"BTN_launcherOptionsExportMetadata": "Exporter les métadonnées",
 		"BTN_RUN": "Démarrer fpPS4",
-		"BTN_SETTINGS_RESTART_LAUNCHER": ""
+		"BTN_SETTINGS_RESTART_LAUNCHER": "",
+		"BTN_UPDATE_FPPS4": "",
+		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": ""
 
 	}
 }

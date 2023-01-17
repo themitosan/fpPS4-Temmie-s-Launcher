@@ -6,6 +6,7 @@
 	Main application stylesheet
 	******************************************************************************
 */
+
 html, body {
 	color: #fff;
 	overflow: hidden;
@@ -32,6 +33,10 @@ input[type='range'] {
 }
 input[disabled='disabled'], input[disabled] {
 	cursor: no-drop;
+}
+input[type='checkbox'] {
+	margin-right: 8px;
+	vertical-align: middle;
 }
 img {
 	-webkit-user-drag: none;
@@ -318,7 +323,7 @@ img {
 	text-align: center;
 	border-radius: 10px;
 	box-shadow: 0px 0px 30px #000a;
-	background-image: linear-gradient(180deg, #2a3a56, #0d1932);
+	background-image: linear-gradient(180deg, #2f405f, #131f38);
 }
 .DIV_SETTINGS_BG {
 	top: 0px;
@@ -352,7 +357,7 @@ img {
 	text-align: left;
 	margin-left: 8px;
 	margin-bottom: 8px;
-	border-radius: 6px;
+	border-radius: 4px;
 	font-family: sans-serif;
 	background-color: #111d;
 	width: calc(100% - 32px);
@@ -368,14 +373,14 @@ img {
 }
 .DIV_settingsEntryFlex {
 	display: flex;
-	flex-wrap: nowrap;
 	align-items: center;
+	flex-direction: row;
 	align-content: center;
 }
 .DIV_settingsH2 {
 	font-size: 20px;
-	font-style: italic;
-	font-family: monospace;
+	font-weight: 600;
+	font-family: system-ui;
 	margin: 0px 0px 8px 2px;
 }
 .DIV_settingsSave {
@@ -438,6 +443,58 @@ img {
 	text-align: center;
 	margin-bottom: 2px;
 	font-family: system-ui;
+}
+.DIV_FPPS4_UPDATER {
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 110;
+	cursor: wait;
+	display: none;
+	transition: 0.4s;
+	flex-wrap: nowrap;
+	position: absolute;
+	align-items: center;
+	flex-direction: row;
+	align-content: center;
+	font-family: system-ui;
+	justify-content: center;
+	backdrop-filter: blur(4px);
+	background-color: #03033144;
+}
+.DIV_PROGRESSBAR {
+	width: 72%;
+	height: 10px;
+	cursor: wait;
+	overflow: hidden;
+	margin-top: 44px;
+	border-width: 1px;
+	position: absolute;
+	border-style: solid;
+	background-color: #c5c5c5ad;
+}
+.DIV_PROGRESSBAR_INTERNAL {
+	top: 0px;
+	left: 0px;
+	width: 0%;
+	height: 100%;
+	transition: 0.4s;
+	position: absolute;
+	background-image: linear-gradient(90deg, #ccc, #fff);
+}
+.DIV_DESIGN_LINES {
+	left: 0px;
+	width: 100%;
+	height: 1px;
+	position: absolute;
+	background-color: #fffb;
+}
+.LINE_TOP {
+	top: 12%;
+}
+.LINE_BOTTOM {
+	bottom: 12%;
 }
 
 /*
@@ -542,12 +599,18 @@ img {
 }
 .BTN_STOP {
 	margin: 0px 4px 0px 4px;
-	padding: 1px 70px 1px 70px;
+	padding: 1px 30px 1px 30px;
 }
 .BTN_SAVE {
+	border: none;
 	font-size: 18px;
 	min-width: 300px;
 	min-height: 60px;
+	border-radius: 6px;
+	background-image: linear-gradient(180deg, #fff, #ccc);
+}
+.BTN_SAVE:active {
+	background-image: linear-gradient(0deg, #fff, #ccc);	
 }
 .BTN_selectPath {
     float: right;
@@ -568,6 +631,17 @@ img {
 	padding: 4px 10px 4px 10px;
 	background-image: linear-gradient(180deg, #fff, #bbb);
 }
+.SETTINGS_TEXT {
+	color: #0f0;
+	border: none;
+	outline: none;
+	min-width: 160px;
+	margin-left: 4px;
+	border-radius: 4px;
+	background-color: #000;
+	font-family: monospace;
+	padding: 6px 0px 6px 6px;
+}
 
 /*
 	Labels
@@ -586,7 +660,7 @@ img {
 }
 .LABEL_checkbox {
 	cursor: pointer;
-	font-size: 16px;
+	font-size: 14px;
 	font-style: italic;
 }
 .LABEL_emuColor {
@@ -610,9 +684,15 @@ img {
 .LABEL_settingsExperimental {
 	padding: 6px;
 	cursor: pointer;
-	font-family: math;
+	font-family: monospace;
 	background-color: #000;
 	text-shadow: 0px 0px 10px #f00;
+}
+.LABEL_FLEX_MARGIN {
+	margin: 4px;
+}
+.LABEL_monospace {
+	font-family: monospace;
 }
 
 /*

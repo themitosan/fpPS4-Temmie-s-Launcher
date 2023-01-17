@@ -8,7 +8,7 @@
 		"logWindowTitle": "Запуск fpPS4",
 		"killEmuStatus": "Основной процесс был закрыт - закройте окно лога для продолжения работы",
 		"logCleared": "ИНФО - Список логов был очищен!\n ",
-		"about": "fpPS4 Temmie's Launcher - Версия: %VARIABLE_0%\nСоздатель - TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4, создатель - red-prig\n(https://github.com/red-prig/fpPS4)\n\nплагин memoryjs - разработан: Rob--\n(https://github.com/rob--/memoryjs)\n\nИконки SVG были получены с https://www.svgrepo.com/",
+		"about": "",
 		"mainLog": "fpPS4 Temmie's Launcher - Версия: %VARIABLE_0%\nИспользование nw.js (node-webkit) версия %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ОШИБКА - Папка не может быть создана!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ОШИБКА - Не удалось найти исполняемый файл fpPS4!\nВыберите исполняемый файл в настройках или поместите его внутрь \"Emu\" и нажмите OK.",
@@ -47,7 +47,18 @@
 		"gameListVersion": "Версия",
 		"selectGameLoadPatchErrorParamSfo": "ОШИБКА - Невозможно загрузить PARAM.SFO из этого патча!\n%VARIABLE_0%",
 		"path": "Путь",
-		"gamelistGamePath404": ""
+		"gamelistGamePath404": "",
+		"updateEmuFetchActionsError": "",
+		"updateEmuIsLatestVersion": "",
+		"updateEmuShaAvailable": "",
+		"updateEmuShaUnavailable": "",
+		"updateEmuDownloadFailed": "",
+		"updateEmuProcessComplete": "",
+		"updateEmu-1-4": "",
+		"updateEmu-2-4": "",
+		"updateEmu-3-4": "",
+		"updateEmu-4-4": "",
+		"settingsLogEmuSha": ""
 	},
 
 	"input_text": {
@@ -95,7 +106,10 @@
 		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "Параметры запуска",
 		"LABEL_FPPS4_OPTIONS_HACKS": "Хаки",
 		"LABEL_SETTINGS_SHOW_METADATA_GUI": "",
-		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": ""
+		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "",
+		"DIV_SETTINGS_FPPS4_UPDATER": "",
+		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "",
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": ""
 
 	},
 
@@ -131,7 +145,9 @@
 		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "Сброс настроек",
 		"BTN_launcherOptionsExportMetadata": "Экспорт метаданных",
 		"BTN_RUN": "Запустить",
-		"BTN_SETTINGS_RESTART_LAUNCHER": ""
+		"BTN_SETTINGS_RESTART_LAUNCHER": "",
+		"BTN_UPDATE_FPPS4": "",
+		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": ""
 
 	}
 }
