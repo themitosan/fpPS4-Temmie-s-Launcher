@@ -59,9 +59,9 @@
 		"updateEmu-3-4": "Rimozione dei file rimanenti",
 		"updateEmu-4-4": "Aggiornamento completato!",
 		"settingsLogEmuSha": "INFO - Versione di fpPS4: (%VARIABLE_0%)",
-		"dumpStatus_OK": "",
-		"dumpStatus_WARN": "",
-		"dumpStatus_HB": ""
+		"dumpStatus_OK": "Perfetto",
+		"dumpStatus_WARN": "File mancanti",
+		"dumpStatus_HB": "Homebrew"
 	},
 
 	"input_text": {
@@ -113,7 +113,7 @@
 		"DIV_SETTINGS_FPPS4_UPDATER": "Aggiornamenti fpPS4",
 		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Abilita aggiornamento fpPS4",
 		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Ricevi gli aggiornamenti dal branch",
-		"LABEL_FPPS4_UPDATER_STATUS_LANG": ""
+		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Stato"
 
 	},
 
