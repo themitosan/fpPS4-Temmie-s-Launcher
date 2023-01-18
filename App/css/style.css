@@ -1,0 +1,28 @@
+/*
+	***********************************************************************
+	
+		fpPS4 Temmie's Launcher
+		styles.css
+
+		CSS Styles
+
+	***********************************************************************
+*/
+body {
+	color: #fff;
+	background-color: #000;
+	text-shadow: 1px 1px 0px #000;
+}
+img {
+
+}
+
+/*
+	Misc
+*/
+.none {
+	display: none !important;
+}
+.user-can-select {
+	user-select: all;
+}
