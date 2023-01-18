@@ -54,14 +54,14 @@
 		"updateEmuShaUnavailable": "INFO - Le lanceur a détecté qu'aucune mise à jour n'a été effectuée\n(Ou l'exécutable fpPS4 n'a pas été trouvé!)\n\nIl est possible de résoudre ce problème en utilisant la procédure de mise à jour automatique.\n\nVoulez-vous continuer?",
 		"updateEmuDownloadFailed": "ERREUR - Impossible de télécharger la mise à jour fpPS4!\nÉtat de la réponse: %VARIABLE_0% - OK: %VARIABLE_1%",
 		"updateEmuProcessComplete": "INFO - Mise à jour terminée !\nNouvelle version (ID de validation / SHA): %VARIABLE_0%",
-		"updateEmu-1-4": "Télécharger la mise à jour fpPS4 (<label css=\"LABEL_monospace\">%VARIABLE_0%</label>",
+		"updateEmu-1-4": "Télécharger la mise à jour fpPS4 (<label css=\"LABEL_monospace\">%VARIABLE_0%</label>)",
 		"updateEmu-2-4": "Extraction de la mise à jour",
 		"updateEmu-3-4": "Suppression des fichiers restants",
 		"updateEmu-4-4": "Mise à jour terminée!",
 		"settingsLogEmuSha": "INFO - Version de fpPS4: (%VARIABLE_0%)",
-		"dumpStatus_OK": "",
-		"dumpStatus_WARN": "",
-		"dumpStatus_HB": ""
+		"dumpStatus_OK": "Parfait",
+		"dumpStatus_WARN": "Fichiers manquants",
+		"dumpStatus_HB": "Homebrew"
 	},
 
 	"input_text": {
@@ -113,7 +113,7 @@
 		"DIV_SETTINGS_FPPS4_UPDATER": "Mises à jour fpPS4",
 		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Activer le programme de mise à jour fpPS4",
 		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Recevez les mises à jour de la branche",
-		"LABEL_FPPS4_UPDATER_STATUS_LANG": ""
+		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Statut"
 	},
 
 	"select": {
