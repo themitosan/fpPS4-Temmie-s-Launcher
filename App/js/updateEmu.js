@@ -13,6 +13,9 @@ temp_EMU_UPDATE = {
 	// GitHub actions link
 	githubLink: 'https://api.github.com/repos/red-prig/fpPS4/actions/artifacts',
 
+	// Skip main loading call
+	skipLoadingCheck: !1,
+
 	/*
 		Fetch latest github actions
 

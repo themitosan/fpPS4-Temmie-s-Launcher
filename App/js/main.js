@@ -301,7 +301,9 @@ window.onload = function(){
 		APP.gameList.removeAllModules();
 
 		// Check if fpPS4 have any update (silenty)
-		APP.emuManager.update.check({silent: !0});
+		if (APP.emuManager.update.skipLoadingCheck === !1){
+			APP.emuManager.update.check({silent: !0});
+		}
 
 	} catch (err) {
 

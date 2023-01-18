@@ -220,6 +220,10 @@ temp_SETTINGS = {
 
 		// If fpPS4 is not found, reset latest commit sha and request update 
 		if (APP.fs.existsSync(this.data.emuPath) !== !0){
+
+			// Set flag to skip update check on window.onload
+			APP.emuManager.update.skipLoadingCheck = !0;
+			
 			this.data.latestCommitSha = '';
 			APP.emuManager.update.check();
 		}
