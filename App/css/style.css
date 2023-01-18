@@ -137,12 +137,12 @@ img {
 }
 .DIV_GAME_OPTIONS {
 	width: 268px;
-	bottom: 60px;
+	bottom: 68px;
 	font-size: 14px;
 	overflow: auto;
 	position: absolute;
 	text-align: center;
-	height: calc(100% - 120px);
+	height: calc(100% - 128px);
 }
 .DIV_HACK_LIST {
 	text-align: left;
@@ -288,8 +288,9 @@ img {
 	border-radius: 6px 0px 0px 0px;
 }
 .DIV_RUN_BTN {
-	bottom: 4px;
+	bottom: 8px;
 	position: absolute;
+	text-align: center;
 	width: calc(100% - 12px);
 }
 .DIV_GAME_DETAILS {
@@ -590,12 +591,15 @@ img {
 	background-image: linear-gradient(180deg, #05050ee8, #010114c7);
 }
 .BTN_RUN {
-	left: 8px;
-	width: 100%;
-	bottom: 18px;
 	height: 50px;
+	border: none;
 	font-size: 18px;
-	margin-top: 2px;
+	border-radius: 6px;
+	width: calc(100% - 6px);
+	background-image: linear-gradient(180deg, #fff, #ccc);
+}
+.BTN_RUN:active {
+	background-image: linear-gradient(0deg, #fff, #ccc);	
 }
 .BTN_STOP {
 	margin: 0px 4px 0px 4px;

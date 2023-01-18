@@ -7,7 +7,7 @@
 		"emuStatusRunning": "Выполняется",
 		"logWindowTitle": "Запуск fpPS4",
 		"killEmuStatus": "Основной процесс был закрыт - закройте окно лога для продолжения работы",
-		"logCleared": "ИНФО - Список логов был очищен!\n ",
+		"logCleared": "ИНФО - Список логов был очищен!",
 		"about": "",
 		"mainLog": "fpPS4 Temmie's Launcher - Версия: %VARIABLE_0%\nИспользование nw.js (node-webkit) версия %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ОШИБКА - Папка не может быть создана!\n(%VARIABLE_0%)\n%VARIABLE_1%",
@@ -109,7 +109,8 @@
 		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "",
 		"DIV_SETTINGS_FPPS4_UPDATER": "",
 		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "",
-		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": ""
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "",
+		"LABEL_FPPS4_UPDATER_STATUS_LANG": ""
 
 	},
 

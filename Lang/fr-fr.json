@@ -7,7 +7,7 @@
 		"emuStatusRunning": "fonctionnement",
 		"logWindowTitle": "Exécution de fpPS4",
 		"killEmuStatus": "Le processus principal a été fermé - fermez la fenêtre des logs pour continuer",
-		"logCleared": "INFO - La liste des journaux a été effacée!\n ",
+		"logCleared": "INFO - La liste des journaux a été effacée!",
 		"about": "fpPS4 Lanceur de Temmie - Version: %VARIABLE_0%\nCréé par TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 a été créé/développé par red-prig\n(https://github.com/red -prig/fpPS4)\n\nLe plugin memoryjs a été créé/développé par Rob--\n(https://github.com/rob--/memoryjs)\n\nLe plugin node-stream-zip a été créé/développé par antelle \n(https://github.com/antelle/node-stream-zip)\n\nLes icônes SVG ont été obtenues à partir de https://www.svgrepo.com/",
 		"mainLog": "Lanceur de fpPS4 Temmie - Version: %VARIABLE_0%\nUtilisation de nw.js (node-webkit) version %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ERREUR - Impossible de créer le dossier!\n(%VARIABLE_0%)\n%VARIABLE_1%",
@@ -109,7 +109,8 @@
 		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">EXPERIMENTAL</label> Afficher la sortie de l'émulateur (<code>stdout</code> et <code>stderr</code>) dans le journal interne (Appuyez sur F12 --> Console)",
 		"DIV_SETTINGS_FPPS4_UPDATER": "Mises à jour fpPS4",
 		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Activer le programme de mise à jour fpPS4",
-		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Recevez les mises à jour de la branche"
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Recevez les mises à jour de la branche",
+		"LABEL_FPPS4_UPDATER_STATUS_LANG": ""
 
 	},
 

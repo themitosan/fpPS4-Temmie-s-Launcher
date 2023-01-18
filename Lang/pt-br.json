@@ -7,7 +7,7 @@
 		"emuStatusRunning": "Em execução",
 		"logWindowTitle": "Executando fpPS4",
 		"killEmuStatus": "Processo principal foi fechado - feche a janela do log para continuar",
-		"logCleared": "INFO - A lista de log foi limpa!\n ",
+		"logCleared": "INFO - A lista de log foi limpa!",
 		"about": "fpPS4 Temmie's Launcher - Versão: %VARIABLE_0%\nCriado por TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 foi criado / desenvolvido por red-prig\n(https://github.com/red-prig/fpPS4)\n\nPlugin memoryjs foi criado / desenvolvido por Rob--\n(https://github.com/rob--/memoryjs)\n\nPlugin node-stream-zip foi criado / desenvolvido por antelle\n(https://github.com/antelle/node-stream-zip)\n\nÍcones SVG foram obtidos através do site https://www.svgrepo.com/",
 		"mainLog": "fpPS4 Temmie's Launcher - Versão: %VARIABLE_0%\nUsando nw.js (node-webkit) versão %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ERRO - Não foi possível criar a pasta!\n(%VARIABLE_0%)\n%VARIABLE_1%",
@@ -109,7 +109,8 @@
 		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">EXPERIMENTAL</label> Exibir output do emulador (<code>stdout</code> e <code>stderr</code>) no log interno (Aperte F12 --> Console)",
 		"DIV_SETTINGS_FPPS4_UPDATER": "Atualizações do fpPS4",
 		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Habilitar atualizador do fpPS4",
-		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Obter atualizações da branch"
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Obter atualizações da branch",
+		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Status"
 
 	},
 
