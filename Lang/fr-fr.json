@@ -58,7 +58,10 @@
 		"updateEmu-2-4": "Extraction de la mise à jour",
 		"updateEmu-3-4": "Suppression des fichiers restants",
 		"updateEmu-4-4": "Mise à jour terminée!",
-		"settingsLogEmuSha": "INFO - Version de fpPS4: (%VARIABLE_0%)"
+		"settingsLogEmuSha": "INFO - Version de fpPS4: (%VARIABLE_0%)",
+		"dumpStatus_OK": "",
+		"dumpStatus_WARN": "",
+		"dumpStatus_HB": ""
 	},
 
 	"input_text": {
@@ -111,7 +114,6 @@
 		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Activer le programme de mise à jour fpPS4",
 		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Recevez les mises à jour de la branche",
 		"LABEL_FPPS4_UPDATER_STATUS_LANG": ""
-
 	},
 
 	"select": {

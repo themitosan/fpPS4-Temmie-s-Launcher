@@ -58,7 +58,10 @@
 		"updateEmu-2-4": "",
 		"updateEmu-3-4": "",
 		"updateEmu-4-4": "",
-		"settingsLogEmuSha": ""
+		"settingsLogEmuSha": "",
+		"dumpStatus_OK": "",
+		"dumpStatus_WARN": "",
+		"dumpStatus_HB": ""
 	},
 
 	"input_text": {

@@ -36,7 +36,7 @@
 		"patchLoadedSucessfully": "INFO - Patch foi carregado com sucesso!\nNome: %VARIABLE_0%\nTipo: %VARIABLE_1%",
 		"patchLoadErrorMismatch": "ERRO - O local selecionado não é um patch - ou se for - não corresponde ao app / game atual!\nSerial: %VARIABLE_0%\nApp / game selecionado: %VARIABLE_1%",
 		"patchLoadErrorParamSfo404": "ERRO - Não foi possível encontrar PARAM.SFO desse patch!",
-		"gameListLoadWarnPlayGo": "AVISO - Não foi possível localizar playgo-chunk.dat do %VARIABLE_0%!\nSe esse app / game não for homebrew, verifique se a dump foi feita corretamente.",
+		"gameListLoadWarnPlayGo": "AVISO - Não foi possível localizar playgo-chunk.dat de %VARIABLE_0%!\nSe esse app / game não for homebrew, verifique se a dump foi feita corretamente.",
 		"gameListLoadWarnParamSfo": "AVISO - Não foi possível localizar PARAM.SFO do %VARIABLE_0%!\nSe esse app / game não for homebrew, verifique se a dump foi feita corretamente.",
 		"gameListRemoveProjectGp4": "INFO - ( %VARIABLE_0% ) Removendo Project.gp4 visto que foi gerado pelo PkgEditor e ele não se faz necessário.",
 		"gameListDoubleIdError": "AVISO - Não foi possível adicionar %VARIABLE_0% na lista de jogos por que já tem outro título com a mesma id! ( %VARIABLE_1% )",
@@ -58,7 +58,10 @@
 		"updateEmu-2-4": "Extraíndo update",
 		"updateEmu-3-4": "Removendo arquivos de sobra",
 		"updateEmu-4-4": "Update concluído!",
-		"settingsLogEmuSha": "INFO - Versão do fpPS4: (%VARIABLE_0%)"
+		"settingsLogEmuSha": "INFO - Versão do fpPS4: (%VARIABLE_0%)",
+		"dumpStatus_OK": "Perfeito",
+		"dumpStatus_WARN": "Falta arquivos",
+		"dumpStatus_HB": "Homebrew"
 	},
 
 	"input_text": {

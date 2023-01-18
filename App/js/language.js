@@ -96,7 +96,6 @@ temp_LANGUAGE = {
 			"selectGameLoadPatchErrorParamSfo": "ERROR - Unable to read PARAM.SFO from this patch!\n%VARIABLE_0%",
 			"path": "Path",
 			"gamelistGamePath404": "ERROR - Unable to find selected app / game path!\n%VARIABLE_0%",
-
 			"updateEmuFetchActionsError": "ERROR - Unable to fetch GitHub actions data!",
 			"updateEmuIsLatestVersion": "INFO - You are using the latest fpPS4 version available!\nCommit ID (SHA): %VARIABLE_0%",
 			"updateEmuShaAvailable": "INFO - A new update is available!\n\nLocal version: %VARIABLE_0%\nNew version: %VARIABLE_1%\n\nDo you want to update?",
@@ -107,7 +106,10 @@ temp_LANGUAGE = {
 			"updateEmu-2-4": "Extracting update",
 			"updateEmu-3-4": "Removing leftover files",
 			"updateEmu-4-4": "Update complete!",
-			"settingsLogEmuSha": "INFO - fpPS4 version: (%VARIABLE_0%)"
+			"settingsLogEmuSha": "INFO - fpPS4 version: (%VARIABLE_0%)",
+			"dumpStatus_OK": "Fine",
+			"dumpStatus_WARN": "Missing files",
+			"dumpStatus_HB": "Homebrew"
 
 		},
 

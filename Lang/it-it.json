@@ -58,7 +58,10 @@
 		"updateEmu-2-4": "Estrazione aggiornamento",
 		"updateEmu-3-4": "Rimozione dei file rimanenti",
 		"updateEmu-4-4": "Aggiornamento completato!",
-		"settingsLogEmuSha": "INFO - Versione di fpPS4: (%VARIABLE_0%)"
+		"settingsLogEmuSha": "INFO - Versione di fpPS4: (%VARIABLE_0%)",
+		"dumpStatus_OK": "",
+		"dumpStatus_WARN": "",
+		"dumpStatus_HB": ""
 	},
 
 	"input_text": {

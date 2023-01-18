@@ -58,7 +58,10 @@
 		"updateEmu-2-4": "提取更新",
 		"updateEmu-3-4": "删除多余文件",
 		"updateEmu-4-4": "更新成功！",
-		"settingsLogEmuSha": "INFO - fpPS4 版本：(%VARIABLE_0%)"
+		"settingsLogEmuSha": "INFO - fpPS4 版本：(%VARIABLE_0%)",
+		"dumpStatus_OK": "",
+		"dumpStatus_WARN": "",
+		"dumpStatus_HB": ""
 	},
 
 	"input_text": {

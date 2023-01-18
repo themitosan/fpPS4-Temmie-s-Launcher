@@ -420,7 +420,7 @@ temp_GAMELIST = {
 	// Check dump status
 	checkDumpStatus: function(){
 
-		var cGameStatus = 'DIV_ICON_STATUS_OK',
+		var cGameStatus = 'OK',
 			cGame = this.list[this.selectedGame],
 			fileList = [
 				'param.sfo'
@@ -431,13 +431,13 @@ temp_GAMELIST = {
 		// Process check for single files (like param.sfo)
 		fileList.forEach(function(cFile){
 			if (APP.fs.existsSync(gPath + '/sce_sys/' + cFile) !== !0){
-				cGameStatus = 'DIV_ICON_STATUS_WARN';
+				cGameStatus = 'WARN';
 			}
 		});
 
 		// Check if playgo-chunk.dat exists
 		if (APP.fs.existsSync(gPath + '/sce_sys/playgo-chunk.dat') !== !0){
-			cGameStatus = 'DIV_ICON_STATUS_WARN';
+			cGameStatus = 'WARN';
 			
 			// Check if playgo-chunk.dat is inside app folder
 			if (APP.fs.existsSync(gPath + '/sce_sys/app/playgo-chunk.dat') === !0){
@@ -449,14 +449,15 @@ temp_GAMELIST = {
 
 		// Check if is homebrew (.elf)
 		if (cGame.isHomebrew === !0){
-			cGameStatus = 'DIV_ICON_STATUS_HB';
+			cGameStatus = 'HB';
 		}
 
 		// Set app / game dump status
 		cGameStatusList.forEach(function(cList){
 			TMS.removeClass('DIV_selectedGameStatus', cList);
 		});
-		TMS.addClass('DIV_selectedGameStatus', cGameStatus);
+		TMS.addClass('DIV_selectedGameStatus', 'DIV_ICON_STATUS_' + cGameStatus);
+		document.getElementById('DIV_selectedGameStatus').innerHTML = APP.lang.getVariable('dumpStatus_' + cGameStatus);
 
 	},
 
