@@ -42,6 +42,9 @@ temp_SETTINGS = {
 			GUI
 		*/
 
+		// Zoom scale
+		guiZoomScale: 1,
+
 		// Game list
 		showBgOnEntry: !0,
 		showPathEntry: !0,
@@ -86,17 +89,18 @@ temp_SETTINGS = {
 
 		// Get launcher main dir before settings load
 		var updateSettings = !1,
-			nwPath = APP.tools.fixPath(nw.__dirname);
+			nwPath = APP.tools.fixPath(nw.__dirname),
+			settingsPath = nwPath + '/Settings.json';
 
 		// Create save
-		if (APP.fs.existsSync(nwPath + '/Settings.json') === !1){
+		if (APP.fs.existsSync(settingsPath) === !1){
 			APP.settings.save();
 		}
 
 		try {
 
 			// Read settings file
-			var loadSettings = JSON.parse(APP.fs.readFileSync(nwPath + '/Settings.json', 'utf8'));
+			var loadSettings = JSON.parse(APP.fs.readFileSync(settingsPath, 'utf8'));
 			
 			// Check for obsolete settings
 			Object.keys(loadSettings).forEach(function(cSettings){
@@ -226,6 +230,7 @@ temp_SETTINGS = {
 			
 			this.data.latestCommitSha = '';
 			APP.emuManager.update.check();
+			
 		}
 
 		// If latestCommitSha isn't empty, log it

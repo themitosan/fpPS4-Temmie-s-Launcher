@@ -43,6 +43,24 @@
 				<!-- Settings List -->
 				<div class="DIV_SETTINGS_LIST">
 					
+					<!-- General -->
+					<div class="DIV_settingsH2" id="DIV_SETTINGS_GENERAL">General</div>
+
+					<div class="DIV_settingsEntry">
+						<div class="DIV_settingsEntryFlex">
+							<label class="LABEL_checkbox" id="LABEL_SETTINGS_GUI_ZOOM_SCALE">
+								Interface zoom scale: 
+							</label>
+							<input type="range" min="1" max="1.5" step="0.01" value="1" id="RANGE_settingsGuiZoomScale" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);">
+						</div>
+
+						<i>(<label id="LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO">
+							Warning: It's not recommended changing this setting if your screen res. is lower than <code>1920x1080</code>
+						</label>)</i>
+					</div>
+
+					<div class="SEPARATOR_00"></div>
+
 					<!-- Language -->
 					<div class="DIV_settingsH2" id="DIV_SETTINGS_LANGUAGE">Language</div>
 					
@@ -101,7 +119,7 @@
 					
 						<label id="LABEL_SETTINGS_GAME_LIST_BACKGROUND_BLUR">Background Blur</label>: 
 	
-						<input type="range" min="0" max="6" step="0.01" value="2" id="RANGE_settingsGameListBgBlur" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings	(!0);"> 
+						<input type="range" min="0" max="6" step="0.01" value="2" id="RANGE_settingsGameListBgBlur" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
 						<label id="LABEL_settingsGameListBgBlur">???</label>%
 					
 					</div>
@@ -109,7 +127,7 @@
 					<div class="DIV_settingsEntry DIV_settingsEntryFlex" id="DIV_settingsGridBorderRadius">
 	
 						<label id="LABEL_SETTINGS_GRID_BORDER_RADIUS">(Grid) Border-Radius</label>: 
-						<input type="range" min="0" max="15" step="0.1" value="8" id="RANGE_settingsGridIconBorderRadius" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.	renderSettings(!0);"> 
+						<input type="range" min="0" max="15" step="0.1" value="8" id="RANGE_settingsGridIconBorderRadius" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
 						<label id="LABEL_settingsGridBorderRadius">???</label>%
 	
 					</div>
@@ -118,7 +136,7 @@
 						
 						<label id="LABEL_SETTINGS_GAME_LIST_BACKGROUND_OPACITY">Background Opacity</label>: 
 						
-						<input type="range" min="0" max="1" step="0.01" value="0.6" id="RANGE_settingsGameListBgOpacity" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.	renderSettings(!0);"> 
+						<input type="range" min="0" max="1" step="0.01" value="0.6" id="RANGE_settingsGameListBgOpacity" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
 						<label id="LABEL_settingsGameListBgOpacity">???</label>%
 	
 					</div>

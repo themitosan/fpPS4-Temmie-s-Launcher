@@ -665,6 +665,7 @@ temp_DESIGN = {
 
 		// Range
 		document.getElementById('RANGE_settingsGridIconSize').value = cSettings.gridIconSize;
+		document.getElementById('RANGE_settingsGuiZoomScale').value = cSettings.guiZoomScale;
 		document.getElementById('RANGE_settingsGameListBgBlur').value = cSettings.bgListBlur;
 		document.getElementById('RANGE_settingsEmuRunningBgBlur').value = cSettings.bgEmuBlur;
 		document.getElementById('RANGE_settingsGameListBgOpacity').value = cSettings.bgListOpacity;
@@ -690,7 +691,9 @@ temp_DESIGN = {
 	// Update settings GUI without loading / save data
 	updateLauncherSettingsGUI: function(){
 
-		var cDisplayMode = APP.settings.data.gameListMode;
+		// Variables
+		var guiZoomScale = APP.settings.data.guiZoomScale,
+			cDisplayMode = APP.settings.data.gameListMode;
 		
 		// Grid options
 		switch (cDisplayMode) {
@@ -716,6 +719,9 @@ temp_DESIGN = {
 			document.getElementById('BTN_displayMode_' + cMode).disabled = '';
 		});
 		document.getElementById('BTN_displayMode_' + cDisplayMode).disabled = 'disabled';
+
+		// Update zoom scale
+		document.body.style.zoom = guiZoomScale;
 
 	},
 
@@ -743,6 +749,7 @@ temp_DESIGN = {
 
 		// Range
 		APP.settings.data.bgListBlur = parseFloat(document.getElementById('RANGE_settingsGameListBgBlur').value);
+		APP.settings.data.guiZoomScale = parseFloat(document.getElementById('RANGE_settingsGuiZoomScale').value);
 		APP.settings.data.gridIconSize = parseFloat(document.getElementById('RANGE_settingsGridIconSize').value);
 		APP.settings.data.bgEmuBlur = parseFloat(document.getElementById('RANGE_settingsEmuRunningBgBlur').value);
 		APP.settings.data.bgListOpacity = parseFloat(document.getElementById('RANGE_settingsGameListBgOpacity').value);
@@ -751,6 +758,14 @@ temp_DESIGN = {
 
 		// Text
 		APP.settings.data.fpps4BranchName = document.getElementById('INPUT_settingsUpdateFpps4Branch').value;
+
+		// Fix gui zoom scale
+		if (APP.settings.data.guiZoomScale > 1.5){
+			APP.settings.data.guiZoomScale = 1.5;
+		}
+		if (APP.settings.data.guiZoomScale < 1){
+			APP.settings.data.guiZoomScale = 1;
+		}
 
 		/*
 			End

@@ -60,7 +60,7 @@
 		"updateEmu-4-4": "Update concluído!",
 		"settingsLogEmuSha": "INFO - Versão do fpPS4: (%VARIABLE_0%)",
 		"dumpStatus_OK": "Perfeito",
-		"dumpStatus_WARN": "Falta arquivos",
+		"dumpStatus_WARN": "Faltam arquivos",
 		"dumpStatus_HB": "Homebrew"
 	},
 
@@ -113,7 +113,10 @@
 		"DIV_SETTINGS_FPPS4_UPDATER": "Atualizações do fpPS4",
 		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Habilitar atualizador do fpPS4",
 		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Obter atualizações da branch",
-		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Status"
+		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Status",
+		"DIV_SETTINGS_GENERAL": "Geral",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Tamanho da interface (escala)",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Aviso: Não é recomendado alterar essa configuração caso sua resolução de tela seja menor que <code>1920x1080</code>"
 
 	},
 

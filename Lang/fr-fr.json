@@ -113,7 +113,10 @@
 		"DIV_SETTINGS_FPPS4_UPDATER": "Mises à jour fpPS4",
 		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Activer le programme de mise à jour fpPS4",
 		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Recevez les mises à jour de la branche",
-		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Statut"
+		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Statut",
+		"DIV_SETTINGS_GENERAL": "",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": ""
 	},
 
 	"select": {

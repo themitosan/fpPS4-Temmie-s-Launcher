@@ -29,6 +29,7 @@ select, input[type='button'], input[type='checkbox'] {
 }
 input[type='range'] {
 	outline: none;
+	margin-left: 6px;
 	cursor: col-resize;
 }
 input[disabled='disabled'], input[disabled] {
@@ -320,6 +321,7 @@ img {
 	z-index: 10;
 	height: 80%;
 	display: block;
+	overflow: hidden;
 	position: absolute;
 	text-align: center;
 	border-radius: 10px;
@@ -553,9 +555,9 @@ img {
 .BTN_displayMode {
 	width: 32px;
 	height: 32px;
-	min-height: 32px;
 	min-width: 32px;
 	border: initial;
+	min-height: 32px;
 	margin-left: 2px;
 	margin-right: 2px;
 	border-radius: 4px;
