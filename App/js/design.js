@@ -25,7 +25,8 @@ temp_DESIGN = {
 		'MEMORY_BOUND_HACK',
 		'IMAGE_TEST_HACK',
 		'IMAGE_LOAD_HACK',
-		'DISABLE_SRGB_HACK'
+		'DISABLE_SRGB_HACK',
+		'DISABLE_FMV_HACK'
 	],
 
 	// Game list display modes
