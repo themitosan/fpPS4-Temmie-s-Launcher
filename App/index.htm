@@ -59,6 +59,13 @@
 						</label>)</i>
 					</div>
 
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="checkbox" id="CHECKBOX_settingsStartEmuFullscreen">
+						<label class="LABEL_checkbox" id="LABEL_SETTINGS_START_EMU_FULLSCREEN" onclick="APP.tools.processCheckbox('CHECKBOX_settingsStartEmuFullscreen');">
+							Start fpPS4 in fullscreen mode
+						</label>
+					</div>
+
 					<div class="SEPARATOR_00"></div>
 
 					<!-- Language -->
@@ -169,7 +176,7 @@
 	
 					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 						<label id="LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_BLUR">Background Blur</label>: 
-						<input type="range" min="0" max="6" step="0.01" value="6" id="RANGE_settingsEmuRunningBgBlur" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.	renderSettings(!0);"> 
+						<input type="range" min="0" max="6" step="0.01" value="6" id="RANGE_settingsEmuRunningBgBlur" onmouseup="APP.design.renderSettings(!0);" onkeyup="APP.design.renderSettings(!0);"> 
 						<label id="LABEL_settingsEmuRunningBgBlur">???</label>%
 					</div>
 	

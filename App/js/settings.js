@@ -17,6 +17,9 @@ temp_SETTINGS = {
 			General
 		*/
 
+		// App Version
+		launcherVersion: '',
+
 		// Language
 		appLanguage: 'english',
 
@@ -30,6 +33,9 @@ temp_SETTINGS = {
 		nwPath: '',
 		emuPath: '',
 		gamePath: '',
+
+		// Run fpPS4 on fullscreen
+		enableEmuFullscreen: !1,
 
 		// Enable / Disable PARAM.SFO support
 		enableParamSfo: !0,
@@ -73,8 +79,8 @@ temp_SETTINGS = {
 		/*
 			fpPS4 Update
 		*/
-		enableEmuUpdates: !0,
 		latestCommitSha: '',
+		enableEmuUpdates: !0,
 		fpps4BranchName: 'trunk',
 
 		/*
@@ -147,6 +153,9 @@ temp_SETTINGS = {
 		
 		// Get launcher main dir before settings load
 		const nwPath = APP.tools.fixPath(nw.__dirname);
+
+		// Include current launcher version on settings
+		this.data.launcherVersion = APP.packageJson.version;
 
 		try {
 			APP.fs.writeFileSync(nwPath + '/Settings.json', JSON.stringify(this.data), 'utf8');

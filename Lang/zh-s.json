@@ -59,9 +59,9 @@
 		"updateEmu-3-4": "删除多余文件",
 		"updateEmu-4-4": "更新成功！",
 		"settingsLogEmuSha": "INFO - fpPS4 版本：(%VARIABLE_0%)",
-		"dumpStatus_OK": "",
-		"dumpStatus_WARN": "",
-		"dumpStatus_HB": ""
+		"dumpStatus_OK": "完成",
+		"dumpStatus_WARN": "文件缺失",
+		"dumpStatus_HB": "自制"
 	},
 
 	"input_text": {
@@ -113,10 +113,11 @@
 		"DIV_SETTINGS_FPPS4_UPDATER": "fpPS4 更新程序",
 		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "启用 fpPS4 更新程序",
 		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "检测更新的分支",
-		"LABEL_FPPS4_UPDATER_STATUS_LANG": "",
-		"DIV_SETTINGS_GENERAL": "",
-		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "",
-		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": ""
+		"LABEL_FPPS4_UPDATER_STATUS_LANG": "状态",
+		"DIV_SETTINGS_GENERAL": "通用",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "界面缩放比例",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "警告：如果你的屏幕分辨率低于 <code>1920x1080</code>，不建议更改这个设置。",
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": ""
 
 	},
 

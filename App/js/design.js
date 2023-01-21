@@ -25,7 +25,8 @@ temp_DESIGN = {
 		'MEMORY_BOUND_HACK',
 		'IMAGE_TEST_HACK',
 		'IMAGE_LOAD_HACK',
-		'DISABLE_SRGB_HACK'
+		'DISABLE_SRGB_HACK',
+		'DISABLE_FMV_HACK'
 	],
 
 	// Game list display modes
@@ -657,6 +658,7 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsShowGameMetadata').checked = JSON.parse(cSettings.showGuiMetadata);
 		document.getElementById('CHECKBOX_settingsRemoveProjectGp4').checked = JSON.parse(cSettings.removeProjectGp4);
 		document.getElementById('CHECKBOX_settingsEnableFpps4Updates').checked = JSON.parse(cSettings.enableEmuUpdates);
+		document.getElementById('CHECKBOX_settingsStartEmuFullscreen').checked = JSON.parse(cSettings.enableEmuFullscreen);
 		document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked = JSON.parse(cSettings.searchCaseSensitive);
 		document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked = JSON.parse(cSettings.logExternalWindowPrompt);
 
@@ -741,6 +743,7 @@ temp_DESIGN = {
 		APP.settings.data.showGuiMetadata = JSON.parse(document.getElementById('CHECKBOX_settingsShowGameMetadata').checked);
 		APP.settings.data.removeProjectGp4 = JSON.parse(document.getElementById('CHECKBOX_settingsRemoveProjectGp4').checked);
 		APP.settings.data.enableEmuUpdates = JSON.parse(document.getElementById('CHECKBOX_settingsEnableFpps4Updates').checked);
+		APP.settings.data.enableEmuFullscreen = JSON.parse(document.getElementById('CHECKBOX_settingsStartEmuFullscreen').checked);
 		APP.settings.data.searchCaseSensitive = JSON.parse(document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked);
 		APP.settings.data.logExternalWindowPrompt = JSON.parse(document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked);
 
