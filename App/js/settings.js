@@ -34,6 +34,9 @@ temp_SETTINGS = {
 		emuPath: '',
 		gamePath: '',
 
+		// Run fpPS4 on fullscreen
+		enableEmuFullscreen: !1,
+
 		// Enable / Disable PARAM.SFO support
 		enableParamSfo: !0,
 

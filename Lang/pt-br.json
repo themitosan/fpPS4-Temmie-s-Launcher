@@ -116,7 +116,8 @@
 		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Status",
 		"DIV_SETTINGS_GENERAL": "Geral",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Tamanho da interface (escala)",
-		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Aviso: Não é recomendado alterar essa configuração caso sua resolução de tela seja menor que <code>1920x1080</code>"
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Aviso: Não é recomendado alterar essa configuração caso sua resolução de tela seja menor que <code>1920x1080</code>",
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Iniciar fpPS4 em modo de tela cheia"
 
 	},
 
