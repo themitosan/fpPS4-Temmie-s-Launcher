@@ -114,9 +114,9 @@
 		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Activer le programme de mise à jour fpPS4",
 		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Recevez les mises à jour de la branche",
 		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Statut",
-		"DIV_SETTINGS_GENERAL": "",
-		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "",
-		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": ""
+		"DIV_SETTINGS_GENERAL": "Général",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Taille de l'interface (échelle)",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Avertissement : La modification de ce paramètre n'est pas recommandée si la résolution de votre écran est inférieure à <code>1920x1080</code>"
 	},
 
 	"select": {
