@@ -113,6 +113,9 @@
 		"DIV_SETTINGS_FPPS4_UPDATER": "Автообновления fpPS4",
 		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Включить автообновления fpPS4",
 		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Искать обновления из ветки",
+		"DIV_SETTINGS_GENERAL": "",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "",
 		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Статус",
 		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Запустить fpPS4 в полноэкранном режиме"
 
