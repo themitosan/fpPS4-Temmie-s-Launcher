@@ -117,7 +117,7 @@
 		"DIV_SETTINGS_GENERAL": "Général",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Taille de l'interface (échelle)",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Avertissement : La modification de ce paramètre n'est pas recommandée si la résolution de votre écran est inférieure à <code>1920x1080</code>",
-		"LABEL_SETTINGS_START_EMU_FULLSCREEN": ""
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Démarrer fpPS4 en mode plein écran"
 	},
 
 	"select": {
