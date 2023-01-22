@@ -255,6 +255,7 @@ temp_DESIGN = {
 		this.gamePatchLoaded = !1;
 
 		var hList = {},
+			updatesettingsFile = !1,
 			gData = APP.gameList.list[gameName],
 			folderName = gData.folderName, 
 			exportButtonStatus = 'disabled',
@@ -292,7 +293,18 @@ temp_DESIGN = {
 			const gSettings = JSON.parse(APP.fs.readFileSync(settingsFile, 'utf8'));
 			APP.gameList.cGameSettings = gSettings;
 
-			// Set hacks
+			// Check if settings file has all available hacks - if so, set flag to update settings file
+			this.hackList.forEach(function(cHack){
+				if (gSettings.hacks[cHack] === void 0){
+					updatesettingsFile = !0;
+					document.getElementById('CHECK_' + cHack).checked = !1;
+				}
+			});
+			if (updatesettingsFile === !0){
+				APP.gameList.saveGameSettings();
+			}
+
+			// Enable / disable selected hacks on settings file
 			Object.keys(gSettings.hacks).forEach(function(hackName){
 				document.getElementById('CHECK_' + hackName).checked = JSON.parse(gSettings.hacks[hackName]);
 			});

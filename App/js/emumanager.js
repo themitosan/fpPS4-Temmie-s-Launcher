@@ -57,7 +57,7 @@ temp_EMUMANAGER = {
 
 			// Add fullscreen flag if it's enabled
 			if (APP.settings.data.enableEmuFullscreen === !0){
-				emuArgs.push('-w')
+				emuArgs.push('-w');
 			}
 
 			// Log emu location and args
