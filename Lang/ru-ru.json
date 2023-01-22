@@ -3,12 +3,12 @@
 	"lang": "Русский (RU)",
 
 	"variables": {
-		"labelEnableHack": "",
+		"labelEnableHack": "Включить",
 		"emuStatusRunning": "Выполняется",
 		"logWindowTitle": "Запуск fpPS4",
 		"killEmuStatus": "Основной процесс был закрыт - закройте окно лога для продолжения работы",
 		"logCleared": "ИНФО - Список логов был очищен!",
-		"about": "",
+		"about": "fpPS4 Temmie's Launcher - Версия: %VARIABLE_0%\nСоздано TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 создан red-prig\n(https://github.com/red-prig/fpPS4)\n\nПлагин memoryjs создан Rob--\n(https://github.com/rob--/memoryjs)\n\nПлагин node-stream-zip создан antelle\n(https://github.com/antelle/node-stream-zip)\n\nSVG иконки были взяты из https://www.svgrepo.com/",
 		"mainLog": "fpPS4 Temmie's Launcher - Версия: %VARIABLE_0%\nИспользование nw.js (node-webkit) версия %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ОШИБКА - Папка не может быть создана!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ОШИБКА - Не удалось найти исполняемый файл fpPS4!\nВыберите исполняемый файл в настройках или поместите его внутрь \"Emu\" и нажмите OK.",
@@ -47,20 +47,20 @@
 		"gameListVersion": "Версия",
 		"selectGameLoadPatchErrorParamSfo": "ОШИБКА - Невозможно загрузить PARAM.SFO из этого патча!\n%VARIABLE_0%",
 		"path": "Путь",
-		"gamelistGamePath404": "",
-		"updateEmuFetchActionsError": "",
-		"updateEmuIsLatestVersion": "",
-		"updateEmuShaAvailable": "",
-		"updateEmuShaUnavailable": "",
-		"updateEmuDownloadFailed": "",
-		"updateEmuProcessComplete": "",
-		"updateEmu-1-4": "",
-		"updateEmu-2-4": "",
-		"updateEmu-3-4": "",
-		"updateEmu-4-4": "",
-		"settingsLogEmuSha": "",
-		"dumpStatus_OK": "",
-		"dumpStatus_WARN": "",
+		"gamelistGamePath404": "ОШИБКА - Не удалось найти путь к выбранному приложению / игре!\n%VARIABLE_0%",
+		"updateEmuFetchActionsError": "ОШИБКА - Не удалось получить данные GitHub действий!",
+		"updateEmuIsLatestVersion": "ИНФО - Вы используете последнюю доступную версию fpPS4!\nCommit ID (SHA): %VARIABLE_0%",
+		"updateEmuShaAvailable": "ИНФО - Доступно новое обновление!\n\nВаша версия: %VARIABLE_0%\nНовая версия: %VARIABLE_1%\n\nХотите обновить?",
+		"updateEmuShaUnavailable": "ИНФО - Лаунчер обнаружил что вы не обновили fpPS4 (или файл запуска fpPS4 не найден!)\n\nВы можете это исправить запуском процесса обновления fpPS4.\nХотите продолжить?",
+		"updateEmuDownloadFailed": "ОШИБКА - Не удалось скачать обновление для fpPS4!\nСтатус ответа: %VARIABLE_0% - ОК: %VARIABLE_1%",
+		"updateEmuProcessComplete": "ИНФО - Обновление завершено!\nНовая версия fpPS4 (Commit ID / SHA): %VARIABLE_0%",
+		"updateEmu-1-4": "Скачивание обновления fpPS4 (<label class=\"LABEL_monospace\">%VARIABLE_0%</label>)",
+		"updateEmu-2-4": "Распаковка обновления",
+		"updateEmu-3-4": "Удаление ненужных файлов",
+		"updateEmu-4-4": "Обновление завершено!",
+		"settingsLogEmuSha": "ИНФО - Версия fpPS4: (%VARIABLE_0%)",
+		"dumpStatus_OK": "Отлично",
+		"dumpStatus_WARN": "Недостающие файлы",
 		"dumpStatus_HB": ""
 	},
 
@@ -108,13 +108,13 @@
 		"LABEL_FPPS4_OPTIONS_APP_VERSION": "Версия",
 		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "Параметры запуска",
 		"LABEL_FPPS4_OPTIONS_HACKS": "Хаки",
-		"LABEL_SETTINGS_SHOW_METADATA_GUI": "",
-		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "",
-		"DIV_SETTINGS_FPPS4_UPDATER": "",
-		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "",
-		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "",
-		"LABEL_FPPS4_UPDATER_STATUS_LANG": "",
-		"LABEL_SETTINGS_START_EMU_FULLSCREEN": ""
+		"LABEL_SETTINGS_SHOW_METADATA_GUI": "Показывать иконку / имя когда fpPS4 выполняется",
+		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">ЭКСПЕРЕМЕНТАЛЬНО</label> Логи процесса вывода fpPS4 (<code>stdout</code> и <code>stderr</code>) в внутреннем логе (Нажать F12 --> Console)",
+		"DIV_SETTINGS_FPPS4_UPDATER": "Автообновления fpPS4",
+		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Включить автообновления fpPS4",
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Искать обновления из ветки",
+		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Статус",
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Запустить fpPS4 в полноэкранном режиме"
 
 	},
 
@@ -150,9 +150,9 @@
 		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "Сброс настроек",
 		"BTN_launcherOptionsExportMetadata": "Экспорт метаданных",
 		"BTN_RUN": "Запустить",
-		"BTN_SETTINGS_RESTART_LAUNCHER": "",
-		"BTN_UPDATE_FPPS4": "",
-		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": ""
+		"BTN_SETTINGS_RESTART_LAUNCHER": "Перезапустить лаунчер",
+		"BTN_UPDATE_FPPS4": "Обновить fpPS4",
+		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": "Обновить fpPS4 принудительно"
 
 	}
 }
