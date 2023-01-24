@@ -1,0 +1,159 @@
+{
+
+	"lang": "日本語 (JA-JA)",
+
+	"variables": {
+		"labelEnableHack": " ",
+		"emuStatusRunning": "動作中",
+		"logWindowTitle": "fpPS4実行中",
+		"killEmuStatus": "エミュレーションが終了しました。ログウィンドウを閉じて終了します。",
+		"logCleared": "情報 - ログを削除しました!",
+		"about": "fpPS4ランチャー by Temmie - バージョン: %VARIABLE_0%\n作成者 TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4はred-prigによって作成/開発されました\n(https://github.com/red -prig/fpPS4)\n\nmemoryjsプラグインはRob--によって作成/開発されました\n(https://github.com/rob--/memoryjs)\n\nnode-stream-zipプラグインantelleによって作成/開発されました \n(https://github.com/antelle/node-stream-zip)\n\nSVGアイコンは https://www.svgrepo.com/ から取得しました",
+		"mainLog": "fpPS4ランチャー by Temmie - バージョン: %VARIABLE_0%\nnw.js (node-webkit) バージョン %VARIABLE_1% [%VARIABLE_2%]",
+		"settingsErrorCreatePath": "エラー - フォルダの作成に失敗しました\n(%VARIABLE_0%)\n%VARIABLE_1%",
+		"settingsErrorfpPS4NotFound": "エラー - fpPS4の実行ファイルが見つかりません\n設定で実行可能ファイルを選択するか、「Emu」フォルダーに配置して「OK」をクリックしてください",
+		"settingsConfirmRemoveAllGameSettings": "警告 - このオプションはゲームリストからすべての設定を削除します\n実行しますか？",
+		"settingsConfirmRemoveGameSettings": "警告 - %VARIABLE_0%からすべての設定が削除されます\n\n実行しますか？",
+		"settingsRemovedGameSettings": "情報 - ( %VARIABLE_0% ) 設定ファイルが正常に削除されました",
+		"settingsRemoveGameSettingsError": "エラー - ( %VARIABLE_0% ) ファイルを削除できません\n詳細: %VARIABLE_1%",
+		"settingsRemoveGameSettings404": "警告 - ( %VARIABLE_0% ) 設定ファイルが見つかりません",
+		"infoProcessComplete": "情報 - プロセスが完了しました\n詳細についてはログを参照してください",
+		"infoSettingsUpdated": "情報 - 設定ファイルが正常に更新されました",
+		"settingsLoadError": "エラー - 設定の読み込みに失敗しました\n %VARIABLE 0%",
+		"settingsSaveError": "エラー - 設定を保存できません\n %VARIABLE 0%",
+		"runEmuArgs": "情報 - fpPS4を実行しています: %VARIABLE_0%\n実行ファイルパス: %VARIABLE_1%",
+		"closeEmuStatus": "情報 - %VARIABLE_0%が終了コード %VARIABLE_1% で終了しました",
+		"removedLibModules": "情報 - 以前にインポートされたすべてのモジュールはダンプに害を及ぼす可能性があるため削除されました",
+		"removeLibModule": "情報 - ( %VARIABLE_0% ) 削除されたモジュール: %VARIABLE_1%",
+		"removeModuleError": "エラー - このモジュールを削除できません\n理由: %VARIABLE_0%",
+		"updateGameSettings": "情報 - ( %VARIABLE_0% ) 設定ファイルが正常に更新されました",
+		"updateGameSettingsError": "エラー - %VARIABLE_1%の%VARIABLE_0%の設定ファイルを更新できませんでした\n詳細: %VARIABLE_2%",
+		"skipUpdateGameSettings": "情報 - ( %VARIABLE_0% ) 変更がないため設定ファイルは更新されません",
+		"errorSaveFile": "エラー - ファイルを保存できません\n詳細: %VARIABLE_0%",
+		"saveSucessfullPath": "情報 - ファイルは正常に書き込まれました\n場所: %VARIABLE_0%",
+		"createdSettingsFile": "情報 - ( %VARIABLE_0% ) 設定ファイルが正常に生成されました",
+		"errorCreateSettingsFile": "エラー - 設定ファイル %VARIABLE_0% を %VARIABLE_1%に作成できませんでした\n詳細: %VARIABLE_2%",
+		"patchLoadedSucessfully": "情報 - パッチが正常にロードされました\n名前: %VARIABLE_0%\nタイプ: %VARIABLE_1%",
+		"patchLoadErrorMismatch": "エラー - 選択されたものはパッチじゃないか、現在のゲームと一致しません\nパッチID: %VARIABLE_0%\n現在のアプリ/ゲーム: %VARIABLE_1%",
+		"patchLoadErrorParamSfo404": "エラー - このパッチの PARAM.SFO が見つかりません",
+		"gameListLoadWarnPlayGo": "警告 - %VARIABLE_0%からplaygo-chunk.datが見つかりません\nこのアプリ/ゲームが自作ではない場合は適切にダンプされていることを確認してください",
+		"gameListLoadWarnParamSfo": "警告 - %VARIABLE_0% PARAM.SFOが見つかりません\nこのアプリ/ゲームが自作ではない場合は適切にダンプされていることを確認してください",
+		"gameListRemoveProjectGp4": "情報 - ( %VARIABLE_0% ) PkgEditorによって生成されたProject.gp4を削除したため不要になりました",
+		"gameListDoubleIdError": "注意 - 同じIDを持つ別のタイトルが既に存在するため %VARIABLE_0% をゲームリストに追加できませんでした(%VARIABLE_1%)",
+		"gameListNoGameFound": "情報 - 現在のフォルダーにアプリ/ゲームが見つかりません ( %VARIABLE_0% )",
+		"gameListSearch404": "見つけることができません",
+		"checkDumpPlayGoOnApp": "情報 - ( %VARIABLE_0% ) playgo-chunk.dat が sce_sys/appに見つかりました - コピーが　sce_sys に作成されました。",
+		"gameListLoadSuccessful": "INFO - ゲームリストが正常に表示されました( %VARIABLE_0% 個 )",
+		"gameListVersion": "バージョン",
+		"selectGameLoadPatchErrorParamSfo": "エラー - このパッチから PARAM.SFO をロードできません\n%VARIABLE_0%",
+		"path": "パス",
+		"gamelistGamePath404": "情報 - 選択したアプリ/ゲームフォルダが存在しません\n%VARIABLE_0%",
+		"updateEmuFetchActionsError": "エラー - GitHubから情報を取得できませんでした",
+		"updateEmuIsLatestVersion": "情報 - すでに最新バージョンを使用しています\n検証ID (SHA): %VARIABLE_0%",
+		"updateEmuShaAvailable": "情報 - 新しいバージョンが利用可能です\n\nローカルバージョン:%VARIABLE_0%\n新しいバージョン:%VARIABLE_1%\n\n更新しますか？",
+		"updateEmuShaUnavailable": "情報 - ランチャーは更新が行われていないことを検出しました\n(またはfpPS4実行可能ファイルが見つかりませんでした)\n\nこの問題は自動更新手順を使用することで解決できます.\n\n続行しますか？",
+		"updateEmuDownloadFailed": "エラー - fpPS4アップデートのダウンロードに失敗しました\n応答ステータス: %VARIABLE_0% - OK: %VARIABLE_1%",
+		"updateEmuProcessComplete": "情報 - アップデート完了\n新しいバージョン (検証ID / SHA): %VARIABLE_0%",
+		"updateEmu-1-4": "fpPS4のアップデートをダウンロード中 (<label css=\"LABEL_monospace\">%VARIABLE_0%</label>)",
+		"updateEmu-2-4": "アップデートの抽出中",
+		"updateEmu-3-4": "残ったファイルの削除",
+		"updateEmu-4-4": "アップデート完了",
+		"settingsLogEmuSha": "INFO - fpPS4のバージョン: (%VARIABLE_0%)",
+		"dumpStatus_OK": "完全",
+		"dumpStatus_WARN": "不完全",
+		"dumpStatus_HB": "自作ソフト(Homebrew)"
+	},
+
+	"input_text": {
+		"INPUT_gameListSearch": {"placeholder": "検索", "value": ""}
+	},
+
+	"title": {
+		"DIV_selectedGameStatus": "緑 : すべてのファイルが存在します\n黄 : 一部のファイルが欠落しています-詳細についてはログを確認してください\nシアン : 実行可能ファイルは.elfファイルです"
+	},
+
+	"innerHTML": {
+
+		"DIV_SETTINGS_TITLE": "設定",
+		"DIV_SETTINGS_LANGUAGE": "言語",
+		"LABEL_SETTINGS_CURRENT_LANGUAGE": "選択中の言語",
+		"LABEL_SETTINGS_LANGUAGE_RESTART": "この設定を適用するにはランチャーの再起動が必要です",
+		"DIV_SETTINGS_PATHS": "パス",
+		"LABEL_SETTINGS_APP_GAMES_PATH": "アプリ/ゲームのフォルダ",
+		"LABEL_SETTINGS_FPPS4_PATH": "エミュレータの場所",
+		"DIV_SETTINGS_GAME_LIST": "アプリ/ゲームの一覧",
+		"LABEL_SETTINGS_GRID_BORDER_RADIUS": "(グリッド) アイコンのボーダーのサイズ",
+		"LABEL_SETTINGS_GAME_SEARCH_MODE": "検索モード",
+		"LABEL_SETTINGS_GAME_LIST_BACKGROUND_BLUR": "背景ぼかし",
+		"LABEL_SETTINGS_GAME_LIST_BACKGROUND_OPACITY": "背景の不透明度",
+		"LABEL_SETTINGS_GAME_LIST_SEARCH_CASE_SENSITIVE": "詳細検索を有効にする (大文字と小文字)",
+		"LABEL_SETTINGS_GAME_LIST_NORMAL_SHOW_BG": "リスト内の各ゲームの背景を表示",
+		"LABEL_SETTINGS_SHOW_METADATA_GAME_ENTRY": "リスト内の各ゲームの情報(またはフォルダパス)を表示",
+		"DIV_SETTINGS_EMU_RUNNING": "エミュレータの実行",
+		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_BLUR": "背景ぼかし",
+		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_OPACITY": "背景の不透明度",
+		"LABEL_SETTINGS_SHOW_METADATA_EMU_RUNNING": "タイトルの下にメタデータ(またはファイルパス)を表示する",
+		"DIV_SETTINGS_LOG_OPTIONS": "ログオプション",
+		"LABEL_SETTINGS_LOG_START_WINDOW_STATE": "エミュレーション開始時のログウィンドウのサイズ",
+		"LABEL_SETTINGS_PROMPT_KEY_FPPS4_CLOSES": "エミュレーション終了時にログウィンドウに「続行するには何かキーを押してください」(press any key)を表示",
+		"LABEL_SETTINGS_ENABLE_PARAMSFO_SUPPORT": "<code>PARAM.SFO</code>のサポートを有効にします(適用するには、「すべてのゲーム設定を削除」をクリックしランチャーを再起動してください)",
+		"LABEL_SETTINGS_REMOVE_PROJECT_GP4_FILES": "ゲームリストのロード時に<code>Project.gp4</code>を削除する",
+		"LABEL_FPPS4_OPTIONS": "<label class=\"LABEL_emuColor\">fp</label>PS4 オプション",
+		"LABEL_FPPS4_OPTIONS_DUMP_STATUS": "ダンプステータス",
+		"LABEL_FPPS4_OPTIONS_ENABLE_PATCHES": "パッチを有効化",
+		"LABEL_FPPS4_OPTIONS_PATCH_VERSION": "バージョン",
+		"LABEL_FPPS4_OPTIONS_PATCH_TYPE": "タイプ",
+		"LABEL_EMU_RUNNING_STATUS": "ステータス",
+		"LABEL_FPPS4_OPTIONS_APP_VERSION": "バージョン",
+		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "ランチャーオプション",
+		"LABEL_FPPS4_OPTIONS_HACKS": "ハック一覧",
+		"LABEL_SETTINGS_SHOW_METADATA_GUI": "エミュレーション中にアプリ/ゲームのアイコンと名前を表示する",
+		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">実験的</label> エミュレータの出力を表示します(<code>標準出力</code>と<code>エラー出力</code>)を内部ログに表示します( F12を押す --> コンソール)",
+		"DIV_SETTINGS_FPPS4_UPDATER": "fpPS4をアップデート",
+		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "fpPS4アップデータを有効化",
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "アップデートを検索するブランチ",
+		"LABEL_FPPS4_UPDATER_STATUS_LANG": "ステータス",
+		"DIV_SETTINGS_GENERAL": "全般",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "インターフェースのサイズ(スケール)",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "警告 : 画面の解像度が<code>1920x1080</code>未満の場合、この設定を変更することはおすすめしません",
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "フルスクリーンでfpPS4を起動"
+	},
+
+	"select": {
+
+		"SELECT_settingsSearchMode": {
+			"appName": "名前",
+			"titleId": "タイトルID"
+		},
+		"SELECT_settingsStartExternalWindow": {
+			"normal": "普通",
+			"max": "最大",
+			"min": "最小"
+		}
+
+	},
+
+	"value": {
+
+		"BTN_SETTINGS_SELECT_APPS_GAMES_PATH": "フォルダーを選択",
+		"BTN_SETTINGS_OPEN_APPS_GAMES_PATH": "フォルダを開く",
+		"BTN_SETTINGS_SELECT_FPPS4_PATH": "ファイルを選択",
+		"BTN_SETTINGS_DELETE_ALL_GAME_SETTINGS": "すべてのゲーム設定を削除",
+		"BTN_SETTINGS_APPLY_CLOSE": "適用して閉じる",
+		"BTN_SETTINGS_CLOSE": "閉じる",
+		"BTN_REFRESH": "ゲームリスト再更新",
+		"BTN_SETTINGS": "設定",
+		"BTN_CLEAR_LOG": "ログ削除",
+		"BTN_ABOUT": "fpPS4について",
+		"BTN_KILL": "fpPS4を終了",
+		"BTN_FPPS4_OPTIONS_SELECT_PATCH_LOCATION": "パッチを選択",
+		"BTN_FPPS4_OPTIONS_OPEN_APP_LOCATION": "アプリ/ゲームのフォルダを開く",
+		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "オプションをリセット",
+		"BTN_launcherOptionsExportMetadata": "メタデータをエクスポート",
+		"BTN_RUN": "fpPS4を起動",
+		"BTN_SETTINGS_RESTART_LAUNCHER": "ランチャーを再起動",
+		"BTN_UPDATE_FPPS4": "fpPS4を更新",
+		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": "fpPS4を強制的にアップデート"
+
+	}
+}
