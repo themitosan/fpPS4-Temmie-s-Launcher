@@ -64,6 +64,10 @@ process::Pair process::openProcess(DWORD processId, char** errorMessage) {
   };
 }
 
+void process::closeProcess(HANDLE hProcess){
+  CloseHandle(hProcess);
+}
+
 std::vector<PROCESSENTRY32> process::getProcesses(char** errorMessage) {
   // Take a snapshot of all processes.
   HANDLE hProcessSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, NULL);
