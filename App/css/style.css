@@ -403,12 +403,11 @@ img {
 }
 .DIV_selectedGameStatus {
 	width: 114px;
-	height: 20px;
 	cursor: help;
 	display: flex;
 	overflow: hidden;
 	max-width: 114px;
-	max-height: 20px;
+	max-height: 42px;
 	margin-left: 4px;
 	font-size: small;
 	flex-wrap: nowrap;
@@ -418,6 +417,7 @@ img {
 	align-content: center;
 	background-color: #000;
 	justify-content: center;
+	padding: 4px 0px 4px 0px;
 	text-shadow: 1px 1px 2px #000;
 }
 .DIV_ICON_STATUS_OK {
