@@ -549,6 +549,8 @@ img {
 	margin: 2px 0px 2px 0px;
 }
 .BTN_actions {
+	height: 28px;
+	max-height: 28px;
 	margin-left: 2px;
 	margin-right: 2px;
 }

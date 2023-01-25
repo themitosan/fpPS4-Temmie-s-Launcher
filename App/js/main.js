@@ -4,21 +4,34 @@
 	main.js
 
 	This file contains all modules and required functions to initialize 
-	launcher 
+	launcher.
 	******************************************************************************
 */
 
 const APP = {
 
-	// Import nw modules
-	fs: require('fs'),
-	win: nw.Window.get(),
-	path: require('path'),
-	https: require('https'),
-	childProcess: require('child_process'),
-	packageJson: require('../package.json'),
-	memoryjs: require('App/node_modules/memoryjs'),
-	streamZip: require('App/node_modules/node-stream-zip'),
+	// Load nwjs / node.js modules
+	loadModules: function(){
+
+		try {
+
+			APP['fs'] = require('fs');
+			APP['win'] = nw.Window.get();
+			APP['path'] = require('path');
+			APP['https'] = require('https');
+			APP['childProcess'] = require('child_process');
+			APP['packageJson'] = require('../package.json');
+			APP['memoryjs'] = require('App/node_modules/memoryjs');
+			APP['streamZip'] = require('App/node_modules/node-stream-zip');
+
+		} catch (err) {
+
+			console.error(err);
+			window.alert('ERROR - Unable to load node modules!\n' + err);
+
+		}
+
+	},
 
 	// App version
 	title: '',
@@ -267,6 +280,9 @@ delete temp_PARAMSFO_PARSER;
 window.onload = function(){
 
 	try {
+
+		// Load nwjs / node.js modules
+		APP.loadModules();
 
 		// Load settings ( 1 / 2 )
 		APP.settings.load();
