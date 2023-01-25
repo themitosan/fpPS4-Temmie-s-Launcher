@@ -1,0 +1,161 @@
+{
+
+	"lang": "Español (es-ES)",
+
+	"variables": {
+		"labelEnableHack": "Activar",
+		"emuStatusRunning": "Corriendo",
+		"logWindowTitle": "Corriendo fpPS4",
+		"killEmuStatus": "El proceso principal se ha cerrado: cierre la ventana de registro para continuar",
+		"logCleared": "INFORMACIÓN: ¡se borró el registro anterior!",
+		"about": "fpPS4 Temmie's Launcher - Versione: %VARIABLE_0%\nCreato da TemmieHeartz\n(https://twitter.com/themitosan)\n\nfpPS4 è stato creato/sviluppato da red-prig\n(https://github.com/red-prig/fpPS4)\n\nIl plug-in memoryjs è stato creato/sviluppato da Rob--\n(https://github.com/rob--/memoryjs)\n\nIl plug-in node-stream-zip è stato creato/sviluppato da antelle \n(https://github.com/antelle/node-stream-zip)\n\nLe icone SVG sono state ottenute da https://www.svgrepo.com/",
+		"mainLog": "fpPS4 Temmie's Launcher - Versione: %VARIABLE_0%\nUsando nw.js (node-webkit) versione %VARIABLE_1% [%VARIABLE_2%]",
+		"settingsErrorCreatePath": "ERRORE - Impossibile creare la cartella!\n(%VARIABLE_0%)\n%VARIABLE_1%",
+		"settingsErrorfpPS4NotFound": "ERRORE - Impossibile trovare l'eseguibile fpPS4!\nSelezionare l'eseguibile nelle impostazioni o posizionarlo all'interno della cartella \"Emu\" e fare clic su ok.",
+		"settingsConfirmRemoveAllGameSettings": "ATTENZIONE - Questa opzione rimuoverà tutte le impostazioni dall'elenco dei giochi.\nConfermi questa azione?",
+		"settingsConfirmRemoveGameSettings": "ATTENZIONE - Questa azione rimuoverà tutte le impostazioni per %VARIABLE_0%\n\nConfermi questa azione?",
+		"settingsRemovedGameSettings": "INFO - ( %VARIABLE_0% ) Il file delle impostazioni è stato rimosso con successo!",
+		"settingsRemoveGameSettingsError": "ERRORE - ( %VARIABLE_0% ) Impossibile rimuovere questo file!\nDettagli: %VARIABLE_1%",
+		"settingsRemoveGameSettings404": "ATTENZIONE - ( %VARIABLE_0% ) Impossibile trovare il file delle impostazioni!",
+		"infoProcessComplete": "INFO - Processo completato!\nVedi log per maggiori dettagli",
+		"infoSettingsUpdated": "INFO - Il file delle impostazioni è stato aggiornato con successo!",
+		"settingsLoadError": "ERRORE - Impossibile caricare le impostazioni!\n %VARIABLE_0%",
+		"settingsSaveError": "ERRORE - Impossibile salvare le impostazioni!\n %VARIABLE_0%",
+		"runEmuArgs": "INFO - Avvio di fpPS4 con opzioni: %VARIABLE_0%\nPercorso eseguibile: %VARIABLE_1%",
+		"closeEmuStatus": "INFO - %VARIABLE_0% uscito con codice di uscita %VARIABLE_1%",
+		"removedLibModules": "INFO - Tutti i moduli precedentemente importati sono stati rimossi in quanto possono essere dannosi per i dump.",
+		"removeLibModule": "INFO - ( %VARIABLE_0% ) Rimozione modulo: %VARIABLE_1%",
+		"removeModuleError": "ERRORE - Impossibile rimuovere questo modulo!\nMotivo: %VARIABLE_0%",
+		"updateGameSettings": "INFO - ( %VARIABLE_0% ) Il file delle impostazioni è stato aggiornato con successo!",
+		"updateGameSettingsError": "ERRORE - Impossibile aggiornare il file delle impostazioni per %VARIABLE_0% in %VARIABLE_1%!\nDettagli: %VARIABLE_2%",
+		"skipUpdateGameSettings": "INFO - ( %VARIABLE_0% ) Il file di configurazione non verrà aggiornato perché non ci sono state modifiche!",
+		"errorSaveFile": "ERRORE - Impossibile salvare il file!\nDettagli: %VARIABLE_0%",
+		"saveSucessfullPath": "INFO - Il file è stato scritto correttamente!\nPosizione: %VARIABLE_0%",
+		"createdSettingsFile": "INFO - ( %VARIABLE_0% ) Il file delle impostazioni è stato generato con successo!",
+		"errorCreateSettingsFile": "ERRORE - Impossibile creare il file delle impostazioni %VARIABLE_0% in %VARIABLE_1%!\nDettagli: %VARIABLE_2%",
+		"patchLoadedSucessfully": "INFO - La patch è stata caricata con successo!\nNome: %VARIABLE_0%\nTipo: %VARIABLE_1%",
+		"patchLoadErrorMismatch": "ERRORE - La posizione selezionata non è una patch o, se lo è, non corrisponde all'app/gioco corrente!\nSeriale: %VARIABLE_0%\nApp/gioco selezionato: %VARIABLE_1%",
+		"patchLoadErrorParamSfo404": "ERRORE - Impossibile trovare PARAM.SFO per questa patch!",
+		"gameListLoadWarnPlayGo": "ATTENZIONE - Impossibile trovare playgo-chunk.dat da %VARIABLE_0%!\nSe questa app/gioco non è homebrew, assicurati che sia stato scaricato correttamente.",
+		"gameListLoadWarnParamSfo": "ATTENZIONE - Impossibile trovare %VARIABLE_0% PARAM.SFO!\nSe questa app/gioco non è homebrew, assicurati che sia stato scaricato correttamente.",
+		"gameListRemoveProjectGp4": "INFO - ( %VARIABLE_0% ) Rimozione di Project.gp4 poiché è stato generato da PkgEditor e non è necessario.",
+		"gameListDoubleIdError": "ATTENZIONE - Non è stato possibile aggiungere %VARIABLE_0% alla lista dei giochi perché c'è già un altro titolo con lo stesso id! (%VARIABILE_1%)",
+		"gameListNoGameFound": "INFO - Nessuna app/gioco è stata trovata nella cartella corrente ( %VARIABLE_0% )",
+		"gameListSearch404": "Non è stato possibile cercare",
+		"checkDumpPlayGoOnApp": "INFO - ( %VARIABLE_0% ) playgo-chunk.dat è stato trovato all'interno di sce_sys/app - è stata creata una copia in sce_sys.",
+		"gameListLoadSuccessful": "INFO - Lista dei giochi caricata con successo! ( trovati %VARIABLE_0% titoli )",
+		"gameListVersion": "Versione",
+		"selectGameLoadPatchErrorParamSfo": "ERRORE - Impossibile caricare PARAM.SFO di questa patch!\n%VARIABLE_0%",
+		"path": "Percorso",
+		"gamelistGamePath404": "INFO - La cartella app/giochi selezionata non esiste!\n%VARIABLE_0%",
+		"updateEmuFetchActionsError": "ERRORE - Impossibile ottenere informazioni da GitHub Actions!",
+		"updateEmuIsLatestVersion": "INFO - Stai già utilizzando l'ultima versione!\nID commit (SHA): %VARIABLE_0%",
+		"updateEmuShaAvailable": "INFO - È disponibile un nuovo aggiornamento!\n\nVersione locale: %VARIABLE_0%\nNuova versione: %VARIABLE_1%\n\nVuoi aggiornare?",
+		"updateEmuShaUnavailable": "INFO - Il launcher ha rilevato che non è stato effettuato alcun aggiornamento\n(O l'eseguibile fpPS4 non è stato trovato!)\n\nÈ possibile risolvere questo problema utilizzando la procedura di aggiornamento automatico.\n\nVuoi procedere?",
+		"updateEmuDownloadFailed": "ERRORE - Impossibile scaricare l'aggiornamento di fpPS4!\nStato della risposta: %VARIABLE_0% - OK: %VARIABLE_1%",
+		"updateEmuProcessComplete": "INFO - Aggiornamento completato!\nNuova versione (ID commit / SHA): %VARIABLE_0%",
+		"updateEmu-1-4": "Download aggiornamento fpPS4 (<label class=\"LABEL_monospace\">%VARIABLE_0%</label>)",
+		"updateEmu-2-4": "Estrazione aggiornamento",
+		"updateEmu-3-4": "Rimozione dei file rimanenti",
+		"updateEmu-4-4": "Aggiornamento completato!",
+		"settingsLogEmuSha": "INFO - Versione di fpPS4: (%VARIABLE_0%)",
+		"dumpStatus_OK": "Perfetto",
+		"dumpStatus_WARN": "File mancanti",
+		"dumpStatus_HB": "Homebrew"
+	},
+
+	"input_text": {
+		"INPUT_gameListSearch": {"placeholder": "Cerca: nome del gioco...", "value": ""}
+	},
+
+	"title": {
+		"DIV_selectedGameStatus": "Verde: sono presenti tutti i file\nGiallo: mancano alcuni file - vedere il log per i dettagli\nCiano: l'eseguibile è un file .elf"
+	},
+
+	"innerHTML": {
+
+		"DIV_SETTINGS_TITLE": "Impostazioni",
+		"DIV_SETTINGS_LANGUAGE": "Lingua",
+		"LABEL_SETTINGS_CURRENT_LANGUAGE": "Lingua attuale",
+		"LABEL_SETTINGS_LANGUAGE_RESTART": "È necessario riavviare il launcher per applicare questa impostazione",
+		"DIV_SETTINGS_PATHS": "Percorsi",
+		"LABEL_SETTINGS_APP_GAMES_PATH": "Cartella App/Giochi",
+		"LABEL_SETTINGS_FPPS4_PATH": "Posizione dell'Emulatore",
+		"DIV_SETTINGS_GAME_LIST": "Elenco di App/Giochi",
+		"LABEL_SETTINGS_GRID_BORDER_RADIUS": "(Griglia) Raggio del bordo dell'icona",
+		"LABEL_SETTINGS_GAME_SEARCH_MODE": "Modalità di ricerca",
+		"LABEL_SETTINGS_GAME_LIST_BACKGROUND_BLUR": "Sfocatura dello sfondo",
+		"LABEL_SETTINGS_GAME_LIST_BACKGROUND_OPACITY": "Opacità dello sfondo",
+		"LABEL_SETTINGS_GAME_LIST_SEARCH_CASE_SENSITIVE": "Abilita ricerca precisa (lettere maiuscole e minuscole)",
+		"LABEL_SETTINGS_GAME_LIST_NORMAL_SHOW_BG": "Mostra lo sfondo per ogni gioco nell'elenco",
+		"LABEL_SETTINGS_SHOW_METADATA_GAME_ENTRY": "Mostra le informazioni (o il percorso della cartella) per ogni gioco nell'elenco",
+		"DIV_SETTINGS_EMU_RUNNING": "Emulazione in corso",
+		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_BLUR": "Sfocatura dello sfondo",
+		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_OPACITY": "Opacità dello sfondo",
+		"LABEL_SETTINGS_SHOW_METADATA_EMU_RUNNING": "Mostra le informazioni sul gioco (o il percorso eseguibile) sotto il titolo",
+		"DIV_SETTINGS_LOG_OPTIONS": "Opzioni log",
+		"LABEL_SETTINGS_LOG_START_WINDOW_STATE": "Avvia la finestra del log",
+		"LABEL_SETTINGS_PROMPT_KEY_FPPS4_CLOSES": "Premi un tasto qualsiasi per chiudere dopo la chiusura di fpPS4",
+		"DIV_SETTINGS_MISC": "Altre impostazioni",
+		"LABEL_SETTINGS_ENABLE_PARAMSFO_SUPPORT": "Abilita il supporto per i file <code>PARAM.SFO</code> (fai clic su \"Elimina tutte le impostazioni di gioco\" e riavvia il launcher per renderle effettive)",
+		"LABEL_SETTINGS_REMOVE_PROJECT_GP4_FILES": "Rimuovi i file <code>Project.gp4</code> durante il caricamento dell'elenco dei giochi",
+		"LABEL_FPPS4_OPTIONS": "Opzioni <label class=\"LABEL_emuColor\">fp</label>PS4",
+		"LABEL_FPPS4_OPTIONS_DUMP_STATUS": "Stato di dump",
+		"LABEL_FPPS4_OPTIONS_ENABLE_PATCHES": "Abilitare le patch",
+		"LABEL_FPPS4_OPTIONS_PATCH_VERSION": "Versione",
+		"LABEL_FPPS4_OPTIONS_PATCH_TYPE": "Tipo",
+		"LABEL_EMU_RUNNING_STATUS": "Stato",
+		"LABEL_FPPS4_OPTIONS_APP_VERSION": "Versione",
+		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "Opzioni del launcher",
+		"LABEL_FPPS4_OPTIONS_HACKS": "Hacks",
+		"LABEL_SETTINGS_SHOW_METADATA_GUI": "Mostra l'icona e il nome dell'app/gioco durante l'emulazione",
+		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">SPERIMENTALE</label> Visualizza l'output dell'emulatore (<code>stdout</code> e <code>stderr</code>) nel log interno (premi F12 --> Console)",
+		"DIV_SETTINGS_FPPS4_UPDATER": "Aggiornamenti fpPS4",
+		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Abilita aggiornamento fpPS4",
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Ricevi gli aggiornamenti dal branch",
+		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Stato",
+		"DIV_SETTINGS_GENERAL": "Generale",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Dimensione dell'interfaccia (scala)",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Avviso: la modifica di questa impostazione non è consigliata se la risoluzione dello schermo è inferiore a <code>1920x1080</code>",
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Avvia fpPS4 in modalità a schermo intero"
+
+	},
+
+	"select": {
+
+		"SELECT_settingsSearchMode": {
+			"appName": "Nome",
+			"titleId": "Seriale"
+		},
+		"SELECT_settingsStartExternalWindow": {
+			"normal": "Normale",
+			"max": "Massimo",
+			"min": "Minimo"
+		}
+
+	},
+
+	"value": {
+
+		"BTN_SETTINGS_SELECT_APPS_GAMES_PATH": "Seleziona cartella",
+		"BTN_SETTINGS_OPEN_APPS_GAMES_PATH": "Apri la cartella",
+		"BTN_SETTINGS_SELECT_FPPS4_PATH": "Seleziona il file",
+		"BTN_SETTINGS_DELETE_ALL_GAME_SETTINGS": "Elimina tutte le impostazioni di gioco",
+		"BTN_SETTINGS_APPLY_CLOSE": "Applica e torna indietro",
+		"BTN_SETTINGS_CLOSE": "Torna indietro",
+		"BTN_REFRESH": "Aggiorna elenco",
+		"BTN_SETTINGS": "Impostazioni",
+		"BTN_CLEAR_LOG": "Pulisci il log",
+		"BTN_ABOUT": "Altro",
+		"BTN_KILL": "Fermare fpPS4",
+		"BTN_FPPS4_OPTIONS_SELECT_PATCH_LOCATION": "Selezionare la patch",
+		"BTN_FPPS4_OPTIONS_OPEN_APP_LOCATION": "Apri la posizione dell'app/gioco",
+		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "Ripristina le impostazioni",
+		"BTN_launcherOptionsExportMetadata": "Esportare i metadati",
+		"BTN_RUN": "Avvia fpPS4",
+		"BTN_SETTINGS_RESTART_LAUNCHER": "Riavvia il launcher",
+		"BTN_UPDATE_FPPS4": "Aggiorna fpPS4",
+		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": "Eseguire l'aggiornamento forzato"
+
+	}
+}
