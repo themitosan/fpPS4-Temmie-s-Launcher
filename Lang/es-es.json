@@ -12,7 +12,7 @@
 		"mainLog": "fpPS4 Temmie's Launcher - Versión: %VARIABLE_0%\nEjecutándose en nw.js (node-webkit) versión %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ERROR - ¡No se pudo crear la ruta!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ERROR: ¡No se pudo ubicar el ejecutable principal de fpPS4!\nAsegúrese de seleccionarlo en Configuración o insértelo en la carpeta \"Emu\" y haga clic en Aceptar.",
-		"settingsConfirmRemoveAllGameSettings": "ADVERTENCIA: esta opción eliminará todas las configuraciones guardadas de su lista de juegos.\¿Desea continuar?",
+		"settingsConfirmRemoveAllGameSettings": "ADVERTENCIA: esta opción eliminará todas las configuraciones guardadas de su lista de juegos.\n¿Desea continuar?",
 		"settingsConfirmRemoveGameSettings": "ATTENZIONE - Questa azione rimuoverà tutte le impostazioni per %VARIABLE_0%\n\nConfermi questa azione?",
 		"settingsRemovedGameSettings": "INFO - ( %VARIABLE_0% ) ¡El archivo de configuración se eliminó correctamente!",
 		"settingsRemoveGameSettingsError": "ERROR - ( %VARIABLE_0% ) ¡No se puede eliminar el archivo de configuración!\nMotivo: %VARIABLE_1%",
