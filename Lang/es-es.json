@@ -65,7 +65,7 @@
 	},
 
 	"input_text": {
-		"INPUT_gameListSearch": {"placeholder": "Cerca: nome del gioco...", "value": ""}
+		"INPUT_gameListSearch": {"placeholder": "Buscar: Nombre del juego.", "value": ""}
 	},
 
 	"title": {
