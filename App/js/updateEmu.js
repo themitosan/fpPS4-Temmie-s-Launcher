@@ -117,13 +117,13 @@ temp_EMU_UPDATE = {
 					msgMode = 'confirm',
 					msgData = APP.lang.getVariable('updateEmuShaAvailable', [latestSha.slice(0, 7), updateData.workflow_run.head_sha.slice(0, 7)]);
 
-				// If user didn't updated yet using launcher
-				if (latestSha === ''){
+				// If user didn't updated yet using launcher or executable was not found
+				if (latestSha === '' || APP.fs.existsSync(APP.settings.data.emuPath) === !1){
 					msgData = APP.lang.getVariable('updateEmuShaUnavailable');
 				}
 
-				// If local version is the latest
-				if (latestSha === updateData.workflow_run.head_sha){
+				// If local version is the latest and emu exists on folder
+				if (latestSha === updateData.workflow_run.head_sha && APP.fs.existsSync(APP.settings.data.emuPath) === !0){
 
 					// Update prompt
 					msgMode = 'alert';

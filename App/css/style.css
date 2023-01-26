@@ -600,8 +600,9 @@ img {
 	border: none;
 	cursor: text;
 	outline: none;
-	width: calc(100% - 4px);
-	height: calc(100% - 4px);
+	padding: 6px;
+	width: calc(100% - 12px);
+	height: calc(100% - 12px);
 	backdrop-filter: blur(1.4px);
 	background-repeat: no-repeat;
 	text-shadow: 2px 2px 2px #000;
@@ -620,7 +621,7 @@ img {
 }
 .BTN_STOP {
 	margin: 0px 4px 0px 4px;
-	padding: 1px 30px 1px 30px;
+	padding: 5px 30px 5px 30px;
 }
 .BTN_SAVE {
 	border: none;

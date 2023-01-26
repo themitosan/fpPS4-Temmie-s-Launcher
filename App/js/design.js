@@ -26,7 +26,8 @@ temp_DESIGN = {
 		'IMAGE_TEST_HACK',
 		'IMAGE_LOAD_HACK',
 		'DISABLE_SRGB_HACK',
-		'DISABLE_FMV_HACK'
+		'DISABLE_FMV_HACK',
+		'SKIP_UNKNOW_TILING'
 	],
 
 	// Game list display modes
