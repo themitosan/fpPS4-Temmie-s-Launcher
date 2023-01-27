@@ -49,19 +49,19 @@
 		"path": "Camino",
 		"gamelistGamePath404": "ERROR: ¡No se puede encontrar la ruta de la aplicación/juego seleccionada!\n%VARIABLE_0%",
 		"updateEmuFetchActionsError": "ERROR: ¡No se pueden recuperar los datos de las acciones de GitHub!",
-		"updateEmuIsLatestVersion": "INFO - Stai già utilizzando l'ultima versione!\nID commit (SHA): %VARIABLE_0%",
-		"updateEmuShaAvailable": "INFO - È disponibile un nuovo aggiornamento!\n\nVersione locale: %VARIABLE_0%\nNuova versione: %VARIABLE_1%\n\nVuoi aggiornare?",
-		"updateEmuShaUnavailable": "INFO - Il launcher ha rilevato che non è stato effettuato alcun aggiornamento\n(O l'eseguibile fpPS4 non è stato trovato!)\n\nÈ possibile risolvere questo problema utilizzando la procedura di aggiornamento automatico.\n\nVuoi procedere?",
-		"updateEmuDownloadFailed": "ERRORE - Impossibile scaricare l'aggiornamento di fpPS4!\nStato della risposta: %VARIABLE_0% - OK: %VARIABLE_1%",
+		"updateEmuIsLatestVersion": "INFO - ¡Estás usando la última versión de fpPS4 disponible!\nID de confirmación (SHA): %VARIABLE_0%",
+		"updateEmuShaAvailable": "INFO - ¡Hay una nueva actualización disponible!\n\n Versión local: %VARIABLE 0%\nueva versión: %VARIABLE_1%\n\n¿Quieres actualizar?",
+		"updateEmuShaUnavailable": "NFO: este iniciador detectó que aún no actualizó fpPS4 (¡o no se encontró el ejecutable de fpPS4!)\n\nPuede solucionar esto ejecutando el proceso de actualización de fpPS4.\n¿Desea continuar?",
+		"updateEmuDownloadFailed": "ERROR - ¡No se puede descargar la actualización de fpPS4!\nEstado de respuesta: %VARIABLE_0% - OK: %VARIABLE_1%",
 		"updateEmuProcessComplete": "INFO - Aggiornamento completato!\nNuova versione (ID commit / SHA): %VARIABLE_0%",
 		"updateEmu-1-4": "Download aggiornamento fpPS4 (<label class=\"LABEL_monospace\">%VARIABLE_0%</label>)",
 		"updateEmu-2-4": "Estrazione aggiornamento",
 		"updateEmu-3-4": "Rimozione dei file rimanenti",
 		"updateEmu-4-4": "Aggiornamento completato!",
 		"settingsLogEmuSha": "INFO - Versione di fpPS4: (%VARIABLE_0%)",
-		"dumpStatus_OK": "Perfetto",
-		"dumpStatus_WARN": "File mancanti",
-		"dumpStatus_HB": "Homebrew"
+		"dumpStatus_OK": "Bien",
+		"dumpStatus_WARN": "Archivos perdidos",
+		"dumpStatus_HB": "Cerveza casera"
 	},
 
 	"input_text": {
@@ -69,13 +69,13 @@
 	},
 
 	"title": {
-		"DIV_selectedGameStatus": "Verde: sono presenti tutti i file\nGiallo: mancano alcuni file - vedere il log per i dettagli\nCiano: l'eseguibile è un file .elf"
+		"DIV_selectedGameStatus": "Verde: todos los archivos están presentes\nAmarillo: faltan algunos archivos; verifique el registro para obtener más detalles\nCian: el ejecutable es un archivo .elf"
 	},
 
 	"innerHTML": {
 
-		"DIV_SETTINGS_TITLE": "Impostazioni",
-		"DIV_SETTINGS_LANGUAGE": "Lingua",
+		"DIV_SETTINGS_TITLE": "Ajustes",
+		"DIV_SETTINGS_LANGUAGE": "Idioma",
 		"LABEL_SETTINGS_CURRENT_LANGUAGE": "Lingua attuale",
 		"LABEL_SETTINGS_LANGUAGE_RESTART": "È necessario riavviare il launcher per applicare questa impostazione",
 		"DIV_SETTINGS_PATHS": "Percorsi",
