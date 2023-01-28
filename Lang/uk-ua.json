@@ -1,0 +1,161 @@
+{
+
+	"lang": "Українська (UA)",
+
+	"variables": {
+		"labelEnableHack": "Ввімкнути",
+		"emuStatusRunning": "Виконання",
+		"logWindowTitle": "Запуск fpPS4",
+		"killEmuStatus": "Основний процес було закрито - закрийте вікно логу для продовження роботи",
+		"logCleared": "ІНФО - Список логу був очищений!",
+		"about": "fpPS4 Temmie's Launcher - Версія: %VARIABLE_0%\nСтворено TemmieHeartz\n(https://twitter.com/temmieheartz)\n\nfpPS4 створено red-prig\n(https://github.com/red-prig/fpPS4)\n\nПлагин memoryjs створено Rob--\n(https://github.com/rob--/memoryjs)\n\nПлагин node-stream-zip створено antelle\n(https://github.com/antelle/node-stream-zip)\n\nSVG іконки були взяті з https://www.svgrepo.com/",
+		"mainLog": "fpPS4 Temmie's Launcher - Версія: %VARIABLE_0%\nВикористання nw.js (node-webkit) версія %VARIABLE_1% [%VARIABLE_2%]",
+		"settingsErrorCreatePath": "ПОМИЛКА - Папка не може бути створена!\n(%VARIABLE_0%)\n%VARIABLE_1%",
+		"settingsErrorfpPS4NotFound": "ПОМИЛКА - Не вдалось знайти виконуваний файл fpPS4!\nВиберіть виконуваний файл в налаштуваннях або помістіть його всередину \"Emu\" та натисніть OK.",
+		"settingsConfirmRemoveAllGameSettings": "УВАГА - Ця опція видалить всі налаштування зі списку ігор.\nВи підтверджуєте цю дію?",
+		"settingsConfirmRemoveGameSettings": "ПОПЕРЕДЖЕННЯ - Ця дія видалить всі налаштування %VARIABLE_0%.\n\nВи підтверджуєте цю дію?",
+		"settingsRemovedGameSettings": "ІНФО - ( %VARIABLE_0% ) Файл конфігурації успішно видалений!",
+		"settingsRemoveGameSettingsError": "ПОМИЛКА - ( %VARIABLE_0% ) Не вдалось видалити цей файл!\nПодробиці: %VARIABLE_1%",
+		"settingsRemoveGameSettings404": "УВАГА - ( %VARIABLE_0% ) Не вдалось знайти файл конфігурації!",
+		"infoProcessComplete": "ІНФО - Процесс завершено!\nДивіться лог для отримання більше подробиць інформації",
+		"infoSettingsUpdated": "ІНФО - Файл налаштувань успішно оновлений!",
+		"settingsLoadError": "ПОМИЛКА - Неможливо загрузити налаштування!\n %VARIABLE_0%",
+		"settingsSaveError": "ПОМИЛКА - Неможливо зберегти налаштування!\n %VARIABLE_0%",
+		"runEmuArgs": "ІНФО - Запуск fpPS4 з параметрами: %VARIABLE_0%\nШлях виконуваного файлу: %VARIABLE_1%",
+		"closeEmuStatus": "ІНФО - %VARIABLE_0% був закритий з кодом виходу %VARIABLE_1%",
+		"removedLibModules": "ІНФО - Всі модулі, які були імпортовані раніше, були видалені, так як вони можуть нанести шкоди дампам.",
+		"removeLibModule": "ІНФО - ( %VARIABLE_0% ) Видалення модуля: %VARIABLE_1%",
+		"removeModuleError": "ПОМИЛКА - Не вдалось видалити цей модуль!\nПричина: %VARIABLE_0%",
+		"updateGameSettings": "ІНФО - ( %VARIABLE_0% ) Файл конфігурації був успішно оновлений!",
+		"updateGameSettingsError": "ПОМИЛКА - Неможливо оновити файл налаштувань %VARIABLE_0% в %VARIABLE_1%!\nПодробиці: %VARIABLE_2%",
+		"skipUpdateGameSettings": "ІНФО - ( %VARIABLE_0% ) Файл налаштувань не буде оновлений, оскільки ніяких змін не було зроблено!",
+		"errorSaveFile": "ПОМИЛКА - Неможливо зберегти файл!\nПодробиці: %VARIABLE_0%",
+		"saveSucessfullPath": "ІНФО - Файл успішно записаний!\nМістоположення: %VARIABLE_0%",
+		"createdSettingsFile": "ІНФО - ( %VARIABLE_0% ) Файл конфігурації успішно створено!",
+		"errorCreateSettingsFile": "ПОМИЛКА - Неможливо створити файл конфігурації %VARIABLE_0% в %VARIABLE_1%!\nПодробиці: %VARIABLE_2%",
+		"patchLoadedSucessfully": "ІНФО - Патч успішно завантажено!\nІм'я: %VARIABLE_0%\nТип: %VARIABLE_1%",
+		"patchLoadErrorMismatch": "ПОМИЛКА - Це не патч, а якщо и є, то вибраний не відповідає поточній грі!\nІдентифікатор патчу: %VARIABLE_0%\nПоточний додаток/гра: %VARIABLE_1%",
+		"patchLoadErrorParamSfo404": "ПОМИЛКА - Не вдалось знайти PARAM.SFO цього патчу!",
+		"gameListLoadWarnPlayGo": "ПОВІДОМЛЕННЯ - Неможливо знайти файл playgo-chunk.dat із %VARIABLE_0%!\nЯкщо цей додаток/гра не являється Homebrew, перевірте, що дамп був зроблений правильно.",
+		"gameListLoadWarnParamSfo": "ПОВІДОМЛЕННЯ - Не вдалось знайти PARAM.SFO із %VARIABLE_0%!\nЯкщо цей додаток/гра не являється Homebrew, перевірте, що дамп був зроблений правильно.",
+		"gameListRemoveProjectGp4": "ІНФО - ( %VARIABLE_0% ) Видалення Project.gp4, оскільки він був сгенерований PkgEditor та не потрібен.",
+		"gameListDoubleIdError": "ПОВІДОМЛЕННЯ - Не вдалось добавити %VARIABLE_0% в список ігор, тому що вже є друга назва з таким же ID! ( %VARIABLE_1% )",
+		"gameListNoGameFound": "ІНФО - Не знайдено додаток/гру в поточній папці ( %VARIABLE_0% )",
+		"gameListSearch404": "Не вдалось знайти",
+		"checkDumpPlayGoOnApp": "ІНФО - ( %VARIABLE_0% ) playgo-chunk.dat був ззнайдений всередині sce_sys/app - копія була створена в sce_sys.",
+		"gameListLoadSuccessful": "ІНФО - Список ігор був успішно завантажений! ( %VARIABLE_0% назв знайдено )",
+		"gameListVersion": "Версія",
+		"selectGameLoadPatchErrorParamSfo": "ПОМИЛКА - Неможливо завантажити PARAM.SFO із цього патчу!\n%VARIABLE_0%",
+		"path": "Шлях",
+		"gamelistGamePath404": "ОШИБКА - Не удалось найти путь к выбранному приложению / игре!\n%VARIABLE_0%",
+		"updateEmuFetchActionsError": "ОШИБКА - Не удалось получить данные GitHub действий!",
+		"updateEmuIsLatestVersion": "ИНФО - Вы используете последнюю доступную версию fpPS4!\nCommit ID (SHA): %VARIABLE_0%",
+		"updateEmuShaAvailable": "ИНФО - Доступно новое обновление!\n\nВаша версия: %VARIABLE_0%\nНовая версия: %VARIABLE_1%\n\nХотите обновить?",
+		"updateEmuShaUnavailable": "ИНФО - Лаунчер обнаружил что вы не обновили fpPS4 (или файл запуска fpPS4 не найден!)\n\nВы можете это исправить запуском процесса обновления fpPS4.\nХотите продолжить?",
+		"updateEmuDownloadFailed": "ОШИБКА - Не удалось скачать обновление для fpPS4!\nСтатус ответа: %VARIABLE_0% - ОК: %VARIABLE_1%",
+		"updateEmuProcessComplete": "ИНФО - Обновление завершено!\nНовая версия fpPS4 (Commit ID / SHA): %VARIABLE_0%",
+		"updateEmu-1-4": "Скачивание обновления fpPS4 (<label class=\"LABEL_monospace\">%VARIABLE_0%</label>)",
+		"updateEmu-2-4": "Распаковка обновления",
+		"updateEmu-3-4": "Удаление ненужных файлов",
+		"updateEmu-4-4": "Обновление завершено!",
+		"settingsLogEmuSha": "ИНФО - Версия fpPS4: (%VARIABLE_0%)",
+		"dumpStatus_OK": "Отлично",
+		"dumpStatus_WARN": "Недостающие файлы",
+		"dumpStatus_HB": ""
+	},
+
+	"input_text": {
+		"INPUT_gameListSearch": {"placeholder": "Поиск: Название игры...", "value": ""}
+	},
+
+	"title": {
+		"DIV_selectedGameStatus": "Зеленый: Все файлы присутствуют\nЖелтый: Некоторые файлы отсутствуют - смотрите лог для более подробной информации\nГолубой: исполняемый файл представляет собой файл .elf."
+	},
+
+	"innerHTML": {
+
+		"DIV_SETTINGS_TITLE": "Настройки",
+		"DIV_SETTINGS_LANGUAGE": "Язык",
+		"LABEL_SETTINGS_CURRENT_LANGUAGE": "Текущий язык",
+		"LABEL_SETTINGS_LANGUAGE_RESTART": "Перезапустите Launcher чтобы настройки вступили в силу.",
+		"DIV_SETTINGS_PATHS": "Путь:",
+		"LABEL_SETTINGS_APP_GAMES_PATH": "К папке с Приложениями / играми",
+		"LABEL_SETTINGS_FPPS4_PATH": "К папке с эмулятором (fpPS4)",
+		"DIV_SETTINGS_GAME_LIST": "Макет",
+		"LABEL_SETTINGS_GRID_BORDER_RADIUS": "(Сетка) Радиус границы значков",
+		"LABEL_SETTINGS_GAME_SEARCH_MODE": "Режим поиска",
+		"LABEL_SETTINGS_GAME_LIST_BACKGROUND_BLUR": "Размытие фона",
+		"LABEL_SETTINGS_GAME_LIST_BACKGROUND_OPACITY": "Прозрачность фона",
+		"LABEL_SETTINGS_GAME_LIST_SEARCH_CASE_SENSITIVE": "Включить точный поиск (с учетом регистра)",
+		"LABEL_SETTINGS_GAME_LIST_NORMAL_SHOW_BG": "Показать фон для каждой игры в списке",
+		"LABEL_SETTINGS_SHOW_METADATA_GAME_ENTRY": "Показать информацию (или путь к папке) для каждой игры в списке",
+		"DIV_SETTINGS_EMU_RUNNING": "Выполняется эмуляция",
+		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_BLUR": "Размытие фона",
+		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_OPACITY": "Прозрачность фона",
+		"LABEL_SETTINGS_SHOW_METADATA_EMU_RUNNING": "Показать информацию об игре (или путь к исполняемому файлу) под заголовком",
+		"DIV_SETTINGS_LOG_OPTIONS": "Параметры ведения лога",
+		"LABEL_SETTINGS_LOG_START_WINDOW_STATE": "Запуск окна лога",
+		"LABEL_SETTINGS_PROMPT_KEY_FPPS4_CLOSES": "Нажмите любую клавишу для закрытия после завершения работы fpPS4",
+		"DIV_SETTINGS_MISC": "Другие конфигурации",
+		"LABEL_SETTINGS_ENABLE_PARAMSFO_SUPPORT": "Включить поддержку файлов <code>PARAM.SFO</code> (Нажмите на \"Удалить все игровые настройки\" и перезапустите Launcher, чтобы настройки вступили в силу)",
+		"LABEL_SETTINGS_REMOVE_PROJECT_GP4_FILES": "Удалить файлы <code>Project.gp4</code> при загрузке списка игр",
+		"LABEL_FPPS4_OPTIONS": "Настройки <label class=\"LABEL_emuColor\">fp</label>PS4",
+		"LABEL_FPPS4_OPTIONS_DUMP_STATUS": "Состояние дампа",
+		"LABEL_FPPS4_OPTIONS_ENABLE_PATCHES": "Включить патчи",
+		"LABEL_FPPS4_OPTIONS_PATCH_VERSION": "Версия",
+		"LABEL_FPPS4_OPTIONS_PATCH_TYPE": "Тип",
+		"LABEL_EMU_RUNNING_STATUS": "Статус",
+		"LABEL_FPPS4_OPTIONS_APP_VERSION": "Версия",
+		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "Параметры запуска",
+		"LABEL_FPPS4_OPTIONS_HACKS": "Хаки",
+		"LABEL_SETTINGS_SHOW_METADATA_GUI": "Показывать иконку / имя когда fpPS4 выполняется",
+		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">ЭКСПЕРЕМЕНТАЛЬНО</label> Логи процесса вывода fpPS4 (<code>stdout</code> и <code>stderr</code>) в внутреннем логе (Нажать F12 --> Console)",
+		"DIV_SETTINGS_FPPS4_UPDATER": "Автообновления fpPS4",
+		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Включить автообновления fpPS4",
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Искать обновления из ветки",
+		"DIV_SETTINGS_GENERAL": "Основное",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Размер интерфейса: ",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Внимание: Не рекомендуется изменять этот параметр если разреш. экрана меньше чем <code>1920x1080</code>",
+		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Статус",
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Запустить fpPS4 в полноэкранном режиме"
+
+	},
+
+	"select": {
+
+		"SELECT_settingsSearchMode": {
+			"appName": "Имя",
+			"titleId": "Код игры"
+		},
+		"SELECT_settingsStartExternalWindow": {
+			"normal": "Нормальное",
+			"max": "Развернутое",
+			"min": "Свернутое"
+		}
+
+	},
+
+	"value": {
+
+		"BTN_SETTINGS_SELECT_APPS_GAMES_PATH": "Выберите папку",
+		"BTN_SETTINGS_OPEN_APPS_GAMES_PATH": "Открыть папку",
+		"BTN_SETTINGS_SELECT_FPPS4_PATH": "Выберите файл",
+		"BTN_SETTINGS_DELETE_ALL_GAME_SETTINGS": "Удалить все игровые настройки",
+		"BTN_SETTINGS_APPLY_CLOSE": "Применить и закрыть",
+		"BTN_SETTINGS_CLOSE": "Назад",
+		"BTN_REFRESH": "Обновить список игр",
+		"BTN_SETTINGS": "Настройки",
+		"BTN_CLEAR_LOG": "Очистить лог",
+		"BTN_ABOUT": "О программе",
+		"BTN_KILL": "Остановить fpPS4",
+		"BTN_FPPS4_OPTIONS_SELECT_PATCH_LOCATION": "Выберите патч",
+		"BTN_FPPS4_OPTIONS_OPEN_APP_LOCATION": "Папка приложения / игры",
+		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "Сброс настроек",
+		"BTN_launcherOptionsExportMetadata": "Экспорт метаданных",
+		"BTN_RUN": "Запустить",
+		"BTN_SETTINGS_RESTART_LAUNCHER": "Перезапустить лаунчер",
+		"BTN_UPDATE_FPPS4": "Обновить fpPS4",
+		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": "Обновить fpPS4 принудительно"
+
+	}
+}
