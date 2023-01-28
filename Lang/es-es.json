@@ -61,7 +61,7 @@
 		"settingsLogEmuSha": "INFO - Versione di fpPS4: (%VARIABLE_0%)",
 		"dumpStatus_OK": "Bien",
 		"dumpStatus_WARN": "Archivos perdidos",
-		"dumpStatus_HB": "Cerveza casera"
+		"dumpStatus_HB": "Homebrew"
 	},
 
 	"input_text": {
@@ -76,8 +76,8 @@
 
 		"DIV_SETTINGS_TITLE": "Ajustes",
 		"DIV_SETTINGS_LANGUAGE": "Idioma",
-		"LABEL_SETTINGS_CURRENT_LANGUAGE": "Lingua attuale",
-		"LABEL_SETTINGS_LANGUAGE_RESTART": "È necessario riavviare il launcher per applicare questa impostazione",
+		"LABEL_SETTINGS_CURRENT_LANGUAGE": "Idioma actual",
+		"LABEL_SETTINGS_LANGUAGE_RESTART": "Debes reiniciar el lanzador para que surta efecto",
 		"DIV_SETTINGS_PATHS": "Percorsi",
 		"LABEL_SETTINGS_APP_GAMES_PATH": "Cartella App/Giochi",
 		"LABEL_SETTINGS_FPPS4_PATH": "Posizione dell'Emulatore",
@@ -90,9 +90,9 @@
 		"LABEL_SETTINGS_GAME_LIST_NORMAL_SHOW_BG": "Mostra lo sfondo per ogni gioco nell'elenco",
 		"LABEL_SETTINGS_SHOW_METADATA_GAME_ENTRY": "Mostra le informazioni (o il percorso della cartella) per ogni gioco nell'elenco",
 		"DIV_SETTINGS_EMU_RUNNING": "Emulazione in corso",
-		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_BLUR": "Sfocatura dello sfondo",
-		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_OPACITY": "Opacità dello sfondo",
-		"LABEL_SETTINGS_SHOW_METADATA_EMU_RUNNING": "Mostra le informazioni sul gioco (o il percorso eseguibile) sotto il titolo",
+		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_BLUR": "Desenfoque de fondo",
+		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_OPACITY": "Opacidad de fondo",
+		"LABEL_SETTINGS_SHOW_METADATA_EMU_RUNNING": "Muestra los metadatos de la aplicación/juego (o la ruta ejecutable) debajo del título del juego",
 		"DIV_SETTINGS_LOG_OPTIONS": "Opzioni log",
 		"LABEL_SETTINGS_LOG_START_WINDOW_STATE": "Avvia la finestra del log",
 		"LABEL_SETTINGS_PROMPT_KEY_FPPS4_CLOSES": "Premi un tasto qualsiasi per chiudere dopo la chiusura di fpPS4",
