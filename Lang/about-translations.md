@@ -8,3 +8,4 @@ I would like to thank everyone who contributed to the translation of this projec
 - Russian: ThatSameGuy _(Revisions by [gandalfthewhite](https://github.com/gandalfthewhite19890404) and [ArtemVideoGames](https://github.com/ArtemVideoGames))_
 - Italian: [Dan Adrian Radut (Aka. B8nee)](https://github.com/B8nee)
 - Japanese: [mktm235](https://github.com/mktm235)
+- Ukrainian: [ArtemVideoGames](https://github.com/ArtemVideoGames)
