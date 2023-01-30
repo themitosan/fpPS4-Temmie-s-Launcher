@@ -8,20 +8,623 @@
 
 	***********************************************************************
 */
+
+/*
+	HTML Tags
+*/
 body {
 	color: #fff;
+	overflow: hidden;
+	user-select: none;
+	font-family: monospace;
 	background-color: #000;
-	text-shadow: 1px 1px 0px #000;
+	text-rendering: optimizelegibility;
 }
 img {
+	user-select: none;
+	-webkit-user-drag: none;
+}
+input[type="text"] {
+    outline: none;
+}
+
+/*
+	External fonts
+	Rename "SST Light" as SSTLight.ttf and place it in this same folder (App/css) 
+*/
+@font-face {
+	font-family: SST-Light;
+	src: url('SSTLight.ttf');
+}
+
+/*
+	Scrollbar
+*/
+::-webkit-scrollbar {
+    width: 2.2px;
+    height: 2.2px;
+}
+::-webkit-scrollbar-track {
+    margin: 6px 0px 6px 0px;
+}
+::-webkit-scrollbar-thumb {
+    background: #e7e7e7;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #f0f0f0;
+}
+::-webkit-scrollbar-thumb:active {
+    background: #fff;
+}
+
+/*
+	Divs
+*/
+
+/* Top bar (drag) */
+.APP_TOP_BAR {
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 34px;
+	cursor: move;
+	z-index: 2000;
+	display: none;
+	overflow: hidden;
+	flex-wrap: nowrap;
+	position: absolute;
+	align-items: center;
+	flex-direction: row;
+	justify-content: center;
+	background-color: #0000;
+	backdrop-filter: blur(0px);
+}
+.APP_TOP_BAR:hover {
+	backdrop-filter: blur(6px);
+	background-image: linear-gradient(90deg, #0000, #4a4aa4ad, #0000);
+}
+.APP_TOP_BAR:hover .DIV_TOP_WINDOW_DOCUMENT_TITLE {
+	opacity: 1;
+	width: 320px;
+	filter: blur(0px);
+}
+.APP_TOP_BAR:hover .APP_TOP_WINDOW_BUTTONS {
+	opacity: 1;
+	filter: blur(0px);
+}
+.APP_TOP_BAR:hover .BTN_TOP_WINDOW_ACTIONS {
+	width: 34px;
+}
+.DIV_TOP_WINDOW_DOCUMENT_TITLE {
+	opacity: 0;
+	width: 0px;
+	cursor: move;
+	display: flex;
+	overflow: hidden;
+	flex-wrap: nowrap;
+	filter: blur(10px);
+	break-after: avoid;
+	align-items: center;
+	white-space: nowrap;
+	flex-direction: row;
+	justify-content: center;
+	text-shadow: 1px 1px 0px #000;
+	transition: 0.8s cubic-bezier(0, 1, 0, 1);
+}
+.APP_TOP_WINDOW_BUTTONS {
+	top: 0px;
+	right: 0px;
+	opacity: 0;
+	height: 34px;
+	z-index: 910;
+	display: flex;
+	transition: 0.4s;
+	filter: blur(4px);
+	flex-wrap: nowrap;
+	position: absolute;
+	align-items: center;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+/* Popup */
+.APP_POPUP {
+	top: 0px;
+	left: 0px;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	z-index: 1000;
+	transition: 0.2s;
+	position: absolute;
+	background-color: #0000;
+	backdrop-filter: blur(4px) grayscale(0);
+}
+.APP_POPUP_LINE {
+	width: 100%;
+	height: 1px;
+	position: absolute;
+	background-color: #0000;
+	background-image: linear-gradient(90deg, #fff4, #fff6, #fff4);
+}
+.APP_POPUP_LINE_TOP {
+	top: 12.45%; /* 12.4 */
+}
+.APP_POPUP_LINE_BOTTOM {
+	bottom: 12.4%;
+}
+.APP_POPUP_TITLE {
+	left: 5.5%;
+	font-size: 250%;
+	overflow: hidden;
+	position: absolute;
+	top: calc(12.4% - 58px);
+	text-shadow: 0px 0px 4px #0004;
+	font-family: 'SST-Light', system-ui;
+}
+.APP_POPUP_CONTENT_HOLDER {
+	top: 12.4%;
+	left: 14.2%;
+	width: 71.6%;
+	height: 75.2%;
+	display: table;
+	font-size: 138%;
+	overflow: hidden;
+	position: absolute;
+	background-color: #0000;
+	transition-duration: 0.6s;
+	font-family: 'SST-Light', system-ui;
+	transition-timing-function: cubic-bezier(0,1,0,1);
+}
+.APP_POPUP_MESSAGE {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
+.APP_POPUP_MESSAGE_CONFIRM {
+	width: 100%;
+	height: 78%;
+	display: flex;
+	overflow: auto;
+	flex-wrap: wrap;
+	text-align: center;
+	align-items: center;
+	flex-direction: row;
+	align-content: center;
+	justify-content: center;
+}
+.APP_POPUP_MESSAGE_CONFIRM_ACTIONS {
+	width: 100%;
+	bottom: 0px;
+	height: 22%;
+	display: flex;
+	flex-wrap: nowrap;
+	position: absolute;
+	align-items: center;
+	justify-content: center;
+}
+.APP_POPUP_BUTTON_LABEL {
+	height: 34px;
+	display: flex;
+	overflow: hidden;
+	margin-right: 30px;
+	text-shadow: 0px 0px 6px #000;
+}
+.APP_POPUP_BUTTON_LABEL_HOLDER {
+	height: 30px;
+	display: flex;
+	font-size: larger;
+	flex-wrap: nowrap;
+	position: absolute;
+	align-items: center;
+	flex-direction: row;
+	left: calc(6% - 6px);
+	align-content: center;
+	justify-content: center;
+	bottom: calc(12.4% - 35px);
+	font-family: 'SST-Light', system-ui;
+}
+
+/* Main canvas */
+.APP_MAIN {
+	top: 0px;
+	left: 0px;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 900;
+	display: none;
+	position: absolute;
+	background-color: #0000;
+	transition-duration: 0.6s;
+	backdrop-filter: blur(6px);
+}
+.APP_CANVAS_BG {
+	top: 0px;
+	left: 0px;
+	z-index: 2;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-size: cover;
+	transition-duration: 0.2s;
+	background-position: center;
+	background-repeat: no-repeat;
+	-webkit-mask-image: linear-gradient(0deg, #0006, #000, #000, #000, #000b);
+}
+.APP_CANVAS_BG_ICON {
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	filter: opacity(0.2);
+	transition-duration: 0.2s;
+	background-size: auto 100%;
+	background-position-x: 100%;
+	background-position-y: 100%;
+	background-repeat: no-repeat;
+	background-image: url('../img/4.webp');
+}
+.APP_CANVAS_BG_COLOR {
+	top: 0px;
+	left: 0px;
+	z-index: 0;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	transition-duration: 4s;
+}
+.APP_LABEL_BOOT_INFO {
+	top: 0px;
+	left: 0px;
+	z-index: 3;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	overflow: hidden;
+	font-size: larger;
+	flex-wrap: nowrap;
+	position: absolute;
+	text-align: center;
+	align-items: center;
+	flex-direction: row;
+	justify-content: center;
+	background-color: #0000;
+	transition-duration: 2s;
+	font-family: 'SST-Light';
+	text-shadow: 0px 0px 20px #fff;
+}
+
+/* Game list */
+.APP_MAIN_TOP {
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	z-index: 10;
+	height: 80px;
+	display: flex;
+	overflow: hidden;
+	flex-wrap: nowrap;
+	position: absolute;
+	flex-direction: row;
+	align-items: flex-end;
+	justify-content: center;
+	transition-duration: 0.2s;
+}
+.APP_MAIN_TOP_BG {
+	top: -40px;
+	z-index: 8;
+	left: -20px;
+	height: 110px;
+	display: flex;
+	filter: blur(6px);
+	position: absolute;
+	width: calc(100% + 40px);
+	transition-duration: 0.4s;
+}
+.APP_MAIN_GAMELIST {
+	left: 0px;
+	z-index: 5;
+	padding: 4px;
+	overflow: auto;
+	position: absolute;
+	top: calc(12.4% + 2px);
+	background-color: #0000;
+	width: calc(100% - 20px);
+	transition-duration: 0.6s;
+	height: calc(75.1% - 10px);
+	text-align: -webkit-center;
+	font-family: 'SST-Light', system-ui;
+	transition-timing-function: cubic-bezier(0,1,0,1);
+}
+.APP_GAMELIST_ENTRY {
+	cursor: pointer;
+	overflow: hidden;
+	text-align: left;
+}
+.GAMELIST_ENTRY_LIST {
+	width: 98%;
+	outline: none;
+	color: #fff;
+	height: 104px;
+	display: flex;
+	overflow: hidden;
+	flex-wrap: nowrap;
+	border-width: 2px;
+	align-items: center;
+	border-style: solid;
+	border-color: #fff0;
+	flex-direction: row;
+	margin: 5px 0px 5px 0px;
+	background-color: #0000;
+	transition-duration: 0.2s;
+}
+.GAMELIST_ENTRY_LIST:hover, .GAMELIST_ENTRY_LIST:focus {
+	border-color: #fff;
+	background-color: #fff2;
+}
+.APP_GAMELIST_ENTRY_METADATA {
+	max-width: 88%;
+	cursor: pointer;
+	overflow: hidden;
+	margin-left: 106px;
+	font-family: 'SST-Light', system-ui;
+}
+.METADATA_LIST {
+	position: absolute;
+}
+.METADATA_LIST_BOTTOM_LINE {
+	width: 92%;
+	height: 1px;
+	border-top-width: 1px;
+	border-top-style: solid;
+	margin-top: calc(8% + 6px);
+}
+
+/* Game options */
+.APP_MAIN_SETTINGS_LEFT {
+	padding: 4px;
+	overflow: auto;
+	position: absolute;
+	text-align: center;
+	left: calc(6% + 3px);
+	top: calc(12.4% + 2px);
+	width: calc(19% - 2px);
+	background-color: #0000;
+	height: calc(75.1% - 10px);
+}
+.APP_MAIN_SETTINGS_RIGHT {
+	position: absolute;
+	text-align: center;
+	left: calc(30% + 8px);
+	top: calc(12.4% + 2px);
+	width: calc(61% + 5px);
+	background-color: #0000;
+	height: calc(75.1% - 10px);
+	padding: 4px;overflow: auto;
+}
+
+/*
+	Input
+*/
+
+/* Window Top (Drag) */
+.BTN_TOP_WINDOW_ACTIONS {
+	width: 0px;
+	color: #fff;
+	margin: 0px;
+	height: 34px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	font-weight: 900;
+	transition: 0.1s;
+	border-radius: 0px;
+	background-color: #0000;
+}
+.BTN_TOP_WINDOW_ACTIONS:hover {
+	background-color: #fff6;
+	text-shadow: 0px 0px 10px #fff;
+}
+.BTN_TOP_APP_MAX {
+	background-size: auto 67%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url('../img/svg/max.svg');
+}
+.BTN_TOP_APP_CLOSE:hover {
+	color: #fff;
+	background-color: #f00;
+	text-shadow: 0px 0px 8px #0006;
+}
+
+/* Message system (Popup / msgsys) */
+.BTN_GUI_POPUP {
+	color: #fff;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: large;
+	border-width: 1px;
+	text-align: center;
+	border-color: #fff;
+	border-style: solid;
+	margin: 0px 5px 2px 5px;
+	background-color: #fff1;
+	padding: 9.6px 133px 11.6px 133px;
+	font-family: 'SST-Light', system-ui;
+}
+.BTN_GUI_POPUP:focus {
+	outline-width: 0px;
+	box-shadow: 0px 0px 10px #fff6;
+}
+.BTN_GUI_POPUP:active {
+	border-width: 1px;
+	border-color: #fff;
+	outline-style: solid;
+	animation-duration: 0.28s;
+	animation-name: GUI_BTN_ACTIVE;
+	animation-timing-function: linear;
+}
+.BTN_GUI_SAFE_MODE {
+	color: #000;
+	border: none;
+	background-color: #06f2ff;
+}
+.BTN_GUI_SAFE_MODE:hover {
+	box-shadow: none;
+}
+.BTN_GUI_SAFE_MODE:active {
+	animation: none;
+}
+
+/* Game list (Top) */
+.INPUT_TEXT_GAME_SEARCH {
+	color: #fff;
+	border: none;
+	height: 40px;
+	min-width: 230px;
+	text-align: center;
+	font-size: large;
+	margin: 0px 4px 3px 4px;
+	transition-duration: 0.2s;
+	background-color: #0000 !important;
+	font-family: 'SST-Light', system-ui;
+}
+.BTN_GUI_TOP {
+	color: #fff;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	font-size: x-large;
+	margin: 0px 4px 4px 4px;
+	padding: 6px 8px 6px 8px;
+	transition-duration: 0.2s;
+	background-color: #0000 !important;
+	font-family: 'SST-Light', system-ui;
+}
+.BTN_GUI_TOP:focus {
+	text-shadow: 0px 0px 10px #fff;
+	text-decoration: underline;
+}
+
+/* Game Options */
+.BTN_GUI_OPTIONS {
+	color: #fff;
+	outline: none;
+	display: flex;
+	cursor: pointer;
+	text-align: left;
+	flex-wrap: nowrap;
+	font-size: larger;
+	align-items: center;
+	border-color: #fff0;
+	border-style: solid;
+	flex-direction: row;
+	align-content: center;
+	margin: 2px 0px 2px 0px;
+	background-color: #0000;
+	transition-duration: 0.16s;
+	padding: 14px 0px 14px 6px;
+	width: -webkit-fill-available;
+	font-family: 'SST-Light', system-ui;
+}
+.BTN_GUI_OPTIONS:hover, .BTN_GUI_OPTIONS:focus {
+	border-color: #fff;
+	background-color: #fff2;
+}
+
+/*
+	Images / SVG Vectors
+*/
+.IMG_CONTROLLER_BUTTON {
+	width: 19px;
+	height: 19px;
+	border-radius: 10px;
+	margin: 4px 6px 0px 4px;
+}
+.IMG_MSG_CONTROLLER_BUTTON {
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	margin: 0px 2px -3px 2px;
+}
+.IMG_GAME_ICON {
+	width: 90.63px;
+	margin-left: 6px;
+	position: unset;
+	border-radius: 6px;
+}
+.IMG_GUI_CHECKBOX {
+	width: 16px;
+	margin: 4px 10px 4px 10px;
+}
+
+/*
+	Labels
+*/
+.LABEL_ENTRY_METADATA {
+	cursor: pointer;
+	font-size: small;
+}
+.LABEL_FPPS4_COLOR {
+	color: #fffb8e;
+}
+.LABEL_ENTRY_APP_NAME_LIST {
+	cursor: pointer;
+	font-size: 150%;
+	font-family: 'SST-Light', system-ui;
+}
+
+/*
+	Animations
+*/
+@keyframes GUI_BTN_ACTIVE {
+	
+	0% {
+		outline-width: 0px;
+		border-color: #fff0;
+		outline-color: #fff;
+		outline-offset: 0px;
+	}
+	50% {
+		outline-width: 3px;
+		outline-color: #fff;
+	}
+	95% {	
+		outline-offset: 6px;
+		outline-color: #fff0;
+	}
+	100% {
+		border-color: #fff;
+		outline-width: 4px;
+	}
 
 }
 
 /*
 	Misc
 */
+
+/* TODO: Find a better way of creating this effect */
+.list-fade {
+	scroll-behavior: smooth;
+	-webkit-mask-image: linear-gradient(0deg, #0000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #0000);
+}
 .none {
 	display: none !important;
+}
+.font-italic {
+	font-style: italic !important;
 }
 .user-can-select {
 	user-select: all;
