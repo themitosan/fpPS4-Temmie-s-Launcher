@@ -97,7 +97,7 @@
 		"LABEL_SETTINGS_LOG_START_WINDOW_STATE": "Iniciar ventana de consola",
 		"LABEL_SETTINGS_PROMPT_KEY_FPPS4_CLOSES": "Premi un tasto qualsiasi per chiudere dopo la chiusura di fpPS4",
 		"DIV_SETTINGS_MISC": "Varios.",
-		"LABEL_SETTINGS_ENABLE_PARAMSFO_SUPPORT": "Habilite la compatibilidad con <code>PARAM.SFO</code> <i>(Haga clic en "Eliminar todas las configuraciones del juego" y reinicie el iniciador para que surta efecto)",
+		"LABEL_SETTINGS_ENABLE_PARAMSFO_SUPPORT": "Habilite la compatibilidad con <code>PARAM.SFO</code> <i>(Haga clic en \"Eliminar todas las configuraciones del juego\" y reinicie el iniciador para que surta efecto)",
 		"LABEL_SETTINGS_REMOVE_PROJECT_GP4_FILES": "Eliminar <code>Project.gp4</code> de todos los juegos en la carga de la lista de juegos",
 		"LABEL_FPPS4_OPTIONS": "Opciones de <label class=\"LABEL_emuColor\">fp</label>PS4",
 		"LABEL_FPPS4_OPTIONS_DUMP_STATUS": "Estado de volcado",
