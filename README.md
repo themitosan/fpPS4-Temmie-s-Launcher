@@ -8,8 +8,8 @@ A simple launcher for [fpPS4 project](https://github.com/red-prig/fpPS4/) - crea
 ## How to install
 - Download / Clone this repo
 - Download [nw.js](https://dl.nwjs.io/v0.70.1/nwjs-sdk-v0.70.1-win-x64.zip) version `0.70.1`
-- Extract all files from nw where `package.json` is located
-- Run `nw.exe`
+- Extract all files from nw to the `Nwjs` folder
+- Run `Launcher.bat`
 
 <b>IMPORTANT</b>: If you are using a release version and wants to get latest `main` changes, there's no need to download `nwjs` - Just extract all files where `Launcher.exe` is located.
 
