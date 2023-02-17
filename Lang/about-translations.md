@@ -9,3 +9,4 @@ I would like to thank everyone who contributed to the translation of this projec
 - Italian: [Dan Adrian Radut (Aka. B8nee)](https://github.com/B8nee)
 - Japanese: [mktm235](https://github.com/mktm235)
 - Ukrainian: [ArtemVideoGames](https://github.com/ArtemVideoGames) _(Revision by ThatSameGuy)_
+- Dutch: [MrSn0wy](https://github.com/MrSn0wy)
