@@ -1,1 +1,1 @@
-start /B Nwjs\nw .
+start /b Nwjs\nw .
