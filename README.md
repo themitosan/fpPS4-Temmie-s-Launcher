@@ -11,8 +11,6 @@ A simple launcher for [fpPS4 project](https://github.com/red-prig/fpPS4/) - crea
 - Extract all files from nw to the `Nwjs` folder
 - Run `Launcher.bat`
 
-<b>IMPORTANT</b>: If you are using a release version and wants to get latest `main` changes, there's no need to download `nwjs` - Just extract all files where `Launcher.exe` is located.
-
 ### How to import games / apps
 If you dump your game using [addy](https://cdn.discordapp.com/attachments/1055964700602544169/1055965069986517032/How_to_Setup_fpPs4_emulator.pdf) tutorial, it should display on game list just fine.
 
