@@ -81,6 +81,7 @@ temp_SETTINGS = {
 		*/
 		latestCommitSha: '',
 		enableEmuUpdates: !0,
+		fpps4BranchName: 'trunk',
 
 		/*
 			Debug

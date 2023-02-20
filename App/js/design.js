@@ -687,6 +687,9 @@ temp_DESIGN = {
 		document.getElementById('RANGE_settingsEmuRunningBgOpacity').value = cSettings.bgEmuOpacity;
 		document.getElementById('RANGE_settingsGridIconBorderRadius').value = cSettings.gridBorderRadius;
 
+		// Text
+		document.getElementById('INPUT_settingsUpdateFpps4Branch').value = cSettings.fpps4BranchName;
+
 		// Fix for grid size / border-radius
 		if (cSettings.gridIconSize > 512){
 			cSettings.gridIconSize = 512;
@@ -768,6 +771,9 @@ temp_DESIGN = {
 		APP.settings.data.bgListOpacity = parseFloat(document.getElementById('RANGE_settingsGameListBgOpacity').value);
 		APP.settings.data.bgEmuOpacity = parseFloat(document.getElementById('RANGE_settingsEmuRunningBgOpacity').value);
 		APP.settings.data.gridBorderRadius = parseFloat(document.getElementById('RANGE_settingsGridIconBorderRadius').value);
+
+		// Text
+		APP.settings.data.fpps4BranchName = document.getElementById('INPUT_settingsUpdateFpps4Branch').value;
 
 		// Fix gui zoom scale
 		if (APP.settings.data.guiZoomScale > 1.5){

@@ -140,8 +140,8 @@ temp_EMU_UPDATE = {
 				// Get current run data
 				const cRun = options.runs.workflow_runs[i];
 
-				// Check if is same commit sha
-				if (cRun.status === 'completed' && cRun.conclusion === 'success'){
+				// Check if status is completed (with a success build) and it is from same branch
+				if (cRun.status === 'completed' && cRun.conclusion === 'success' && cRun.head_branch === settingsData.fpps4BranchName){
 
 					// Set can update on
 					canUpdate = !0;
