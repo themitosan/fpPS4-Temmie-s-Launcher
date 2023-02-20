@@ -61,7 +61,8 @@
 		"settingsLogEmuSha": "INFO - fpPS4 版本：(%VARIABLE_0%)",
 		"dumpStatus_OK": "完成",
 		"dumpStatus_WARN": "文件缺失",
-		"dumpStatus_HB": "自制"
+		"dumpStatus_HB": "自制",
+		"updateEmuWorkflow404": ""
 	},
 
 	"input_text": {

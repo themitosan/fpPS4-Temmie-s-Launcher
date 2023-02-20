@@ -61,7 +61,8 @@
 		"settingsLogEmuSha": "INFO - Versão do fpPS4: (%VARIABLE_0%)",
 		"dumpStatus_OK": "Perfeito",
 		"dumpStatus_WARN": "Faltam arquivos",
-		"dumpStatus_HB": "Homebrew"
+		"dumpStatus_HB": "Homebrew",
+		"updateEmuWorkflow404": "ERRO - Não foi possivel localizar Main CI na lista de workflows do fpPS4 no GitHub!"
 	},
 
 	"input_text": {

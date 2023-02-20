@@ -10,52 +10,26 @@
 
 temp_EMU_UPDATE = {
 
-	// GitHub actions link
-	commitsLink: 'https://api.github.com/repos/red-prig/fpPS4/branches/',
-	artifactsLink: 'https://api.github.com/repos/red-prig/fpPS4/actions/artifacts',
-
 	// Skip main loading call
 	skipLoadingCheck: !1,
 
-	/*
-		Fetch latest github actions
+	// Fetch data from url
+	fetchData: async function(url, callback){
 
-		options: Object
-			jsonData: 		[Object] GitHub actions list (json)
-			forceUpdate: 	[Boolean] Skip checks and download latest version available
-			silent: 		[Boolean] Don't show message if user already have latest version
-	*/
-	check: function(options){
-		
-		// Process options
-		if (options === void 0){
-			options = {	forceUpdate: !1, silent: !1 };
-		}
-		var links = { artifacts: this.artifactsLink, commit: this.commitsLink + APP.settings.data.fpps4BranchName },
-			optionsList = ['forceUpdate', 'silent'].forEach(function(optId){
-				if (options[optId] === void 0){
-					options[optId] = !1;
-				}
-			});
-
-		// If Emu updates is available, has internet and fpPS4 isn't running
-		if (APP.settings.data.enableEmuUpdates === !0 && navigator.onLine === !0 && APP.emuManager.emuRunning === !1){
-
-			// Disable check for updates emu
-			document.getElementById('BTN_UPDATE_FPPS4').disabled = 'disabled';
+		// If url was provided
+		if (url !== void 0 && navigator.onLine === !0 && typeof callback === 'function'){
 
 			// Get error message
 			const errMsg = APP.lang.getVariable('updateEmuFetchActionsError');
 
 			// Fetch data
-			fetch(links.artifacts).then(function(resp){
+			fetch(url).then(function(resp){
 
 				// Check if fetch status is ok
 				if (resp.ok === !0){
 
 					resp.json().then(function(jsonData){
-						options['latestActions'] = jsonData;
-						getLatestCommit();
+						callback(jsonData);
 					});
 
 				} else {
@@ -69,32 +43,76 @@ temp_EMU_UPDATE = {
 
 			});
 
-			// Get latest commit
-			const getLatestCommit = function(){
+		}
 
-				// Fetch data
-				fetch(links.commit).then(function(resp){
-	
-					// Check if fetch status is ok
-					if (resp.ok === !0){
-	
-						resp.json().then(function(jsonData){
-							options['latestCommit'] = jsonData;
-							APP.emuManager.update.processActions(options);
-						});
-	
-					} else {
-	
-						// If launcher can't get data, log error and reset button
-						document.getElementById('BTN_UPDATE_FPPS4').disabled = '';
-						console.error(errMsg);
-						APP.log(errMsg);
-	
+	},
+
+	/*
+		Fetch latest github actions
+
+		options: Object
+			jsonData: 	 Object - GitHub actions list (json)
+			forceUpdate: Boolean - Skip checks and download latest version available
+			silent: 	 Boolean - Don't show message if user already have latest version
+	*/
+	check: function(options){
+		
+		// Process options
+		if (options === void 0){
+			options = {	forceUpdate: !1, silent: !1 };
+		}
+		var fetchData = this.fetchData,
+			workflowLink = 'https://api.github.com/repos/red-prig/fpPS4/actions/workflows',
+			optionsList = ['forceUpdate', 'silent'].forEach(function(optId){
+				if (options[optId] === void 0){
+					options[optId] = !1;
+				}
+			});
+
+		// If Emu updates is available, has internet and fpPS4 isn't running
+		if (APP.settings.data.enableEmuUpdates === !0 && navigator.onLine === !0 && APP.emuManager.emuRunning === !1){
+
+			// Disable check for updates emu
+			document.getElementById('BTN_UPDATE_FPPS4').disabled = 'disabled';
+
+			// Fetch worflow list
+			fetchData(workflowLink, function(data){
+
+				// Set json
+				options['wList'] = data;
+
+				// Variables
+				var sWorkflow,
+					wList = options.wList.workflows;
+
+				// Seek Main CI
+				for (var i = 0; i < wList.length; i++){
+					
+					if (wList[i].name === 'Main CI'){
+						sWorkflow = i;
+						break;
 					}
-	
-				});
 
-			}
+				}
+
+				// Get workflow runs
+				if (sWorkflow !== void 0){
+				
+					fetchData(workflowLink + '/' + wList[sWorkflow].id + '/runs', function(data){
+						options['runs'] = data;
+						APP.emuManager.update.processActions(options);
+					});
+				
+				} else {
+
+					// If not found, log it
+					const errMsg = APP.lang.getVariable('updateEmuWorkflow404');
+					console.error(errMsg);
+					APP.log(errMsg);
+
+				}
+
+			});
 
 		}
 
@@ -112,59 +130,64 @@ temp_EMU_UPDATE = {
 				artifactData,
 				canPrompt = !0,
 				canUpdate = !1,
+				latestCommit = '',
 				msgMode = 'confirm',
-				settingsData = APP.settings.data,
-				latestCommit = options.latestCommit.commit.sha;
+				settingsData = APP.settings.data;
 
-			// Check if current version is latest commit (or force update is on)
-			if (settingsData.latestCommitSha !== latestCommit || options.forceUpdate === !0){
+			// Seek for latest success run
+			for (var i = 0; i < options.runs.workflow_runs.length; i++){
+			
+				// Get current run data
+				const cRun = options.runs.workflow_runs[i];
 
-				// Seek for latest commit
-				for (var i = 0; i < options.latestActions.artifacts.length; i++){
-					
-					// Get sha from current workflow run
-					const cSha = options.latestActions.artifacts[i].workflow_run.head_sha;
+				// Check if is same commit sha
+				if (cRun.status === 'completed' && cRun.conclusion === 'success'){
 
-					// Check if is same commit sha
-					if (cSha === latestCommit){
-						artifactData = options.latestActions.artifacts[i];
-						break;
-					}
-
-				}
-
-				// Check if found matching artifact
-				if (artifactData !== void 0){
-				
-					// Set update flag on
+					// Set can update on
 					canUpdate = !0;
+					
+					// Set run info
+					artifactData = {
+						artifact: cRun.id,
+						sha: cRun.head_sha
+					}
+					break;
+				}
+			
+			}
 
+			// If found valid run
+			if (artifactData !== void 0){
+
+				// Check if current version is latest commit (or force update is on)
+				if (settingsData.latestCommitSha !== artifactData.sha || options.forceUpdate === !0){
+	
 					// Set default update message
-					msgData = APP.lang.getVariable('updateEmuShaAvailable', [settingsData.latestCommitSha.slice(0, 7), artifactData.workflow_run.head_sha.slice(0, 7)]);
-
+					msgData = APP.lang.getVariable('updateEmuShaAvailable', [settingsData.latestCommitSha.slice(0, 7), artifactData.sha.slice(0, 7)]);
+	
 					// If user didn't updated yet using launcher or executable was not found
 					if (settingsData.latestCommitSha === '' || APP.fs.existsSync(settingsData.emuPath) === !1){
 						msgData = APP.lang.getVariable('updateEmuShaUnavailable');
 					}
-				
-				}
-
-			} else {
-
-				// User already have latest version
-				if (settingsData.latestCommitSha === latestCommit && APP.fs.existsSync(settingsData.emuPath) === !0){
-					
-					// Set message mode to alert and get message for latest version
-					msgMode = 'alert';
-					msgData = APP.lang.getVariable('updateEmuIsLatestVersion', [settingsData.latestCommitSha.slice(0, 7)]);
-
-					// If silent is active
-					if (options.silent === !0){
-						canPrompt = !1;
+	
+				} else {
+	
+					// User already have latest version
+					if (settingsData.latestCommitSha === artifactData.sha && APP.fs.existsSync(settingsData.emuPath) === !0){
+	
+						// Set message mode to alert and get message for latest version
+						msgMode = 'alert';
+						msgData = APP.lang.getVariable('updateEmuIsLatestVersion', [settingsData.latestCommitSha.slice(0, 7)]);
+	
 					}
-
+	
 				}
 
+			}
+
+			// If silent is active
+			if (options.silent === !0){
+				canPrompt = !1;
 			}
 
 			// Check if can update
@@ -197,10 +220,10 @@ temp_EMU_UPDATE = {
 
 		// Display GUI
 		APP.design.toggleEmuUpdateGUI('show');
-		APP.design.updateProgressbarStatus(25, APP.lang.getVariable('updateEmu-1-4', [actionsData.workflow_run.head_sha.slice(0, 7)]));
+		APP.design.updateProgressbarStatus(25, APP.lang.getVariable('updateEmu-1-4', [actionsData.sha.slice(0, 7)]));
 
 		// Start download
-		fetch('https://nightly.link/red-prig/fpPS4/actions/runs/' + actionsData.workflow_run.id + '/fpPS4.zip').then(function(resp){
+		fetch('https://nightly.link/red-prig/fpPS4/actions/runs/' + actionsData.artifact + '/fpPS4.zip').then(function(resp){
 
 			if (resp.ok === !0){
 
@@ -270,14 +293,14 @@ temp_EMU_UPDATE = {
 		APP.fs.unlinkSync(data.path);
 
 		// Update settings
-		APP.settings.data.latestCommitSha = data.actions.workflow_run.head_sha;
+		APP.settings.data.latestCommitSha = data.actions.sha;
 		APP.settings.data.emuPath = APP.path.parse(data.path).dir + '/fpPS4.exe';
 
 		// Save settings
 		APP.settings.save();
 
 		// Display success message
-		const processCompleteMsg = APP.lang.getVariable('updateEmuProcessComplete', [data.actions.workflow_run.head_sha.slice(0, 7)]);
+		const processCompleteMsg = APP.lang.getVariable('updateEmuProcessComplete', [data.actions.sha.slice(0, 7)]);
 		APP.design.updateProgressbarStatus(100, APP.lang.getVariable('updateEmu-4-4'));
 
 		// Timing out just to update GUI

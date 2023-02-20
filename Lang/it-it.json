@@ -61,7 +61,8 @@
 		"settingsLogEmuSha": "INFO - Versione di fpPS4: (%VARIABLE_0%)",
 		"dumpStatus_OK": "Perfetto",
 		"dumpStatus_WARN": "File mancanti",
-		"dumpStatus_HB": "Homebrew"
+		"dumpStatus_HB": "Homebrew",
+		"updateEmuWorkflow404": ""
 	},
 
 	"input_text": {

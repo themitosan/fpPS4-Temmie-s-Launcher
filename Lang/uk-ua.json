@@ -61,7 +61,8 @@
 		"settingsLogEmuSha": "ІНФО - Версія fpPS4: (%VARIABLE_0%)",
 		"dumpStatus_OK": "Добре",
 		"dumpStatus_WARN": "Недостатньо файлів",
-		"dumpStatus_HB": ""
+		"dumpStatus_HB": "",
+		"updateEmuWorkflow404": ""
 	},
 
 	"input_text": {

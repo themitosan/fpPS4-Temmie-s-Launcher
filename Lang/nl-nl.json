@@ -61,7 +61,8 @@
 		"settingsLogEmuSha": "INFO - fpPS4 versie: (%VARIABLE_0%)",
 		"dumpStatus_OK": "Prima",
 		"dumpStatus_WARN": "Missende bestanden",
-		"dumpStatus_HB": "Homebrew"
+		"dumpStatus_HB": "Homebrew",
+		"updateEmuWorkflow404": ""
 	},
 
 	"input_text": {

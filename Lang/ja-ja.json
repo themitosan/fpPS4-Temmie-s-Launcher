@@ -61,7 +61,8 @@
 		"settingsLogEmuSha": "INFO - fpPS4のバージョン: (%VARIABLE_0%)",
 		"dumpStatus_OK": "完全",
 		"dumpStatus_WARN": "不完全",
-		"dumpStatus_HB": "自作ソフト(Homebrew)"
+		"dumpStatus_HB": "自作ソフト(Homebrew)",
+		"updateEmuWorkflow404": ""
 	},
 
 	"input_text": {

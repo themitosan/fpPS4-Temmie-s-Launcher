@@ -239,14 +239,7 @@
 					</div>
 
 					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-						<label class="LABEL_checkbox" id="LABEL_SETTINGS_FPPS4_UPDATE_BRANCH">
-							Search updates from branch
-						</label>:
-						<input type="text" placeholder="main, trunk..." class="SETTINGS_TEXT" id="INPUT_settingsUpdateFpps4Branch">
-					</div>
-
-					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-						<input type="button" class="SELECT_settings" id="BTN_SETTINGS_FORCE_FPPS4_UPDATE" value="Force fpPS4 update" onclick="APP.emuManager.update.check({forceUpdate: !0});">
+						<input type="button" class="SELECT_settings" id="BTN_SETTINGS_FORCE_FPPS4_UPDATE" value="Force fpPS4 update" onclick="APP.emuManager.update.check({forceUpdate: !0, silent: !0});">
 					</div>
 
 					<!-- Misc. -->
