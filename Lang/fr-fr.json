@@ -38,7 +38,6 @@
 		"patchLoadErrorParamSfo404": "ERREUR - Impossible de trouver PARAM.SFO pour ce correctif!",
 		"gameListLoadWarnPlayGo": "AVERTISSEMENT - Impossible de trouver playgo-chunk.dat à partir de %VARIABLE_0%!\nSi cette application/ce jeu n'est pas un homebrew, assurez-vous qu'il a été vidé correctement.",
 		"gameListLoadWarnParamSfo": "AVERTISSEMENT - Impossible de trouver %VARIABLE_0% PARAM.SFO!\nSi cette application/ce jeu n'est pas un homebrew, assurez-vous qu'il a été vidé correctement.",
-		"gameListRemoveProjectGp4": "INFO - ( %VARIABLE_0% ) Suppression de Project.gp4 tel qu'il a été généré par PkgEditor et il n'est pas nécessaire.",
 		"gameListDoubleIdError": "ATTENTION - Il n'a pas été possible d'ajouter %VARIABLE_0% à la liste des jeux car il existe déjà un autre titre avec le même identifiant! (%VARIABLE_1%)",
 		"gameListNoGameFound": "INFO - Aucune application/jeu n'a été trouvé dans le dossier actuel ( %VARIABLE_0% )",
 		"gameListSearch404": "Impossible de trouver",

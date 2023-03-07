@@ -38,7 +38,6 @@
 		"patchLoadErrorParamSfo404": "エラー - このパッチの PARAM.SFO が見つかりません",
 		"gameListLoadWarnPlayGo": "警告 - %VARIABLE_0%からplaygo-chunk.datが見つかりません\nこのアプリ/ゲームが自作ではない場合は適切にダンプされていることを確認してください",
 		"gameListLoadWarnParamSfo": "警告 - %VARIABLE_0% PARAM.SFOが見つかりません\nこのアプリ/ゲームが自作ではない場合は適切にダンプされていることを確認してください",
-		"gameListRemoveProjectGp4": "情報 - ( %VARIABLE_0% ) PkgEditorによって生成されたProject.gp4を削除したため不要になりました",
 		"gameListDoubleIdError": "注意 - 同じIDを持つ別のタイトルが既に存在するため %VARIABLE_0% をゲームリストに追加できませんでした(%VARIABLE_1%)",
 		"gameListNoGameFound": "情報 - 現在のフォルダーにアプリ/ゲームが見つかりません ( %VARIABLE_0% )",
 		"gameListSearch404": "見つけることができません",

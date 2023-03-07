@@ -290,18 +290,6 @@ temp_GAMELIST = {
 						settingsFile = JSON.parse(APP.fs.readFileSync(pathBase + '/launcherSettings.json'));
 					}
 
-					// Check if Project.gp4 exists on root. if so, remove it
-					if (APP.settings.data.removeProjectGp4 === !0 && APP.fs.existsSync(pathBase + 'Project.gp4') === !0){
-						
-						try {
-							APP.fs.unlinkSync(pathBase + 'Project.gp4');
-							APP.log(APP.lang.getVariable('gameListRemoveProjectGp4', [appName]));
-						} catch (err) {
-							console.error(err);
-						}
-
-					}
-
 					// If executable exists, set data
 					if (addGame === !0){
 

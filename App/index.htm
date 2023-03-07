@@ -259,14 +259,7 @@
 							Enable <code>PARAM.SFO</code> support <i>(Click on "Delete all game settings" and restart launcher to take effect)</i>
 						</label>
 					</div>
-	
-					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
-						<input type="checkbox" id="CHECKBOX_settingsRemoveProjectGp4">
-						<label class="LABEL_checkbox" id="LABEL_SETTINGS_REMOVE_PROJECT_GP4_FILES" onclick="APP.tools.processCheckbox('CHECKBOX_settingsRemoveProjectGp4');">
-							Remove <code>Project.gp4</code> from every game on game list load
-						</label>
-					</div>
-	
+
 					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 						<input type="button" class="SELECT_settings" id="BTN_SETTINGS_DELETE_ALL_GAME_SETTINGS" value="Delete all game settings" onclick="APP.settings.resetAllGameSettings();">
 						<input type="button" class="SELECT_settings" id="BTN_SETTINGS_RESTART_LAUNCHER" value="Restart launcher" onclick="chrome.runtime.reload();">
@@ -286,7 +279,7 @@
 
 		<!-- Top Menu -->
 		<div class="DIV_ACTIONS" id="DIV_ACTIONS">
-			
+
 			<!-- Search -->
 			<input type="text" class="INPUT_gameListSearch" id="INPUT_gameListSearch" placeholder="Search: Insert game name..." oninput="APP.gameList.search();">
 
@@ -310,7 +303,7 @@
 
 		<!-- fpPS4 Options -->
 		<div class="DIV_OPTIONS" id="DIV_OPTIONS">
-			
+
 			<div class="DIV_TITLE">
 				<label id="LABEL_FPPS4_OPTIONS">
 					<label class="LABEL_emuColor">fp</label>PS4 Options
@@ -344,13 +337,13 @@
 				<!-- Patch options -->
 				<input type="checkbox" id="CHECKBOX_optionsEnablePatch" oninput="APP.gameList.saveGameSettings(!0);APP.design.update();">
 				<label class="LABEL_checkbox" id="LABEL_FPPS4_OPTIONS_ENABLE_PATCHES" onclick="APP.gameList.toggleGamePatch();"> Enable game patch</label>
-				
+
 				<div class="DIV_launcherOptions" id="DIV_launcherOptionsPatchVersion">
 					<input type="button" id="BTN_FPPS4_OPTIONS_SELECT_PATCH_LOCATION" class="BTN_launcherOptions" value="Select patch location" onclick="APP.gameList.loadGamePatch();">
-				
+
 					<!-- Patch details -->
 					<div class="DIV_launcherOptionsPatchVersionMetadata" id="DIV_launcherOptionsPatchVersionMetadata">
-						
+
 						<div class="DIV_launcherOptions">
 							<label id="LABEL_FPPS4_OPTIONS_PATCH_VERSION">Version</label>: <label id="LABEL_launcherOptionsPatchVersion">Unknown</label><br>
 							<label id="LABEL_FPPS4_OPTIONS_PATCH_TYPE">Type</label>: <label id="LABEL_launcherOptionsPatchType">Unknown</label>
@@ -413,7 +406,7 @@
 
 		<!-- Hidden Stuff -->
 		<div class="none">
-			
+
 			<!-- Folder loader -->
 			<input type="file" id="APP_FILE_LOADER"/>
 			<input type="file" id="APP_FILE_SAVE" nwsaveas/>

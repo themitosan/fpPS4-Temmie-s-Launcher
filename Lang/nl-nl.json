@@ -38,7 +38,6 @@
 		"patchLoadErrorParamSfo404": "ERROR - Het bestand PARAM.SFO is niet gevonden in deze patch!",
 		"gameListLoadWarnPlayGo": "WAARSCHUWING - Het bestand playgo-chunk.dat is niet gevonden voor %VARIABLE_0%!\nAls dit geen homebrew is, controleer dan of deze app/game correct is gedumpt.",
 		"gameListLoadWarnParamSfo": "WAARSCHUWING - Het bestand PARAM.SFO is niet gevonden voor %VARIABLE_0%!\nAls dit geen homebrew is, controleer dan of deze app/game correct is gedumpt.",
-		"gameListRemoveProjectGp4": "INFO - ( %VARIABLE_0% ) Het bestand Project.gp4 wordt verwijderd omdat het aangemaakt is in PkgEditor en het niet meer nodig is.",
 		"gameListDoubleIdError": "WAARSCHUWING - Het is niet mogelijk om %VARIABLE_0% toe te voegen omdat er al een app/game is met de zelfde title ID! ( %VARIABLE_1% )",
 		"gameListNoGameFound": "INFO - Er zijn geen apps/games gedetecteerd in de huidige locatie. ( %VARIABLE_0% )",
 		"gameListSearch404": "Er is niks gevonden op:",

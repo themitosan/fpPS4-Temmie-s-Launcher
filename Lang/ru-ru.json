@@ -38,7 +38,6 @@
 		"patchLoadErrorParamSfo404": "ОШИБКА - Не удалось найти PARAM.SFO этого патча!",
 		"gameListLoadWarnPlayGo": "УВЕДОМЛЕНИЕ - Невозможно найти файл playgo-chunk.dat из %VARIABLE_0%!\nЕсли это приложение/игра не является Homebrew, проверьте , что дамп был сделан правильно.",
 		"gameListLoadWarnParamSfo": "УВЕДОМЛЕНИЕ - Не удалось найти PARAM.SFO из %VARIABLE_0%!\nЕсли это приложение/игра не является Homebrew, проверьте, что дамп был сделан правильно.",
-		"gameListRemoveProjectGp4": "ИНФО - ( %VARIABLE_0% ) Удаление Project.gp4, поскольку он был сгенерирован PkgEditor и не нужен.",
 		"gameListDoubleIdError": "УВЕДОМЛЕНИЕ - Не удалось добавить %VARIABLE_0% в список игр, потому что уже есть другое название с таким же ID! ( %VARIABLE_1% )",
 		"gameListNoGameFound": "ИНФО - Не найдено приложений / игр в текущей папке ( %VARIABLE_0% )",
 		"gameListSearch404": "Не удалось найти",

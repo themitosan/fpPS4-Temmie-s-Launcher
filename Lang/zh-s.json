@@ -38,7 +38,6 @@
 		"patchLoadErrorParamSfo404": "ERROR - 没有在这个补丁中找到 PARAM.SFO！",
 		"gameListLoadWarnPlayGo": "WARNING - 在 %VARIABLE_0% 中无法找到 playgo-chunk.dat！\n如果这不是一个自制软件，请检查这个应用／游戏是否被正确地 Dump。",
 		"gameListLoadWarnParamSfo": "WARNING - 在 %VARIABLE_0% 中无法找到 PARAM.SFO！\n如果这不是一个自制软件，请检查这个应用／游戏是否被正确地 Dump。",
-		"gameListRemoveProjectGp4": "INFO - 删除了 (%VARIABLE_0%) 的 Project.gp4 文件，因为它是通过 PkgEditor 生成的，以后不需要这个文件。",
 		"gameListDoubleIdError": "WARNING - 无法添加 %VARIABLE_0% 到游戏列表中，因为存在相同游戏ID的应用／游戏！(%VARIABLE_1%)",
 		"gameListNoGameFound": "INFO - 在当前文件夹中没有找到应用／游戏 (%VARIABLE_0%)",
 		"gameListSearch404": "没有找到",
