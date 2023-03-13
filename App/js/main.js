@@ -318,7 +318,7 @@ window.onload = function(){
 
 		// Check if fpPS4 have any update (silenty)
 		if (APP.emuManager.update.skipLoadingCheck === !1){
-			APP.emuManager.update.check({silent: !0});
+			APP.emuManager.update.check();
 		}
 
 	} catch (err) {
