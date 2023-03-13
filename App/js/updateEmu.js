@@ -171,7 +171,12 @@ temp_EMU_UPDATE = {
 					}
 	
 				} else {
-	
+
+					// If silent is active
+					if (options.silent === !0){
+						canPrompt = !1;
+					}
+					
 					// User already have latest version
 					if (settingsData.latestCommitSha === artifactData.sha && APP.fs.existsSync(settingsData.emuPath) === !0){
 	
@@ -183,11 +188,6 @@ temp_EMU_UPDATE = {
 	
 				}
 
-			}
-
-			// If silent is active
-			if (options.silent === !0){
-				canPrompt = !1;
 			}
 
 			// Check if can update
