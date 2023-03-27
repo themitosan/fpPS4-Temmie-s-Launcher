@@ -102,7 +102,7 @@ temp_EMU_UPDATE = {
 						options['runs'] = data;
 						APP.emuManager.update.processActions(options);
 					});
-				
+
 				} else {
 
 					// If not found, log it
@@ -136,7 +136,7 @@ temp_EMU_UPDATE = {
 
 			// Seek for latest success run
 			for (var i = 0; i < options.runs.workflow_runs.length; i++){
-			
+
 				// Get current run data
 				const cRun = options.runs.workflow_runs[i];
 
@@ -145,7 +145,7 @@ temp_EMU_UPDATE = {
 
 					// Set can update on
 					canUpdate = !0;
-					
+
 					// Set run info
 					artifactData = {
 						artifact: cRun.id,
