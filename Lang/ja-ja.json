@@ -61,7 +61,8 @@
 		"dumpStatus_OK": "完全",
 		"dumpStatus_WARN": "不完全",
 		"dumpStatus_HB": "自作ソフト(Homebrew)",
-		"updateEmuWorkflow404": ""
+		"updateEmuWorkflow404": "",
+		"updater_noWorkflowListAvailable": ""
 	},
 
 	"input_text": {

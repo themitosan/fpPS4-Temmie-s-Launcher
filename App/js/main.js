@@ -316,6 +316,9 @@ window.onload = function(){
 		// Remove all previous imported modules
 		APP.gameList.removeAllModules();
 
+		// Updater: Get all available workflows
+		APP.emuManager.update.getWorkflows();
+
 		// Check if fpPS4 have any update (silenty)
 		if (APP.emuManager.update.skipLoadingCheck === !1){
 			APP.emuManager.update.check({silent: !0});

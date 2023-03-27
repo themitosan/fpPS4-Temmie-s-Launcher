@@ -61,7 +61,8 @@
 		"dumpStatus_OK": "Добре",
 		"dumpStatus_WARN": "Недостатньо файлів",
 		"dumpStatus_HB": "",
-		"updateEmuWorkflow404": ""
+		"updateEmuWorkflow404": "",
+		"updater_noWorkflowListAvailable": ""
 	},
 
 	"input_text": {

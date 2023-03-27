@@ -661,6 +661,7 @@ temp_DESIGN = {
 		// Select
 		document.getElementById('SELECT_settingsLanguage').value = cSettings.appLanguage;
 		document.getElementById('SELECT_settingsSearchMode').value = cSettings.gameSearchMode;
+		document.getElementById('SELECT_settingsUpdaterCurrentCI').value = cSettings.fpps4selectedCI;
 		document.getElementById('SELECT_settingsStartExternalWindow').value = cSettings.logExternalWindowStartMode;
 
 		// Checkbox
@@ -745,6 +746,7 @@ temp_DESIGN = {
 		// Select
 		APP.settings.data.appLanguage = document.getElementById('SELECT_settingsLanguage').value;
 		APP.settings.data.gameSearchMode = document.getElementById('SELECT_settingsSearchMode').value;
+		APP.settings.data.fpps4selectedCI = document.getElementById('SELECT_settingsUpdaterCurrentCI').value;
 		APP.settings.data.logExternalWindowStartMode = document.getElementById('SELECT_settingsStartExternalWindow').value;
 
 		// Checkbox

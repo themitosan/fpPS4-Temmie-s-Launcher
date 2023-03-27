@@ -47,6 +47,55 @@ temp_EMU_UPDATE = {
 
 	},
 
+	// Get all available workflows
+	getWorkflows: function(){
+
+		// Process workflows
+		const processWorkflows = function(data){
+
+			// Variables
+			var htmlTemp = '<option disabled>' + APP.lang.getVariable('updater_noWorkflowListAvailable') + '</option>';
+
+			// Check if data is provided
+			if (data !== void 0){
+
+				// Reset html temp
+				htmlTemp = '';
+
+				// Process workflow list
+				data.workflows.forEach(function(cData){
+					htmlTemp = htmlTemp + '<option value="' + cData.name + '">' + cData.name + '</option>';
+				});
+
+			}
+
+			// Append HTML
+			document.getElementById('SELECT_settingsUpdaterCurrentCI').innerHTML = htmlTemp;
+
+		}
+
+		// Fetch data
+		fetch('https://api.github.com/repos/red-prig/fpPS4/actions/workflows').then(function(resp){
+
+			// Check if fetch status is ok
+			if (resp.ok === !0){
+
+				resp.json().then(function(jsonData){
+					processWorkflows(jsonData);
+				});
+
+			} else {
+
+				// If launcher can't get data, log error and reset button
+				console.error(errMsg);
+				APP.log(errMsg);
+
+			}
+
+		});
+
+	},
+
 	/*
 		Fetch latest github actions
 
@@ -85,14 +134,12 @@ temp_EMU_UPDATE = {
 				var sWorkflow,
 					wList = options.wList.workflows;
 
-				// Seek Main CI
+				// Seek selected ci
 				for (var i = 0; i < wList.length; i++){
-					
-					if (wList[i].name === 'CI'){
+					if (wList[i].name === APP.settings.data.fpps4selectedCI){
 						sWorkflow = i;
 						break;
 					}
-
 				}
 
 				// Get workflow runs
@@ -102,7 +149,7 @@ temp_EMU_UPDATE = {
 						options['runs'] = data;
 						APP.emuManager.update.processActions(options);
 					});
-
+				
 				} else {
 
 					// If not found, log it
@@ -153,7 +200,7 @@ temp_EMU_UPDATE = {
 					}
 					break;
 				}
-			
+
 			}
 
 			// If found valid run
@@ -161,15 +208,15 @@ temp_EMU_UPDATE = {
 
 				// Check if current version is latest commit (or force update is on)
 				if (settingsData.latestCommitSha !== artifactData.sha || options.forceUpdate === !0){
-	
+
 					// Set default update message
 					msgData = APP.lang.getVariable('updateEmuShaAvailable', [settingsData.latestCommitSha.slice(0, 7), artifactData.sha.slice(0, 7)]);
-	
+
 					// If user didn't updated yet using launcher or executable was not found
 					if (settingsData.latestCommitSha === '' || APP.fs.existsSync(settingsData.emuPath) === !1){
 						msgData = APP.lang.getVariable('updateEmuShaUnavailable');
 					}
-	
+
 				} else {
 
 					// If silent is active
@@ -179,13 +226,13 @@ temp_EMU_UPDATE = {
 					
 					// User already have latest version
 					if (settingsData.latestCommitSha === artifactData.sha && APP.fs.existsSync(settingsData.emuPath) === !0){
-	
+
 						// Set message mode to alert and get message for latest version
 						msgMode = 'alert';
 						msgData = APP.lang.getVariable('updateEmuIsLatestVersion', [settingsData.latestCommitSha.slice(0, 7)]);
-	
+
 					}
-	
+
 				}
 
 			}

@@ -109,7 +109,8 @@ temp_LANGUAGE = {
 			"dumpStatus_OK": "Fine",
 			"dumpStatus_WARN": "Missing files",
 			"dumpStatus_HB": "Homebrew",
-			"updateEmuWorkflow404": "ERROR - Unable to locate Main CI on fpPS4 workflow list on GitHub!"
+			"updateEmuWorkflow404": "ERROR - (Updater) Unable to locate selected CI workflow from fpPS4 GitHub!",
+			"updater_noWorkflowListAvailable": "No workflow list available"
 
 		},
 

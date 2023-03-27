@@ -61,7 +61,8 @@
 		"dumpStatus_OK": "完成",
 		"dumpStatus_WARN": "文件缺失",
 		"dumpStatus_HB": "自制",
-		"updateEmuWorkflow404": "ERROR - 无法在 GitHub 上的 fpPS4 工作流列表中找到 Main CI"
+		"updateEmuWorkflow404": "ERROR - 无法在 GitHub 上的 fpPS4 工作流列表中找到 CI",
+		"updater_noWorkflowListAvailable": ""
 	},
 
 	"input_text": {

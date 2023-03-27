@@ -61,7 +61,8 @@
 		"dumpStatus_OK": "Parfait",
 		"dumpStatus_WARN": "Fichiers manquants",
 		"dumpStatus_HB": "Homebrew",
-		"updateEmuWorkflow404": ""
+		"updateEmuWorkflow404": "",
+		"updater_noWorkflowListAvailable": ""
 	},
 
 	"input_text": {

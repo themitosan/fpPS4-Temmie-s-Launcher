@@ -61,7 +61,8 @@
 		"dumpStatus_OK": "Prima",
 		"dumpStatus_WARN": "Missende bestanden",
 		"dumpStatus_HB": "Homebrew",
-		"updateEmuWorkflow404": ""
+		"updateEmuWorkflow404": "",
+		"updater_noWorkflowListAvailable": ""
 	},
 
 	"input_text": {
