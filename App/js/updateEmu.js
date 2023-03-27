@@ -59,7 +59,7 @@ temp_EMU_UPDATE = {
 		
 		// Process options
 		if (options === void 0){
-			options = {	forceUpdate: !1, silent: !1 };
+			options = { forceUpdate: !1, silent: !1 };
 		}
 		var fetchData = this.fetchData,
 			workflowLink = 'https://api.github.com/repos/red-prig/fpPS4/actions/workflows',
@@ -88,7 +88,7 @@ temp_EMU_UPDATE = {
 				// Seek Main CI
 				for (var i = 0; i < wList.length; i++){
 					
-					if (wList[i].name === 'Main CI'){
+					if (wList[i].name === 'CI'){
 						sWorkflow = i;
 						break;
 					}
@@ -97,7 +97,7 @@ temp_EMU_UPDATE = {
 
 				// Get workflow runs
 				if (sWorkflow !== void 0){
-				
+
 					fetchData(workflowLink + '/' + wList[sWorkflow].id + '/runs', function(data){
 						options['runs'] = data;
 						APP.emuManager.update.processActions(options);
