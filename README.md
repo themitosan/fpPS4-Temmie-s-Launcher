@@ -11,8 +11,8 @@ A simple launcher for [fpPS4 project](https://github.com/red-prig/fpPS4/) - crea
 - Extract all files from nw to the `Nwjs` folder
 - Run `Launcher.bat`
 
-### How to import games / apps
-If you dump your game using [addy](https://cdn.discordapp.com/attachments/1055964700602544169/1055965069986517032/How_to_Setup_fpPs4_emulator.pdf) tutorial, it should display on game list just fine.
+### How to setup fpPS4 and launcher
+You can setup both launcher and emulator using [this tutorial](https://docs.google.com/document/d/1HHRm9939HL7b8XCBagIyBo1VJIDj7Me4/edit).
 
 ## External plugins used on this project
 - [memoryjs](https://github.com/rob--/memoryjs) - created by [Rob--](https://github.com/rob--)
