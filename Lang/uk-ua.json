@@ -8,7 +8,7 @@
 		"logWindowTitle": "Запуск fpPS4",
 		"killEmuStatus": "Основний процес було закрито - закрийте вікно логу для продовження роботи",
 		"logCleared": "ІНФО - Список логу був очищений!",
-		"about": "fpPS4 Temmie's Launcher - Версія: %VARIABLE_0%\nСтворено TemmieHeartz\n(https://twitter.com/temmieheartz)\n\nfpPS4 створено red-prig\n(https://github.com/red-prig/fpPS4)\n\nПлагин memoryjs створено Rob--\n(https://github.com/rob--/memoryjs)\n\nПлагин node-stream-zip створено antelle\n(https://github.com/antelle/node-stream-zip)\n\nSVG іконки були взяті з https://www.svgrepo.com/",
+		"about": "fpPS4 Temmie's Launcher - Версія: %VARIABLE_0%\n\nСтворено TheMitoSan\n(https://twitter.com/themitosan)\n\nfpPS4 створено red-prig\n(https://github.com/red-prig/fpPS4)\n\nПлагин memoryjs створено Rob--\n(https://github.com/rob--/memoryjs)\n\nПлагин node-stream-zip створено antelle\n(https://github.com/antelle/node-stream-zip)\n\nSVG іконки були взяті з https://www.svgrepo.com/",
 		"mainLog": "fpPS4 Temmie's Launcher - Версія: %VARIABLE_0%\nВикористання nw.js (node-webkit) версія %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ПОМИЛКА - Папка не може бути створена!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ПОМИЛКА - Не вдалось знайти виконавчий файл fpPS4!\nВиберіть виконавчий файл в налаштуваннях або помістіть його всередину \"Emu\" та натисніть OK.",

@@ -8,7 +8,7 @@
 		"logWindowTitle": "Запуск fpPS4",
 		"killEmuStatus": "Основной процесс был закрыт - закройте окно лога для продолжения работы",
 		"logCleared": "ИНФО - Список логов был очищен!",
-		"about": "fpPS4 Temmie's Launcher - Версия: %VARIABLE_0%\nСоздано TemmieHeartz\n(https://twitter.com/temmieheartz)\n\nfpPS4 создан red-prig\n(https://github.com/red-prig/fpPS4)\n\nПлагин memoryjs создан Rob--\n(https://github.com/rob--/memoryjs)\n\nПлагин node-stream-zip создан antelle\n(https://github.com/antelle/node-stream-zip)\n\nSVG иконки были взяты из https://www.svgrepo.com/",
+		"about": "fpPS4 Temmie's Launcher - Версия: %VARIABLE_0%\n\nСоздано TheMitoSan\n(https://twitter.com/themitosan)\n\nfpPS4 создан red-prig\n(https://github.com/red-prig/fpPS4)\n\nПлагин memoryjs создан Rob--\n(https://github.com/rob--/memoryjs)\n\nПлагин node-stream-zip создан antelle\n(https://github.com/antelle/node-stream-zip)\n\nSVG иконки были взяты из https://www.svgrepo.com/",
 		"mainLog": "fpPS4 Temmie's Launcher - Версия: %VARIABLE_0%\nИспользование nw.js (node-webkit) версия %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ОШИБКА - Папка не может быть создана!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ОШИБКА - Не удалось найти исполняемый файл fpPS4!\nВыберите исполняемый файл в настройках или поместите его внутрь \"Emu\" и нажмите OK.",

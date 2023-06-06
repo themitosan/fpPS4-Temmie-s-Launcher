@@ -1,12 +1,14 @@
 /*
 	**************************************************************************************
 
-		TMS.js - By TemmieHeartz (@temmieheartz)
+		TMS.js
+		Created by TheMitoSan (@themitosan)
+		https://github.com/themitosan/TMS.js
 
-		This file is an original replacement - Because I don't want to deal with jQuery
-		anymore!
+		This file exists because I don't want to deal with jQuery anymore!
 
-		Original source / motivation: http://youmightnotneedjquery.com/
+		Original source / motivation:
+		http://youmightnotneedjquery.com/
 
 	**************************************************************************************
 */
@@ -247,12 +249,12 @@ const TMS = Object.freeze(Object.seal({
 		Usage: elementObjects = {HTML_DOM_ID_0: scrollInt, HTML_DOM_ID_1: scrollInt2} and goes on
 	*/
 	scrollTop: function(elementObjects){
-		Object.keys(elementObjects).forEach(function(cItem){
+		Object.keys(elementObjects).forEach(function(elementId){
 
 			const elId = TMS.getElement(elementId);
 
 			if (elId !== null){
-				elId.scrollTop = elementObjects[cItem];
+				elId.scrollTop = elementObjects[elementId];
 			} else {
 				TMS.warn('Unable to scroll element because it does not exist! (' + elementId + ')');
 			}
@@ -353,14 +355,19 @@ const TMS = Object.freeze(Object.seal({
 					dTime = 1;
 				}
 			}
+
 			if (tagType[elId.tagType] !== void 0){
 				dMode = tagType[elId.tagType];
 			}
-			if (eStyles.opacity !== ''){
+			if (eStyles.opacity !== '' && parseFloat(eStyles.opacity) !== 0){
 				finalOpacity = eStyles.opacity;
 			}
 
-			TMS.css(elementId, {'display': dMode, 'opacity': finalOpacity, 'transition': 'opacity ' + dTime + 'ms'});
+			TMS.css(elementId, {'display': dMode, 'opacity': 0});
+
+			setTimeout(function(){
+				TMS.css(elementId, {'opacity': finalOpacity, 'transition': 'opacity ' + dTime + 'ms linear 0ms'});
+			}, 10);
 
 			setTimeout(function(){
 				TMS.css(elementId, {'transition': 'none'});
@@ -433,10 +440,10 @@ const TMS = Object.freeze(Object.seal({
 	*/
 	setInnerHtml: function(elementId, htmlData){
 		const elId = TMS.getElement(elementId);
-		if (elId !== null){
+		if (elId !== null && elId.innerHTML !== htmlData){
 			document.getElementById(elementId).innerHTML = htmlData;
 		} else {
-			TMS.warn('Unable to set innerHTML because DOM does not exist! (' + elementId + ')');
+			TMS.warn('Unable to set innerHTML because DOM does not exist or it contains the same innerHTML data (' + elementId + ')');
 		}
 	},
 
@@ -444,9 +451,7 @@ const TMS = Object.freeze(Object.seal({
 		Remove HTML DOM
 	*/
 	removeDOM: function(elementId){
-
 		const elId = TMS.getElement(elementId);
-
 		if (elId !== null){
 			document.getElementById(elementId).remove();
 		} else {
@@ -495,14 +500,59 @@ const TMS = Object.freeze(Object.seal({
 	*/
 	getRect: function(elementId){
 
-		var elId = TMS.getElement(elementId);
+		var res,
+			elId = TMS.getElement(elementId);
 
 		if (elId !== null){
-			return document.getElementById(elementId).getBoundingClientRect();
+			res = elId.getBoundingClientRect();
 		} else {
 			TMS.warn('Unable to get rect because DOM does not exist! (' + elementId + ')');
 		}
 
+		return res;
+
+	},
+
+	/*
+		Get HTML dom coords.
+		Get element coords based on parent element 
+
+		T:  Y
+		L:  X
+		W:  Width
+		H:  Height
+		WL: X Pos. + It's own width
+		TH: Y Pos. + It's own height
+	*/
+	getCoords: function(elementId){
+
+		var res,
+			elId = TMS.getElement(elementId);
+
+		if (elId !== null){
+			
+			var top = elId.offsetTop,
+				left = elId.offsetLeft,
+				width = elId.getBoundingClientRect().width,
+				height = elId.getBoundingClientRect().height;
+
+			res = {
+				T: top,
+				L: left,
+				W: width,
+				H: height,
+				WL: parseFloat(width + left),
+				TH: parseFloat(top + height)
+			}
+
+		} else {
+			TMS.warn('Unable to get coords because DOM does not exist! (' + elementId + ')');
+		}
+
+		return res;
 	}
 	
 }));
+
+// Export
+exports = TMS;

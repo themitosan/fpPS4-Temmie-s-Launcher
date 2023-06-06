@@ -8,7 +8,7 @@
 		"logWindowTitle": "Executando fpPS4",
 		"killEmuStatus": "Processo principal foi fechado - feche a janela do log para continuar",
 		"logCleared": "INFO - A lista de log foi limpa!",
-		"about": "fpPS4 Temmie's Launcher - Versão: %VARIABLE_0%\nCriado por TemmieHeartz\n(https://twitter.com/temmieheartz)\n\nfpPS4 foi criado / desenvolvido por red-prig\n(https://github.com/red-prig/fpPS4)\n\nPlugin memoryjs foi criado / desenvolvido por Rob--\n(https://github.com/rob--/memoryjs)\n\nPlugin node-stream-zip foi criado / desenvolvido por antelle\n(https://github.com/antelle/node-stream-zip)\n\nÍcones SVG foram obtidos através do site https://www.svgrepo.com/",
+		"about": "fpPS4 Temmie's Launcher - Versão: %VARIABLE_0%\n\nCriado por TheMitoSan\n[Anteriormente conhecida como TemmieHeartz]\n(https://twitter.com/themitosan)\n\nfpPS4 foi criado / desenvolvido por red-prig\n(https://github.com/red-prig/fpPS4)\n\nPlugin memoryjs foi criado / desenvolvido por Rob--\n(https://github.com/rob--/memoryjs)\n\nPlugin node-stream-zip foi criado / desenvolvido por antelle\n(https://github.com/antelle/node-stream-zip)\n\nÍcones SVG foram obtidos através do site https://www.svgrepo.com/",
 		"mainLog": "fpPS4 Temmie's Launcher - Versão: %VARIABLE_0%\nUsando nw.js (node-webkit) versão %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ERRO - Não foi possível criar a pasta!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ERRO - Não foi possível encontrar o executável do fpPS4!\nSelecione o executável nas configurações ou coloque ele dentro da pasta \"Emu\" e clique em ok.",

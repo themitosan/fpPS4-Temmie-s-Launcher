@@ -1,8 +1,8 @@
 # fpPS4 Temmie's Launcher
-A simple launcher for [fpPS4 project](https://github.com/red-prig/fpPS4/) - created just for fun.
+Created by TheMitoSan (Previously known as TemmieHeartz), This is a simple launcher created for [fpPS4](https://github.com/red-prig/fpPS4/) project.
 
 <p align="center">
-<img src="https://pbs.twimg.com/media/Fkt3QiDXgAAoPTy?format=jpg&name=large" width="750">
+	<img src="https://pbs.twimg.com/media/Fkt3QiDXgAAoPTy?format=jpg&name=large" width="750">
 </p>
 
 ## How to install
@@ -17,6 +17,6 @@ You can setup both launcher and emulator using [this tutorial](https://docs.goog
 ## External plugins used on this project
 - [memoryjs](https://github.com/rob--/memoryjs) - created by [Rob--](https://github.com/rob--)
 - [node-stream-zip](https://github.com/antelle/node-stream-zip) - created by [antelle](https://github.com/antelle)
-- [TMS.js](https://github.com/temmieheartz/TMS.js) by [TemmieHeartz](https://github.com/temmieheartz/) <sup><i>(Hi!)</i></sup>
+- [TMS.js](https://github.com/themitosan/TMS.js) by [TheMitoSan](https://github.com/themitosan/) <sup><i>(Hi!)</i></sup>
 
 <u><i><b>IMPORTANT</b>: This software does not allow you to obtain free PS4 Games / Apps.</i></u>

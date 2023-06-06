@@ -8,7 +8,7 @@
 		"logWindowTitle": "Running fpPS4",
 		"killEmuStatus": "主进程被关闭 - 关闭日志窗口以继续",
 		"logCleared": "INFO - 日志已被清除！",
-		"about": "fpPS4 Temmie's Launcher - 版本：%VARIABLE_0%\n由 TemmieHeartz 创建\n(https://twitter.com/temmieheartz)\n\nfpPS4 由 red-prig 创建\n(https://github.com/red-prig/fpPS4)\n\n插件 memoryjs 由 Rob-- 创建\n(https://github.com/rob--/memoryjs)\n\n插件 node-stream-zip 由 antelle 创建\n(https://github.com/antelle/node-stream-zip)\n\nSVG 图标来自 https://www.svgrepo.com/",
+		"about": "fpPS4 Temmie's Launcher - 版本：%VARIABLE_0%\n\n由 TheMitoSan 创建\n(https://twitter.com/themitosan)\n\nfpPS4 由 red-prig 创建\n(https://github.com/red-prig/fpPS4)\n\n插件 memoryjs 由 Rob-- 创建\n(https://github.com/rob--/memoryjs)\n\n插件 node-stream-zip 由 antelle 创建\n(https://github.com/antelle/node-stream-zip)\n\nSVG 图标来自 https://www.svgrepo.com/",
 		"mainLog": "fpPS4 Temmie's Launcher - 版本: %VARIABLE_0%\n运行中的 nw.js (node-webkit) 版本: %VARIABLE_1% [%VARIABLE_2%]",
 		"settingsErrorCreatePath": "ERROR - 无法创建文件夹！\n(%VARIABLE_0%)\n%VARIABLE_1%",
 		"settingsErrorfpPS4NotFound": "ERROR - 无法找到 fpPS4 的可执行文件！\n在设置中选择可执行文件或将其放在 \"Emu\" 文件夹中，然后点击确定。",
