@@ -2,7 +2,7 @@
 Created by TheMitoSan (Previously known as TemmieHeartz), This is a simple launcher created for [fpPS4](https://github.com/red-prig/fpPS4/) project.
 
 <p align="center">
-	<img src="https://pbs.twimg.com/media/Fkt3QiDXgAAoPTy?format=jpg&name=large" width="750">
+	<img src="App/img/banner.png" width="750">
 </p>
 
 ## How to install
