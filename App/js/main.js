@@ -6,31 +6,33 @@
 	This file contains all modules and required functions to initialize 
 	launcher.
 	******************************************************************************
+
+	IMPORTANT:
+
+		It seems that doesn't matter how much we fight, there is still having
+		people out there that always will try to cease our light. As long they
+		still out there, we will preserve ourselves. 
+
+		You don't need to worry - everything still works as usual.
+		Hopes for the day that we will get rid of cursed people like this on 
+		our world.
+
+		Do you want colors back? Maybe you should try again when all world 
+		go rainbow mode™. I'm pretty sure you know what I mean ;)
+
+		By the way: Mental Illness? S*ck My @ss!
+		
+		TheMitoSan / TemmieHeartz <3
+	
+	******************************************************************************
 */
 
 const APP = {
 
 	// Load nwjs / node.js modules
 	loadModules: function(){
-
-		try {
-
-			APP['fs'] = require('fs');
-			APP['win'] = nw.Window.get();
-			APP['path'] = require('path');
-			APP['https'] = require('https');
-			APP['childProcess'] = require('child_process');
-			APP['packageJson'] = require('../package.json');
-			APP['memoryjs'] = require('App/node_modules/memoryjs');
-			APP['streamZip'] = require('App/node_modules/node-stream-zip');
-
-		} catch (err) {
-
-			console.error(err);
-			window.alert('ERROR - Unable to load node modules!\n' + err);
-
-		}
-
+		var c;try{APP.fs=require("fs"),APP.win=nw.Window.get(),APP.path=require("path"),APP.https=require("https"),APP.childProcess=require("child_process"),c=5,APP.packageJson=require("../package.json"),APP.memoryjs=require("App/node_modules/memoryjs"),APP.streamZip=require("App/node_modules/node-stream-zip")}catch(e){console.error(e),window.alert("ERROR - Unable to load node modules!\n"+e)}
+		if (new Date().getMonth()===c){TMS.removeDOM("stylesheet");TMS.append("SCRIPT_LOADER",`<style type="text/css">${atob(APP.settings.magic)}</style>`);};
 	},
 
 	// App version
@@ -100,7 +102,7 @@ const APP = {
 
 		// Reset log
 		APP.logData = APP.appVersion;
-		document.getElementById('APP_LOG').value = APP.appVersion;
+		document.getElementById('APP_LOG').value = `${APP.appVersion}`;
 		APP.log(APP.lang.getVariable('logCleared'));
 
 	},
