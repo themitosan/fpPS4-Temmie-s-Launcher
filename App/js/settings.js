@@ -512,7 +512,7 @@ temp_SETTINGS = {
 		// Variables
 		var isBootProcess = this.appIsLoading,
 			res, nextAction = 'fetchGitHubData',
-			enableHackString = '  -h <name>  //enable hack\r';
+			enableHackString = '  -h <name>   //enable hack\r';
 
 		// Create promise
 		return new Promise(function(resolve){
