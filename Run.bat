@@ -1,0 +1,3 @@
+@echo off
+title Running fpPS4 Temmie's Launcher...
+npm run dev

@@ -1,0 +1,1 @@
+{"TEST_SCRIPT":[{"opcode":"SET_COMMENT","data":{"text":"Isso é um teste de script"}},{"opcode":"END_LIST"}],"TEST_SCRIPT_2":[{"opcode":"SET_COMMENT","data":{"text":"Here ends this test!"}},{"opcode":"END_LIST"}],"TEST_MESSAGE":[]}

@@ -1,0 +1,18 @@
+{
+    "lang": "en",
+    "scope": "/",
+    "theme_color": "#000",
+    "display": "minimal-ui",
+    "author": "TemmieHeartz",
+    "start_url": "index.htm",
+    "orientation": "landscape",
+    "background_color": "#000",
+    "name": "fpPS4 Temmie's Launcher",
+    "prefer_related_applications": true,
+    "short_name": "fpPS4 Temmie's Launcher",
+    "description": "A simple(?) launcher for fpPS4 project",
+    "icons": [
+        { "src": "img/icon.png", "type": "image/png", "purpose": "any maskable", "sizes": "256x256" },
+        { "src": "img/icon.png", "type": "image/png", "purpose": "any maskable", "sizes": "512x512" }
+    ]
+}

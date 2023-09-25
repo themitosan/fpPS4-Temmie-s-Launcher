@@ -1,0 +1,14 @@
+{
+
+	"runEmuError_default": {
+		"displayButtons": ["ACTION_1"],
+		"buttonLabels": {
+			"ACTION_1": "back"
+		},
+		"replaceList": ["emumanager.loadErrorReason"],
+		"actions": {
+			"ACTION_1": { "action": "endMessage", "data": {"callback": "APP.emumanager.stop();"} }
+		}
+	}
+
+}

@@ -1,209 +1,173 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
+		<meta name="theme-color" content="#000"/>
+		<link rel="manifest" href="webPackage.json"/>
 		<title>fpPS4 Temmie's Launcher - Loading</title>
+		<meta name="robots" content="noindex, nofollow"/>
+		<link rel="apple-touch-icon" href="img/icon.png">
+		<link rel="icon" type="image/x-icon" href="img/icon.ico">
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" type="image/png" href="img/icon.png" sizes="992x991"/>
+		<meta name="description" content="This is a simple(?) launcher for fpPS4 project">
 	</head>
 	<body>
 
-		<!-- Top Bar (Drag) -->
-		<div class="APP_TOP_BAR" id="APP_TOP_BAR">
+		<!-- Lock Input -->
+		<div class="APP_LOCKINPUT" id="APP_LOCKINPUT" onclick="APP.design.input.focus();"></div>
 
-			<!-- Document title -->
-			<div class="DIV_TOP_WINDOW_DOCUMENT_TITLE" id="DIV_TOP_WINDOW_DOCUMENT_TITLE">
-				<!-- Document title goes here -->
-			</div>
+		<!-- Canvas (Main) -->
+		<div class="APP_CANVAS" id="APP_CANVAS">
 
-			<!-- Window action buttons -->
-			<div class="APP_TOP_WINDOW_BUTTONS" id="APP_TOP_WINDOW_BUTTONS">
-				<input type="button" onclick="APP.win.minimize();" value="_" class="BTN_TOP_WINDOW_ACTIONS">
-				<input type="button" onclick="APP.design.toggleMaximize();" class="BTN_TOP_WINDOW_ACTIONS BTN_TOP_APP_MAX">
-				<input type="button" onclick="APP.exit();" value="X" class="BTN_TOP_WINDOW_ACTIONS BTN_TOP_APP_CLOSE">
-			</div>
-			
-		</div>
+			<!-- Canvas (Inner) -->
+			<div class="APP_CANVAS_INNER" id="APP_CANVAS_INNER">
 
-		<!-- Color BG -->
-		<div class="APP_CANVAS_BG_COLOR" id="APP_CANVAS_BG_COLOR"></div>
+				<!-- Color BG -->
+				<div class="APP_CANVAS_BG_COLOR" id="APP_CANVAS_BG_COLOR"></div>
 
-		<!-- Icon Right -->
-		<div class="APP_CANVAS_BG_ICON" id="APP_CANVAS_BG_ICON"></div>
+				<!-- Icon Right -->
+				<div class="APP_CANVAS_BG_ICON" id="APP_CANVAS_BG_ICON"></div>
 
-		<!-- Game BG -->
-		<div class="APP_CANVAS_BG" id="APP_CANVAS_BG"></div>
+				<!-- Game BG -->
+				<div class="APP_CANVAS_BG" id="APP_CANVAS_BG"></div>
 
-		<!-- Message System (msgsys / popup) -->
-		<div class="APP_POPUP" id="APP_POPUP">
+				<!-- Main GUI -->
+				<div class="APP_MAIN" id="APP_MAIN">
 
-			<!-- Popup Title -->
-			<div class="APP_POPUP_TITLE" id="APP_POPUP_TITLE">
-				<!-- Popup title goes here-->
-			</div>
+					<!-- Top options -->
+					<div class="APP_MAIN_TOP" id="APP_MAIN_TOP">
 
-			<!-- GUI Lines -->
-			<div class="APP_POPUP_LINE APP_POPUP_LINE_TOP"></div>
-			<div class="APP_POPUP_LINE APP_POPUP_LINE_BOTTOM"></div>
+						<input type="text" class="INPUT_TEXT_GAME_SEARCH" id="INPUT_GUI_TOP_0" placeholder="Search: Insert game name..." onblur="APP.input.lockCommandAction=!1;" onfocus="APP.input.lockCommandAction=!0;">
 
-			<!-- Popup Content (0) -->
-			<div class="APP_POPUP_CONTENT_HOLDER" id="APP_POPUP_CONTENT_0">
-				<!-- Message goes here -->
-			</div>
+						<button type="button" class="BTN_GUI_TOP" id="INPUT_GUI_TOP_1" onfocus="APP.design.input.currentIndex=1;" onclick="APP.design.settingsMenu.open();">Settings</button>
+						<button type="button" class="BTN_GUI_TOP" id="INPUT_GUI_TOP_2" onclick="APP.design.bakedFunctions.GAMELIST_showAbout();">About</button>
+						<button type="button" class="BTN_GUI_TOP" id="INPUT_GUI_TOP_3" onclick="APP.exit();">Exit</button>
 
-			<!-- Popup Content (1) -->
-			<div class="APP_POPUP_CONTENT_HOLDER" id="APP_POPUP_CONTENT_1" style="opacity: 0;">
-				<!-- Message goes here -->
-			</div>
+					</div>
 
-			<!-- Button Labels -->
-			<div class="APP_POPUP_BUTTON_LABEL_HOLDER">
-				
-				<!-- Enter -->
-				<div class="APP_POPUP_BUTTON_LABEL" id="APP_POPUP_BUTTON_LABEL_ACTION_0">
-					<embed id="APP_POPUP_BUTTON_ICON_ACTION_0" class="IMG_CONTROLLER_BUTTON"/> 
-					<label id="APP_POPUP_BUTTON_LABEL_ACTION_0_TEXT"></label>
+					<!-- Game list -->
+					<div class="list-fade APP_MAIN_GAMELIST" id="APP_MAIN_GAMELIST"></div>
+
+					<!-- Main bottom line -->
+					<div class="APP_POPUP_LINE APP_POPUP_LINE_BOTTOM" id="APP_MAIN_GAMELIST_BOTTOM_LINE"></div>
+
+					<!-- Button Labels -->
+					<div class="APP_POPUP_BUTTON_LABEL_HOLDER" id="APP_MAIN_GAME_LIST_BUTTON_LABEL_HOLDER"></div>
+
 				</div>
 
-				<!-- Back -->
-				<div class="APP_POPUP_BUTTON_LABEL" id="APP_POPUP_BUTTON_LABEL_ACTION_1">
-					<embed id="APP_POPUP_BUTTON_ICON_ACTION_1" class="IMG_CONTROLLER_BUTTON"/> 
-					<label id="APP_POPUP_BUTTON_LABEL_ACTION_1_TEXT"></label>
-				</div>
+				<!-- Launcher Settings -->
+				<div class="APP_MSGSYS" id="APP_LAUNCHER_SETTINGS">
 
-			</div>
+					<!-- Window Title -->
+					<div class="APP_POPUP_TITLE" id="APP_LAUNCHER_SETTINGS_TITLE">
+						Launcher Settings
+					</div>
 
-		</div>
+					<!-- GUI Lines -->
+					<div class="APP_POPUP_LINE APP_POPUP_LINE_TOP"></div>
+					<div class="APP_POPUP_LINE APP_POPUP_LINE_BOTTOM"></div>
 
-		<!-- Label: Boot info -->
-		<div class="APP_LABEL_BOOT_INFO" id="APP_LABEL_BOOT_INFO">
-			<!-- Label goes here -->
-		</div>
+					<!-- Options List -->
+					<div class="APP_MAIN_SETTINGS_LEFT list-fade" id="APP_LAUNCHER_SETTINGS_LIST"></div>
 
-		<!-- Main GUI -->
-		<div class="APP_MAIN" id="APP_MAIN">
+					<!-- Selected option list -->
+					<div class="APP_MAIN_SETTINGS_RIGHT list-fade" id="APP_LAUNCHER_SETTINGS_CANVAS"></div>
 
-			<!-- Top BG -->
-			<div class="APP_MAIN_TOP_BG" id="APP_MAIN_TOP_BG"></div>
+					<!-- Button Labels -->
+					<div class="APP_POPUP_BUTTON_LABEL_HOLDER" id="APP_LAUNCHER_SETTINGS_BUTTON_LABEL_HOLDER"></div>
 
-			<!-- Top options -->
-			<div class="APP_MAIN_TOP" id="APP_MAIN_TOP">
-
-				<input type="text" class="INPUT_TEXT_GAME_SEARCH" id="INPUT_GUI_TOP_0" placeholder="Search: Insert game name...">
-
-				<input type="button" class="BTN_GUI_TOP" id="INPUT_GUI_TOP_1" value="Settings" onclick="">
-				<input type="button" class="BTN_GUI_TOP" id="INPUT_GUI_TOP_2" value="About" onclick="">
-				<input type="button" class="BTN_GUI_TOP" id="INPUT_GUI_TOP_3" value="Exit" onclick="APP.exit();">
-
-			</div>
-
-			<!-- Game list -->
-			<div class="list-fade APP_MAIN_GAMELIST" id="APP_MAIN_GAMELIST">
-				<!-- List goes here -->
-			</div>
-
-			<!-- Main bottom line -->
-			<div class="APP_POPUP_LINE APP_POPUP_LINE_BOTTOM" id="APP_MAIN_GAMELIST_BOTTOM_LINE"></div>
-
-			<!-- Button Labels -->
-			<div class="APP_POPUP_BUTTON_LABEL_HOLDER" id="APP_MAIN_GAMELIST_BUTTON_LABEL_HOLDER">
-
-				<!-- Run -->
-				<div class="APP_POPUP_BUTTON_LABEL" id="APP_MAIN_GAME_LIST_BUTTON_LABEL_ACTION_0">
-					<embed id="APP_MAIN_GAME_LIST_BUTTON_ICON_ACTION_0" class="IMG_CONTROLLER_BUTTON"/> 
-					<label id="APP_MAIN_GAME_LIST_BUTTON_LABEL_ACTION_0_TEXT"></label>
-				</div>
-
-				<!-- Toggle hacks -->
-				<div class="APP_POPUP_BUTTON_LABEL" id="APP_MAIN_GAME_LIST_BUTTON_LABEL_ACTION_2">
-					<embed id="APP_MAIN_GAME_LIST_BUTTON_ICON_ACTION_2" class="IMG_CONTROLLER_BUTTON"/> 
-					<label id="APP_MAIN_GAME_LIST_BUTTON_LABEL_ACTION_2_TEXT"></label>
-				</div>
-
-				<!-- Options -->
-				<div class="APP_POPUP_BUTTON_LABEL" id="APP_MAIN_GAME_LIST_BUTTON_LABEL_ACTION_3">
-					<embed id="APP_MAIN_GAME_LIST_BUTTON_ICON_ACTION_3" class="IMG_CONTROLLER_BUTTON"/> 
-					<label id="APP_MAIN_GAME_LIST_BUTTON_LABEL_ACTION_3_TEXT"></label>
 				</div>
 
 			</div>
 
 		</div>
 
-		<!-- Game options -->
-		<div class="APP_POPUP" id="APP_MAIN_GAME_SETTINGS">
+		<!-- Scripts / Hidden Stuff -->
+		<div id="ASSETS_LIST" class="none">
 
-			<!-- Window Title -->
-			<div class="APP_POPUP_TITLE">
-				Game Settings
-			</div>
-
-			<!-- GUI Lines -->
-			<div class="APP_POPUP_LINE APP_POPUP_LINE_TOP"></div>
-			<div class="APP_POPUP_LINE APP_POPUP_LINE_BOTTOM"></div>
-
-			<!-- Options List -->
-			<div class="APP_MAIN_SETTINGS_LEFT list-fade" id="APP_MAIN_GAME_SETTINGS_LIST">
-				<button id="BTN_GUI_GAME_OPTIONS_0" class="BTN_GUI_OPTIONS" onclick=""><label class="LABEL_FPPS4_COLOR">fp</label>PS4 Hacks</button>
-				<button id="BTN_GUI_GAME_OPTIONS_1" class="BTN_GUI_OPTIONS" onclick="">Game Patches</button>
-				<button id="BTN_GUI_GAME_OPTIONS_2" class="BTN_GUI_OPTIONS" onclick="">Misc.</button>
-				<button id="BTN_GUI_GAME_OPTIONS_3" class="BTN_GUI_OPTIONS" onclick="">Save and Return</button>
-			</div>
-			<!-- Selected option list -->
-			<div class="APP_MAIN_SETTINGS_RIGHT list-fade" id="APP_MAIN_GAME_SETTINGS_CANVAS">
-				<button class="BTN_GUI_OPTIONS" onclick=""><img src="img/svg/checkbox-on.svg" class="IMG_GUI_CHECKBOX"/> Enable DEPTH_DISABLE_HACK</button>
-				<button class="BTN_GUI_OPTIONS" onclick=""><img src="img/svg/checkbox-off.svg" class="IMG_GUI_CHECKBOX"/> Enable COMPUTE_DISABLE_HACK</button>
-				<button class="BTN_GUI_OPTIONS" onclick=""><img src="img/svg/checkbox-on.svg" class="IMG_GUI_CHECKBOX"/> Enable MEMORY_BOUND_HACK</button>
-				<button class="BTN_GUI_OPTIONS" onclick=""><img src="img/svg/checkbox-off.svg" class="IMG_GUI_CHECKBOX"/> Enable IMAGE_TEST_HACK</button>
-				<button class="BTN_GUI_OPTIONS" onclick=""><img src="img/svg/checkbox-on.svg" class="IMG_GUI_CHECKBOX"/> Enable IMAGE_LOAD_HACK</button>
-				<button class="BTN_GUI_OPTIONS" onclick=""><img src="img/svg/checkbox-off.svg" class="IMG_GUI_CHECKBOX"/> Enable DISABLE_SRGB_HACK</button>
-				<button class="BTN_GUI_OPTIONS" onclick=""><img src="img/svg/checkbox-on.svg" class="IMG_GUI_CHECKBOX"/> Enable DISABLE_FMV_HACK</button>
-				<button class="BTN_GUI_OPTIONS" onclick=""><img src="img/svg/checkbox-off.svg" class="IMG_GUI_CHECKBOX"/> Enable SKIP_UNKNOW_TILING</button>
-			</div>
-
-			<!-- Button Labels -->
-			<div class="APP_POPUP_BUTTON_LABEL_HOLDER">
-				
-				<!-- Enter -->
-				<div class="APP_POPUP_BUTTON_LABEL" id="APP_MAIN_GAME_SETTINGS_BUTTON_LABEL_ACTION_0">
-					<embed id="APP_MAIN_GAME_SETTINGS_BUTTON_ICON_ACTION_0" class="IMG_CONTROLLER_BUTTON"/> 
-					<label id="APP_MAIN_GAME_SETTINGS_BUTTON_LABEL_ACTION_0_TEXT">Enter</label>
-				</div>
-
-				<!-- Back -->
-				<div class="APP_POPUP_BUTTON_LABEL" id="APP_MAIN_GAME_SETTINGS_BUTTON_LABEL_ACTION_1">
-					<embed id="APP_MAIN_GAME_SETTINGS_BUTTON_ICON_ACTION_1" class="IMG_CONTROLLER_BUTTON"/> 
-					<label id="APP_MAIN_GAME_SETTINGS_BUTTON_LABEL_ACTION_1_TEXT">Back</label>
-				</div>
-
-			</div>
-
-		</div>
-
-		<!-- Scripts -->
-		<div class="none">
+			<!-- File / folder loader -->
+			<input type="file" id="APP_FILE_LOADER"/>
+			<input type="file" id="APP_FILE_SAVE" nwsaveas/>
+			<input type="file" id="APP_FOLDER_LOADER" nwdirectory/>
 
 			<!-- JS Plugins -->
-			<script type="text/javascript" src="js/TMS.js"></script>
+			<script type="text/javascript" src="js/external/TMS.js"></script>
 
 			<!-- Scripts -->
 			<script type="text/javascript" src="js/tools.js"></script>
+			<script type="text/javascript" src="js/launcherLog.js"></script>
+			<script type="text/javascript" src="js/updater.js"></script>
+			<script type="text/javascript" src="js/filemanager.js"></script>
 			<script type="text/javascript" src="js/language.js"></script>
 			<script type="text/javascript" src="js/settings.js"></script>
 			<script type="text/javascript" src="js/paramSfo.js"></script>
 			<script type="text/javascript" src="js/input.js"></script>
-			<script type="text/javascript" src="js/gameList.js"></script>
+			<script type="text/javascript" src="js/gamelist.js"></script>
+			<script type="text/javascript" src="js/emumanager.js"></script>
+			<script type="text/javascript" src="js/interpreter.js"></script>
 
 			<!-- Design dependent scripts -->
+			<script type="text/javascript" src="js/msgsys.js"></script>
+			<script type="text/javascript" src="js/aboutScreen.js"></script>
+			<script type="text/javascript" src="js/animations.js"></script>
 			<script type="text/javascript" src="js/inputDesign.js"></script>
-			<script type="text/javascript" src="js/msg_system.js"></script>
 			<script type="text/javascript" src="js/sceneManager.js"></script>
+			<script type="text/javascript" src="js/quicksettings.js"></script>
+			<script type="text/javascript" src="js/settingsList.js"></script>
+			<script type="text/javascript" src="js/settingsDesign.js"></script>
 			<script type="text/javascript" src="js/design.js"></script>
 
+			<!-- Exec dependent scripts -->
+			<script type="text/javascript" src="js/ntstatus.js"></script>
+			<script type="text/javascript" src="js/exec.js"></script>
+
+			<!-- Main script -->
 			<script type="text/javascript" src="js/main.js"></script>
+
+			<!--
+
+				Hi! This is a simple letter, a small homage for my favorite spheromancer.
+				I don't know how things are going with you but... I hope everything is ok!
+
+				Just hoping seeing you again in the future!
+
+				Bye Lea - I miss you. <3
+				TemmieHeartz.
+
+			 -->
+			<script type="text/javascript">
+
+				function startLauncherPlz() {
+
+					if (window.APP){
+						window.APP.init();
+					} else {
+						window.setTimeout(startLauncherPlz, 100);
+					}
+
+				}
+
+				window.onload = startLauncherPlz;
+
+			</script>
 
 		</div>
 
 	</body>
 </html>
+
+<!--
+
+	<div class="APP_POPUP_MESSAGE_CONFIRM">
+		Msg goes here
+	</div>
+
+	<div class="APP_POPUP_MESSAGE_CONFIRM_ACTIONS">
+		<input type="button" class="BTN_GUI_POPUP" id="APP_POPUP_OPTION_0" value="OK">
+		<input type="button" class="BTN_GUI_POPUP" id="APP_POPUP_OPTION_1" value="NO">
+	</div>
+
+-->

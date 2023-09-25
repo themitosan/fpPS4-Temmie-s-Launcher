@@ -16,7 +16,7 @@
 */
 
 temp_PARAMSFO = {
-	
+
 	// PARAM.SFO Database
 	database: {
 
@@ -71,7 +71,7 @@ temp_PARAMSFO = {
 
 		// Read file as hex (String)
 		const sfoHex = APP.fs.readFileSync(fLocation, 'hex');
-		
+
 		var sfoMetadata = {},
 
 			// SFO Header
@@ -82,7 +82,7 @@ temp_PARAMSFO = {
 				keyTableStart: 	   APP.tools.parseEndian(sfoHex.slice(16, 24)), // (0x04) Key table start offset
 				dataTableStart:    APP.tools.parseEndian(sfoHex.slice(24, 32)), // (0x04) Data table start offset
 				totalIndexEntries: APP.tools.parseEndian(sfoHex.slice(32, 40))  // (0x04) Total entries in index table
-			
+
 			}
 
 		/*
@@ -118,7 +118,7 @@ temp_PARAMSFO = {
 				paramLength: 	cReadingMode.slice(8, 16),  // Parameter length
 				paramMaxLength: cReadingMode.slice(16, 24), // Parameter Max Length
 				dataOffset: 	cReadingMode.slice(24, 32)  // Data Offset
-			
+
 			}
 
 			// Update position for next location
@@ -129,7 +129,7 @@ temp_PARAMSFO = {
 		/*
 			Set Metadata Info
 		*/
-		
+
 		// Set location to data table start create first slice
 		var pointerLocation = 0,
 			dataTableSlice = sfoHex.slice(parseInt(sfoHeader.dataTableStart, 16) * 2);
@@ -142,7 +142,7 @@ temp_PARAMSFO = {
 				convertUft8 = !1,
 				cSlice = dataTableSlice.slice(pointerLocation),
 				stopLocation = parseInt(pointerLocation + 8); // Default: int32
-			
+
 			/*
 				Check param length
 

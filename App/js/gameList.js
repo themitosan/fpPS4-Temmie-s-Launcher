@@ -2,7 +2,7 @@
 	***********************************************************************************
 
 		fpPS4 Temmie's Launcher
-		gameList.js
+		gamelist.js
 	
 		This file contains all functions related to game list
 
@@ -25,14 +25,61 @@ temp_GAMELIST = {
 		Game list functions
 	*/
 
+	// Create settings for provided entry name
+	makeSettings: function(entryName){
+
+		// Variables
+		var hList = {};
+
+		// Get hack list
+		Object.keys(APP.emumanager.hackList).forEach(function(hName){
+			hList[hName] = !1;
+		});
+
+		// Final metadata
+		const metadata = {
+
+			// Hack list
+			hackList: hList,
+
+			// app0
+			app0: {
+				enabled: !1,
+				location: ''
+			},
+
+			// Patch (app1)
+			patch: {
+				enabled: !1,
+				location: ''
+			}
+
+		};
+
+		// Try saving file
+		try {
+
+			APP.log.add({data: 'INFO - (Game List) Creating settings for ' + entryName});
+			APP.fs.writeFileSync(APP.settings.nwPath + '/Settings/Game Settings/' + entryName + '.json', JSON.stringify(metadata), 'utf8');
+
+		} catch (err) {
+			throw new Error(err);
+		}
+
+	},
+
 	// Generate game list
 	make: function(callback){
 
 		// Variables
-		var pathList = [APP.settings.data.nwPath + '/Games'];
+		var pathList = [APP.settings.nwPath + '/Games'],
+			getPrevBG = TMS.getCssData('APP_CANVAS_BG', 'background-image');
 
 		// Reset current game list
 		this.list = {};
+
+		// Hide background image
+		TMS.css('APP_CANVAS_BG', {'opacity': '0', 'transition-duration': '0s'});
 
 		// Check if there game paths to import 
 		if (APP.settings.data.gamePaths.length !== 0){
@@ -54,23 +101,32 @@ temp_GAMELIST = {
 			APP.gameList.processPath(cPath);
 		});
 
-		// If callback exists, execute
-		if (callback !== void 0 && typeof callback === 'function'){
+		// Restore background image
+		TMS.css('APP_CANVAS_BG', {'transition-duration': '0.2s', 'background-image': getPrevBG});
+
+		// Execute callback
+		if (typeof callback === 'function'){
 			callback();
 		}
+
+		// End
+		return 0;
 
 	},
 
 	// Parse Selected location
 	processPath: function(path){
 
-		console.info('Processing ' + path);
+		// Log current path
+		APP.log.add({data: 'INFO - (Game List) Processing ' + path});
 
 		try {
 
-			// Read selected path
-			const pathData = APP.fs.readdirSync(path);
-			
+			// Variables
+			var pathData = APP.fs.readdirSync(path),
+				tempHtml = '<div class="none" id="APP_TEMP_CACHE_IMG">',
+				entrySettingsPath = APP.settings.nwPath + '/Settings/Game Settings';
+
 			// If path contains items inside
 			if (pathData.length !== 0){
 
@@ -82,13 +138,21 @@ temp_GAMELIST = {
 						errorReason = [],
 						pathBase = path + '/' + cEntry + '/',
 						fileList = APP.fs.readdirSync(pathBase),
-						
+
 						// Final metadata
 						finalMetadata = {
+							/*
+								Status list:
+								"ok": All files are present
+								"mf": Missing files
+								"hb": Homebrew
+							*/
+							status: 'ok',
 							execFile: '',
 							paramSfo: {},
 							path: pathBase,
 							isHomebrew: !1,
+							missingFiles: [],
 							entryName: cEntry,
 							img_icon: 'img/404.webp',
 							img_background: 'img/404_BG.webp'
@@ -113,15 +177,19 @@ temp_GAMELIST = {
 							} 
 						})[0];
 
-						// If found .elf file, set current entry as homebrew
+						// If found .elf file, set current entry metadata as homebrew
 						if (finalMetadata.execFile !== void 0){
-							finalMetadata.isHomebrew = !0;
+
+							finalMetadata.status = 'hb';
+							finalMetadata.img_icon = 'img/HB.webp';
+							finalMetadata.img_background = 'img/HB_BG.webp';
+
 						} else {
-	
+
 							// If didn't found any executable / .elf file
 							canAddEntry = !1;
 							errorReason.push(APP.lang.getVariable('gameList_errorExecutable404'));
-	
+
 						}
 
 					}
@@ -131,39 +199,63 @@ temp_GAMELIST = {
 
 						// Variables
 						var bgList = ['pic1.png', 'pic0.png'],
-							iconList = ['icon1.png', 'icon0.png'],
-							paramSfoPath = pathBase + '/sce_sys/param.sfo';
+							sceSysPath = pathBase + 'sce_sys/',
+							iconList = ['icon0.png', 'icon1.png'],
+							paramSfoPath = sceSysPath + 'param.sfo',
+							seekFileList = [
+								// 'trophy/trophy01.trp',
+								'playgo-chunk.dat'
+							];
 
-						// If PARAM.SFO exists, import entry metadata and set entry name as TITLE_ID
-						if (APP.fs.existsSync(paramSfoPath) === !0){
+						// Check if entry isn't homebrew
+						if (finalMetadata.status !== 'hb'){
 
-							finalMetadata.paramSfo = APP.paramSfo.parse(paramSfoPath);
-							finalMetadata.entryName = finalMetadata.paramSfo.TITLE_ID;
+							// If PARAM.SFO exists, import entry metadata and set entry name as TITLE_ID
+							if (APP.fs.existsSync(paramSfoPath) === !0){
 
-							// Check if already exists a entry with same name (or TITLE_ID)
-							if (APP.gameList.list[finalMetadata.entryName] !== void 0){
-								canAddEntry = !1;
-								errorReason.push(APP.lang.getVariable('gameList_errorEntryAlreadyExists', [finalMetadata.entryName]));
+								finalMetadata.paramSfo = APP.paramSfo.parse(paramSfoPath);
+								finalMetadata.entryName = finalMetadata.paramSfo.TITLE_ID;
+
+							} else {
+
+								// Push param.sfo to missing file list
+								finalMetadata.status = 'mf';
+								finalMetadata.missingFiles.push('sce_sys/param.sfo');
+
+							}
+
+							// Check for missing files
+							seekFileList.forEach(function(cFile){
+								if (APP.fs.existsSync(sceSysPath + cFile) === !1){
+									finalMetadata.status = 'mf';
+									finalMetadata.missingFiles.push('sce_sys/' + cFile);
+								}
+							});
+
+							// Seek entry icon
+							for (var i = 0; i < iconList.length; i++){
+								if (APP.fs.existsSync(sceSysPath + iconList[i]) === !0){
+									finalMetadata.img_icon = sceSysPath + iconList[i];
+									break;
+								}
+							}
+
+							// Seek entry background image
+							for (var i = 0; i < bgList.length; i++){
+								if (APP.fs.existsSync(sceSysPath + bgList[i]) === !0){
+									finalMetadata.img_background = sceSysPath + bgList[i];
+									break;
+								}
 							}
 
 						}
 
-						// Seek entry icon
-						for (var i = 0; i < iconList.length; i++){
-							if (APP.fs.existsSync(pathBase + 'sce_sys/' + iconList[i]) === !0){
-								finalMetadata.img_icon = pathBase + 'sce_sys/' + iconList[i];
-								break;
-							}
-						}
+					}
 
-						// Seek entry background image
-						for (var i = 0; i < bgList.length; i++){
-							if (APP.fs.existsSync(pathBase + 'sce_sys/' + bgList[i]) === !0){
-								finalMetadata.img_background = pathBase + 'sce_sys/' + bgList[i];
-								break;
-							}
-						}
-
+					// Check if already exists a entry with same name (or TITLE_ID)
+					if (APP.gameList.list[finalMetadata.entryName] !== void 0){
+						canAddEntry = !1;
+						errorReason.push(APP.lang.getVariable('gameList_errorEntryAlreadyExists', [finalMetadata.entryName]));
 					}
 
 					/*
@@ -172,30 +264,42 @@ temp_GAMELIST = {
 					*/
 					if (canAddEntry === !0){
 
+						// Check if exist game settings for current entry
+						if (APP.fs.existsSync(entrySettingsPath + '/' + finalMetadata.entryName + '.json') === !1){
+							APP.gameList.makeSettings(finalMetadata.entryName);
+						}
+
+						// Add image to be cached
+						var newImg = '<img src="' + finalMetadata.img_background + '">';
+						if (tempHtml.indexOf(newImg) === -1){
+							tempHtml = tempHtml + newImg;
+						}
+
 						// Add current entry to game list
 						APP.gameList.list[finalMetadata.entryName] = finalMetadata;
 
 					} else {
 
 						// Unable to add file
-						console.warn(APP.lang.getVariable('gameList_errorCantAddEntry', [finalMetadata.entryName, pathBase, APP.tools.convertArrayToString(errorReason)]));
+						APP.log.add({mode: 'warn', data: APP.lang.getVariable('gameList_errorCantAddEntry', [finalMetadata.entryName, pathBase, APP.tools.convertArrayToString(errorReason)])});
 
 					}
 
 				});
 
+				// Cache all images and then remove container with all images
+				TMS.append('ASSETS_LIST', tempHtml + '</div>');
+				TMS.removeDOM('APP_TEMP_CACHE_IMG');
+
 			} else {
 
 				// If no items were detected on provided path
-				console.warn(APP.lang.getVariable('gameList_errorCurrentPathEmpty', [path]));
+				APP.log.add({mode: 'warn', data: APP.lang.getVariable('gameList_errorCurrentPathEmpty', [path])});
 
 			}
 
 		} catch (err) {
-
-			// Return error
-			console.error(err);
-
+			throw new Error(err);
 		}
 
 	}

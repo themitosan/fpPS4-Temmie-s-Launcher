@@ -15,9 +15,6 @@ temp_INPUT = {
 		Command variables
 	*/
 
-	// Debug: Show command
-	debugLogAction: !0,
-
 	// Lock command actions
 	lockCommandAction: !0,
 
@@ -39,17 +36,55 @@ temp_INPUT = {
 		ACTION_11: function(){return;},
 		ACTION_12: function(){return;},
 
-		// Directions
+		// Arrow directions
 		ARROW_UP: function(){return;},
 		ARROW_DOWN: function(){return;},
 		ARROW_LEFT: function(){return;},
-		ARROW_RIGHT: function(){return;}
+		ARROW_RIGHT: function(){return;},
+
+		// Mouse wheel
+		MOUSE_WHEEL_UP: function(){return;},
+		MOUSE_WHEEL_DOWN: function(){return;}
 	
 	},
+
+	// Input history (up to 20 entries)
+	inputHistory: [],
 
 	/*
 		Command functions
 	*/
+
+	/*
+		Process input history
+		Get last x entres: APP.input.inputHistory.slice(-9);
+	*/
+	pInputHistory: function(cInput){
+
+		// Check if input exists
+		if (this.commandActions[cInput] !== void 0){
+
+			// Check history length
+			if (APP.input.inputHistory.length > 19){
+				APP.input.inputHistory.splice(0, 1);
+			}
+
+			// Push input to list
+			APP.input.inputHistory.push(cInput);
+
+		}
+
+	},
+
+	// Lock input
+	lockInput: function(){
+		this.lockCommandAction = !0;
+	},
+
+	// Release input
+	releaseInput: function(){
+		this.lockCommandAction = !1;
+	},
 
 	// Bind function to action
 	setActionFn: function(actionId, callback){
@@ -82,16 +117,22 @@ temp_INPUT = {
 			// Set action function
 			this.commandActions[actionId] = function(){
 
-				// Log action taken
-				if (APP.input.debugLogAction === !0){
-					console.info('Executing ' + actionId);
-				}
-
-				// console.info(callback);
+				// Log action
+				APP.log.add({data: 'Executing ' + actionId});
+				APP.log.add({data: callback});
 
 				// Check if can execute action
 				if (APP.input.lockCommandAction === !1){
+
+					// Push input to history and execute action
+					APP.input.pInputHistory(actionId);
 					callback();
+
+					// End
+					return 0;
+
+				} else {
+					APP.log.add({mode: 'warn', data:'WARN - Input is locked!'});
 				}
 
 			}
@@ -102,6 +143,23 @@ temp_INPUT = {
 			console.error('ERROR - Unable to bind action!\n' + APP.tools.convertArrayToString(reason));
 
 		}
+
+		// End
+		return 0;
+
+	},
+
+	// Clear all binded actions
+	clearActions: function(){
+
+		// Process action list
+		Object.keys(this.commandActions).forEach(function(cAction){
+			APP.input.commandActions[cAction] = function(){return;};
+		});
+
+		// End
+		return 0;
+
 	},
 
 	/*
@@ -138,6 +196,7 @@ temp_INPUT = {
 			const gamepadData = gPad.gamepad;
 
 			console.info('Controller ON');
+			console.info(gPad);
 			console.info(gamepadData);
 
 			// Update controller data
@@ -230,7 +289,7 @@ temp_INPUT = {
 				// Set pressed button
 				if (bData.pressed === !0){
 					bPressed = cButton;
-					console.info(cButton); 
+					// console.info(cButton); 
 				}
 
 				// If action is defined
@@ -252,7 +311,6 @@ temp_INPUT = {
 
 				}
 
-
 			});
 
 		}
@@ -260,6 +318,90 @@ temp_INPUT = {
 		// End
 		window.requestAnimationFrame(APP.input.processGamepad);
 		return bPressed;
+
+	},
+
+	/*
+		Keyboard functions
+	*/
+
+	// Initialize keyboard and mouse
+	initKbMouse: function(){
+
+		/*
+			Mouse
+		*/
+
+		// Mouse scroll
+		document.addEventListener('mousewheel', function(evt){
+
+			// Prevent default if lock input is active
+			if (APP.input.lockCommandAction === !0){
+				evt.preventDefault();
+			}
+
+			// Variables
+			var mWheelDirection = 'MOUSE_WHEEL_DOWN';
+
+			// Check for mouse directions
+			if (evt.deltaY === -100){
+				mWheelDirection = 'MOUSE_WHEEL_UP';
+			}
+
+			// Execute action
+			APP.input.commandActions[mWheelDirection]();
+
+			// Debug log
+			APP.log.add({data: evt});
+
+		}, { passive: !1 });
+
+		/*
+			Keyboard
+		*/
+
+		// Window onkeypress
+		window.onkeypress = function(evt){
+			if (APP.input.lockCommandAction === !1){
+				evt.preventDefault();
+			}
+		}
+
+		// Window onkeyup event
+		window.onkeyup = function(kp){
+
+			// Debug: log kp
+			APP.log.add({data: kp});
+
+			// Debug: reload app with F5
+			if (APP.settings.debug === !0 && kp.code === 'F5'){
+				location.reload(!0);
+			}
+
+			// F11 - Toggle fullscreen
+			if (kp.code === 'F11'){
+				APP.design.toggleFullscreen();
+			}
+
+			// Variables
+			var keyCode = kp.code,
+				actionList = Object.keys(APP.input.commandActions);
+
+			// Process action list
+			for (var i = 0; i < actionList.length; i++){
+				
+				// Check if current key have a function binded
+				if (APP.settings.data['kbInput_' + actionList[i]] === keyCode){
+					APP.input.commandActions[actionList[i]]();
+					break;
+				}
+
+			}
+
+			// End
+			return keyCode;
+
+		}
 
 	}
 

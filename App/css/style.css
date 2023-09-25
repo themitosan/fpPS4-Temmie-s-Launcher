@@ -9,6 +9,11 @@
 	***********************************************************************
 */
 
+@font-face {
+    font-family: "customFont";
+    src: url('font.ttf');
+}
+
 /*
 	HTML Tags
 */
@@ -16,9 +21,16 @@ body {
 	color: #fff;
 	overflow: hidden;
 	user-select: none;
+	white-space: nowrap;
 	font-family: monospace;
 	background-color: #000;
+	width: -webkit-fill-available;
+	height: -webkit-fill-available;
 	text-rendering: optimizelegibility;
+}
+a, a:visited {
+	color: #fff;
+	-webkit-user-drag: none;
 }
 img {
 	user-select: none;
@@ -27,14 +39,12 @@ img {
 input[type="text"] {
     outline: none;
 }
-
-/*
-	External fonts
-	Rename "SST Light" as SSTLight.ttf and place it in this same folder (App/css) 
-*/
-@font-face {
-	font-family: SST-Light;
-	src: url('SSTLight.ttf');
+sup {
+    font-size: 70%;
+    font-family: 'customFont', system-ui;
+}
+code {
+	font-family: 'customFont', system-ui;
 }
 
 /*
@@ -58,77 +68,56 @@ input[type="text"] {
 }
 
 /*
+	Sepearator
+*/
+.SEPARATOR_00 {
+	width: 100%;
+	height: 1px;
+	margin: 2px 0px 6px 0px;
+	background-color: #0000;
+	background-image: linear-gradient(90deg, #fff, #fff);
+}
+
+/*
 	Divs
 */
 
-/* Top bar (drag) */
-.APP_TOP_BAR {
+/* Lock mouse input */
+.APP_LOCKINPUT {
 	top: 0px;
 	left: 0px;
 	width: 100%;
-	height: 34px;
-	cursor: move;
-	z-index: 2000;
-	display: none;
-	overflow: hidden;
-	flex-wrap: nowrap;
+	height: 100%;
+	z-index: 900;
+	display: block;
 	position: absolute;
-	align-items: center;
-	flex-direction: row;
-	justify-content: center;
 	background-color: #0000;
-	backdrop-filter: blur(0px);
-}
-.APP_TOP_BAR:hover {
-	backdrop-filter: blur(6px);
-	background-image: linear-gradient(90deg, #0000, #4a4aa4ad, #0000);
-}
-.APP_TOP_BAR:hover .DIV_TOP_WINDOW_DOCUMENT_TITLE {
-	opacity: 1;
-	width: 320px;
-	filter: blur(0px);
-}
-.APP_TOP_BAR:hover .APP_TOP_WINDOW_BUTTONS {
-	opacity: 1;
-	filter: blur(0px);
-}
-.APP_TOP_BAR:hover .BTN_TOP_WINDOW_ACTIONS {
-	width: 34px;
-}
-.DIV_TOP_WINDOW_DOCUMENT_TITLE {
-	opacity: 0;
-	width: 0px;
-	cursor: move;
-	display: flex;
-	overflow: hidden;
-	flex-wrap: nowrap;
-	filter: blur(10px);
-	break-after: avoid;
-	align-items: center;
-	white-space: nowrap;
-	flex-direction: row;
-	justify-content: center;
-	text-shadow: 1px 1px 0px #000;
-	transition: 0.8s cubic-bezier(0, 1, 0, 1);
-}
-.APP_TOP_WINDOW_BUTTONS {
-	top: 0px;
-	right: 0px;
-	opacity: 0;
-	height: 34px;
-	z-index: 910;
-	display: flex;
-	transition: 0.4s;
-	filter: blur(4px);
-	flex-wrap: nowrap;
-	position: absolute;
-	align-items: center;
-	flex-direction: row;
-	justify-content: flex-end;
 }
 
-/* Popup */
-.APP_POPUP {
+/* Canvas (Main) */
+.APP_CANVAS {
+	z-index: 500;
+	width: 1280px;
+	height: 720px;
+	position: fixed;
+	overflow: hidden;
+	top: calc(50% - 360px);
+	left: calc(50% - 640px);
+	transform-origin: center;
+}
+/* Canvas (Inner) */
+.APP_CANVAS_INNER {
+	zoom: 1;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: absolute;
+}
+
+/* Popup (msgsys) */
+.APP_MSGSYS {
 	top: 0px;
 	left: 0px;
 	opacity: 0;
@@ -161,7 +150,7 @@ input[type="text"] {
 	position: absolute;
 	top: calc(12.4% - 58px);
 	text-shadow: 0px 0px 4px #0004;
-	font-family: 'SST-Light', system-ui;
+	font-family: 'customFont', system-ui;
 }
 .APP_POPUP_CONTENT_HOLDER {
 	top: 12.4%;
@@ -173,17 +162,19 @@ input[type="text"] {
 	overflow: hidden;
 	position: absolute;
 	background-color: #0000;
+	white-space: break-spaces;
 	transition-duration: 0.6s;
-	font-family: 'SST-Light', system-ui;
-	transition-timing-function: cubic-bezier(0,1,0,1);
+	font-family: 'customFont', system-ui;
+	transition-timing-function: cubic-bezier(0, 1, 0, 1);
 }
 .APP_POPUP_MESSAGE {
 	width: 100%;
-	height: 100%;
 	overflow: auto;
 	text-align: center;
 	display: table-cell;
 	vertical-align: middle;
+	height: calc(100% - 40px);
+	padding: 20px 0px 20px 0px;
 }
 .APP_POPUP_MESSAGE_CONFIRM {
 	width: 100%;
@@ -211,8 +202,11 @@ input[type="text"] {
 	height: 34px;
 	display: flex;
 	overflow: hidden;
-	margin-right: 30px;
+	padding-right: 15px;
+	margin: 0px 15px 0px 0px;
+	transition-duration: 0.2s;
 	text-shadow: 0px 0px 6px #000;
+	text-underline-position: under;
 }
 .APP_POPUP_BUTTON_LABEL_HOLDER {
 	height: 30px;
@@ -226,7 +220,7 @@ input[type="text"] {
 	align-content: center;
 	justify-content: center;
 	bottom: calc(12.4% - 35px);
-	font-family: 'SST-Light', system-ui;
+	font-family: 'customFont', system-ui;
 }
 
 /* Main canvas */
@@ -255,7 +249,7 @@ input[type="text"] {
 	transition-duration: 0.2s;
 	background-position: center;
 	background-repeat: no-repeat;
-	-webkit-mask-image: linear-gradient(0deg, #0006, #000, #000, #000, #000b);
+	-webkit-mask-image: linear-gradient(0deg, #000a, #000, #000, #000, #000b);
 }
 .APP_CANVAS_BG_ICON {
 	top: 0px;
@@ -270,6 +264,21 @@ input[type="text"] {
 	background-size: auto 100%;
 	background-position-x: 100%;
 	background-position-y: 100%;
+	background-repeat: no-repeat;
+	background-image: url('../img/4.webp');
+}
+.APP_CANVAS_BG_ICON_BOOT {
+	top: 0px;
+	left: 0px;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100;
+	position: absolute;
+	background-size: auto 20%;
+	transition-duration: 1.2s;
+	background-position: center;
+	background-position: center;
 	background-repeat: no-repeat;
 	background-image: url('../img/4.webp');
 }
@@ -301,8 +310,8 @@ input[type="text"] {
 	justify-content: center;
 	background-color: #0000;
 	transition-duration: 2s;
-	font-family: 'SST-Light';
 	text-shadow: 0px 0px 20px #fff;
+	font-family: 'customFont', system-ui;
 }
 
 /* Game list */
@@ -311,7 +320,7 @@ input[type="text"] {
 	left: 0px;
 	width: 100%;
 	z-index: 10;
-	height: 80px;
+	height: 10%;
 	display: flex;
 	overflow: hidden;
 	flex-wrap: nowrap;
@@ -319,18 +328,10 @@ input[type="text"] {
 	flex-direction: row;
 	align-items: flex-end;
 	justify-content: center;
-	transition-duration: 0.2s;
-}
-.APP_MAIN_TOP_BG {
-	top: -40px;
-	z-index: 8;
-	left: -20px;
-	height: 110px;
-	display: flex;
-	filter: blur(6px);
-	position: absolute;
-	width: calc(100% + 40px);
-	transition-duration: 0.4s;
+	background-color: #0008;
+	padding: 4px 0px 4px 0px;
+	transition-duration: 0.6s;
+	backdrop-filter: blur(6px);
 }
 .APP_MAIN_GAMELIST {
 	left: 0px;
@@ -338,25 +339,35 @@ input[type="text"] {
 	padding: 4px;
 	overflow: auto;
 	position: absolute;
-	top: calc(12.4% + 2px);
+	top: calc(10.4% + 2px);
+	width: calc(100% - 9px);
 	background-color: #0000;
-	width: calc(100% - 20px);
 	transition-duration: 0.6s;
-	height: calc(75.1% - 10px);
+	height: calc(77.1% - 10px);
 	text-align: -webkit-center;
-	font-family: 'SST-Light', system-ui;
-	transition-timing-function: cubic-bezier(0,1,0,1);
+	font-family: 'customFont', system-ui;
+	transition-timing-function: cubic-bezier(0, 1, 0, 1);
+}
+.APP_GAMELIST_EMPTY {
+	width: 99%;
+    height: 99%;
+    display: flex;
+    flex-wrap: nowrap;
+    position: absolute;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
 }
 .APP_GAMELIST_ENTRY {
-	cursor: pointer;
 	overflow: hidden;
 	text-align: left;
+	text-shadow: 1px 1px 2px #0009;
 }
 .GAMELIST_ENTRY_LIST {
 	width: 98%;
-	outline: none;
 	color: #fff;
 	height: 104px;
+	outline: none;
 	display: flex;
 	overflow: hidden;
 	flex-wrap: nowrap;
@@ -367,7 +378,7 @@ input[type="text"] {
 	flex-direction: row;
 	margin: 5px 0px 5px 0px;
 	background-color: #0000;
-	transition-duration: 0.2s;
+	transition-duration: 200ms;
 }
 .GAMELIST_ENTRY_LIST:hover, .GAMELIST_ENTRY_LIST:focus {
 	border-color: #fff;
@@ -375,10 +386,9 @@ input[type="text"] {
 }
 .APP_GAMELIST_ENTRY_METADATA {
 	max-width: 88%;
-	cursor: pointer;
 	overflow: hidden;
 	margin-left: 106px;
-	font-family: 'SST-Light', system-ui;
+	font-family: 'customFont', system-ui;
 }
 .METADATA_LIST {
 	position: absolute;
@@ -389,6 +399,30 @@ input[type="text"] {
 	border-top-width: 1px;
 	border-top-style: solid;
 	margin-top: calc(8% + 6px);
+}
+
+/* Game status */
+.APP_GAME_LIST_STATUS {
+	width: 100px;
+	max-width: 160px;
+	text-align: center;
+	display: inline-block;
+	margin: 8px 0px 0px 0px;
+	background-color: #0000;
+	padding: 4px 0px 4px 0px;
+	text-shadow: 1px 1px 3px #000;
+}
+.APP_GAME_LIST_STATUS_ok {
+	border-radius: 20px;
+	background-image: linear-gradient(180deg, #0d0, #080);
+}
+.APP_GAME_LIST_STATUS_mf {
+	border-radius: 3px;
+	background-image: linear-gradient(180deg, #d7bc00, #868902);
+}
+.APP_GAME_LIST_STATUS_hb {
+	border-radius: 10px 4px 10px 4px;
+	background-image: linear-gradient(180deg, #06f2ff, #008d95);
 }
 
 /* Game options */
@@ -404,6 +438,8 @@ input[type="text"] {
 	height: calc(75.1% - 10px);
 }
 .APP_MAIN_SETTINGS_RIGHT {
+	padding: 4px;
+	overflow: auto;
 	position: absolute;
 	text-align: center;
 	left: calc(30% + 8px);
@@ -411,57 +447,148 @@ input[type="text"] {
 	width: calc(61% + 5px);
 	background-color: #0000;
 	height: calc(75.1% - 10px);
-	padding: 4px;overflow: auto;
+}
+
+/* Quick settings */
+.APP_QUICK_SETTINGS {
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	position: absolute;
+}
+.APP_QUICK_SETTINGS_FADE {
+	top: -20px;
+	width: 0px;
+	opacity: 0;
+	z-index: 90;
+	right: -20px;
+	filter: blur(6px);
+	position: absolute;
+	background-color: #000b;
+	height: calc(100% + 40px);
+	transition-duration: 0.2s;
+	transition-timing-function: cubic-bezier(0, 1, 0, 1);
+}
+.APP_QUICK_SETTINGS_BACKDROP {
+	top: -20px;
+	width: 0px;
+	opacity: 0;
+	z-index: 80;
+	right: -20px;
+	position: absolute;
+	background-color: #0000;
+	height: calc(100% + 40px);
+	transition-duration: 0.2s;
+	backdrop-filter: blur(4px);
+	transition-timing-function: cubic-bezier(0, 1, 0, 1);
+}
+.APP_QUICK_SETTINGS_HOLDER_TOP {
+	top: 0px;
+	width: 0px;
+	right: 0px;
+	opacity: 0;
+	height: 100%;
+	z-index: 100;
+	overflow: hidden;
+	position: absolute;
+	padding-right: 10px;
+	display: inline-table;
+	background-color: #0000;
+	transition-duration: 0.36s;
+	font-family: 'customFont', system-ui;
+	transition-timing-function: cubic-bezier(0, 1, 0, 1);
+}
+.APP_QUICK_SETTINGS_HOLDER {
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	display: table-cell;
+	vertical-align: middle;
+}
+.APP_QUICK_SETTINGS_CLOSE {
+	width: 100%;
+	z-index: 50;
+	height: 100%;
+	cursor: alias;
+	position: absolute;
+}
+
+/* Emu running options */
+.APP_EMU_OPTIONS {
+	top: 0px;
+	left: 0px;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 910;
+	display: flex;
+	flex-wrap: nowrap;
+	position: absolute;
+	align-items: center;
+	flex-direction: row;
+	justify-content: center;
+	background-color: #0000;
+	transition-duration: 0.6s;
+	backdrop-filter: blur(2px);
+}
+.APP_EMU_OPTIONS_FADE {
+	left: -10%;
+	width: 120%;
+	height: 26%;
+	bottom: -26%;
+	filter: blur(10px);
+	position: absolute;
+	background-color: #000b;
+	transition-duration: 0.4s;
+	transition-timing-function: cubic-bezier(0, 1, 0, 1);
+}
+.APP_EMU_OPTIONS_LIST {
+	width: 100%;
+	bottom: 0px;
+	height: 16%;
+	display: flex;
+	flex-wrap: nowrap;
+	position: absolute;
+	align-items: center;
+	flex-direction: row;
+	justify-content: center;
+}
+
+/* Launcher settings */
+.DIV_SETTINGS_MENU_LABEL {
+	max-width: 88%;
+	overflow: hidden;
+	margin-top: -2px;
+	padding-left: 4px;
+	position: absolute;
+	white-space: nowrap;
 }
 
 /*
 	Input
 */
 
-/* Window Top (Drag) */
-.BTN_TOP_WINDOW_ACTIONS {
-	width: 0px;
-	color: #fff;
-	margin: 0px;
-	height: 34px;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	font-weight: 900;
-	transition: 0.1s;
-	border-radius: 0px;
-	background-color: #0000;
-}
-.BTN_TOP_WINDOW_ACTIONS:hover {
-	background-color: #fff6;
-	text-shadow: 0px 0px 10px #fff;
-}
-.BTN_TOP_APP_MAX {
-	background-size: auto 67%;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-image: url('../img/svg/max.svg');
-}
-.BTN_TOP_APP_CLOSE:hover {
-	color: #fff;
-	background-color: #f00;
-	text-shadow: 0px 0px 8px #0006;
-}
-
 /* Message system (Popup / msgsys) */
 .BTN_GUI_POPUP {
 	color: #fff;
-	cursor: pointer;
-	font-weight: 600;
+	display: flex;
 	font-size: large;
+	min-width: 286px;
+	min-height: 46px;
+	font-weight: 600;
 	border-width: 1px;
+	flex-wrap: nowrap;
 	text-align: center;
 	border-color: #fff;
+	align-items: center;
 	border-style: solid;
+	flex-direction: row;
 	margin: 0px 5px 2px 5px;
+	justify-content: center;
 	background-color: #fff1;
-	padding: 9.6px 133px 11.6px 133px;
-	font-family: 'SST-Light', system-ui;
+	font-family: 'customFont', system-ui;
 }
 .BTN_GUI_POPUP:focus {
 	outline-width: 0px;
@@ -476,15 +603,33 @@ input[type="text"] {
 	animation-timing-function: linear;
 }
 .BTN_GUI_SAFE_MODE {
-	color: #000;
+	color: #fff;
 	border: none;
-	background-color: #06f2ff;
+	background-color: #0000;
 }
-.BTN_GUI_SAFE_MODE:hover {
-	box-shadow: none;
+.BTN_GUI_SAFE_MODE:focus {
+	color: #000;
+	animation: none;
+	background-color: #06f2ff;
 }
 .BTN_GUI_SAFE_MODE:active {
 	animation: none;
+}
+.BTN_QUICKSETTINGS_CHECKBOX_LABEL {
+	max-width: 82%;
+	overflow: hidden;
+	position: relative;
+	margin: 0px 0px 0px 44px;
+	white-space: break-spaces;
+	font-family: 'customFont', system-ui;
+}
+.BTN_QUICKSETTINGS_CHECKBOX_LABEL_SELECTED {
+	max-width: 82%;
+	overflow: hidden;
+	position: relative;
+	margin: 0px 0px 0px 4px;
+	white-space: break-spaces;
+	font-family: 'customFont', system-ui;
 }
 
 /* Game list (Top) */
@@ -493,96 +638,194 @@ input[type="text"] {
 	border: none;
 	height: 40px;
 	min-width: 230px;
-	text-align: center;
 	font-size: large;
-	margin: 0px 4px 3px 4px;
+	text-align: center;
+	margin: 0px 4px 0px 4px;
+	padding: 0px 0px 0px 0px;
 	transition-duration: 0.2s;
 	background-color: #0000 !important;
-	font-family: 'SST-Light', system-ui;
+	font-family: 'customFont', system-ui;
 }
 .BTN_GUI_TOP {
 	color: #fff;
 	border: none;
 	outline: none;
-	cursor: pointer;
+	display: flex;
+	flex-wrap: nowrap;
 	font-size: x-large;
-	margin: 0px 4px 4px 4px;
-	padding: 6px 8px 6px 8px;
+	align-items: center;
+	flex-direction: row;
+	align-content: center;
+	margin: 0px 4px 0px 4px;
+	justify-content: center;
+	background-color: #0000;
+	padding: 0px 8px 8px 8px;
 	transition-duration: 0.2s;
-	background-color: #0000 !important;
-	font-family: 'SST-Light', system-ui;
+	font-variant: all-small-caps;
+	text-shadow: 1px 1px 2px #0006;
+	font-family: 'customFont', system-ui;
 }
 .BTN_GUI_TOP:focus {
+	border-radius: 4px;
+	background-color: #fff2;
 	text-shadow: 0px 0px 10px #fff;
-	text-decoration: underline;
+	text-decoration-thickness: 1px;
 }
 
 /* Game Options */
 .BTN_GUI_OPTIONS {
 	color: #fff;
+	padding: 14px;
 	outline: none;
 	display: flex;
-	cursor: pointer;
+	overflow: hidden;
 	text-align: left;
+	min-height: 63px;
 	flex-wrap: nowrap;
 	font-size: larger;
 	align-items: center;
 	border-color: #fff0;
 	border-style: solid;
 	flex-direction: row;
-	align-content: center;
 	margin: 2px 0px 2px 0px;
 	background-color: #0000;
-	transition-duration: 0.16s;
-	padding: 14px 0px 14px 6px;
+	transition-duration: 0.26s;
 	width: -webkit-fill-available;
-	font-family: 'SST-Light', system-ui;
+	font-family: 'customFont', system-ui;
 }
 .BTN_GUI_OPTIONS:hover, .BTN_GUI_OPTIONS:focus {
 	border-color: #fff;
 	background-color: #fff2;
 }
+.BTN_GUI_OPTIONS_HOVER {
+	border-color: #fff;
+	background-color: #fff2;
+	backdrop-filter: blur(6px);
+}
+.BTN_GUI_OPTIONS_ERROR {
+	width: 100%;
+	transition-duration: 0s;
+	animation-duration: 0.08s;
+	backdrop-filter: blur(8px);
+	animation-iteration-count: 1;
+	border-color: #f22 !important;
+	animation-name: GUI_BTN_ERROR;
+	text-shadow: 0px 0px 10px #fff6;
+	background-color: #ff00008c !important;
+}
+.BTN_GUI_OPTIONS_QUICK {
+	height: 68px;
+	max-height: 68px;
+	padding-left: 6px;
+}
+.BTN_GUI_OPTIONS_FIRST_ITEM {
+	margin-top: 6px;
+}
+
+/* Launcher settings */
+.BTN_LAUNCHER_SETTINGS {
+	min-height: 63px;
+	padding-bottom: 15px;
+}
 
 /*
 	Images / SVG Vectors
 */
+.IMG_ABOUT_ICON {
+	width: 20%;
+}
 .IMG_CONTROLLER_BUTTON {
-	width: 19px;
-	height: 19px;
+	width: 23px;
+	height: 23px;
 	border-radius: 10px;
-	margin: 4px 6px 0px 4px;
+	margin: 2px 6px 0px 4px;
 }
 .IMG_MSG_CONTROLLER_BUTTON {
-	width: 20px;
-	height: 20px;
+	width: 32px;
+	height: 32px;
 	border-radius: 10px;
-	margin: 0px 2px -3px 2px;
+	margin: 0px 2px -9px 2px;
+}
+.IMG_POPUP_CONTROLLER_BUTTON {
+	width: 28px;
+	height: 28px;
+	margin-right: 6px;
+	border-radius: 10px;
 }
 .IMG_GAME_ICON {
 	width: 90.63px;
-	margin-left: 6px;
 	position: unset;
+	margin-left: 6px;
 	border-radius: 6px;
 }
+.IMG_GUI_PLUS {
+	width: 24px;
+	height: 24px;
+	margin: 0px 8px -4px 8px;
+}
 .IMG_GUI_CHECKBOX {
-	width: 16px;
+	width: 20px;
+	height: 20px;
 	margin: 4px 10px 4px 10px;
+}
+.IMG_GUI_CHECKBOX_on {
+	width: 22px;
+	height: 23px;
+	margin: 4px 8px 4px 10px;
+}
+.IMG_GUI_CHECKBOX_off {
+	width: 20px;
+	height: 21px;
+	margin: 4px 10px 4px 10px;
+}
+.IMG_GUI_SETTINGS_CHECKBOX {
+	position: absolute;
+	margin: 4px 10px 4px 10px;
+}
+.IMG_GUI_SETTINGS_CHECKBOX_on {
+	right: 14px;
+	width: 22px;
+	height: 23px;
+}
+.IMG_GUI_SETTINGS_CHECKBOX_off {
+	right: 16px;
+	width: 20px;
+	height: 21px;
+}
+.ABOUT_PLUGIN_ICON {
+	height: 70px;
+	margin: 0px 10px 0px 10px;
 }
 
 /*
 	Labels
 */
 .LABEL_ENTRY_METADATA {
-	cursor: pointer;
 	font-size: small;
 }
 .LABEL_FPPS4_COLOR {
 	color: #fffb8e;
 }
 .LABEL_ENTRY_APP_NAME_LIST {
-	cursor: pointer;
-	font-size: 150%;
-	font-family: 'SST-Light', system-ui;
+	font-size: 142%;
+	font-family: 'customFont', system-ui;
+}
+.LABEL_TITLE {
+	font-size: 140%;
+	font-family: system-ui;
+}
+.LABEL_QUICKSETTINGS_TITLE {
+	font-size: 152%;
+	font-family: 'customFont', system-ui;
+}
+.LABEL_APP_MENU_OPTIONS_MIDDLE {
+	font-size: 140%;
+	text-align: center;
+	text-shadow: 0px 0px 10px #0006;
+	font-family: 'customFont', system-ui;
+}
+.LABEL_LAUNCHER_SETTINGS_SCALE_MODE{
+	min-height: 100px;
 }
 
 /*
@@ -611,14 +854,67 @@ input[type="text"] {
 
 }
 
+/* Button: Error */
+@keyframes GUI_BTN_ERROR {
+	
+	0% {
+		margin-left: 0px;
+	}
+	25% {
+		margin-left: 10px;
+	}
+	50% {
+		margin-left: 0px;
+	}
+	75% {
+		margin-left: -10px;
+	}
+	100% {
+		margin-left: 0px;
+	}
+
+}
+
 /*
 	Misc
 */
-
 /* TODO: Find a better way of creating this effect */
 .list-fade {
 	scroll-behavior: smooth;
-	-webkit-mask-image: linear-gradient(0deg, #0000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #0000);
+	-webkit-mask-image: linear-gradient(0deg, #0000, #000, #000, #000, #000, #000, #000, #000, #000, #000,
+		#000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000,
+		#000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000,
+		#000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000, #000,
+		#0000);
+}
+.cursor-pointer {
+	cursor: pointer;
+}
+.cursor-move {
+	cursor: move;
+}
+.text-small {
+	font-size: 70%;
+}
+.text-align-left {
+	text-align: left;
+}
+.text-align-center {
+	text-align: center;
+}
+.display-flex-center {
+	display: flex;
+    flex-wrap: nowrap;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+}
+.user-can-select {
+	user-select: all;
+}
+.position-absolute {
+	position: absolute;
 }
 .none {
 	display: none !important;
@@ -626,6 +922,6 @@ input[type="text"] {
 .font-italic {
 	font-style: italic !important;
 }
-.user-can-select {
-	user-select: all;
+.text-underline {
+	text-decoration: underline;
 }

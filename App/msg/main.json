@@ -1,42 +1,82 @@
 {
 
-	"launcherBoot": {
-
-		"msgUpgradeSettingsVersion": {
-			"displayButtons": ["ACTION_0"],
-			"buttonLabels": {
-				"ACTION_0": "confirm"
-			},
-			"replaceList": [],
-			"actions": {
-				"ACTION_0": { "action": "endMessage", "data": {"callback": "APP.design.displayIntroMessage();"} }
-			}
+	"general_showAbout": {
+		"displayButtons": ["ACTION_1"],
+		"buttonLabels": {
+			"ACTION_1": "back"
 		},
+		"replaceList": ["design.formList.about"],
+		"actions": {
+			"ACTION_1": { "action": "endMessage", "data": {"callback": "APP.design.bakedFunctions.GAMELIST_closeAbout();"} }
+		}
+	},
 
-		"msgSettingsFileCorrupted": {
-			"displayButtons": ["ACTION_0", "ACTION_1"],
-			"buttonLabels": {
-				"ACTION_0": "confirm",
-				"ACTION_1": "exit"
-			},
-			"replaceList": [],
-			"actions": {
-				"ACTION_0": { "action": "endMessage", "data": {"callback": "APP.settings.save(function(){ APP.design.displayIntroMessage(); });"} },
-				"ACTION_1": { "action": "endMessage", "data": {"callback": "APP.exit();"} }
-			}
+	"general_loadingGameList": {
+		"displayButtons": [],
+		"buttonLabels": {},
+		"replaceList": [],
+		"actions": {}
+	},
+
+	"msgSettingsFileCorrupted": {
+		"displayButtons": ["ACTION_0", "ACTION_1"],
+		"buttonLabels": {
+			"ACTION_0": "confirm",
+			"ACTION_1": "exit"
 		},
+		"replaceList": [],
+		"actions": {
+			"ACTION_0": { "action": "endMessage", "data": {"callback": "APP.settings.save(function(){ APP.scriptInterpreter.run('defaultBootProcess'); });"} },
+			"ACTION_1": { "action": "endMessage", "data": {"callback": "APP.exit();"} }
+		}
+	},
 
-		"msgSettingsLoadError": {
-			"displayButtons": ["ACTION_0"],
-			"buttonLabels": {
-				"ACTION_0": "close"
-			},
-			"replaceList": ["settings.settingsLoadError"],
-			"actions": {
-				"ACTION_0": { "action": "endMessage", "data": {"callback": "APP.exit();"} }
-			}
-		}		
+	"msgSettingsLoadError": {
+		"displayButtons": ["ACTION_0"],
+		"buttonLabels": {
+			"ACTION_0": "close"
+		},
+		"replaceList": ["settings.settingsLoadError"],
+		"actions": {
+			"ACTION_0": { "action": "endMessage", "data": {"callback": "APP.exit();"} }
+		}
+	},
 
+	"msgSettingsRequestEmuUpdate": {
+		"displayButtons": ["ACTION_0", "ACTION_1"],
+		"buttonLabels": {
+			"ACTION_0": "update",
+			"ACTION_1": "exit"
+		},
+		"replaceList": [],
+		"actions": {
+			"ACTION_0": { "action": "endMessage", "data": {"callback": "window.alert('WIP');"} },
+			"ACTION_1": { "action": "endMessage", "data": {"callback": "APP.exit();"} }
+		}
+	},
+
+	"msgSettingsErrorHackList": {
+		"displayButtons": ["ACTION_0", "ACTION_1"],
+		"buttonLabels": {
+			"ACTION_0": "update",
+			"ACTION_1": "retry"
+		},
+		"replaceList": ["exec.lastExitCode", "exec.exitStatus.id", "exec.exitStatus.desc"],
+		"actions": {
+			"ACTION_0": { "action": "endMessage", "data": {"callback": "window.alert('WIP');"} },
+			"ACTION_1": { "action": "endMessage", "data": {"callback": "APP.reload();"} }
+		}
+	},
+
+	"msgSettingsErrorHackListDLL": {
+		"displayButtons": ["ACTION_1"],
+		"buttonLabels": {
+			"ACTION_1": "retry"
+		},
+		"replaceList": [],
+		"actions": {
+			"ACTION_1": { "action": "endMessage", "data": {"callback": "APP.reload();"} }
+		}
 	}
 
 }

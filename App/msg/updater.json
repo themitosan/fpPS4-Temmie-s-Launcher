@@ -1,0 +1,64 @@
+{
+
+	"updater_loadingPleaseWait": {
+		"displayButtons": [],
+		"buttonLabels": {},
+		"replaceList": [],
+		"actions": {}
+	},
+
+	"updater_TEST": {
+		"displayButtons": [],
+		"buttonLabels": {},
+		"replaceList": [],
+		"actions": {}
+	},
+
+	"updater_emuUpToDate": {
+		"displayButtons": [],
+		"buttonLabels": {},
+		"replaceList": [],
+		"actions": {}
+	},
+
+	"updater_emuErrorWorflow404": {
+		"displayButtons": ["ACTION_0"],
+		"buttonLabels": {
+			"ACTION_0": "select"
+		},
+		"replaceList": [],
+		"actions": {}
+	},
+
+	"updater_emuUpdateDetails": {
+		"displayButtons": ["ACTION_1"],
+		"buttonLabels": {
+			"ACTION_1": "back"
+		},
+		"replaceList": [],
+		"actions": {}
+	},
+
+	"updater_emuUpdateAvailable": {
+		"focusIndex": 1,
+		"displayButtons": ["ACTION_0", "ACTION_1", "ACTION_3"],
+		"buttonLabels": {
+			"ACTION_0": "select",
+			"ACTION_1": "cancel",
+			"ACTION_3": "viewDetails"
+		},
+		"replaceList": ["temp.title", "temp.commitSha"],
+		"actions": {
+			"ACTION_0": { "action": "execFn", "data": {"fnExec": "design.input.selectMainAction();"} },
+			"ACTION_1": { "action": "callScript", "data": {"listName": "updater_exit"} }
+		},
+		"options": {
+			"class": "",
+			"list": [
+				{"label": "Cancel", "action": "APP.scriptInterpreter.run('updater_exit');"},
+				{"label": "Update", "action": "APP.scriptInterpreter.run('updater_emuStartUpdate');"}
+			]
+		}
+	}
+
+}

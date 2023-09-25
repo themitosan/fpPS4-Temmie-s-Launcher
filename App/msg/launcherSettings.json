@@ -1,0 +1,16 @@
+{
+
+	"launcherSettings_testScreenRes": {
+		"displayButtons": ["ACTION_0", "ACTION_1"],
+		"buttonLabels": {
+			"ACTION_0": "confirm",
+			"ACTION_1": "cancel"
+		},
+		"replaceList": ["design.settingsMenu.tempData.newRes"],
+		"actions": {
+			"ACTION_0": { "action": "endMessage", "data": {"callback": "APP.design.settingsMenu.graphics.returnScreenResTest(!0);"} },
+			"ACTION_1": { "action": "endMessage", "data": {"callback": "APP.design.settingsMenu.graphics.returnScreenResTest();"} }
+		}
+	}
+
+}

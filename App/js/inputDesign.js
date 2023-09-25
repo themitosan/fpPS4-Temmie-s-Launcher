@@ -28,6 +28,9 @@ temp_INPUT_DESIGN = {
 	// Enable custom function if cursor reaches beyond list length or with negative position
 	enableOutOfBoundsFn: !1,
 
+	// GAME LIST ONLY: Saved index pos.
+	gListIndexPos: 0,
+
 	/*
 		Functions
 	*/
@@ -43,10 +46,10 @@ temp_INPUT_DESIGN = {
 			data: {Object}
 				onStart: 			 function - Custom behavior to be executed if current index is negative
 				onEnd: 				 function - Custom behavior to be executed if current index is beyond list length
-				index: 				 int - Index of cursor
-				length: 			 int - List length
-				list: 				 String - Name of selected list
-				enableOutOfBoundsFn: boolean - Enables or disables custom behavior (onStart or onEnd)
+				index: 				 int 	  - Index of cursor
+				length: 			 int 	  - List length
+				list: 				 String   - Name of selected list
+				enableOutOfBoundsFn: boolean  - Enables or disables custom behavior (onStart or onEnd)
 
 	*/
 	setList: function(data){
@@ -101,14 +104,18 @@ temp_INPUT_DESIGN = {
 			this.currentListLength = cLength;
 			this.enableOutOfBoundsFn = enableFn;
 
+			// Log cursor pos
+			APP.log.add({data: 'INFO - (Input design) Cursor Pos: ' + cIndex});
+
 			/*
 				End
-				Blur all buttons and then set focus to selected index
 			*/
-
 			TMS.focus(this.currentList + '_' + this.currentIndex);
 
 		}
+
+		// End
+		return 0;
 
 	},
 
@@ -160,16 +167,39 @@ temp_INPUT_DESIGN = {
 				}
 			}
 
-			console.info('Cursor Pos: ' + nextPos);
+			// Debug: log cursor pos.
+			APP.log.add({data: 'Cursor Pos: ' + nextPos});
 
 			// End
 			if (onFnReturn.skipProcess === !1){
+
+				// Update index
 				APP.design.input.currentIndex = nextPos;
+
+				// Focus current index and center on screen
 				TMS.focus(cList + '_' + nextPos);
+
+				// If current menu is game list, render game data
+				if (cList === 'APP_GAMELIST_ENTRY'){
+					APP.design.displaySelectedGame();
+				} else {
+					TMS.scrollCenter(cList + '_' + nextPos);
+				}
+
 			}
 
 		}
 
+	},
+
+	// Focus current index
+	focus: function(){
+		TMS.focus(this.currentList + '_' + this.currentIndex);
+	},
+
+	// Blur current index
+	blur: function(){
+		TMS.blur(this.currentList + '_' + this.currentIndex);
 	},
 
 	// Trigger action from selected item
@@ -181,7 +211,7 @@ temp_INPUT_DESIGN = {
 	updateInputIcons: function(){
 
 		// Variables
-		var iconStyle = APP.design.iconStyle,
+		var iconStyle = APP.settings.data.input_iconStyle,
 			windowList = [
 				'POPUP',
 				'MAIN_GAME_LIST',
@@ -190,18 +220,134 @@ temp_INPUT_DESIGN = {
 
 		// Update window list
 		windowList.forEach(function(cWindow){
-	
+
 			// Update action icons
 			Object.keys(APP.input.commandActions).forEach(function(cId){
 
 				// Check if DOM exists
 				if (document.getElementById('APP_' + cWindow + '_BUTTON_ICON_' + cId) !== null){
-					document.getElementById('APP_' + cWindow + '_BUTTON_ICON_' + cId).src = 'img/svg/INPUT_' + iconStyle + '_' + cId + '.svg';
+					document.getElementById('APP_' + cWindow + '_BUTTON_ICON_' + cId).src = 'img/input/' + iconStyle + '/INPUT_' + cId + '.png';
 				}
 
 			});
 
 		});
+
+		// End
+		return 0;
+
+	},
+
+	/*
+		Update button labels
+
+		data: {Object}
+			resetInput: 	Boolean - Reset all actions assigned to input
+			displayButtons: Array - List of actions to be updated ['ACTION_0', 'ACTION_1'...]
+			buttonLabels: 	Object - Contains labels for every button {0: "confirm", 1: "cancel"}
+			target: 	 	String - Defines the target of label to be updated
+			callback: 		function - Function to be executed after main process is completed
+	*/
+	updateButtonLabels: function(data){
+
+		if (data !== void 0){
+
+			// Fix default
+			if (data['resetInput'] === void 0){
+				data['resetInput'] = !1;
+			}
+
+			// Reset button labels and button actions
+			Object.keys(APP.input.commandActions).forEach(function(cAction, cIndex){
+
+				// Reset icon label
+				if (data.displayButtons.indexOf(cAction) === -1 && document.getElementById('APP_' + data.target + '_BUTTON_LABEL_ACTION_' + cIndex) !== null){
+					TMS.removeDOM('APP_' + data.target + '_BUTTON_LABEL_ACTION_' + cIndex);
+				}
+
+				// Reset provided action (Set as a empty function)
+				if (data.resetInput === !0){
+					APP.input.setActionFn(cAction, function(){ return; });
+				}
+
+			});
+
+			// Update / display selected button labels
+			data.displayButtons.forEach(function(cButtonLabel){
+
+				// Variables
+				var iconStyle = APP.settings.data.input_iconStyle,
+					imgDomId = 'APP_' + data.target + '_BTN_' + cButtonLabel,
+					domId = 'APP_' + data.target + '_BUTTON_LABEL_' + cButtonLabel,
+					newIcon = 'img/input/' + iconStyle + '/INPUT_' + cButtonLabel + '.png';
+
+				// Check if label exists
+				if (document.getElementById(domId) === null){
+
+					// Generate label
+					const labelHtml = '<div class="APP_POPUP_BUTTON_LABEL" id="APP_' + data.target + '_BUTTON_LABEL_' + cButtonLabel + '"><img id="' + imgDomId + '" src="img/input/' +
+									  iconStyle + '/INPUT_' + cButtonLabel + '.png" class="IMG_CONTROLLER_BUTTON" alt="APP_POPUP_BUTTON_LABEL"/><label id="' + domId + '_TEXT">' +
+									  APP.lang.getVariable('MSGSYS_LABEL_' + data.buttonLabels[cButtonLabel]) + '</label></div>';
+
+					// Append label
+					TMS.append('APP_' + data.target + '_BUTTON_LABEL_HOLDER', labelHtml);
+
+				} else {
+
+					// Update icon
+					var getSrc = document.getElementById(imgDomId).src;
+					if (getSrc !== newIcon){
+						document.getElementById(imgDomId).src = newIcon;
+					}
+
+					// Update label
+					document.getElementById(domId + '_TEXT').innerHTML = APP.lang.getVariable('MSGSYS_LABEL_' + data.buttonLabels[cButtonLabel]);
+
+				}
+
+			});
+
+			/*
+				Reorganize all icons before executing callback (if provided)
+			*/
+
+			// Variables
+			var tempHtml = '',
+				actionList = Array.from(document.getElementById('APP_' + data.target + '_BUTTON_LABEL_HOLDER').children);
+
+			// Erase all data from current target
+			document.getElementById('APP_' + data.target + '_BUTTON_LABEL_HOLDER').innerHTML = '';
+
+			// Process display button list
+			data.displayButtons.forEach(function(cButton){
+
+				// Seek for declared buttons
+				actionList.forEach(function(cLabel){
+
+					// Check if button is present on display button list
+					if (cLabel.outerHTML.indexOf('APP_' + data.target + '_BUTTON_LABEL_' + cButton) !== -1){
+						tempHtml = tempHtml + cLabel.outerHTML;
+						actionList.splice(actionList.indexOf(cLabel), 1);
+					}
+
+				});
+
+			});
+
+			// Process remaining buttons
+			actionList.forEach(function(cLabel){
+				tempHtml = tempHtml + cLabel.outerHTML;
+			});
+
+			// Append label list
+			document.getElementById('APP_' + data.target + '_BUTTON_LABEL_HOLDER').innerHTML = tempHtml;
+
+			// Execute callback
+			if (data.callback !== void 0 && typeof data.callback === 'function'){
+				data.callback();
+			}
+
+		}
 
 	}
 

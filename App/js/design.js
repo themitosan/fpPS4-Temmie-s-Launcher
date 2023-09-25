@@ -15,91 +15,215 @@
 temp_DESIGN = {
 
 	/*
-		Variables
-	*/
-
-	// Icon design ( Default: PS )
-	iconStyle: 'PS',
-
-	/*
 		Import design modules
 	*/
-	msgSys: temp_MSGSYSTEM, 		 // Message system
-	input: temp_INPUT_DESIGN, 		 // Input handling
-	sceneManager: temp_SCENEMANAGER, // Scene Manager
+	msgsys: temp_MSGSYS,	 		   // Message system
+	about: temp_ABOUTSCREEN, 		   // About screen
+	input: temp_INPUT_DESIGN, 		   // Input handling
+	animations: temp_ANIMATIONS,	   // Animarions
+	settingsMenu: temp_SETTINGSGUI,    // Settings GUI
+	sceneManager: temp_SCENEMANAGER,   // Scene Manager
+	quickSettings: temp_QUICKSETTINGS, // Quick settings (Right)
 
 	/*
-		Window Functions
+		General / Misc. variables
 	*/
 
-	// Drag app window (Original API: R3V3 and W3Schools - https://www.w3schools.com/howto/howto_js_draggable.asp)
-	enableDragWindow: function() {
+	// Dom elements with error class
+	btnWithErrorClass: [],
+
+	/*
+		General / Misc. functions
+	*/
+
+	// Add btn error class to DOM
+	addErrorClass: function(){
+
+		// Get current dom name
+		const domId = this.input.currentList + '_' + this.input.currentIndex;
+
+		// Check if dom id is defined and if it already exists on list
+		if (domId !== void 0 && this.btnWithErrorClass.indexOf(domId) === -1){
+
+			// Push current element to list
+			this.addClass(domId, 'BTN_GUI_OPTIONS_ERROR');
+			this.btnWithErrorClass.push(domId);
+
+		}
+
+	},
+
+	// Remove error class on dom
+	removeErrorClass: function(){
+
+		// Check if lists has entries
+		if (this.btnWithErrorClass.length !== 0){
+
+			// Remove class from elements
+			this.btnWithErrorClass.forEach(function(cDom){
+				TMS.removeClass(cDom, 'BTN_GUI_OPTIONS_ERROR');
+			});
+
+			// Reset list
+			this.btnWithErrorClass = [];
+
+		}
+
+		// End
+		return 0;
+
+	},
+
+	// Add class to dom
+	addClass: function(domId, className){
+
+		// Check if data was provided
+		if (domId !== void 0 && className !== void 0){
+
+			// Remove previous affected buttons
+			this.removeErrorClass();
+
+			// Remove class
+			TMS.removeClass(domId, className);
+
+			// Add class
+			TMS.addClass(domId, className);
+
+		}
+
+	},
+
+	/*
+		Window functions
+	*/
+
+	// [Window] On focus action
+	winOnFocusAction: function(){
+		this.input.focus();
+	},
+
+	// [Window] On blur action
+	winOnBlurAction: function(){return;},
+
+	// Focus main window
+	focusMainWindow: function(){
+
+		// Show window
+		APP.win.show();
+		APP.win.focus();
+
+		// Update scaling
+		setTimeout(function(){
+			APP.design.updateCanvasScale();
+		}, 100);
+
+	},
+
+	// Initialize window functions
+	initWindowFn: function(){
+
+		// Update canvas scaling
+		APP.win.on('resize', function(){
+			APP.design.updateCanvasScale();
+		});
+		APP.win.on('maximize', function(){
+			APP.design.toggleFullscreen();
+		});
+		APP.win.on('restore', function(){
+			APP.design.updateCanvasScale();
+		});
+
+		// On focus
+		APP.win.on('focus', function(){
+			APP.design.winOnFocusAction();
+		});
+
+		// On blur
+		APP.win.on('blur', function(){
+			APP.design.winOnBlurAction();
+		});
+
+		// On close
+		APP.win.on('close', function(){
+			APP.exit();
+		});
+
+		// Start canvas check
+		window.requestAnimationFrame(APP.design.updateCanvas);
+
+	},
+
+	// Update canvas size
+	updateCanvas: function(){
+
+		// Check canvas scale
+		APP.design.updateCanvasScale();
+
+		// End
+		window.requestAnimationFrame(APP.design.updateCanvas);
+
+	},
+
+	// Scale canvas
+	updateCanvasScale: function(){
 
 		// Variables
-		var pos1 = pos2 = pos3 = pos4 = 0,
-			elmnt = document.getElementById('APP_TOP_BAR');
+		var scaleMode = APP.settings.data.screenScaleMode,
+			width = TMS.getCssData('APP_CANVAS', 'offsetWidth'),
+			height = TMS.getCssData('APP_CANVAS', 'offsetHeight'),
+			windowWidth = parseFloat(TMS.getCssData('APP_LOCKINPUT', 'width').replace('px', '')), // window.outerWidth,
+			windowHeight = parseFloat(TMS.getCssData('APP_LOCKINPUT', 'height').replace('px', '')), // window.outerHeight,
+			finalScale = Math.min((windowWidth / width), (windowHeight / height));
 
-		// Process drag event
-		function dragElement(evt) {
+		// Scale mode
+		switch (scaleMode){
 
-			var domId = elmnt.id,
-				msg = APP.appTitle;
+			// Zoom
+			case 'zoom':
+				TMS.css('APP_CANVAS', {'transform': 'none', 'zoom': finalScale});
+				break;
 
-			evt = evt || window.event;
-			evt.preventDefault();
-			pos1 = (pos3 - evt.clientX);
-			pos2 = (pos4 - evt.clientY);
-			finalX = (window.screenX - pos1);
-			finalY = (window.screenY - pos2);
-
-			// Prevent out of bounds
-			if (finalX < 0){
-				finalX = 0;
-			}
-			if (finalY < 0){
-				finalY = 0;
-			}
-
-			// Update release message
-			if (finalY === 0 && APP.win.cWindow.state !== 'maximized'){
-				msg = APP.lang.getVariable('APP_TOP_BAR_releaseToMax');
-			}
-			document.getElementById('DIV_TOP_WINDOW_DOCUMENT_TITLE').innerHTML = msg;
-
-			// End
-			if (APP.win.cWindow.state !== 'maximized'){
-				APP.win.moveTo(finalX, finalY);
-			}
+			// Transform (Image it's more blurry)
+			case 'transform':
+				TMS.css('APP_CANVAS', {'zoom': '1', 'transform': 'scale(' + finalScale +')'});
+				break;
 
 		}
 
-		// Stop drag event
-		function stopDrag(){
+		// Update position
+		TMS.css('APP_CANVAS', {
+			'top': 'calc(50% - ' + parseFloat(height / 2) + 'px)',
+			'left': 'calc(50% - ' + parseFloat(width / 2) + 'px)'
+		});
 
-			// Maximize window if dragged at top
-			if (window.screenY === 0){
-				APP.win.maximize();
-			}
+	},
 
-			// Remove bindings and update app title
-			document.onmouseup = null;
-			document.onmousemove = null;
-			document.getElementById('DIV_TOP_WINDOW_DOCUMENT_TITLE').innerHTML = APP.appTitle;
+	// Update screen res
+	updateCanvasRes: function(width, height){
 
+		// Variables
+		var w = APP.settings.data.screenWidth,
+			h = APP.settings.data.screenHeight;
+
+		// Check provided res
+		if (width !== void 0 && parseInt(width) !== NaN){
+			w = parseInt(width);
+		}
+		if (height !== void 0 && parseInt(height) !== NaN){
+			h = parseInt(height);
+		}
+		if (w < 1000){
+			w = 1000;
+		}
+		if (h < 720){
+			h = 720;
 		}
 
-		// On mouse down
-		function dragMouseDown(evt){
-			evt = evt || window.event;
-			evt.preventDefault();
-			pos3 = evt.clientX;
-			pos4 = evt.clientY;
-			document.onmousemove = dragElement;
-			document.onmouseup = stopDrag;
-		}
+		// Perform update
+		TMS.css('APP_CANVAS', {'width': w + 'px', 'height': h + 'px'});
 
-		// Enable drag
-		document.getElementById('APP_TOP_BAR').onmousedown = dragMouseDown;
+		// Update inner canvas zoom
+		TMS.css('APP_CANVAS_INNER', {'zoom': APP.settings.data.guiZoomScale});
 
 	},
 
@@ -112,13 +236,75 @@ temp_DESIGN = {
 		// Switch between modes
 		switch (winState){
 
+			// Default window
+			case 'normal':
+				this.toggleFullscreen();
+				break;
+
+			// If maximized
 			case 'maximized':
 				APP.win.restore();
 				break;
 
-			case 'normal':
-				APP.win.maximize();
-				break;
+		}
+
+		// Update canvas scale
+		setTimeout(function(){
+			APP.design.updateCanvasScale();
+		}, 50);
+
+	},
+
+	// Toggle fullscreen
+	toggleFullscreen: function(){
+
+		// Check if isn't running on editor
+		if (APP.urlParams.get('dev') !== 'true'){
+			APP.win.toggleFullscreen();
+		}
+
+	},
+
+	/*
+		Forms variables
+	*/
+
+	// Forms list
+	formList: {
+		'iconBoot': '<div class="APP_CANVAS_BG_ICON_BOOT" id="APP_CANVAS_BG_ICON_BOOT"></div>',
+		'labelBootInfo': '<div class="APP_LABEL_BOOT_INFO" id="APP_LABEL_BOOT_INFO">%_DATA_%</div>',
+		'msgsys': '<div class="APP_MSGSYS" id="APP_MSGSYS"><div class="APP_POPUP_TITLE" id="APP_POPUP_TITLE"></div><div class="APP_POPUP_LINE APP_POPUP_LINE_TOP"></div><div class="APP_POPUP_LINE APP_POPUP_LINE_BOTTOM"></div><div class="APP_POPUP_CONTENT_HOLDER" id="APP_POPUP_CONTENT_0"></div><div class="APP_POPUP_CONTENT_HOLDER" id="APP_POPUP_CONTENT_1" style="opacity: 0;"></div><div class="APP_POPUP_BUTTON_LABEL_HOLDER" id="APP_POPUP_BUTTON_LABEL_HOLDER"></div></div>'
+	},
+
+	/*
+		Form functions
+	*/
+
+	// Append form into HTML
+	appendForm: function(formId, innerData, location){
+
+		// Check if form exists
+		if (formId !== void 0 && this.formList[formId] !== void 0){
+
+			// Variables
+			var sLocation = location,
+				replaceData = innerData;
+
+			// Check if innerData is available
+			if (innerData === void 0){
+				replaceData = '';
+			}
+
+			// Set default location
+			if (location === void 0){
+				sLocation = 'APP_CANVAS_INNER';
+			}
+
+			// Get form data
+			const formHtml = this.formList[formId].replace('%_DATA_%', replaceData);
+
+			// End
+			TMS.append(sLocation, formHtml);
 
 		}
 
@@ -135,89 +321,115 @@ temp_DESIGN = {
 		Boot sequence functions
 	*/
 
-	// Check if needs to show some message before boot
-	bootCheck: function(){
-		
-		if (Object.keys(this.bootMessageData).length !== 0){
+	// Load font before loading settings
+	loadExternalFont: function(){
 
-			TMS.css('APP_CANVAS_BG_ICON', {'opacity': '1'});
-			APP.design.msgSys.displayMsg(this.bootMessageData);
+		// Variables
+		var fontPath = APP.settings.data.externalFontPath,
+			fontDom = document.getElementById('SETTINGS_CUSTOM_FONT');
 
-		} else {
+		// Check if external font file exists
+		if (APP.fs.existsSync(fontPath) === !0){
 
-			// Display intro message
-			this.displayIntroMessage();
+			// Check if DOM exists
+			if (fontDom !== null){
+				document.getElementById('SETTINGS_CUSTOM_FONT').innerHTML = '@font-face { font-family: customFont; src: url(\"' + fontPath + '\");';
+			} else {
+				TMS.append('ASSETS_LIST', '<style id="SETTINGS_CUSTOM_FONT">@font-face { font-family: customFont; src: url(\"' + fontPath + '\");</style>');
+			}
+
 		}
 
 	},
 
-	// Display into message
-	displayIntroMessage: function(){
+	// Check if needs to show some message before boot
+	bootCheck: function(){
 
-		// Set current scene
-		this.sceneManager.currentScene = 'APP_MAIN';
+		// Focus launcher window
+		APP.win.focus();
 
-		// Update input buttons GUI
-		this.input.updateInputIcons();
+		// Check if msg variable have metadata (messages) 
+		if (this.bootMessageData.msgName !== ''){
 
-		/*
-			Display intro
-		*/
+			// Log error code
+			APP.log.add({data: this.bootMessageData});
 
-		// Get background color from settings
-		var bgColorA = APP.settings.data.backgroundColor_top,
-			bgColorB = APP.settings.data.backgroundColor_bottom;
+			// Display message
+			APP.design.msgsys.displayMsg(this.bootMessageData);
 
-		// Set background color
-		TMS.css('APP_CANVAS_BG_COLOR', {'background-image': 'linear-gradient(140deg, #' + bgColorA + ', #' + bgColorB + ')'});
+		} else {
 
-		// Append boot message
-		document.getElementById('APP_LABEL_BOOT_INFO').innerHTML = APP.lang.getVariable('bootWarnInfo');
+			// (Interpreter) Display intro message
+			if (APP.urlParams.get('skipBootList') !== 'true'){
+				APP.scriptInterpreter.run('boot_defaultBootProcess');
+			} else {
+				console.clear();
+				window.top.MAIN.log('INFO - INIT OK');
+			}
 
-		// Display boot info and background color (partially)
-		TMS.css('APP_LABEL_BOOT_INFO', {'opacity': '1'});
-		TMS.css('APP_CANVAS_BG_COLOR', {'opacity': '0.4'});
-
-		// End
-		setTimeout(function(){
-	
-			// Render game list
-			APP.gameList.make(function(){
-				APP.design.renderGameList(function(){
-					APP.design.finishBoot();
-				});
-			});
-	
-		}, 4400);
+		}
 
 	},
 
-	// Show main GUI after boot process
-	finishBoot: function(){
+	// Update background theme
+	updateBackgroundTheme: function(){
 
-		// Fade out message and fade in background color
-		TMS.css('APP_MAIN', {'display': 'block'});
-		TMS.css('APP_CANVAS_BG_COLOR', {'transition-duration': '0.6s', 'opacity': '1'});
-		TMS.css('APP_LABEL_BOOT_INFO', {'opacity': '0', 'transition-duration': '0.4s', 'filter': 'blur(4px)'});
+		// Get settings
+		const settingsData = APP.settings.data;
 
-		// After animation, hide message and enable drag window
-		setTimeout(function(){
+		// Update CSS
+		TMS.css('APP_CANVAS_BG_COLOR', {'background-image': 'linear-gradient(140deg, ' + settingsData.backgroundGradient.toString() + ')'});
+		TMS.css('APP_CANVAS', {'box-shadow': '0px 0px 120px ' + settingsData.backgroundGradient[0] + '90'});
 
-			TMS.css('APP_LABEL_BOOT_INFO', {'display': 'none', 'filter': 'none', 'transition-duration': '0s'});
-			TMS.css('APP_TOP_BAR', {'display': 'flex'});
+		// End
+		return 0;
 
-			// Display main GUI and change body bg color
-			TMS.css('APP_MAIN', {'opacity': '1'});
-			TMS.css('APP_CANVAS_BG', {'opacity': '0.62'});
-			TMS.css('body', {'background-color': '#' + APP.settings.data.backgroundColor_bottom});
+	},
 
-			// Focus first game entry
-			TMS.focus('APP_GAMELIST_ENTRY_0');
+	// Check if needs to go on fullscreen on boot
+	bootCheckFullscreen: function(){
 
-			// Enable input
-			APP.input.lockCommandAction = !1;
+		// Get settings
+		const settingsData = APP.settings.data;
 
-		}, 610);
+		// Check if fullscreen is on boot is enabled
+		if (settingsData.appIsLoading === !0 && settingsData.bootFullscreen === !0 && APP.win.isFullscreen === !1){
+			this.toggleFullscreen();
+			this.updateCanvasRes();
+		}
+
+		// End
+		return 0;
+
+	},
+
+	// Cache all images on img dir
+	cacheImagesBoot: function(){
+
+		// Variables
+		var htmlTemp = '<div class="none" id="IMG_CACHE_DIV">';
+
+		// Process img path
+		APP.tools.getDirFiles(APP.settings.appPath + '/img').forEach(function(cImg){
+
+		    // Fix path
+		    const cDir = APP.tools.fixPath(cImg);
+
+		    // Check if current entry is a file
+		    if (APP.path.parse(cDir).ext !== '') {
+		        APP.log.add({
+		            data: 'INFO - (Design) Caching image: ' + cDir
+		        });
+		        htmlTemp = htmlTemp + '<img src="' + cDir + '">';
+		    }
+
+		});
+
+		// Append HTML
+		TMS.append('ASSETS_LIST', htmlTemp + '</div>');
+
+		// End
+		return 0;
 
 	},
 
@@ -227,16 +439,9 @@ temp_DESIGN = {
 
 	// Update GUI language
 	updateLang: function(){
-		
+
 		// Seleced lang database
 		const cLang = APP.lang.selected;
-
-		// Update titles
-		Object.keys(cLang.title).forEach(function(domId){
-			if (document.getElementById(domId) !== null && cLang.title[domId] !== ''){
-				document.getElementById(domId).title = cLang.title[domId];
-			}
-		});
 
 		// If lang isn't English, update GUI
 		if (APP.settings.data.appLanguage !== 'english'){
@@ -253,6 +458,13 @@ temp_DESIGN = {
 	},
 
 	/*
+		Gamelist variables
+	*/
+
+	// Current game list html
+	currentGameList: '',
+
+	/*
 		Gamelist functions
 	*/
 
@@ -262,13 +474,14 @@ temp_DESIGN = {
 		// Variables
 		var nextBtn = '', 
 			prevBtn = '',
-			tempHtml = '',
 			entryClass = '',
 			metadataTemplate = '',
-			displayMode = APP.settings.data.gameListMode;
+			gList = Object.keys(APP.gameList.list),
+			displayMode = APP.settings.data.gameListMode,
+			tempHtml = APP.lang.getVariable('gameList_errorEntryListEmpty');
 
 		// Reset top actions background color
-		TMS.css('APP_MAIN_TOP_BG', {'top': '-40px', 'background-color': '#0000'});
+		TMS.css('APP_MAIN_TOP', {'background-color': '#0000'});
 
 		// Switch from display mode
 		switch (displayMode){
@@ -281,9 +494,9 @@ temp_DESIGN = {
 
 				// Set list
 				APP.design.input.setList({
-					index: 0,
 					enableOutOfBoundsFn: !0,
 					list: 'APP_GAMELIST_ENTRY',
+					index: APP.design.input.gListIndexPos,
 					length: (Object.keys(APP.gameList.list).length - 1),
 
 					// If user press up, focus top actions menu
@@ -293,6 +506,7 @@ temp_DESIGN = {
 
 					// If user press down, return to first item on list
 					onEnd: function(){
+						TMS.css('APP_MAIN_GAMELIST', {'scroll-behavior': 'auto'});
 						return {position: 0, skipProcess: !1};
 					}
 
@@ -307,13 +521,22 @@ temp_DESIGN = {
 
 		// Get metadata
 		const getMetadataInfo = function(mode, data){
-			var res = '';
+
+			// Variables
+			var res = '',
+				gMetadata = '<label class="LABEL_ENTRY_METADATA">' + data.info + '</label><br>';
+
+			// Empty game metadata if is homebrew
+			if (data.status === 'hb'){
+				gMetadata = '';
+			}
+
 			switch (mode){
 
+				// List mode
 				case 'list':
-					res = '<div class="APP_GAMELIST_ENTRY_METADATA METADATA_LIST">' +
-						  '<label class="LABEL_ENTRY_APP_NAME_LIST">' + data.name + '</label><br>' +
-						  '<label class="LABEL_ENTRY_METADATA">' + data.info + '</label></div>';
+					res = '<div class="APP_GAMELIST_ENTRY_METADATA METADATA_LIST"><label class="LABEL_ENTRY_APP_NAME_LIST">' + data.name + '</label><br>' + gMetadata + '<div class="APP_GAME_LIST_STATUS APP_GAME_LIST_STATUS_' +
+						  data.status + '" title="' + APP.lang.getVariable('gameList_entryVersion_title_' + data.status, [data.missingFiles]) +'">' + APP.lang.getVariable('gameList_entryStatus_' + data.status) + '</div></div>';
 
 			}
 
@@ -321,94 +544,253 @@ temp_DESIGN = {
 
 		}
 
-		// Process list
-		Object.keys(APP.gameList.list).forEach(function(cEntry, cIndex){
+		// Check if there's items on entry list
+		if (gList.length !== 0){
 
-			// Variables
-			var metadataHtml = '',
-				entryName = cEntry,
-				langId = APP.lang.selected.titleId,
-				entryMetadata = APP.gameList.list[cEntry];
+			// Reset list
+			tempHtml = '';
 
-			// Get entry name from PARAM.SFO and set metadata html
-			if (Object.keys(entryMetadata.paramSfo).length !== 0){
-				entryName = entryMetadata.paramSfo['TITLE' + langId];
-				metadataHtml = getMetadataInfo(displayMode, {name: entryName, info: entryMetadata.paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameList_entryVersion', [entryMetadata.paramSfo.VERSION])});
-			} else {
-				metadataHtml = getMetadataInfo(displayMode, {name: entryName, info: APP.lang.getVariable('gameList_entryHomebrew')});
-			}
+			/*
+				[WIP] - Process entry list
+			*/
+			gList.forEach(function(cEntry, cIndex){
 
-			tempHtml = tempHtml + '<button class="APP_GAMELIST_ENTRY ' + entryClass + '" id="APP_GAMELIST_ENTRY_' + cIndex + '" onclick="APP.design.input.currentIndex = ' + cIndex + ';' + 
-								  'APP.design.displaySelectedGame();"><img class="IMG_GAME_ICON" src="' + entryMetadata.img_icon + '">' + metadataHtml + '</button>';
+				// Variables
+				var metadataHtml = '',
+					entryName = cEntry,
+					langId = APP.lang.selected.langId,
+					entryMetadata = APP.gameList.list[cEntry];
 
-		});
+				// Get entry name from PARAM.SFO and set metadata html
+				if (Object.keys(entryMetadata.paramSfo).length !== 0){
 
-		// Append HTML
-		document.getElementById('APP_MAIN_GAMELIST').innerHTML = tempHtml;
+					entryName = entryMetadata.paramSfo['TITLE' + langId];
+					metadataHtml = getMetadataInfo(displayMode, {name: entryName, status: entryMetadata.status, missingFiles: APP.tools.convertArrayToString(entryMetadata.missingFiles),
+								   info: entryMetadata.paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameList_entryVersion', [entryMetadata.paramSfo.VERSION])});
 
-		// Update button labels
-		this.msgSys.updateButtonLabels({
-			resetInput: !0,
-			target: 'MAIN_GAME_LIST',
-			displayButtons: ["ACTION_0", "ACTION_2", "ACTION_3"],
-			buttonLabels: {"ACTION_0": 'run', "ACTION_2": 'toggleHack', "ACTION_3": 'options'},
+				} else {
+					metadataHtml = getMetadataInfo(displayMode, {name: entryName, status: entryMetadata.status, info: APP.lang.getVariable('gameList_entryStatus_hb')});
+				}
 
-			// Bind input actions
-			callback: function(){
+				// Add entry
+				tempHtml = tempHtml + '<button class="APP_GAMELIST_ENTRY ' + entryClass + '" id="APP_GAMELIST_ENTRY_' + cIndex + '" onclick="APP.design.bakedFunctions.GAMELIST_defaultOnclickAction(' + cIndex +
+						   ');"><img class="IMG_GAME_ICON" src="' + entryMetadata.img_icon + '" alt="IMG_GAME_ENTRY_' + cIndex + '">' + metadataHtml + '</button>';
 
-				// Actions
-				APP.input.setActionFn('ACTION_0', function(){
-					APP.design.input.selectMainAction();
-				});
+			});
 
-				// Home: Goto top
-				APP.input.setActionFn('ACTION_12', function(){
-					APP.design.bakedFunctions.GAMELIST_gotoTop();
-				});
+			// Update button labels
+			this.input.updateButtonLabels({
+				resetInput: !0,
+				target: 'MAIN_GAME_LIST',
+				displayButtons: ['ACTION_0', 'ACTION_2', 'ACTION_12'],
+				buttonLabels: {'ACTION_0': 'run', 'ACTION_2': 'hackList', 'ACTION_12': 'menu'},
 
-				// Next / Prev buttons
-				APP.input.setActionFn(prevBtn, function(){
-					APP.design.input.moveCursor('prev');
-					APP.design.displaySelectedGame();
-				});
-				APP.input.setActionFn(nextBtn, function(){
-					APP.design.input.moveCursor('next');
-					APP.design.displaySelectedGame();
-				});
-			}
+				// Bind input actions
+				callback: function(){
 
-		});
+					/*
+						Actions
+					*/
+
+					// Run entry
+					APP.input.setActionFn('ACTION_0', function(){
+						APP.design.input.selectMainAction();
+						APP.design.input.gListIndexPos = APP.design.input.currentIndex;
+						APP.design.animations['ANIMATION_startEmu_' + displayMode]();
+					});
+
+					// Open hack list
+					APP.input.setActionFn('ACTION_2', function(){
+						APP.design.bakedFunctions.GAMELIST_gotoHackList();
+					});
+
+					// Home: Goto top
+					APP.input.setActionFn('ACTION_12', function(){
+						APP.design.bakedFunctions.GAMELIST_gotoTop();
+					});
+
+					// Next / Prev buttons
+					APP.input.setActionFn(prevBtn, function(){
+						APP.design.input.moveCursor('prev');
+					});
+					APP.input.setActionFn(nextBtn, function(){
+						APP.design.input.moveCursor('next');
+					});
+
+				}
+
+			});
+
+			// Render selected game
+			this.displaySelectedGame();
+
+		} else {
+
+			// If there's no entries, goto top
+			this.bakedFunctions.GAMELIST_gotoTop();
+
+		}
+
+		// Check if need to update html
+		if (tempHtml !== this.currentGameList){
+
+			// Append HTML and update currentGameList
+			document.getElementById('APP_MAIN_GAMELIST').innerHTML = tempHtml;
+			this.currentGameList = tempHtml;
+
+		}
 
 		/*
 			End
 		*/
 
-		// Set focus to first index
-		TMS.focus('APP_GAMELIST_ENTRY_0');
-		this.displaySelectedGame();
+		// Set window blur action
+		APP.design.winOnBlurAction = function(){return;}
 
 		// Execute callback
-		if (callback !== void 0 && typeof callback === 'function'){
+		if (typeof callback === 'function'){
 			callback();
 		}
 
+		// End
+		return 0;
+
 	},
 
-	// Scroll selected entry to center and display it's background
+	// Update GUI on selecing a game
 	displaySelectedGame: function(){
-		
+
 		// Variables
 		var cIndex = APP.design.input.currentIndex,
-			entryMetadata = APP.gameList.list[Object.keys(APP.gameList.list)[cIndex]];
+			entryMetadata = APP.gameList.list[Object.keys(APP.gameList.list)[cIndex]],
+			res = entryMetadata;
 
-		// Scroll entry to center
-		if (APP.settings.data.gameListMode !== 'orbis'){
-			TMS.scrollCenter('APP_GAMELIST_ENTRY_' + APP.design.input.currentIndex);
+		// Check if current list is game list
+		if (APP.design.input.currentList === 'APP_GAMELIST_ENTRY' && entryMetadata !== void 0){
+
+			// Set selected game
+			APP.gameList.selectedGame = entryMetadata.entryName;
+
+			// Set scroll behavior to smooth
+			TMS.css('APP_MAIN_GAMELIST', {'scroll-behavior': 'smooth'});
+
+			// Hide top bg
+			TMS.css('APP_MAIN_TOP', {'background-color': '#0000'});
+
+			// Give focus
+			TMS.focus('APP_GAMELIST_ENTRY_' + cIndex);
+
+			// Scroll entry to center
+			if (APP.settings.data.gameListMode !== 'orbis'){
+				TMS.scrollCenter('APP_GAMELIST_ENTRY_' + cIndex);
+			}
+
+			// Set background image
+			TMS.css('APP_CANVAS_BG', {'background-image': 'url(\"' + entryMetadata.img_background + '\")'});
+
+			// Check if app is loading
+			if (APP.settings.appIsLoading === !0){
+				res = 0;
+			}
+
+		} else {
+
+			// Focus current index
+			TMS.focus(APP.design.input.currentList + '_' + cIndex);
+			res = 0;
+
 		}
 
-		// Set background image
-		if (APP.design.input.currentList === 'APP_GAMELIST_ENTRY'){
-			TMS.css('APP_CANVAS_BG', {'background-image': 'url(\"' + entryMetadata.img_background + '\")'});
+		/*
+			End
+			Return entry metadata
+		*/
+		return res;
+
+	},
+
+	/*
+		Utility functions
+	*/
+
+	// Get checkbox state
+	getCheckboxState: function(target){
+		if (target !== void 0 && target !== ''){
+
+			// Variables
+			var res = 'on',
+				status = JSON.parse(APP.tools.getVariable(target));
+
+			// Get state
+			if (status === !1){
+				res = 'off';
+			}
+
+			return res;
+
+		}
+	},
+
+	/*
+		Toggle checkbox [WIP]
+
+			data: {Object}
+				target: 	  String - Name of affected variable
+				domId: 		  String - DOM ID of checkbox
+				saveSettings: Boolean - If true, will save settings after process
+				callback: 	  Function - function to be execute after process is complete
+				toggleClass:  String - Name of css class to be used on toggle (_on or _off)
+	*/
+	toggleCheckbox: function(data){
+
+		// Check if data is provided
+		if (data !== void 0 && Object.keys(data).length !== 0){
+
+			// Reset add button class
+			APP.design.removeErrorClass();
+
+			// Get data
+			var svgState = 'on',
+				removeClass = 'off',
+				toggleClass = 'IMG_GUI_CHECKBOX',
+				checkboxState = APP.tools.getVariable(data.target);
+
+			// Check if toggle class is defined
+			if (data.toggleClass !== void 0 && data.toggleClass !== ''){
+				toggleClass = data.toggleClass;
+			}
+
+			// Process state
+			if (checkboxState === !0){
+				svgState = 'off';
+				removeClass = 'on';
+				checkboxState = !1;
+			} else {
+				checkboxState = !0;
+			}
+
+			// Update data
+			(Function('"use strict";return APP.' + data.target + '=' + checkboxState + ';')());
+
+			// Update class
+			TMS.addClass(data.domId, toggleClass + '_' + svgState);
+			TMS.removeClass(data.domId, toggleClass + '_' + removeClass);
+
+			// Update icon
+			if (document.getElementById(data.domId) !== null){
+				document.getElementById(data.domId).src = 'img/svg/checkbox-' + svgState + '.svg';
+			}
+
+			// Save settings
+			if (data.saveSettings === !0){
+				APP.settings.save();
+			}
+
+			// Callback
+			if (typeof data.callback === 'function'){
+				data.callback();
+			}
+
 		}
 
 	},
@@ -418,14 +800,55 @@ temp_DESIGN = {
 	*/
 	bakedFunctions: {
 
-		// Game list (list mode) - Go to top actions if user press up while first entry is selected
+		// Game list - Default onclick action
+		GAMELIST_defaultOnclickAction: function(index){
+			APP.design.renderGameList();
+			APP.design.input.currentIndex = index;
+			APP.design.displaySelectedGame();
+		},
+
+		// Game list - Show about screen
+		GAMELIST_showAbout: function(){
+
+			// Save current cursor index
+			if (APP.design.input.currentList === 'APP_GAMELIST_ENTRY'){
+				APP.design.input.gListIndexPos = APP.design.input.currentIndex;
+			}
+
+			// Fade out bg and fade in "4" icon
+			TMS.css('APP_CANVAS_BG', {'opacity': '0'});
+
+			// Call about screen
+			APP.design.msgsys.displayMsg({showBgIcon: !0, msgName: 'general_showAbout'});
+
+		},
+
+		// About: Close and return to game list
+		GAMELIST_closeAbout: function(){
+
+			// Fade out "4" and fade in bg
+			TMS.css('APP_CANVAS_BG', {'opacity': '0.62'});
+			TMS.css('APP_CANVAS_BG_ICON', {'opacity': '0'});
+
+			// Render game list
+			APP.design.renderGameList(function(){
+				APP.design.displaySelectedGame();
+				APP.input.releaseInput();
+			});
+
+		},
+
+		// Game list - Go to top actions if user press up while first entry is selected
 		GAMELIST_gotoTop: function(){
 
 			// Lock input
-			APP.input.lockCommandAction = !0;
+			APP.input.lockInput();
 
-			// Dim top actions menu bg
-			TMS.css('APP_MAIN_TOP_BG', {'top': '-20px', 'background-color': '#000a'});
+			// Show top actions menu bg
+			TMS.css('APP_MAIN_TOP', {'background-color': '#000a'});
+
+			// Save current cursor index
+			APP.design.input.gListIndexPos = APP.design.input.currentIndex;
 
 			// Set new list
 			APP.design.input.setList({
@@ -436,11 +859,11 @@ temp_DESIGN = {
 			});
 
 			// Update button labels
-			APP.design.msgSys.updateButtonLabels({
+			APP.design.input.updateButtonLabels({
 				resetInput: !0,
 				target: 'MAIN_GAME_LIST',
-				displayButtons: ["ACTION_0"],
-				buttonLabels: {"ACTION_0": 'enter'},
+				displayButtons: ['ACTION_0', 'ACTION_1'],
+				buttonLabels: {'ACTION_0': 'select', 'ACTION_1': 'back'},
 
 				// Bind input actions
 				callback: function(){
@@ -455,12 +878,20 @@ temp_DESIGN = {
 					APP.input.setActionFn('ARROW_RIGHT', function(){
 						APP.design.input.moveCursor('next');
 					});
+
+					// Home, Down Arrow and Back: Return to list
 					APP.input.setActionFn('ARROW_DOWN', function(){
-						APP.design.renderGameList();
+						APP.design.renderGameList(function(){ APP.design.displaySelectedGame(); });
+					});
+					APP.input.setActionFn('ACTION_1', function(){
+						APP.design.renderGameList(function(){ APP.design.displaySelectedGame(); });
+					});
+					APP.input.setActionFn('ACTION_12', function(){
+						APP.design.renderGameList(function(){ APP.design.displaySelectedGame(); });
 					});
 
 					// Release input
-					APP.input.lockCommandAction = !1;
+					APP.input.releaseInput();
 
 				}
 
@@ -468,6 +899,128 @@ temp_DESIGN = {
 
 			// Return
 			return {position: 0, skipProcess: !0};
+		},
+
+		// Game list - Open Hack list
+		GAMELIST_gotoHackList: function(){
+
+			// Lock input
+			APP.input.lockInput();
+
+			// Variables
+			var htmlTemp = '',
+				cGame = APP.gameList.selectedGame,
+				hList = Object.keys(APP.emumanager.hackList),
+				checkboxInput = APP.settings.data.input_toggleCheckBox,
+				bLabels = '{"ACTION_1": "back", "' + checkboxInput + '": "toggleHack"}',
+				jsonPath = APP.settings.nwPath + '/Settings/Game Settings/' + cGame + '.json',
+				cGameSettings = JSON.parse(APP.fs.readFileSync(jsonPath, 'utf8'));
+
+			// Set current game settings
+			APP.emumanager.cGameSettings = cGameSettings;
+			APP.emumanager.tempSettings = JSON.stringify(cGameSettings);
+
+			/*
+				Process hack list
+			*/
+			hList.forEach(function(cHack, cIndex){
+
+				// Get hack description
+				var hackDesc = APP.emumanager.hackList[cHack],
+					cTarget = 'emumanager.cGameSettings.hackList.' + cHack,
+					hStatus = APP.design.getCheckboxState(cTarget);
+
+				// Update html
+				htmlTemp = htmlTemp + '<button class="BTN_GUI_OPTIONS BTN_GUI_OPTIONS_QUICK" id="MAIN_QUICK_SETTINGS_' + cIndex + '" onclick="APP.design.input.currentIndex=' + cIndex + ';APP.design.toggleCheckbox({target:\'' + cTarget +
+						  '\', domId: \'APP_QUICK_SETTINGS_CHECKBOX_' + cIndex + '\'});"><img src="img/svg/checkbox-' + hStatus + '.svg" alt="IMG_CHECKBOX" id="APP_QUICK_SETTINGS_CHECKBOX_' + cIndex + '" class="IMG_GUI_CHECKBOX_' + hStatus +'"/>' +
+						  '<div class="BTN_QUICKSETTINGS_CHECKBOX_LABEL_SELECTED">' + APP.lang.getVariable('gameSettings_enable') + ' ' + cHack + '<br><div class="text-small cursor-pointer">' + APP.lang.getVariable('gameSettings_hackDesc') +
+						  ' ' + hackDesc.slice(0, 1).toLowerCase() + hackDesc.slice(1) + '</div></div></button>';
+
+			});
+
+			// Update button labels
+			APP.design.input.updateButtonLabels({
+				resetInput: !0,
+				target: 'MAIN_GAME_LIST',
+				buttonLabels: JSON.parse(bLabels),
+				displayButtons: [checkboxInput, 'ACTION_1'],
+				callback: function(){
+
+					// Render quick settings
+					APP.design.quickSettings.show({
+						width: 44,
+						showTitle: !1,
+						content: htmlTemp,
+
+						// Execute action after closing quicksettings
+						onClose: function(){
+
+							// Update game settings
+							try {
+
+								// Stringify settings
+								const newSettings = JSON.stringify(APP.emumanager.cGameSettings);
+
+								// Check if need to update file
+								if (newSettings !== APP.emumanager.tempSettings){
+
+									// Update file
+									APP.log.add({data: 'INFO - (Hack list) Updating settings for ' + cGame});
+									APP.fs.writeFileSync(jsonPath, newSettings, 'utf8');
+
+								}
+
+								// Update emumanager variables
+								APP.emumanager.tempSettings = '';
+								APP.emumanager.cGameSettings = {};
+
+								// Render game list
+								APP.design.renderGameList(function(){ APP.design.displaySelectedGame(); });
+
+							} catch (err) {
+								throw new Error(err);
+							}
+
+						},
+
+						// Callback
+						callback: function(){
+
+							// Set input list
+							APP.design.input.setList({
+								index: 0,
+								enableOutOfBoundsFn: !1,
+								list: 'MAIN_QUICK_SETTINGS',
+								length: parseInt(hList.length - 1)
+							});
+
+							// Bind actions
+							APP.input.setActionFn(checkboxInput, function(){
+								APP.design.input.selectMainAction();
+							});
+							APP.input.setActionFn('ARROW_UP', function(){
+								APP.design.input.moveCursor('prev');
+							});
+							APP.input.setActionFn('ARROW_DOWN', function(){
+								APP.design.input.moveCursor('next');
+							});
+
+							// Close quick settings
+							APP.input.setActionFn('ACTION_1', function(){
+								APP.design.quickSettings.close();
+							});
+							APP.input.setActionFn('ARROW_LEFT', function(){
+								APP.design.quickSettings.close();
+							});
+
+						}
+
+					});
+
+				}
+
+			});
+
 		}
 
 	}
@@ -475,6 +1028,10 @@ temp_DESIGN = {
 }
 
 // Delete imported modules
-delete temp_MSGSYSTEM;
+delete temp_MSGSYS;
+delete temp_ANIMATIONS;
+delete temp_ABOUTSCREEN;
+delete temp_SETTINGSGUI;
 delete temp_SCENEMANAGER;
 delete temp_INPUT_DESIGN;
+delete temp_QUICKSETTINGS;
