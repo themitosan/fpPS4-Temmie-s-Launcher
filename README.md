@@ -1,4 +1,4 @@
-# IMPORTANT: THIS SOFTWARE IS FULL OF BUGS AND I'M NOT RESPONSIBLE FOR ANY DAMAGE ON YOUR FILE / SYSTEM.
+# IMPORTANT: THIS SOFTWARE IS FULL OF BUGS AND I'M NOT RESPONSIBLE FOR ANY DAMAGE ON YOUR SYSTEM.
 
 # fpPS4 Temmie's Launcher 2.0.0 source code
 A simple launcher for <a href="https://github.com/red-prig/fpPS4/">fpPS4 project</a> - created just for fun.
