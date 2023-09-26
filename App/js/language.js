@@ -220,8 +220,8 @@ temp_LANGUAGE = {
 		*/
 		"langId": '',
 		"lang": "English",
-		"author": "TemmieHeartz",
-		"revision": "TemmieHeartz",
+		"author": "TheMitoSan",
+		"revision": "TheMitoSan",
 
 		/*
 			Variables
@@ -469,7 +469,7 @@ temp_LANGUAGE = {
 			// About screen
 			"general_showAbout": {
 				"title": "About fpPS4 Temmie\'s Launcher",
-				"message": "<div class=\"APP_POPUP_MESSAGE position-absolute list-fade text-align-left\"><div class=\"text-align-center\">%VARIABLE_0%</div></div>"
+				"message": "<div class=\"APP_POPUP_MESSAGE position-absolute list-fade text-align-left\" id=\"fpPS4_TL_ABOUT_DATA\"><div class=\"text-align-center\">%VARIABLE_0%</div></div>"
 			},
 
 			// Settings: Settings file corrupted
@@ -538,11 +538,6 @@ temp_LANGUAGE = {
 			"updater_emuErrorWorflow404": {
 				"title": "Error",
 				"message": "<div class=\"APP_POPUP_MESSAGE_CONFIRM list-fade\">It seems that selected workflow list does not exists on fpPS4 GitHub. You can selected where it should load from this list below:</div><div class=\"APP_POPUP_MESSAGE_CONFIRM_ACTIONS\">%LIST%</div>"
-			},
-
-			"updater_TEST": {
-				"title": "Quick info",
-				"Message": "<div class=\"APP_POPUP_MESSAGE_CONFIRM list-fade\">Yep, I know - it's sad. But this is not the end. I will keep providing updates on main project when needed and if everything goes as my plans says, I will be back bringing good news about 2.0.</div>"
 			}
 
 		}

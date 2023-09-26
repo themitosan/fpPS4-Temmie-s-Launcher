@@ -821,10 +821,18 @@ temp_DESIGN = {
 			// Call about screen
 			APP.design.msgsys.displayMsg({showBgIcon: !0, msgName: 'general_showAbout'});
 
+			// Fix scroll
+			document.getElementById('APP_LOCKINPUT').onmousewheel = function(data){
+				document.getElementById('fpPS4_TL_ABOUT_DATA').scrollBy({top: data.deltaY, left: 0});
+			};
+
 		},
 
 		// About: Close and return to game list
 		GAMELIST_closeAbout: function(){
+
+			// Reset mousewheel
+			document.getElementById('APP_LOCKINPUT').onmousewheel = null;
 
 			// Fade out "4" and fade in bg
 			TMS.css('APP_CANVAS_BG', {'opacity': '0.62'});

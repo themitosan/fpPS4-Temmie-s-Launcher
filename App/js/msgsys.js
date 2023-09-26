@@ -147,8 +147,8 @@ temp_MSGSYS = {
 		});
 
 		// Reset content positions
-		TMS.css('APP_POPUP_CONTENT_0', {'transition-duration': '0s', 'z-index': 1, 'left': '14.2%'});
-		TMS.css('APP_POPUP_CONTENT_1', {'transition-duration': '0s', 'z-index': 0, 'left': '100%'});
+		TMS.css('APP_POPUP_CONTENT_0', {'transition-duration': '0s', 'z-index': '1', 'left': '14.2%'});
+		TMS.css('APP_POPUP_CONTENT_1', {'transition-duration': '0s', 'z-index': '0', 'left': '100%'});
 
 		// Prepare GUI before showing
 		TMS.css('APP_MSGSYS', {'display': 'block', 'opacity': '0'});
