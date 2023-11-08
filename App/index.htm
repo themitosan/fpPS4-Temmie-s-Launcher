@@ -361,6 +361,11 @@
 				
 				</div>
 
+                <!-- SDL2 option -->
+                <br>
+                <input type="checkbox" id="CHECKBOX_optionsEnableSDL2" oninput="APP.gameList.saveGameSettings(!0);APP.design.update();APP.gameList.checkSdl2();">
+                <label class="LABEL_checkbox" id="LABEL_FPPS4_OPTIONS_ENABLE_SDL2" onclick="APP.gameList.toggleSdl2();APP.gameList.checkSdl2();"> Enable SDL2</label>
+
 				<!-- Launcher Options -->
 				<div class="DIV_launcherOptions">
 					<div class="DIV_launcherOptionsTitle" id="LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS">
