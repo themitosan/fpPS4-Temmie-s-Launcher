@@ -1,5 +1,5 @@
 # fpPS4 Temmie's Launcher
-Created by TheMitoSan (Previously known as TemmieHeartz), This is a simple launcher created for [fpPS4](https://github.com/red-prig/fpPS4/) project.
+Created by TheMitoSan _(Previously known as TemmieHeartz)_, This is a simple launcher created for [fpPS4](https://github.com/red-prig/fpPS4/) project.
 
 <p align="center">
 	<img src="App/img/banner.jpg" width="750">
