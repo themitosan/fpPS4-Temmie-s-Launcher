@@ -55,6 +55,10 @@ temp_EMUMANAGER = {
 				}
 			});
 
+				if (document.getElementById('CHECKBOX_optionsEnableSDL2').checked === !0){
+					emuArgs.push('-pad "sdl2"');
+				}
+
 			// Add fullscreen flag if it's enabled
 			if (APP.settings.data.enableEmuFullscreen === !0){
 				emuArgs.push('-w');

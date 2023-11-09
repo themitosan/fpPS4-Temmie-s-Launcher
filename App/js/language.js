@@ -110,7 +110,8 @@ temp_LANGUAGE = {
 			"dumpStatus_WARN": "Missing files",
 			"dumpStatus_HB": "Homebrew",
 			"updateEmuWorkflow404": "ERROR - (Updater) Unable to locate selected CI workflow from fpPS4 GitHub!",
-			"updater_noWorkflowListAvailable": "No workflow list available"
+			"updater_noWorkflowListAvailable": "No workflow list available",
+            "Sdl2NotFound": "SDL2.dll is not found in the Emu folder, please install it to use SDL2."
 
 		},
 

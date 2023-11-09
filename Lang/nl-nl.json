@@ -61,8 +61,9 @@
 		"dumpStatus_OK": "Prima",
 		"dumpStatus_WARN": "Missende bestanden",
 		"dumpStatus_HB": "Homebrew",
-		"updateEmuWorkflow404": "",
-		"updater_noWorkflowListAvailable": ""
+		"updateEmuWorkflow404": "ERROR - (Updater) De geselecteerde CI workflow kon niet gevonden worden in de fpPS4 GitHub!",
+		"updater_noWorkflowListAvailable": "geen workflow lijst beschikbaar",
+        "Sdl2NotFound": "SDL2.dll is niet gevonden in de Emu map, installeer het om SDL2 te gebruiken."
 	},
 
 	"input_text": {
@@ -102,6 +103,7 @@
 		"LABEL_FPPS4_OPTIONS": "<label class=\"LABEL_emuColor\">fp</label>PS4 Opties",
 		"LABEL_FPPS4_OPTIONS_DUMP_STATUS": "Dump Status",
 		"LABEL_FPPS4_OPTIONS_ENABLE_PATCHES": "Patches Activeren",
+        "LABEL_FPPS4_OPTIONS_ENABLE_SDL2": "SDL2 Activeren",
 		"LABEL_FPPS4_OPTIONS_PATCH_VERSION": "Versie",
 		"LABEL_FPPS4_OPTIONS_PATCH_TYPE": "Type",
 		"LABEL_EMU_RUNNING_STATUS": "Status",

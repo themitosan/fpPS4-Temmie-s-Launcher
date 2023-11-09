@@ -127,6 +127,42 @@ temp_GAMELIST = {
 
 	},
 
+    // Check for SDL2.dll in emu folder
+    checkSdl2: function() {
+        // check if the checkbox is checked (so people can disable it normally)
+        if (document.getElementById("CHECKBOX_optionsEnableSDL2").checked) {
+
+            // Get path for sdl2.dll
+            const sdl2Path = APP.tools.fixPath(nw.__dirname) + "/Emu/SDL2.dll";
+
+            // Check if sdl2.dll exists and give an alert when its not found
+            if (!APP.fs.existsSync(sdl2Path)) {
+                window.alert(APP.lang.getVariable("Sdl2NotFound"));
+            }
+        }
+    },
+
+    // Toggle enable / disable SDL2
+	toggleSdl2: function(){
+
+		// Get current game id
+		const cGame = this.selectedGame,
+			listTop = document.getElementById('DIV_LIST_INTERNAL').scrollTop;
+
+		// Update GUI
+		APP.tools.processCheckbox('CHECKBOX_optionsEnableSDL2');
+		this.saveGameSettings(!0);
+		APP.design.update();
+		this.load();
+
+		// Select current game
+		APP.design.selectGame(cGame);
+
+		// Update scroll
+		document.getElementById('DIV_LIST_INTERNAL').scrollTop = listTop;
+
+	},
+
 	// Load game patch
 	loadGamePatch: function(){
 
