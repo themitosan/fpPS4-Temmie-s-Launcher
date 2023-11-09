@@ -62,7 +62,8 @@
 		"dumpStatus_WARN": "Недостающие файлы",
 		"dumpStatus_HB": "",
 		"updateEmuWorkflow404": "",
-		"updater_noWorkflowListAvailable": ""
+		"updater_noWorkflowListAvailable": "",
+		"Sdl2NotFound": ""
 	},
 
 	"input_text": {
@@ -103,6 +104,7 @@
 		"LABEL_FPPS4_OPTIONS": "Настройки <label class=\"LABEL_emuColor\">fp</label>PS4",
 		"LABEL_FPPS4_OPTIONS_DUMP_STATUS": "Состояние дампа",
 		"LABEL_FPPS4_OPTIONS_ENABLE_PATCHES": "Включить патчи",
+		"LABEL_FPPS4_OPTIONS_ENABLE_SDL2": "",
 		"LABEL_FPPS4_OPTIONS_PATCH_VERSION": "Версия",
 		"LABEL_FPPS4_OPTIONS_PATCH_TYPE": "Тип",
 		"LABEL_EMU_RUNNING_STATUS": "Статус",

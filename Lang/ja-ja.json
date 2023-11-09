@@ -62,7 +62,8 @@
 		"dumpStatus_WARN": "不完全",
 		"dumpStatus_HB": "自作ソフト(Homebrew)",
 		"updateEmuWorkflow404": "",
-		"updater_noWorkflowListAvailable": ""
+		"updater_noWorkflowListAvailable": "",
+		"Sdl2NotFound": ""
 	},
 
 	"input_text": {
@@ -102,6 +103,7 @@
 		"LABEL_FPPS4_OPTIONS": "<label class=\"LABEL_emuColor\">fp</label>PS4 オプション",
 		"LABEL_FPPS4_OPTIONS_DUMP_STATUS": "ダンプステータス",
 		"LABEL_FPPS4_OPTIONS_ENABLE_PATCHES": "パッチを有効化",
+		"LABEL_FPPS4_OPTIONS_ENABLE_SDL2": "",
 		"LABEL_FPPS4_OPTIONS_PATCH_VERSION": "バージョン",
 		"LABEL_FPPS4_OPTIONS_PATCH_TYPE": "タイプ",
 		"LABEL_EMU_RUNNING_STATUS": "ステータス",

@@ -62,7 +62,8 @@
 		"dumpStatus_WARN": "Faltam arquivos",
 		"dumpStatus_HB": "Homebrew",
 		"updateEmuWorkflow404": "ERRO - (Updater) Não foi possivel localizar a CI selecionada na lista de workflows do GitHub!",
-		"updater_noWorkflowListAvailable": "Não foi possivel obter lista de CI!"
+		"updater_noWorkflowListAvailable": "Não foi possivel obter lista de CI!",
+		"Sdl2NotFound": "Não foi possível encontrar SDL2.dll na pasta Emu, verifique se o mesmo se encontra lá para habilitar \"SDL\"."
 	},
 
 	"input_text": {
@@ -103,6 +104,7 @@
 		"LABEL_FPPS4_OPTIONS": "Opções de <label class=\"LABEL_emuColor\">fp</label>PS4",
 		"LABEL_FPPS4_OPTIONS_DUMP_STATUS": "Status da dump",
 		"LABEL_FPPS4_OPTIONS_ENABLE_PATCHES": "Habilitar patches",
+		"LABEL_FPPS4_OPTIONS_ENABLE_SDL2": "Habilitar SDL2",
 		"LABEL_FPPS4_OPTIONS_PATCH_VERSION": "Versão",
 		"LABEL_FPPS4_OPTIONS_PATCH_TYPE": "Tipo",
 		"LABEL_EMU_RUNNING_STATUS": "Status",
