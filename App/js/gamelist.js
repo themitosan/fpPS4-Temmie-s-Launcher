@@ -137,7 +137,7 @@ temp_GAMELIST = {
 
             // Check if sdl2.dll exists and give an alert when its not found
             if (!APP.fs.existsSync(sdl2Path)) {
-                window.alert("SDL2.dll is not found in the Emu folder, please install it to use SDL2.");
+                window.alert(APP.lang.getVariable("Sdl2NotFound"));
             }
         }
     },
