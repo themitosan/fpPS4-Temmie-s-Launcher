@@ -36,8 +36,8 @@
 		"patchLoadedSucessfully": "ИНФО - Патч успешно загружен!\nИмя: %VARIABLE_0%\nТип: %VARIABLE_1%",
 		"patchLoadErrorMismatch": "ОШИБКА - Это не патч, а если и есть, то выбранный не соответствует текущей игре!\nИдентификатор патча: %VARIABLE_0%\nТекущее приложение/игра: %VARIABLE_1%",
 		"patchLoadErrorParamSfo404": "ОШИБКА - Не удалось найти PARAM.SFO этого патча!",
-		"gameListLoadWarnPlayGo": "УВЕДОМЛЕНИЕ - Невозможно найти файл playgo-chunk.dat из %VARIABLE_0%!\nЕсли это приложение/игра не является Homebrew, проверьте , что дамп был сделан правильно.",
-		"gameListLoadWarnParamSfo": "УВЕДОМЛЕНИЕ - Не удалось найти PARAM.SFO из %VARIABLE_0%!\nЕсли это приложение/игра не является Homebrew, проверьте, что дамп был сделан правильно.",
+		"gameListLoadWarnPlayGo": "УВЕДОМЛЕНИЕ - Невозможно найти файл playgo-chunk.dat из %VARIABLE_0%!\nЕсли это приложение / игра не является Homebrew, проверьте , что дамп был сделан правильно.",
+		"gameListLoadWarnParamSfo": "УВЕДОМЛЕНИЕ - Не удалось найти PARAM.SFO из %VARIABLE_0%!\nЕсли это приложение / игра не является Homebrew, проверьте, что дамп был сделан правильно.",
 		"gameListDoubleIdError": "УВЕДОМЛЕНИЕ - Не удалось добавить %VARIABLE_0% в список игр, потому что уже есть другое название с таким же ID! ( %VARIABLE_1% )",
 		"gameListNoGameFound": "ИНФО - Не найдено приложений / игр в текущей папке ( %VARIABLE_0% )",
 		"gameListSearch404": "Не удалось найти",
@@ -46,7 +46,7 @@
 		"gameListVersion": "Версия",
 		"selectGameLoadPatchErrorParamSfo": "ОШИБКА - Невозможно загрузить PARAM.SFO из этого патча!\n%VARIABLE_0%",
 		"path": "Путь",
-		"gamelistGamePath404": "ОШИБКА - Не удалось найти путь к выбранному приложению/игре!\n%VARIABLE_0%",
+		"gamelistGamePath404": "ОШИБКА - Не удалось найти путь к выбранному приложению / игре!\n%VARIABLE_0%",
 		"updateEmuFetchActionsError": "ОШИБКА - Не удалось получить данные GitHub действий!",
 		"updateEmuIsLatestVersion": "ИНФО - Вы используете последнюю доступную версию fpPS4!\nCommit ID (SHA): %VARIABLE_0%",
 		"updateEmuShaAvailable": "ИНФО - Доступно новое обновление!\n\nВаша версия: %VARIABLE_0%\nНовая версия: %VARIABLE_1%\n\nХотите обновить?",
@@ -61,9 +61,9 @@
 		"dumpStatus_OK": "Отлично",
 		"dumpStatus_WARN": "Недостающие файлы",
 		"dumpStatus_HB": "",
-		"updateEmuWorkflow404": "",
-		"updater_noWorkflowListAvailable": "",
-		"Sdl2NotFound": ""
+		"updateEmuWorkflow404": "ОШИБКА - (Обновления) Не удалось найти выбранный рабочий процесс на GitHub fpPS4!",
+		"updater_noWorkflowListAvailable": "Нет доступного списка рабочих процессов",
+		"Sdl2NotFound": "SDL2.dll не найден в папке Emu, пожалуйста установите его чтобы использовать SDL2."
 	},
 
 	"input_text": {
@@ -71,7 +71,7 @@
 	},
 
 	"title": {
-		"DIV_selectedGameStatus": "Зелёный: Все файлы присутствуют\nЖёлтый: Некоторые файлы отсутствуют - смотрите лог для более подробной информации\nГолубой: исполняемый файл представляет собой файл .elf"
+		"DIV_selectedGameStatus": "Зелёный: Все файлы присутствуют\nЖёлтый: Некоторые файлы отсутствуют - смотрите лог для более подробной информации\nГолубой: Исполняемый файл представляет собой файл .elf"
 	},
 
 	"innerHTML": {
@@ -81,7 +81,7 @@
 		"LABEL_SETTINGS_CURRENT_LANGUAGE": "Текущий язык",
 		"LABEL_SETTINGS_LANGUAGE_RESTART": "Перезапустите лаунчер чтобы настройки вступили в силу.",
 		"DIV_SETTINGS_PATHS": "Пути",
-		"LABEL_SETTINGS_APP_GAMES_PATH": "К папке с приложениями/играми",
+		"LABEL_SETTINGS_APP_GAMES_PATH": "К папке с приложениями / играми",
 		"LABEL_SETTINGS_FPPS4_PATH": "К папке с эмулятором (fpPS4)",
 		"DIV_SETTINGS_GAME_LIST": "Макет",
 		"LABEL_SETTINGS_GRID_BORDER_RADIUS": "(Сетка) Радиус границы значков",
@@ -104,14 +104,15 @@
 		"LABEL_FPPS4_OPTIONS": "Настройки <label class=\"LABEL_emuColor\">fp</label>PS4",
 		"LABEL_FPPS4_OPTIONS_DUMP_STATUS": "Состояние дампа",
 		"LABEL_FPPS4_OPTIONS_ENABLE_PATCHES": "Включить патчи",
-		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_MODE": "",
+		"LABEL_FPPS4_OPTIONS_MISC": "Другие Опции",
+		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_MODE": "Выберите режим геймпада:",
 		"LABEL_FPPS4_OPTIONS_PATCH_VERSION": "Версия",
 		"LABEL_FPPS4_OPTIONS_PATCH_TYPE": "Тип",
 		"LABEL_EMU_RUNNING_STATUS": "Статус",
 		"LABEL_FPPS4_OPTIONS_APP_VERSION": "Версия",
 		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "Параметры запуска",
 		"LABEL_FPPS4_OPTIONS_HACKS": "Хаки",
-		"LABEL_SETTINGS_SHOW_METADATA_GUI": "Показывать иконку/имя когда fpPS4 выполняется",
+		"LABEL_SETTINGS_SHOW_METADATA_GUI": "Показывать иконку / имя когда fpPS4 выполняется",
 		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">ЭКСПЕРЕМЕНТАЛЬНО</label> Логи процесса вывода fpPS4 (<code>stdout</code> и <code>stderr</code>) в внутреннем логе (Нажать F12 --> Console)",
 		"DIV_SETTINGS_FPPS4_UPDATER": "Автообновления fpPS4",
 		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "Включить автообновления fpPS4",
