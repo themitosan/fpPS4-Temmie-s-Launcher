@@ -61,9 +61,9 @@
 		"dumpStatus_OK": "完成",
 		"dumpStatus_WARN": "文件缺失",
 		"dumpStatus_HB": "自制",
-		"updateEmuWorkflow404": "ERROR - 无法在 GitHub 上的 fpPS4 工作流列表中找到 CI",
-		"updater_noWorkflowListAvailable": "",
-		"Sdl2NotFound": ""
+		"updateEmuWorkflow404": "ERROR - 无法在 fpPS4 GitHub 上找到当前选择的 CI Workflow",
+		"updater_noWorkflowListAvailable": "Workflow 列表无法读取",
+		"Sdl2NotFound": "模拟器文件夹中未发现 SDL2.dll , 请安装并使用 SDL2"
 	},
 
 	"input_text": {
@@ -104,7 +104,7 @@
 		"LABEL_FPPS4_OPTIONS": "<label class=\"LABEL_emuColor\">fp</label>PS4 选项",
 		"LABEL_FPPS4_OPTIONS_DUMP_STATUS": "Dump 状态",
 		"LABEL_FPPS4_OPTIONS_ENABLE_PATCHES": "启用游戏补丁",
-		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_MODE": "",
+		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_MODE": "选择控制器模式",
 		"LABEL_FPPS4_OPTIONS_PATCH_VERSION": "版本号",
 		"LABEL_FPPS4_OPTIONS_PATCH_TYPE": "类型",
 		"LABEL_EMU_RUNNING_STATUS": "运行状态",
