@@ -56,8 +56,7 @@ temp_EMUMANAGER = {
 			});
 
 			// Push gamepad mode
-			const padModeName = document.getElementById('FPPS4_OPTIONS_SELECT_GAMEPAD_MODE').value;
-			const padMode = padModeName.charAt(0).toLowerCase() + padMode.slice(1);
+			const padMode = document.getElementById('FPPS4_OPTIONS_SELECT_GAMEPAD_MODE').value;
 			if (padMode === 'sdl2' && APP.gameList.checkSdl2() === !1){
 				emuArgs.push('-pad "keyboard"');
 			} else {
