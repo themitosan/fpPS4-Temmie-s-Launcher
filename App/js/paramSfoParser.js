@@ -6,7 +6,7 @@
 	This file is responsible for holding all funcions / database for reading
 	PARAM.SFO files!
 
-	Many thanks to Control eXecute (@notzecoxao) for this sassy-challenge!
+	Many thanks to Control eXecute (@notzecoxao) for this challenge!
 
 	Article used as reference:
 	https://www.psdevwiki.com/ps4/Param.sfo

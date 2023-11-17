@@ -55,12 +55,13 @@ temp_EMUMANAGER = {
 				}
 			});
 
-				if (document.getElementById('CHECKBOX_optionsEnableSDL2').checked === !0){
-					emuArgs.push('-pad "sdl2"');
-				}
-				else{
-					emuArgs.push('-pad "keyboard"');
-				}
+			// Push gamepad mode
+			const padMode = document.getElementById('FPPS4_OPTIONS_SELECT_GAMEPAD_MODE').value;
+			if (padMode === 'sdl2' && APP.gameList.checkSdl2() === !1){
+				emuArgs.push('-pad "keyboard"');
+			} else {
+				emuArgs.push(`-pad "${padMode}"`);
+			}
 
 			// Add fullscreen flag if it's enabled
 			if (APP.settings.data.enableEmuFullscreen === !0){

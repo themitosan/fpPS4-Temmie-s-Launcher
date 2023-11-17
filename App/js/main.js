@@ -6,25 +6,6 @@
 	This file contains all modules and required functions to initialize 
 	launcher.
 	******************************************************************************
-
-	IMPORTANT:
-
-		It seems that doesn't matter how much we fight, there is still having
-		people out there that always will try to cease our light. As long they
-		still out there, we will preserve ourselves. 
-
-		You don't need to worry - everything still works as usual.
-		Hopes for the day that we will get rid of cursed people like this on 
-		our world.
-
-		Do you want colors back? Maybe you should try again when all world 
-		go rainbow mode™. I'm pretty sure you know what I mean ;)
-
-		By the way: Mental Illness? S*ck My @ss!
-		
-		TheMitoSan / TemmieHeartz <3
-	
-	******************************************************************************
 */
 
 const APP = {
@@ -306,8 +287,9 @@ window.onload = function(){
 		// Kill fpPS4 process if is active
 		APP.emuManager.killEmu(!0);
 
-		// Rener hack list
+		// Rener hack list and gamepad modes
 		APP.design.renderHacklist();
+		APP.design.renderGamepadModes();
 
 		// Focus search field
 		TMS.focus('INPUT_gameListSearch');

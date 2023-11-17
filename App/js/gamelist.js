@@ -3,8 +3,7 @@
 	fpPS4 Temmie's Launcher
 	gamelist.js
 
-	This file contains all functions / variables related to creating and managing 
-	gamelist
+	This file contains all functions / variables related to gamelist
 	******************************************************************************
 */
 
@@ -29,6 +28,7 @@ temp_GAMELIST = {
 				hacks: data.hacks,
 				usePatch: data.usePatch,
 				isHomebrew: data.isHomebrew,
+				gamepadMode: data.gamepadMode,
 				patchLocation: data.patchLocation,
 				importedModules: data.importedModules
 			}
@@ -71,7 +71,8 @@ temp_GAMELIST = {
 		});
 		tempData.hacks = cHacks;
 
-		// Update patch data
+		// Update patch data and gamepad mode
+		tempData.gamepadMode = document.getElementById('FPPS4_OPTIONS_SELECT_GAMEPAD_MODE').value;
 		tempData.usePatch = JSON.parse(document.getElementById('CHECKBOX_optionsEnablePatch').checked);
 
 		/*
@@ -128,40 +129,24 @@ temp_GAMELIST = {
 	},
 
     // Check for SDL2.dll in emu folder
-    checkSdl2: function() {
-        // check if the checkbox is checked (so people can disable it normally)
-        if (document.getElementById("CHECKBOX_optionsEnableSDL2").checked) {
+    checkSdl2: function(){
 
-            // Get path for sdl2.dll
-            const sdl2Path = APP.tools.fixPath(nw.__dirname) + "/Emu/SDL2.dll";
+        // Check if gamepad mode is sdl2
+        if (document.getElementById("FPPS4_OPTIONS_SELECT_GAMEPAD_MODE").value === 'sdl2'){
 
-            // Check if sdl2.dll exists and give an alert when its not found
-            if (!APP.fs.existsSync(sdl2Path)) {
+            // Get path for sdl2.dll and check if exists. If not, give an alert when its not found.
+            const
+            	sdl2Path = APP.tools.fixPath(nw.__dirname) + "/Emu/SDL2.dll",
+            	dllExists = APP.fs.existsSync(sdl2Path);
+            if (!dllExists) {
                 window.alert(APP.lang.getVariable("Sdl2NotFound"));
             }
+
+            return dllExists;
+
         }
+
     },
-
-    // Toggle enable / disable SDL2
-	toggleSdl2: function(){
-
-		// Get current game id
-		const cGame = this.selectedGame,
-			listTop = document.getElementById('DIV_LIST_INTERNAL').scrollTop;
-
-		// Update GUI
-		APP.tools.processCheckbox('CHECKBOX_optionsEnableSDL2');
-		this.saveGameSettings(!0);
-		APP.design.update();
-		this.load();
-
-		// Select current game
-		APP.design.selectGame(cGame);
-
-		// Update scroll
-		document.getElementById('DIV_LIST_INTERNAL').scrollTop = listTop;
-
-	},
 
 	// Load game patch
 	loadGamePatch: function(){
@@ -370,7 +355,7 @@ temp_GAMELIST = {
 
 	},
 
-	// Process Search List
+	// Process search list
 	search: function(){
 
 		var gameListArray = Object.keys(APP.gameList.list),

@@ -23,9 +23,6 @@ temp_SETTINGS = {
 		// Language
 		appLanguage: 'english',
 
-		// Remove previous imported modules
-		removedLibModules: !1,
-
 		// Paths
 		nwPath: '',
 		emuPath: '',

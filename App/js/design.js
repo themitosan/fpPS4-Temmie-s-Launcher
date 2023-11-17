@@ -30,6 +30,9 @@ temp_DESIGN = {
 		'SKIP_UNKNOW_TILING'
 	],
 
+	// Gamepad modes
+	gamepadModes: ['xinput', 'sdl2', 'keyboard'],
+
 	// Game list display modes
 	gameListDisplayModes: ['normal', 'compact', 'grid'],
 	
@@ -46,6 +49,20 @@ temp_DESIGN = {
 		document.getElementById('DIV_HACK_LIST').innerHTML = htmlTemp;
 
 		// Render GUI
+		this.update();
+
+	},
+
+	// Render gamepad modes
+	renderGamepadModes: function(){
+
+		var tempHtml = '';
+		this.gamepadModes.forEach(function(cPadMode){
+			tempHtml = `${tempHtml}<option value="${cPadMode}">${cPadMode}</option>`;
+		});
+
+		// Append HTML and update
+		document.getElementById('FPPS4_OPTIONS_SELECT_GAMEPAD_MODE').innerHTML = tempHtml;
 		this.update();
 
 	},
@@ -285,6 +302,7 @@ temp_DESIGN = {
 					patchLocation: '',
 					path: settingsFile,
 					importedModules: [],
+					gamepadMode: 'xinput',
 					isHomebrew: gData.isHomebrew
 				});
 
@@ -342,9 +360,14 @@ temp_DESIGN = {
 
 			}
 
+			// Load gamepad mode
+			if (gSettings.gamepadMode === void 0){
+				gSettings.gamepadMode = 'xinput';
+			}
+			document.getElementById('FPPS4_OPTIONS_SELECT_GAMEPAD_MODE').value = gSettings.gamepadMode;
+
 			// Update GUI
 			APP.design.update();
-
 		}
 
 	},
