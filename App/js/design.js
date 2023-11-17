@@ -58,8 +58,7 @@ temp_DESIGN = {
 
 		var tempHtml = '';
 		this.gamepadModes.forEach(function(cPadMode){
-			var cPadModeLabel = cPadMode.charAt(0).toUpperCase() + cPadMode.slice(1);
-			tempHtml = `${tempHtml}<option value="${cPadModeLabel}">${cPadModeLabel}</option>`;
+			tempHtml = `${tempHtml}<option value="${cPadMode}">${cPadMode}</option>`;
 		});
 
 		// Append HTML and update
