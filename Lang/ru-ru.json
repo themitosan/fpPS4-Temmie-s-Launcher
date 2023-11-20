@@ -153,7 +153,7 @@
 		"BTN_ABOUT": "О программе",
 		"BTN_KILL": "Остановить fpPS4",
 		"BTN_FPPS4_OPTIONS_SELECT_PATCH_LOCATION": "Выберите патч",
-		"BTN_FPPS4_OPTIONS_OPEN_APP_LOCATION": "Папка приложения/игры",
+		"BTN_FPPS4_OPTIONS_OPEN_APP_LOCATION": "Папка приложения / игры",
 		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "Сброс настроек",
 		"BTN_launcherOptionsExportMetadata": "Экспорт метаданных",
 		"BTN_RUN": "Запустить",
