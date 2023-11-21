@@ -63,7 +63,7 @@
 		"dumpStatus_HB": "Homebrew",
 		"updateEmuWorkflow404": "ERREUR - (Mise à jour) N'a pas pu localiser une sélection CI dans la liste des flux de travail de GitHub !",
 		"updater_noWorkflowListAvailable": "Impossible d'obtenir la liste CI !",
-		"Sdl2NotFound": ""
+		"Sdl2NotFound": "Impossible de trouver SDL2.dll dans le dossier Emu, vérifiez s'il est là pour activer \"SDL\"."
 	},
 
 	"input_text": {
