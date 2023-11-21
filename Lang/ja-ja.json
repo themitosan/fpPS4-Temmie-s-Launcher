@@ -132,6 +132,11 @@
 			"normal": "普通",
 			"max": "最大",
 			"min": "最小"
+		},
+		"FPPS4_OPTIONS_SELECT_GAMEPAD_MODE": {
+			"xinput": "xinput",
+			"sdl2": "sdl2",
+			"keyboard": "Keyboard"
 		}
 
 	},

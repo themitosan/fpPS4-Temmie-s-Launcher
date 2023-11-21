@@ -48,7 +48,7 @@ temp_LANGUAGE = {
 	english: {
 
 		"lang": "English (Default)",
-		
+
 		"variables": {
 
 			"labelEnableHack": "Enable",

@@ -30,12 +30,6 @@ temp_DESIGN = {
 		'SKIP_UNKNOW_TILING'
 	],
 
-	// Gamepad modes
-	gamepadModes: ['xinput', 'sdl2', 'keyboard'],
-
-	// Game list display modes
-	gameListDisplayModes: ['normal', 'compact', 'grid'],
-	
 	// Render hack list
 	renderHacklist: function(){
 
@@ -49,20 +43,6 @@ temp_DESIGN = {
 		document.getElementById('DIV_HACK_LIST').innerHTML = htmlTemp;
 
 		// Render GUI
-		this.update();
-
-	},
-
-	// Render gamepad modes
-	renderGamepadModes: function(){
-
-		var tempHtml = '';
-		this.gamepadModes.forEach(function(cPadMode){
-			tempHtml = `${tempHtml}<option value="${cPadMode}">${cPadMode}</option>`;
-		});
-
-		// Append HTML and update
-		document.getElementById('FPPS4_OPTIONS_SELECT_GAMEPAD_MODE').innerHTML = tempHtml;
 		this.update();
 
 	},
@@ -127,7 +107,7 @@ temp_DESIGN = {
 		var tempHtml = '',
 			gList = APP.gameList.list,
 			sQuery = document.getElementById('INPUT_gameListSearch').value;
-		
+
 		if (data === void 0){
 			data = {};
 		}
@@ -164,7 +144,7 @@ temp_DESIGN = {
 
 			// Check if patch is available and active
 			if (Object.keys(settingsFile).length !== 0 && settingsFile.usePatch === !0 && APP.fs.existsSync(settingsFile.patchLocation + '/sce_sys/param.sfo') === !0){
-				
+
 				// Get PARAM.SFO patch data
 				patchParamSfo = APP.paramSfo.parse(settingsFile.patchLocation + '/sce_sys/param.sfo');
 
@@ -396,7 +376,7 @@ temp_DESIGN = {
 
 			// If emu is running
 			if (APP.emuManager.emuRunning === !0){
-	
+
 				btnKill = '';
 				btnDisabled = 'disabled';
 				bgBlur = APP.settings.data.bgEmuBlur;
@@ -420,7 +400,7 @@ temp_DESIGN = {
 			TMS.css('DIV_GAME_DETAILS', showGuiMetadata);
 			TMS.css('DIV_GAME_DETAILS_currentExec', {'display': emuRunPath});
 			TMS.css('DIV_GAMELIST_BG', {'filter': 'blur(' + bgBlur + 'px) opacity(' + bgOpacity + ')'});
-	
+
 			// Update Buttons
 			document.getElementById('BTN_KILL').disabled = btnKill;
 			document.getElementById('BTN_RUN').disabled = btnDisabled;
@@ -475,7 +455,7 @@ temp_DESIGN = {
 				// Set data
 				cGameVersion = cGame.paramSfo.APP_VER;
 				gName = '<div class="LABEL_gameTitleOptions">' + cGame.name + '</div><br><label class="user-can-select">' + cGame.paramSfo.TITLE_ID + '</label>';
-			
+
 			}
 
 			// If app / game patch is enabled, show metadata
@@ -484,10 +464,10 @@ temp_DESIGN = {
 			}
 
 		}
-		
+
 		// Enable / disable export metadata 
 		document.getElementById('BTN_launcherOptionsExportMetadata').disabled = exportButtonStatus;
-		
+
 		// Show / hide patch
 		TMS.css('DIV_launcherOptionsPatchVersion', {'display': displayPatchContainer});
 
@@ -513,7 +493,7 @@ temp_DESIGN = {
 	toggleDisplayMode: function(gameData){
 
 		if (gameData !== void 0){
-			
+
 			var gameVersion = '',
 				patchParamSfo = {},
 				disableGridIconSize = '',
@@ -528,13 +508,13 @@ temp_DESIGN = {
 
 				gameDetails = {'display': 'none'};
 				listInternal = {'transition': 'none', 'filter': 'blur(' + APP.settings.data.bgListBlur +'px) opacity(' + APP.settings.data.bgListOpacity + ')'};
-				
+
 				// Restore app title
 				document.title = APP.title;
-				
+
 				APP.design.renderGameList();
 				APP.design.updateLauncherSettingsGUI();
-	
+
 			} else {
 
 				// Disable grid size
@@ -575,10 +555,10 @@ temp_DESIGN = {
 					// Set new game data
 					gameMetadata = gameData.paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameListVersion') + ' ' + gameVersion;
 				}
-				
+
 				// Clear game list
 				document.getElementById('DIV_LIST_INTERNAL').innerHTML = '';
-	
+
 			}
 
 			// Fix undefined path
@@ -592,7 +572,7 @@ temp_DESIGN = {
 			document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = gameData.appStatus;
 			document.getElementById('LABEL_GAME_DETAILS_APP_NAME').innerHTML = gameData.appName;
 			document.getElementById('RANGE_settingsGridIconSize').disabled = disableGridIconSize;
-	
+
 			// Set CSS
 			TMS.css('DIV_GAMELIST_BG', listInternal);
 			TMS.css('DIV_GAME_DETAILS', gameDetails);
@@ -661,10 +641,10 @@ temp_DESIGN = {
 		langList.forEach(function(cEntry){
 
 			if (APP.path.parse(cEntry).ext.toLowerCase() === '.json'){
-			
+
 				const getLangInfo = JSON.parse(APP.fs.readFileSync(APP.settings.data.nwPath + '/Lang/' + cEntry, 'utf8'));
 				langSelectHtml = langSelectHtml + '<option value="' + APP.path.parse(cEntry).name + '">' + getLangInfo.lang + '</option>';
-			
+
 			}
 
 		});
@@ -732,7 +712,7 @@ temp_DESIGN = {
 		// Variables
 		var guiZoomScale = APP.settings.data.guiZoomScale,
 			cDisplayMode = APP.settings.data.gameListMode;
-		
+
 		// Grid options
 		switch (cDisplayMode) {
 

@@ -370,8 +370,9 @@
                 	<!-- Select gamepad mode -->
                 	<label class="LABEL_checkbox" id="LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_MODE">Select gamepad mode:</label><br>
                 	<select class="SELECT_settings" id="FPPS4_OPTIONS_SELECT_GAMEPAD_MODE" onchange="APP.gameList.saveGameSettings(!0);APP.gameList.checkSdl2();APP.design.update();">
-                		<option disabled>No options available</option>
-                		<!-- Gamepad options goes here -->
+                		<option value="xinput">xinput</option>
+                		<option value="sdl2">sdl2</option>
+                		<option value="keyboard">Keyboard</option>
                 	</select>
 
                 </div>

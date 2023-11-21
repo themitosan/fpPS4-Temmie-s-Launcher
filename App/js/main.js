@@ -90,7 +90,7 @@ const APP = {
 
 	// DEBUG: Process fpPS4 output data
 	processStdOutput: function(data, type){
-		
+
 		const logSplit = data.split('\n');
 		logSplit.forEach(function(logLine){
 
@@ -120,33 +120,33 @@ const APP = {
 				// Window state
 				var winMode, pressAnyKey = '';
 				switch (APP.settings.data.logExternalWindowStartMode){
-	
+
 					case 'normal':
 						winMode = '';
 						break;
-	
+
 					case 'max':
 						winMode = '/MAX';
 						break;
-	
+
 					case 'min':
 						winMode = '/MIN';
 						break;
-	
+
 				}
-	
+
 				// Ask user to press any key
 				if (APP.settings.data.logExternalWindowPrompt === !0){
 					pressAnyKey = '^& pause';
 				}
-	
+
 				// Transform args into string
 				var gPath = '"' + args[args.indexOf('-e') + 1] + '"',
 					parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
 					execLine = 'start "' + APP.lang.getVariable('logWindowTitle') + ' - ' + APP.gameList.selectedGame + '" ' + winMode + ' cmd /C ' + APP.path.parse(APP.settings.data.emuPath).base + ' ' + parseArgs + ' ' + pressAnyKey;
-				
+
 				APP.execProcess = APP.childProcess.exec(execLine);
-				
+
 			} else {
 
 				/*
@@ -279,7 +279,7 @@ window.onload = function(){
 		// App Log
 		APP.appVersion = APP.lang.getVariable('mainLog', [APP.version, process.versions.nw, process.versions['nw-flavor'].toUpperCase()]);
 		APP.log(APP.appVersion);
-		
+
 		// Load settings ( 2 / 2 )
 		APP.settings.checkPaths();
 		APP.design.renderSettings();
@@ -289,7 +289,6 @@ window.onload = function(){
 
 		// Rener hack list and gamepad modes
 		APP.design.renderHacklist();
-		APP.design.renderGamepadModes();
 
 		// Focus search field
 		TMS.focus('INPUT_gameListSearch');
