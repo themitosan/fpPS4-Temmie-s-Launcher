@@ -137,9 +137,9 @@
 			"min": "Свернутое"
 		},
 		"FPPS4_OPTIONS_SELECT_GAMEPAD_MODE": {
-			"xinput": "xinput",
-			"sdl2": "sdl2",
-			"keyboard": "Keyboard"
+			"xinput": "XInput",
+			"sdl2": "SDL2",
+			"keyboard": "Клавиатура"
 		}
 
 	},
