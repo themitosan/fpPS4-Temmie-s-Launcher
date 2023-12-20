@@ -30,6 +30,9 @@ temp_DESIGN = {
 		'SKIP_UNKNOW_TILING'
 	],
 
+	// Game list display modes
+	gameListDisplayModes: ['normal', 'compact', 'grid'],
+
 	// Render hack list
 	renderHacklist: function(){
 
