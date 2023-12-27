@@ -111,8 +111,8 @@ temp_LANGUAGE = {
 			"dumpStatus_HB": "Homebrew",
 			"updateEmuWorkflow404": "ERROR - (Updater) Unable to locate selected CI workflow from fpPS4 GitHub!",
 			"updater_noWorkflowListAvailable": "No workflow list available",
-            "Sdl2NotFound": "SDL2.dll is not found in the Emu folder, please install it to use SDL2."
-
+            "Sdl2NotFound": "SDL2.dll is not found in the Emu folder, please install it to use SDL2.",
+            "errorListUnableLocateGamePath": "ERROR - Unable to locate \"%VARIABLE_0%\" settings path! In order to prevent issues, game list will be reloaded.\nPath: %VARIABLE_1%"
 		},
 
 		"title": {

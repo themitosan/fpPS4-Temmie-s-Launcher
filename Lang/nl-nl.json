@@ -63,7 +63,8 @@
 		"dumpStatus_HB": "Homebrew",
 		"updateEmuWorkflow404": "ERROR - (Updater) De geselecteerde CI workflow kon niet gevonden worden in de fpPS4 GitHub!",
 		"updater_noWorkflowListAvailable": "geen workflow lijst beschikbaar",
-        "Sdl2NotFound": "SDL2.dll is niet gevonden in de Emu map, installeer het om SDL2 te gebruiken."
+        "Sdl2NotFound": "SDL2.dll is niet gevonden in de Emu map, installeer het om SDL2 te gebruiken.",
+        "errorListUnableLocateGamePath": ""
 	},
 
 	"input_text": {

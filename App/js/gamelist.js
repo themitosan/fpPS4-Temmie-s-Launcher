@@ -31,19 +31,23 @@ temp_GAMELIST = {
 				gamepadMode: data.gamepadMode,
 				patchLocation: data.patchLocation,
 				importedModules: data.importedModules
+			};
+
+		// Check if title location exists
+		if (APP.fs.existsSync(data.path) === !0){
+
+			// Write file
+			try {
+				APP.fs.writeFileSync(data.path, JSON.stringify(gameSettings), 'utf8');
+				logMessage = APP.lang.getVariable('createdSettingsFile', [data.name]);
+			} catch (err) {
+				console.error(err);
+				logMessage = APP.lang.getVariable('errorCreateSettingsFile', [data.name, data.path, err]);
 			}
 
-		// Write file
-		try {
-
-			APP.fs.writeFileSync(data.path, JSON.stringify(gameSettings), 'utf8');
-			logMessage = APP.lang.getVariable('createdSettingsFile', [data.name]);
-		
-		} catch (err) {
-
-			console.error(err);
-			logMessage = APP.lang.getVariable('errorCreateSettingsFile', [data.name, data.path, err]);
-
+		} else {
+			logMessage = APP.lang.getVariable('errorListUnableLocateGamePath', [data.name, data.path]);
+			APP.gameList.load();
 		}
 
 		// Log result
@@ -59,7 +63,7 @@ temp_GAMELIST = {
 			logMessage = '',
 			tempData = APP.gameList.cGameSettings,
 			prevSettings = JSON.stringify(APP.gameList.cGameSettings),
-			fPath = APP.path.parse(this.list[this.selectedGame].exe).dir + '/launcherSettings.json';
+			fPath = `${APP.path.parse(this.list[this.selectedGame].exe).dir}/launcherSettings.json`;
 
 		/*
 			Update settings
@@ -111,7 +115,8 @@ temp_GAMELIST = {
 	toggleGamePatch: function(){
 
 		// Get current game id
-		const cGame = this.selectedGame,
+		const
+			cGame = this.selectedGame,
 			listTop = document.getElementById('DIV_LIST_INTERNAL').scrollTop;
 
 		// Update GUI
@@ -120,10 +125,8 @@ temp_GAMELIST = {
 		APP.design.update();
 		this.load();
 
-		// Select current game
+		// Select current game and update scroll
 		APP.design.selectGame(cGame);
-
-		// Update scroll
 		document.getElementById('DIV_LIST_INTERNAL').scrollTop = listTop;
 
 	},
@@ -132,13 +135,13 @@ temp_GAMELIST = {
     checkSdl2: function(){
 
         // Check if gamepad mode is sdl2
-        if (document.getElementById("FPPS4_OPTIONS_SELECT_GAMEPAD_MODE").value === 'sdl2'){
+        if (document.getElementById('FPPS4_OPTIONS_SELECT_GAMEPAD_MODE').value === 'sdl2'){
 
             // Get path for sdl2.dll and check if exists. If not, give an alert when its not found.
             const
-            	sdl2Path = APP.tools.fixPath(nw.__dirname) + "/Emu/SDL2.dll",
+            	sdl2Path = `${APP.tools.fixPath(nw.__dirname)}/Emu/SDL2.dll`,
             	dllExists = APP.fs.existsSync(sdl2Path);
-            if (!dllExists) {
+            if (!dllExists){
                 window.alert(APP.lang.getVariable("Sdl2NotFound"));
             }
 
@@ -162,10 +165,8 @@ temp_GAMELIST = {
 				// Check if exists PARAM.SFO
 				if (APP.fs.existsSync(pLocation + '/sce_sys/param.sfo') === !0){
 
-					// Read PARAM.SFO
+					// Read PARAM.SFO and check if TITLE_ID matches current game
 					const getParamSfo = APP.paramSfo.parse(pLocation + '/sce_sys/param.sfo');
-
-					// Check if TITLE_ID matches current game
 					if (getParamSfo.TITLE_ID === cGame && getParamSfo.CATEGORY !== 'ac'){
 
 						// Set variables
@@ -206,16 +207,10 @@ temp_GAMELIST = {
 		// Check if path exists
 		if (APP.fs.existsSync(APP.settings.data.gamePath) === !0){
 
-			// Reset selected game
-			this.selectedGame = '';
-
-			// Reset search box
-			document.getElementById('INPUT_gameListSearch').value = '';
-
-			// Reset game list
+			// Reset selected game, reset search box, reset game list and read game list path
 			APP.gameList.list = {};
-			
-			// Get game list
+			this.selectedGame = '';
+			document.getElementById('INPUT_gameListSearch').value = '';
 			const gList = APP.fs.readdirSync(APP.settings.data.gamePath);
 
 			if (gList.length > 0){

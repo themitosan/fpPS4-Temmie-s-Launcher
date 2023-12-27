@@ -63,7 +63,8 @@
 		"dumpStatus_HB": "Homebrew",
 		"updateEmuWorkflow404": "ERRO - (Updater) Não foi possivel localizar a CI selecionada na lista de workflows do GitHub!",
 		"updater_noWorkflowListAvailable": "Não foi possivel obter lista de CI!",
-		"Sdl2NotFound": "Não foi possível encontrar SDL2.dll na pasta Emu, verifique se o mesmo se encontra lá para habilitar \"SDL\"."
+		"Sdl2NotFound": "Não foi possível encontrar SDL2.dll na pasta Emu, verifique se o mesmo se encontra lá para habilitar \"SDL\".",
+		"errorListUnableLocateGamePath": "ERRO - Não foi possível localizar a pasta de configurações para \"%VARIABLE_0%\"! Para prevenir erros, a lista de Apps / Games foi atualizada.\nCaminho: %VARIABLE_1%"
 	},
 
 	"input_text": {

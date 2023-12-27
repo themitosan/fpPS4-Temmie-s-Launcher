@@ -63,7 +63,8 @@
 		"dumpStatus_HB": "",
 		"updateEmuWorkflow404": "ОШИБКА - (Обновления) Невозможно найти выбранный рабочий процесс на GitHub fpPS4!",
 		"updater_noWorkflowListAvailable": "Нет доступного списка рабочих процессов",
-		"Sdl2NotFound": "SDL2.dll не найден в папке Emu, пожалуйста установите его чтобы использовать SDL2."
+		"Sdl2NotFound": "SDL2.dll не найден в папке Emu, пожалуйста установите его чтобы использовать SDL2.",
+		"errorListUnableLocateGamePath": ""
 	},
 
 	"input_text": {

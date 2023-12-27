@@ -11,6 +11,7 @@ html, body {
 	color: #fff;
 	overflow: hidden;
 	user-select: none;
+	touch-action: none;
 	font-family: monospace;
 	scroll-behavior: smooth;
 	background-color: #0f1e3e;

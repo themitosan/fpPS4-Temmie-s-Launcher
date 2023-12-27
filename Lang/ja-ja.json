@@ -63,7 +63,8 @@
 		"dumpStatus_HB": "自作ソフト(Homebrew)",
 		"updateEmuWorkflow404": "",
 		"updater_noWorkflowListAvailable": "",
-		"Sdl2NotFound": ""
+		"Sdl2NotFound": "",
+		"errorListUnableLocateGamePath": ""
 	},
 
 	"input_text": {

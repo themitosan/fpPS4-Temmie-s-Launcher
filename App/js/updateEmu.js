@@ -19,10 +19,8 @@ temp_EMU_UPDATE = {
 		// If url was provided
 		if (url !== void 0 && navigator.onLine === !0 && typeof callback === 'function'){
 
-			// Get error message
+			// Get error message and fetch data
 			const errMsg = APP.lang.getVariable('updateEmuFetchActionsError');
-
-			// Fetch data
 			fetch(url).then(function(resp){
 
 				// Check if fetch status is ok
@@ -54,17 +52,15 @@ temp_EMU_UPDATE = {
 		const processWorkflows = function(data){
 
 			// Variables
-			var htmlTemp = '<option disabled>' + APP.lang.getVariable('updater_noWorkflowListAvailable') + '</option>';
+			var htmlTemp = `<option disabled>${APP.lang.getVariable('updater_noWorkflowListAvailable')}</option>`;
 
 			// Check if data is provided
 			if (data !== void 0){
 
-				// Reset html temp
+				// Reset html temp and process workflow list
 				htmlTemp = '';
-
-				// Process workflow list
 				data.workflows.forEach(function(cData){
-					htmlTemp = htmlTemp + '<option value="' + cData.name + '">' + cData.name + '</option>';
+					htmlTemp = `${htmlTemp}<option value="${cData.name}">${cData.name}</option>`;
 				});
 
 			}
