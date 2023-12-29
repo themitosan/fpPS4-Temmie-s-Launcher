@@ -34,7 +34,7 @@ temp_GAMELIST = {
 			};
 
 		// Check if title location exists
-		if (APP.fs.existsSync(data.path) === !0){
+		if (APP.fs.existsSync(APP.path.parse(data.path).dir) === !0){
 
 			// Write file
 			try {
