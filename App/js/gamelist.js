@@ -71,7 +71,7 @@ temp_GAMELIST = {
 
 		// Update hack data
 		APP.design.hackList.forEach(function(hName){
-			cHacks[hName] = JSON.parse(document.getElementById('CHECK_' + hName).checked);
+			cHacks[hName] = JSON.parse(document.getElementById(`CHECK_${hName}`).checked);
 		});
 		tempData.hacks = cHacks;
 
@@ -166,7 +166,7 @@ temp_GAMELIST = {
 				if (APP.fs.existsSync(pLocation + '/sce_sys/param.sfo') === !0){
 
 					// Read PARAM.SFO and check if TITLE_ID matches current game
-					const getParamSfo = APP.paramSfo.parse(pLocation + '/sce_sys/param.sfo');
+					const getParamSfo = APP.paramSfo.parse(`${pLocation}/sce_sys/param.sfo`);
 					if (getParamSfo.TITLE_ID === cGame && getParamSfo.CATEGORY !== 'ac'){
 
 						// Set variables
@@ -226,14 +226,14 @@ temp_GAMELIST = {
 						appName = gPath,
 						isHomebrew = !1,
 						settingsFile = {},
-						iconList = ['sce_sys/icon0.png', 'sce_sys/icon1.png'],
-						backgroundList = ['sce_sys/pic1.png', 'sce_sys/pic0.png'],
-						pathBase = APP.settings.data.gamePath + '/' + gPath + '/',
-						executableName = pathBase + 'eboot.bin',
-						paramSfoPath = pathBase + 'sce_sys/param.sfo',
-						playGoPath = pathBase + 'sce_sys/playgo-chunk.dat',
+						pathBase = `${APP.settings.data.gamePath}/${gPath}/`,
+						executableName = `${pathBase}eboot.bin`,
+						paramSfoPath = `${pathBase}sce_sys/param.sfo`,
+						playGoPath = `${pathBase}sce_sys/playgo-chunk.dat`,
 						playGoAvailable = APP.fs.existsSync(playGoPath),
-						paramSfoAvailable = APP.fs.existsSync(paramSfoPath);
+						paramSfoAvailable = APP.fs.existsSync(paramSfoPath),
+						iconList = ['sce_sys/icon0.png', 'sce_sys/icon1.png'],
+						backgroundList = ['sce_sys/pic1.png', 'sce_sys/pic0.png'];
 		
 					// If eboot.bin doesn't exists, look for any .elf file
 					if (APP.fs.existsSync(executableName) !== !0){
@@ -273,10 +273,10 @@ temp_GAMELIST = {
 
 					// Check if Icon and Background exists - if not, use 404
 					if (APP.fs.existsSync(appIcon) === !1){
-						appIcon = APP.settings.data.nwPath + '/app/img/404.png'; 
+						appIcon = `${APP.settings.data.nwPath}/app/img/404.png`; 
 					}
 					if (APP.fs.existsSync(appBg) === !1){
-						appBg = APP.settings.data.nwPath + '/app/img/404_BG.png';
+						appBg = `${APP.settings.data.nwPath}/app/img/404_BG.png`;
 					}
 
 					// Warn if playgo-chunk.dat isn't available
@@ -292,18 +292,16 @@ temp_GAMELIST = {
 					// If PARAM.SFO is present (and enabled), get metadata
 					if (APP.settings.data.enableParamSfo === !0 && paramSfoAvailable === !0){
 						
-						// Set PARAM.SFO variables
+						// Set PARAM.SFO variables and game entry
 						paramSfo = APP.paramSfo.parse(paramSfoPath);
-
-						// Set game entry
-						appName = paramSfo.TITLE;
 						appId = paramSfo.TITLE_ID;
+						appName = paramSfo.TITLE;
 
 					}
 
 					// Check if settings file exists for current game
-					if (APP.fs.existsSync(pathBase + '/launcherSettings.json') === !0){
-						settingsFile = JSON.parse(APP.fs.readFileSync(pathBase + '/launcherSettings.json'));
+					if (APP.fs.existsSync(`${pathBase}/launcherSettings.json`) === !0){
+						settingsFile = JSON.parse(APP.fs.readFileSync(`${pathBase}/launcherSettings.json`));
 					}
 
 					// If executable exists, set data
@@ -409,7 +407,7 @@ temp_GAMELIST = {
 			if (Object.keys(listRender).length !== 0){
 				APP.design.renderGameList({customList: listRender, displayLog: !1});
 			} else {
-				document.getElementById('DIV_LIST_INTERNAL').innerHTML = '<div class="DIV_noGameFound">' + APP.lang.getVariable('gameListSearch404') + ' \"' + searchQuery + '\"</div>';
+				document.getElementById('DIV_LIST_INTERNAL').innerHTML = `<div class="DIV_noGameFound">${APP.lang.getVariable('gameListSearch404')} \"${searchQuery}\"</div>`;
 			}
 
 		} else {
@@ -430,11 +428,11 @@ temp_GAMELIST = {
 				'param.sfo'
 			],
 			cGameStatusList = ['DIV_ICON_STATUS_OK', 'DIV_ICON_STATUS_WARN', 'DIV_ICON_STATUS_HB'],
-			gPath = APP.settings.data.gamePath + '/' + cGame.folderName;
+			gPath = `${APP.settings.data.gamePath}/${cGame.folderName}`;
 
 		// Process check for single files (like param.sfo)
 		fileList.forEach(function(cFile){
-			if (APP.fs.existsSync(gPath + '/sce_sys/' + cFile) !== !0){
+			if (APP.fs.existsSync(`${gPath}/sce_sys/${cFile}`) !== !0){
 				cGameStatus = 'WARN';
 			}
 		});
@@ -444,8 +442,8 @@ temp_GAMELIST = {
 			cGameStatus = 'WARN';
 			
 			// Check if playgo-chunk.dat is inside app folder
-			if (APP.fs.existsSync(gPath + '/sce_sys/app/playgo-chunk.dat') === !0){
-				APP.fs.copyFileSync(gPath + '/sce_sys/app/playgo-chunk.dat', gPath + '/sce_sys/playgo-chunk.dat');
+			if (APP.fs.existsSync(`${gPath}/sce_sys/app/playgo-chunk.dat`) === !0){
+				APP.fs.copyFileSync(`${gPath}/sce_sys/app/playgo-chunk.dat`, `${gPath}/sce_sys/playgo-chunk.dat`);
 				APP.log(APP.lang.getVariable('checkDumpPlayGoOnApp', [this.list[this.selectedGame].name]));
 			}
 		
@@ -460,8 +458,8 @@ temp_GAMELIST = {
 		cGameStatusList.forEach(function(cList){
 			TMS.removeClass('DIV_selectedGameStatus', cList);
 		});
-		TMS.addClass('DIV_selectedGameStatus', 'DIV_ICON_STATUS_' + cGameStatus);
-		document.getElementById('DIV_selectedGameStatus').innerHTML = APP.lang.getVariable('dumpStatus_' + cGameStatus);
+		TMS.addClass('DIV_selectedGameStatus', `DIV_ICON_STATUS_${cGameStatus}`);
+		document.getElementById('DIV_selectedGameStatus').innerHTML = APP.lang.getVariable(`dumpStatus_${cGameStatus}`);
 
 	},
 
@@ -469,7 +467,7 @@ temp_GAMELIST = {
 	openGameLocation: function(){
 
 		if (this.selectedGame !== ''){
-			APP.fileManager.openDir(APP.settings.data.gamePath + '/' + this.list[this.selectedGame].folderName);
+			APP.fileManager.openDir(`${APP.settings.data.gamePath}/${this.list[this.selectedGame].folderName}`);
 		}
 
 	},
@@ -479,7 +477,7 @@ temp_GAMELIST = {
 
 		if (this.selectedGame !== '' && Object.keys(this.list[this.selectedGame].paramSfo).length !== 0){
 
-			APP.fileManager.saveFile(this.selectedGame + '_metadata', '.json', 'utf8', JSON.stringify(this.list[this.selectedGame].paramSfo), function(cPath){
+			APP.fileManager.saveFile(`${this.selectedGame}_metadata`, '.json', 'utf8', JSON.stringify(this.list[this.selectedGame].paramSfo), function(cPath){
 				window.alert(APP.lang.getVariable('saveSucessfullPath', [cPath]));
 				APP.log(APP.lang.getVariable('saveSucessfullPath', [cPath]));
 			});
@@ -491,8 +489,9 @@ temp_GAMELIST = {
 	// Reset current game settings
 	resetGameSettings: function(){
 
-		const cGame = this.selectedGame,
-			fName = APP.settings.data.gamePath + '/' + this.list[cGame].folderName + '/launcherSettings.json',
+		const
+			cGame = this.selectedGame,
+			fName = `${APP.settings.data.gamePath}/${this.list[cGame].folderName}/launcherSettings.json`,
 			conf = window.confirm(APP.lang.getVariable('settingsConfirmRemoveGameSettings', [this.list[cGame].name]));
 
 		if (this.selectedGame !== '' && APP.fs.existsSync(fName) === !0 && conf === !0){
@@ -500,10 +499,8 @@ temp_GAMELIST = {
 			// Remove file
 			try {
 
-				// Remove settings file
+				// Remove settings file and reload data
 				APP.fs.unlinkSync(fName);
-
-				// Reload data
 				setTimeout(function(){
 					APP.gameList.selectedGame = '';
 					APP.gameList.load();
@@ -561,7 +558,7 @@ temp_GAMELIST = {
 			var cMessage = '',
 				gName = this.selectedGame,
 				mList = this.cGameSettings.importedModules,
-				mDir = APP.settings.data.gamePath + '/' + APP.gameList.list[gName].folderName + '/sce_module/';
+				mDir = `${APP.settings.data.gamePath}/${APP.gameList.list[gName].folderName}/sce_module/`;
 
 			// Try removing modules
 			mList.forEach(function(mName){
