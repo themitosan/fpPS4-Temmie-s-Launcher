@@ -100,7 +100,7 @@ temp_FILEMANAGER = {
 	openDir: function(path){
 
 		// Spawn explorer
-		APP.childProcess.exec('start "" "' + path + '"');
+		APP.childProcess.exec(`start "" "${path}"`);
 
 	}
 

@@ -91,7 +91,7 @@ temp_SETTINGS = {
 		// Get launcher main dir before settings load
 		var updateSettings = !1,
 			nwPath = APP.tools.fixPath(nw.__dirname),
-			settingsPath = nwPath + '/Settings.json';
+			settingsPath = `${nwPath}/Settings.json`;
 
 		// Create save
 		if (APP.fs.existsSync(settingsPath) === !1){
@@ -146,14 +146,12 @@ temp_SETTINGS = {
 	// Save settings
 	save: function(){
 		
-		// Get launcher main dir before settings load
+		// Get launcher main dir before settings load and include current launcher version on settings
 		const nwPath = APP.tools.fixPath(nw.__dirname);
-
-		// Include current launcher version on settings
 		this.data.launcherVersion = APP.packageJson.version;
 
 		try {
-			APP.fs.writeFileSync(nwPath + '/Settings.json', JSON.stringify(this.data), 'utf8');
+			APP.fs.writeFileSync(`${nwPath}/Settings.json`, JSON.stringify(this.data), 'utf8');
 		} catch (err) {
 			console.error(APP.lang.getVariable('settingsSaveError', [err]));
 		}
@@ -167,7 +165,7 @@ temp_SETTINGS = {
 
 			// Get lang data
 			var cLang = this.data.appLanguage,
-				fileLocation = APP.settings.data.nwPath + '/Lang/' + cLang + '.json';
+				fileLocation = `${APP.settings.data.nwPath}/Lang/${cLang}.json`;
 
 			// Check if lang file exists and if lang isn't english
 			if (cLang !== 'english' && APP.fs.existsSync(fileLocation) === !0){
@@ -218,12 +216,12 @@ temp_SETTINGS = {
 
 		// Set Games / Emu paths and check if both exists
 		if (this.data.gamePath === '' && APP.fs.existsSync(this.data.gamePath) === !1){
-			APP.settings.data.gamePath = mainPath + '/Games';
+			APP.settings.data.gamePath = `${mainPath}/Games`;
 		}
 
 		// fpPS4 path
 		if (this.data.emuPath === '' || APP.fs.existsSync(this.data.emuPath) === !1){
-			APP.settings.data.emuPath = mainPath + '/Emu/fpPS4.exe';
+			APP.settings.data.emuPath = `${mainPath}/Emu/fpPS4.exe`;
 		}
 
 		// If fpPS4 is not found, reset latest commit sha and request update 
@@ -276,10 +274,8 @@ temp_SETTINGS = {
 		
 		if (cMode !== void 0){
 			
-			// Update display mode
+			// Update display mode and clear previous search
 			this.data.gameListMode = cMode;
-			
-			// Clear previous search
 			document.getElementById('INPUT_gameListSearch').value = '';
 
 			// Render GUI
@@ -311,11 +307,11 @@ temp_SETTINGS = {
 				gList.forEach(function(cGame){
 
 					// Check if settings file exists
-					if (APP.fs.existsSync(APP.path.parse(APP.gameList.list[cGame].exe).dir + '/launcherSettings.json') === !0){
+					if (APP.fs.existsSync(`${APP.path.parse(APP.gameList.list[cGame].exe).dir}/launcherSettings.json`) === !0){
 
 						try {
 
-							APP.fs.unlinkSync(APP.path.parse(APP.gameList.list[cGame].exe).dir + '/launcherSettings.json');
+							APP.fs.unlinkSync(`${APP.path.parse(APP.gameList.list[cGame].exe).dir}/launcherSettings.json`);
 							cMessage = APP.lang.getVariable('settingsRemovedGameSettings', [APP.gameList.list[cGame].name]);
 
 						} catch (err) {

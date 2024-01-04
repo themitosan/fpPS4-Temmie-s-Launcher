@@ -38,14 +38,11 @@ temp_DESIGN = {
 
 		var htmlTemp = '';
 		this.hackList.forEach(function(hackName){
-			htmlTemp = htmlTemp + '<input type="checkbox" id="CHECK_' + hackName + '"><label class="LABEL_checkbox" onclick="APP.tools.processCheckbox(\'CHECK_' + hackName +
-					   '\');">' + APP.lang.getVariable('labelEnableHack') + ' ' + hackName + '</label><br>';
+			htmlTemp = `${htmlTemp}<input type="checkbox" id="CHECK_${hackName}"><label class="LABEL_checkbox" onclick="APP.tools.processCheckbox(\'CHECK_${hackName}\');">${APP.lang.getVariable('labelEnableHack')} ${hackName}</label><br>`;
 		});
 
-		// Append html
+		// Append html and render gui
 		document.getElementById('DIV_HACK_LIST').innerHTML = htmlTemp;
-
-		// Render GUI
 		this.update();
 
 	},
@@ -77,7 +74,7 @@ temp_DESIGN = {
 
 					var optionsHtml = '';
 					Object.keys(APP.lang.selected.select[domId]).forEach(function(option){
-						optionsHtml = optionsHtml + '<option value="' + option + '">' + APP.lang.selected.select[domId][option] + '</option>';
+						optionsHtml = `${optionsHtml}<option value="${option}">${APP.lang.selected.select[domId][option]}</option>`;
 					});
 
 					// Append HTML
@@ -134,7 +131,7 @@ temp_DESIGN = {
 				classGameDetailsMode = 'GAME_DETAILS',
 				settingsFile = gList[cGame].settingsFile,
 				gridIconSize = APP.settings.data.gridIconSize,
-				gameMetadata = '<br>' + APP.lang.getVariable('path') + ': ' + gList[cGame].exe,
+				gameMetadata = `<br>${APP.lang.getVariable('path')}: ${gList[cGame].exe}`,
 				bgPath = 'url(\'' + gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'') + '\')';
 
 			// Disable background image
@@ -142,18 +139,18 @@ temp_DESIGN = {
 				bgPath = 'none';
 			}
 
-			// Background and Icon
-			gameBgAndIcon = '<div class="GAME_ENTRY_BG" style="background-image: ' + bgPath + ';"></div><img class="IMG_GAME_ICON" src="' + gList[cGame].icon + '">';
+			// Background and icon
+			gameBgAndIcon = `<div class="GAME_ENTRY_BG" style="background-image: ${bgPath};"></div><img class="IMG_GAME_ICON" src="${gList[cGame].icon}">`;
 
 			// Check if patch is available and active
-			if (Object.keys(settingsFile).length !== 0 && settingsFile.usePatch === !0 && APP.fs.existsSync(settingsFile.patchLocation + '/sce_sys/param.sfo') === !0){
+			if (Object.keys(settingsFile).length !== 0 && settingsFile.usePatch === !0 && APP.fs.existsSync(`${settingsFile.patchLocation}/sce_sys/param.sfo`) === !0){
 
 				// Get PARAM.SFO patch data
-				patchParamSfo = APP.paramSfo.parse(settingsFile.patchLocation + '/sce_sys/param.sfo');
+				patchParamSfo = APP.paramSfo.parse(`${settingsFile.patchLocation}/sce_sys/param.sfo`);
 
 				// Check if PARAM.SFO from patch is loaded and isn't an DLC
 				if (Object.keys(patchParamSfo).keys !== 0 && patchParamSfo.CATEGORY !== 'ac'){
-					appVersion = '<label class="LABEL_emuColor">' + patchParamSfo.APP_VER + '</label>';
+					appVersion = `<label class="LABEL_emuColor">${patchParamSfo.APP_VER}</label>`;
 				}
 
 			}
@@ -162,12 +159,12 @@ temp_DESIGN = {
 			if (Object.keys(gList[cGame].paramSfo).length !== 0){
 				
 				// If patch isn't enabled or patch location does not exists but is enabled
-				if (settingsFile.usePatch !== !0 || settingsFile.usePatch === !0 && APP.fs.existsSync(settingsFile.patchLocation + '/sce_sys/param.sfo') !== !0){
+				if (settingsFile.usePatch !== !0 || settingsFile.usePatch === !0 && APP.fs.existsSync(`${settingsFile.patchLocation}/sce_sys/param.sfo`) !== !0){
 					appVersion = gList[cGame].paramSfo.APP_VER;
 				}
 
 				// Set game data
-				gameMetadata = '<br>' + gList[cGame].paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameListVersion') + ' ' + appVersion;
+				gameMetadata = `<br>${gList[cGame].paramSfo.TITLE_ID} - ${APP.lang.getVariable('gameListVersion')} ${appVersion}`;
 			
 			}
 
@@ -189,7 +186,7 @@ temp_DESIGN = {
 
 					// Check if PARAM.SFO is available
 					if (Object.keys(gList[cGame].paramSfo).length !== 0){
-						gameMetadata = '<div class="float-right">' + gList[cGame].paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameListVersion') + ' ' + appVersion + '</div>';
+						gameMetadata = `<div class="float-right">${gList[cGame].paramSfo.TITLE_ID} - ${APP.lang.getVariable('gameListVersion')} ${appVersion}</div>`;
 					}
 
 					// Check if is Homebrew
@@ -209,16 +206,16 @@ temp_DESIGN = {
 					classGameDetailsMode = '';
 					appTitle = gList[cGame].name;
 					classDisplayEntryMode = ' GAME_ENTRY_GRID';
-					gameMetadata = '<div class="GAME_DETAILS_GRID">' + appVersion + '</div>';
-					gameEntryStyle = 'border-radius: ' + APP.settings.data.gridBorderRadius + 'px;';
-					gameBgAndIcon = '<div class="none" style="background-image: ' + bgPath + '";></div><img class="IMG_GAME_ICON IMG_GRID" style="width: ' + gridIconSize + 'px;" src="' + gList[cGame].icon + '">';
+					gameMetadata = `<div class="GAME_DETAILS_GRID">${appVersion}</div>`;
+					gameEntryStyle = `border-radius: ${APP.settings.data.gridBorderRadius}px;`;
+					gameBgAndIcon = `<div class="none" style="background-image: ${bgPath}";></div><img class="IMG_GAME_ICON IMG_GRID" style="width: ${gridIconSize}px;" src="${gList[cGame].icon}">`;
 					break;
 
 			}
 
 			// Fix for non-grid mode
 			if (APP.settings.data.gameListMode !== 'grid'){
-				gameName = '<label class="' + appNameClass + '">' + gList[cGame].name + '</label>';
+				gameName = `<label class="${appNameClass}">${gList[cGame].name}</label>`;
 			}
 
 			/*

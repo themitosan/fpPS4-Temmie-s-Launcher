@@ -21,7 +21,7 @@ const TMS = Object.freeze(Object.seal({
 	// Warn if something go wrong
 	warn: function(warnText){
 		if (this.logWarnings === !0){
-			console.warn('[TMS] ' + warnText);
+			console.warn(`[TMS] ${warnText}`);
 		}
 	},
 

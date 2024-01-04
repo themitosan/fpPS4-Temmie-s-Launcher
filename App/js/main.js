@@ -40,7 +40,7 @@ const APP = {
 
 			var canLog = !0,
 				previousLog = APP.logData,
-				newLog = previousLog + '\n' + text;
+				newLog = `${previousLog}\n${text}`;
 
 			// Fix log with white line
 			if (previousLog == ''){
@@ -58,10 +58,8 @@ const APP = {
 			// Check if can append log
 			if (canLog === !0){
 
-				// Set current line
+				// Set current line and append log
 				APP.logLine = text;
-
-				// Append log
 				document.getElementById('APP_LOG').value = newLog;
 				APP.logData = newLog;
 
@@ -79,11 +77,11 @@ const APP = {
 
 		// Get current date
 		var d = new Date(),
-			logName = 'Log_' + d.toDateString().replace(RegExp(' ', 'gi'), '_') + '_' + d.getHours() + '_' + d.getMinutes() + '_' + d.getSeconds() + '.log';
+			logName = `log_${d.toDateString().replace(RegExp(' ', 'gi'), '_')}_${d.getHours()}_${d.getMinutes()}_${d.getSeconds()}.log`;
 
 		// Reset log
 		APP.logData = APP.appVersion;
-		document.getElementById('APP_LOG').value = `${APP.appVersion}`;
+		document.getElementById('APP_LOG').value = APP.appVersion;
 		APP.log(APP.lang.getVariable('logCleared'));
 
 	},
@@ -141,7 +139,7 @@ const APP = {
 				}
 
 				// Transform args into string
-				var gPath = '"' + args[args.indexOf('-e') + 1] + '"',
+				var gPath = `"${args[args.indexOf('-e') + 1]}"`,
 					parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
 					execLine = 'start "' + APP.lang.getVariable('logWindowTitle') + ' - ' + APP.gameList.selectedGame + '" ' + winMode + ' cmd /C ' + APP.path.parse(APP.settings.data.emuPath).base + ' ' + parseArgs + ' ' + pressAnyKey;
 
@@ -156,11 +154,9 @@ const APP = {
 				APP.execProcess = APP.childProcess.spawn(exe, args, { detached: !0 });
 
 			}
-
-			// Set emu running
-			APP.emuManager.emuRunning = !0;
 			
-			// Set stream as string (UTF-8)
+			// Set emu running and stream as string (UTF-8)
+			APP.emuManager.emuRunning = !0;
 			APP.execProcess.stdout.setEncoding('utf8');
 			APP.execProcess.stderr.setEncoding('utf8');
 
@@ -185,10 +181,8 @@ const APP = {
 					appStatus: 'idle'
 				});
 
-				// Log exit code
+				// Log exit code and save log if APP.settings.data.saveLogOnEmuClose is true
 				APP.log(APP.lang.getVariable('closeEmuStatus', [APP.path.parse(exe).base, code]));
-
-				// Save log if APP.settings.data.saveLogOnEmuClose is true
 				if (APP.settings.data.saveLogOnEmuClose === !0){
 					APP.clearLog();
 				}
@@ -217,10 +211,8 @@ const APP = {
 	// MemoryJS - Get Process Info
 	getProcessInfo: function(processName, postAction){
 
-		// Get process list
+		// Get process list and start seek
 		var res, pList = this.memoryjs.getProcesses();
-
-		// Seek process
 		Object.keys(pList).forEach(function(pName){
 
 			if (pList[pName].szExeFile.toLowerCase() === processName.toLowerCase()){
@@ -264,16 +256,14 @@ window.onload = function(){
 
 	try {
 
-		// Load nwjs / node.js modules
+		// Load nwjs / node.js modules and start loding settings ( 1 / 2 )
 		APP.loadModules();
-
-		// Load settings ( 1 / 2 )
 		APP.settings.load();
 		APP.settings.loadLang();
 
 		// App title
 		APP.version = APP.packageJson.version;
-		APP.title = APP.packageJson.name + ' - Ver. ' + APP.version + ' [' + process.versions['nw-flavor'].toUpperCase() + ']';
+		APP.title = `${APP.packageJson.name} - Ver. ${APP.version} [${process.versions['nw-flavor'].toUpperCase()}]`;
 		document.title = APP.title;
 
 		// App Log
@@ -311,7 +301,7 @@ window.onload = function(){
 
 		// Log error
 		console.error(err);
-		window.alert('ERROR - Unable to start main application!\n\nReason:\n' + err + '\n\nTo know more, hit F12 and go to console tab to see more details.');
+		window.alert(`ERROR - Unable to start main application!\n\nReason:\n${err}\n\nTo know more, hit F12 and go to console tab to see more details.`);
 		
 	}
 

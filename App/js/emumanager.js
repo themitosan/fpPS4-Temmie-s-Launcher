@@ -33,10 +33,8 @@ temp_EMUMANAGER = {
 				APP.clearLog(!0);
 			}
 
-			// If (by some reason) main emu still running, close it!
+			// If (by some reason) main emu still running, close it and set main variables
 			this.killEmu(!0);
-
-			// Set main variables
 			var ebootPath = APP.gameList.list[APP.gameList.selectedGame].exe,
 				emuArgs = ['-e', ebootPath],
 				hList = APP.design.hackList;
@@ -44,7 +42,7 @@ temp_EMUMANAGER = {
 			// Check if patches are available
 			if (APP.gameList.cGameSettings.usePatch === !0 && APP.design.gamePatchLoaded === !0){
 				emuArgs.push('-p');
-				emuArgs.push("\"" + APP.gameList.cGameSettings.patchLocation + '\"');
+				emuArgs.push(`\"${APP.gameList.cGameSettings.patchLocation}\"`);
 			}
 
 			// Get enabled hacks
@@ -68,10 +66,8 @@ temp_EMUMANAGER = {
 				emuArgs.push('-w');
 			}
 
-			// Log emu location and args
+			// Log emu location and args and run fpPS4
 			APP.log(APP.lang.getVariable('runEmuArgs', [emuArgs.toString().replace(RegExp(',', 'gi'), ' '), APP.settings.data.emuPath]));
-
-			// Run fpPS4
 			APP.runfpPS4(APP.settings.data.emuPath, emuArgs);
 
 			// Update main GUI

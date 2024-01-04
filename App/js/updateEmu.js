@@ -141,7 +141,7 @@ temp_EMU_UPDATE = {
 				// Get workflow runs
 				if (sWorkflow !== void 0){
 
-					fetchData(workflowLink + '/' + wList[sWorkflow].id + '/runs', function(data){
+					fetchData(`${workflowLink}/${wList[sWorkflow].id}/runs`, function(data){
 						options['runs'] = data;
 						APP.emuManager.update.processActions(options);
 					});
@@ -266,22 +266,21 @@ temp_EMU_UPDATE = {
 		APP.design.updateProgressbarStatus(25, APP.lang.getVariable('updateEmu-1-4', [actionsData.sha.slice(0, 7)]));
 
 		// Start download
-		fetch('https://nightly.link/red-prig/fpPS4/actions/runs/' + actionsData.artifact + '/fpPS4.zip').then(function(resp){
+		fetch(`https://nightly.link/red-prig/fpPS4/actions/runs/${actionsData.artifact}/fpPS4.zip`).then(function(resp){
 
 			if (resp.ok === !0){
 
 				APP.https.get(resp.url, function(data){
 
-					const fPath = APP.settings.data.nwPath + '/Emu/fpPS4.zip',
+					const
+						fPath = `${APP.settings.data.nwPath}/Emu/fpPS4.zip`,
 						writeStream = APP.fs.createWriteStream(fPath);
 
 					data.pipe(writeStream);
 					writeStream.on('finish', function(){
 
-						// Close writestream
+						// Close writestream and extract emu executable
 						writeStream.close();
-
-						// Extract emu executable
 						APP.emuManager.update.extractZip({
 							actions: actionsData,
 							path: fPath
@@ -305,21 +304,17 @@ temp_EMU_UPDATE = {
 	// Extract zip
 	extractZip: function(data){
 
-		// Update status
+		// Update status, open and extract zip file
 		APP.design.updateProgressbarStatus(50, APP.lang.getVariable('updateEmu-2-4'));
-
-		// Open and extract zip file
 		const updateFile = new APP.streamZip.async({ file: data.path });
-		updateFile.extract(null, APP.path.parse(data.path).dir + '/', function(err){
+		updateFile.extract(null, `${APP.path.parse(data.path).dir}/`, function(err){
 			if (err){
 				console.error(err);
 			}
 		}).then(function(){
 
-			// Close zip
+			// Close zip and finish process
 			updateFile.close();
-
-			// Finish process
 			APP.emuManager.update.finish(data);
 
 		});
@@ -332,27 +327,22 @@ temp_EMU_UPDATE = {
 		// Update status
 		APP.design.updateProgressbarStatus(75, APP.lang.getVariable('updateEmu-3-4'));
 
-		// Remove download file
+		// Remove download file and update settings
 		APP.fs.unlinkSync(data.path);
-
-		// Update settings
 		APP.settings.data.latestCommitSha = data.actions.sha;
-		APP.settings.data.emuPath = APP.path.parse(data.path).dir + '/fpPS4.exe';
+		APP.settings.data.emuPath = `${APP.path.parse(data.path).dir}/fpPS4.exe`;
 
-		// Save settings
+		// Save settings and update progressbar
 		APP.settings.save();
-
-		// Display success message
 		const processCompleteMsg = APP.lang.getVariable('updateEmuProcessComplete', [data.actions.sha.slice(0, 7)]);
 		APP.design.updateProgressbarStatus(100, APP.lang.getVariable('updateEmu-4-4'));
 
 		// Timing out just to update GUI
 		setTimeout(function(){
 
+			// Display message and hide update gui
 			APP.log(processCompleteMsg);
 			window.alert(processCompleteMsg);
-
-			// Hide update gui
 			APP.design.toggleEmuUpdateGUI('hide');
 
 		}, 410);

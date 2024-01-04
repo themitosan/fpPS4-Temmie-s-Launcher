@@ -33,7 +33,7 @@ temp_LANGUAGE = {
 
 		// Apply variables
 		lPatch.forEach(function(fix, entry){
-			res = res.replace('%VARIABLE_' + entry + '%', fix);
+			res = res.replace(`%VARIABLE_${entry}%`, fix);
 		});
 
 		return res;

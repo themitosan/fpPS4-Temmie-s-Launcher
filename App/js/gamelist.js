@@ -163,7 +163,7 @@ temp_GAMELIST = {
 			APP.fileManager.selectPath(function(pLocation){
 
 				// Check if exists PARAM.SFO
-				if (APP.fs.existsSync(pLocation + '/sce_sys/param.sfo') === !0){
+				if (APP.fs.existsSync(`${pLocation}/sce_sys/param.sfo`) === !0){
 
 					// Read PARAM.SFO and check if TITLE_ID matches current game
 					const getParamSfo = APP.paramSfo.parse(`${pLocation}/sce_sys/param.sfo`);
@@ -380,7 +380,6 @@ temp_GAMELIST = {
 			if (APP.settings.data.gameSearchMode === 'appName'){
 
 				tempList = [];
-
 				gameListArray.forEach(function(cTitle){
 
 					var titleName = APP.gameList.list[cTitle].name;
