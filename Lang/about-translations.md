@@ -10,3 +10,4 @@ I would like to thank everyone who contributed to the translation of this projec
 - Japanese: [mktm235](https://github.com/mktm235)
 - Ukrainian: [ArtemVideoGames](https://github.com/ArtemVideoGames) _(Revision by ThatSameGuy)_
 - Dutch: [MrSn0wy](https://github.com/MrSn0wy)
+- Arabic: [Shrvzr](https://github.com/Shrvzr)
