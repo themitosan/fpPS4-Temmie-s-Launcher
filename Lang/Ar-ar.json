@@ -1,0 +1,170 @@
+{
+
+	"lang": "العربية (Ar-ar)",
+
+	"variables": {
+		"labelEnableHack": "تفعيل",
+		"emuStatusRunning": "قيد التشغيل",
+		"logWindowTitle": "قيد التشغيل fpPS4",
+		"killEmuStatus": "العملية الرئيسية اغلقت - اغلق النافذة للرجوع",
+		"logCleared": " معلومة - السجل السابق تم حذفه",
+		"about": "fpPS4 Temmie's Launcher - اصدار: %VARIABLE_0%\\n\\تم انشائه بواسطة TheMitoSan\\n(https://twitter.com/themitosan)\\n\\nfpPS4 تم انشائه بواسطة red-prig\\n(https://github.com/red-prig/fpPS4)\\n\\nplug-in memoryjs تم انشائه بواسطة Rob--\\n(https://github.com/rob--/memoryjs)\\n\\nplug-in node-stream-zip تم انشائه بواسطة antelle \\n(https://github.com/antelle/node-stream-zip)\\n\\n تم الحصول عليها من خلال SVGايقونات ال  https://www.svgrepo.com/",
+		"mainLog": "fpPS4 Temmie's Launcher - اصدار: %VARIABLE_0%\nيعمل بواسطة nw.js (node-webkit) اصدار %VARIABLE_1% [%VARIABLE_2%]",
+		"settingsErrorCreatePath": "خطأ - لايمكن انشاء مسار!\n(%VARIABLE_0%)\n%VARIABLE_1%",
+		"settingsErrorfpPS4NotFound": "خطأ - لا يمكن العثور على ملف التشغيل fpPS4\nتأكد من اختيار الملف من الاعدادات او وضعه في  \"Emu\" ملف و اضغط ok.",
+		"settingsConfirmRemoveAllGameSettings": "تحذير - هذا الخيار سيقوم بحذف جميع الاعدادات المخزنة من قائمة الالعاب\nهل تود في الاستمرار؟",
+		"settingsConfirmRemoveGameSettings": "تحذير - هذا الخيار سيقوم بحذف جميع الاعدادت ل %VARIABLE_0%\\n\\هل تود بالاستمرار؟",
+		"settingsRemovedGameSettings": "معلومة - ( %VARIABLE_0% ) تمت ازالة ملف الاعدادات بنجاح",
+		"settingsRemoveGameSettingsError": "خطأ - ( %VARIABLE_0% ) لا يمكن ازالة ملف الاعدادات\nالسبب: %VARIABLE_1%",
+		"settingsRemoveGameSettings404": "تحذير - ( %VARIABLE_0% ) لايمكن العثور على ملف الاعدادات لهذا التطبيق",
+		"infoProcessComplete": "معلومة - تمت العملية بنجاح\nانظر للسجل للمزيد من المعلومات",
+		"infoSettingsUpdated": "معلومة - تم تحديث ملف الاعدادات بنجاح",
+		"settingsLoadError": "خطأ - لايمكن تشغيل ملف الاعدادات\n %VARIABLE_0%",
+		"settingsSaveError": "خطأ - لا يمكن تخزين ملف الاعدادات\n %VARIABLE_0%",
+		"runEmuArgs": "معلومة - تشغيل fpPS4 بargs: %VARIABLE_0%\nموقع المحاكي: %VARIABLE_1%",
+		"closeEmuStatus": "معلومة - %VARIABLE_0% تم اغلاقه, ارجاع كود %VARIABLE_1%",
+		"removedLibModules": "معلومة - جميع الوحدات السابقة المستخرجة باستخدام هذا المشغل تمت ازالتها لانها قد تؤثر على لعبتك المستخرجة",
+		"removeLibModule": "معلومة - ( %VARIABLE_0% ) ازالة الوحدة: %VARIABLE_1%",
+		"removeModuleError": "خطأ - لا يمكن ازالة الوحدات\nMotivo: %VARIABLE_0%",
+		"updateGameSettings": "معلومة - ( %VARIABLE_0% ) تم تحديث ملف الاعدادات بنجاح",
+		"updateGameSettingsError": "خطأ - تعذر تحديث الاعدادت ل %VARIABLE_0% in %VARIABLE_1%!\nالسبب: %VARIABLE_2%",
+		"skipUpdateGameSettings": "معلومة - ( %VARIABLE_0% ) تخطي تحديث ملف الاعدادات لعدم وجود تغيير",
+		"errorSaveFile": "خطأ - تعذر تخزين الملف\nالسبب: %VARIABLE_0%",
+		"saveSucessfullPath": "معلومة - تم التخزين بنجاح\nمسار: %VARIABLE_0%",
+		"createdSettingsFile": "معلومة - ( %VARIABLE_0% ) تم انشاء ملف الاعدادات بنجاح",
+		"errorCreateSettingsFile": "خطأ - لا يمكن انشاء ملف الاعدادات ل %VARIABLE_0% in %VARIABLE_1%!\nالسبب: %VARIABLE_2%",
+		"patchLoadedSucessfully": "معلومة - تم تحميل التحديث بنجاح\nاسم: %VARIABLE_0%\nنوع: %VARIABLE_1%",
+		"patchLoadErrorMismatch": "خطأ - هذا ليس تحديث او لا يتطابق مع هذا البرنامج/لعبة\nمعرف التحديث: %VARIABLE_0%\nالتطبيق - اللعبة المختارة: %VARIABLE_1%",
+		"patchLoadErrorParamSfo404": "خطأ - لايمكن العثور على PARAM.SFO لهذا التحديث",
+		"gameListLoadWarnPlayGo": "تحذير - لايمكن العثور على playgo-chunk.dat ل %VARIABLE_0%!\nاذا لم يكن التطبيق home brew تاكد من انه تم استخراجه بطريقة صحيحة",
+		"gameListLoadWarnParamSfo": "تحذير - لايمكن العثور على %VARIABLE_0% PARAM.SFO!\nاذا لم يكن التطبيق home brew تاكد من انه تم استخراجه بطريقة صحيحة",
+		"gameListDoubleIdError": "تحذير - لا يمكن اضافة %VARIABLE_0% الى قائمة الالعاب لوجود تطبيق اخر بنفس الرقم التسلسلي (%VARIABILE_1%)",
+		"gameListNoGameFound": "معلومة - لم يتم العثور على العاب او تطبيقات على المسار المختار ( %VARIABLE_0% )",
+		"gameListSearch404": "لا يمكن العثور",
+		"checkDumpPlayGoOnApp": "معلومة - ( %VARIABLE_0% ) playgo-chunk.dat تم العثور عليه داخل sce_sys/app - تم انشاء نسخة جديدة في sce_sys.",
+		"gameListLoadSuccessful": "معلومة - تم تحميل قائمة الاعاب بنجاح (  %VARIABLE_0% العاب موجودة )",
+		"gameListVersion": "اصدار",
+		"selectGameLoadPatchErrorParamSfo": "خطأ - لا يمكن قرائة PARAM.SFO من هذا التحديث\n%VARIABLE_0%",
+		"path": "مسار",
+		"gamelistGamePath404": "خطأ - لايمكن العثور على مسار التطبيقات او الالعاب\n%VARIABLE_0%",
+		"updateEmuFetchActionsError": "Github خطأ - لا يمكن جلب معلومات اجرائات ",
+		"updateEmuIsLatestVersion": "معلومة - انت تستعمل احدث اصدار من fpPS4\nID commit (SHA): %VARIABLE_0%",
+		"updateEmuShaAvailable": "معلومة - يوجد تحديث جديد\n\nالاصدار الموجود: %VARIABLE_0%\nالاصدار الجديد: %VARIABLE_1%\n\nهل تود بالتحديث؟",
+		"updateEmuShaUnavailable": "معلومة - المشغل اكتشف انك لم تقم بتحديث fpPS4\n(او ان ملف تشغيل fpPS4 لم يكن موجود)\n\nيمكنك اصلاح هذا الخطأ من خلال fpPS4 updater\n\nهل تود بالاستمرار؟",
+		"updateEmuDownloadFailed": "خطأ - لا يمكن تنزيل تحديث fpPS4\nحالة الاستجابة: %VARIABLE_0% - OK: %VARIABLE_1%",
+		"updateEmuProcessComplete": "معلومة - تم التحديث بنجاح\nتحديث جديد (ID commit / SHA): %VARIABLE_0%",
+		"updateEmu-1-4": "تنزيل تحديث fpPS4 (<label class=\"LABEL_monospace\">%VARIABLE_0%</label>)",
+		"updateEmu-2-4": "استخراج التحديث",
+		"updateEmu-3-4": "ازالة بواقي الملفات",
+		"updateEmu-4-4": "تم التحديث بنجاح",
+		"settingsLogEmuSha": "معلومة - اصدار fpPS4: (%VARIABLE_0%)",
+		"dumpStatus_OK": "جيد",
+		"dumpStatus_WARN": "ملفات مفقودة",
+		"dumpStatus_HB": "Homebrew",
+		"updateEmuWorkflow404": "خطأ - لا يمكن العثور على CI workflow من fpPS4 GitHub ",
+		"updater_noWorkflowListAvailable": "لم يتم العثور على قائمة workflow",
+		"Sdl2NotFound": "",
+		"errorListUnableLocateGamePath": ""
+	},
+
+	"input_text": {
+		"INPUT_gameListSearch": {"placeholder": "البحث: اسم اللعبة", "value": ""}
+	},
+
+	"title": {
+		"DIV_selectedGameStatus": "اخضر: جميع الملفات موجودة\nاصفر: بعض الملفات مفقودة تأكد من السجل للمزيد من المعلومات\nسماوي: الملف من صيغة .elf"
+	},
+
+	"innerHTML": {
+
+		"DIV_SETTINGS_TITLE": "الاعدادات",
+		"DIV_SETTINGS_LANGUAGE": "اللغة",
+		"LABEL_SETTINGS_CURRENT_LANGUAGE": "اللغة المختارة",
+		"LABEL_SETTINGS_LANGUAGE_RESTART": "يجب اعادة تشغيل المشغل لتطبيق التغييرات",
+		"DIV_SETTINGS_PATHS": "الملفات المحلية",
+		"LABEL_SETTINGS_APP_GAMES_PATH": "موقع التطبيقات - العاب",
+		"LABEL_SETTINGS_FPPS4_PATH": "موقع fpPS4",
+		"DIV_SETTINGS_GAME_LIST": "قائمة الالعاب - التطبيقات",
+		"LABEL_SETTINGS_GRID_BORDER_RADIUS": "مدى دائرية اطارات الالعاب",
+		"LABEL_SETTINGS_GAME_SEARCH_MODE": "طريقة البحث",
+		"LABEL_SETTINGS_GAME_LIST_BACKGROUND_BLUR": "تمويه الخلفية",
+		"LABEL_SETTINGS_GAME_LIST_BACKGROUND_OPACITY": "عتمة الخلفية",
+		"LABEL_SETTINGS_GAME_LIST_SEARCH_CASE_SENSITIVE": "تفعيل البحث  الحساس (case-sensitive)",
+		"LABEL_SETTINGS_GAME_LIST_NORMAL_SHOW_BG": "اظهار الخلفية لكل الالعاب و التطبيقات في القائمة",
+		"LABEL_SETTINGS_SHOW_METADATA_GAME_ENTRY": "اظهار الملفات الوصفية او الموقع تحت كل لعبة وتطبيق في القائمة",
+		"DIV_SETTINGS_EMU_RUNNING": "ملفات المحاكي",
+		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_BLUR": "تمويه الخلفية",
+		"LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_OPACITY": "عتمة الخلفية",
+		"LABEL_SETTINGS_SHOW_METADATA_EMU_RUNNING": "اظهار الملفات الوصفية او الموقع تحت كل لعبة وتطبيق في القائمة",
+		"DIV_SETTINGS_LOG_OPTIONS": "اعدادات السجل",
+		"LABEL_SETTINGS_LOG_START_WINDOW_STATE": "بدء نافذة السجل",
+		"LABEL_SETTINGS_PROMPT_KEY_FPPS4_CLOSES": "طلب من المستخدام الضعط على اي زر عند اغلاق المحاكي",
+		"DIV_SETTINGS_MISC": "الاعدادات الاخرى",
+		"LABEL_SETTINGS_ENABLE_PARAMSFO_SUPPORT": "دعم ملفات <code>PARAM.SFO</code> (اضغط على حذف الاعدادات من جميع الالعاب و التطبيقات و اعد تشغيل المحاكي)",
+		"LABEL_SETTINGS_REMOVE_PROJECT_GP4_FILES": "ازالة <code>Project.gp4</code> من اي لعبة عند تحميل القائمة",
+		"LABEL_FPPS4_OPTIONS": "اعدادات <label class=\"LABEL_emuColor\">fp</label>PS4",
+		"LABEL_FPPS4_OPTIONS_DUMP_STATUS": "حال الاستخراجة",
+		"LABEL_FPPS4_OPTIONS_ENABLE_PATCHES": "تفعيل التحديثات",
+		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_MODE": "",
+		"LABEL_FPPS4_OPTIONS_PATCH_VERSION": "اصدار",
+		"LABEL_FPPS4_OPTIONS_PATCH_TYPE": "نوع",
+		"LABEL_EMU_RUNNING_STATUS": "الحالة",
+		"LABEL_FPPS4_OPTIONS_APP_VERSION": "اصدار",
+		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "اعدادات المشغل",
+		"LABEL_FPPS4_OPTIONS_HACKS": "هاكات",
+		"LABEL_SETTINGS_SHOW_METADATA_GUI": "اظهار الايقونة وواجهة المستخدم الرسومية خلال عمل المحاكي",
+		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">تجريبي</label> تسجيل نتائج fpPS4 (<code>stdout</code> و <code>stderr</code>) في السجل الداخلي (F12 اضغط--> Console)",
+		"DIV_SETTINGS_FPPS4_UPDATER": "محدث fpPS4",
+		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "تفعيل محدث fpPS4",
+		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "الحصول على التحديثات من branch",
+		"LABEL_FPPS4_UPDATER_STATUS_LANG": "الحالة",
+		"DIV_SETTINGS_GENERAL": "عام",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "تكبير الواجهة",
+		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "تحذير: لا ينصح بتغيير هذا الاعداد اذا كانت شاشتك وضوحها اقل من <code>1920x1080</code>",
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "تشغيل المحاكي في نظام ملء الشاشة"
+
+	},
+
+	"select": {
+
+		"SELECT_settingsSearchMode": {
+			"appName": "الأسم",
+			"titleId": "الرقم التسلسلي"
+		},
+		"SELECT_settingsStartExternalWindow": {
+			"normal": "طبيعي",
+			"max": "مكبر",
+			"min": "مصغر"
+		},
+		"FPPS4_OPTIONS_SELECT_GAMEPAD_MODE": {
+			"xinput": "xinput",
+			"sdl2": "sdl2",
+			"keyboard": "Keyboard"
+		}
+
+	},
+
+	"value": {
+
+		"BTN_SETTINGS_SELECT_APPS_GAMES_PATH": "اختار الملف",
+		"BTN_SETTINGS_OPEN_APPS_GAMES_PATH": "افتح الملف",
+		"BTN_SETTINGS_SELECT_FPPS4_PATH": "اختار executable",
+		"BTN_SETTINGS_DELETE_ALL_GAME_SETTINGS": "حذف الاعدادات من جميع الالعاب و التطبيقات",
+		"BTN_SETTINGS_APPLY_CLOSE": "تطبيق و غلق",
+		"BTN_SETTINGS_CLOSE": "الرجوع",
+		"BTN_REFRESH": "تحديث القائمة",
+		"BTN_SETTINGS": "الاعدادات",
+		"BTN_CLEAR_LOG": "حذف السجل",
+		"BTN_ABOUT": "آخر",
+		"BTN_KILL": "ايقاف fpPS4",
+		"BTN_FPPS4_OPTIONS_SELECT_PATCH_LOCATION": "اختار التحديث",
+		"BTN_FPPS4_OPTIONS_OPEN_APP_LOCATION": "فتح موقع الالعاب والتطبيقات",
+		"BTN_FPPS4_OPTIONS_RESET_SETTINGS": "اعادة تعيين الاعدادات",
+		"BTN_launcherOptionsExportMetadata": "استخراج البيانات الوصفية",
+		"BTN_RUN": "تشغيل fpPS4",
+		"BTN_SETTINGS_RESTART_LAUNCHER": "اعادة تشغيل المشغل",
+		"BTN_UPDATE_FPPS4": "تحديث fpPS4",
+		"BTN_SETTINGS_FORCE_FPPS4_UPDATE": "فرض التحديث"
+
+	}
+}
