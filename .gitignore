@@ -1,4 +1,20 @@
-Emu/*
+# Paths
+Games/*
 Nwjs/*
-!Nwjs/.gitkeep
+Emu/*
+
+# Launcher settings
 Settings.json
+
+# Misc. Files
+*.info
+*.nexe
+*.dump
+*.sprx
+*.exe
+*.dll
+*.pak
+*.zip
+*.pkg
+*.log
+*.dat
