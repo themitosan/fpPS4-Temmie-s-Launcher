@@ -11,3 +11,4 @@ I would like to thank everyone who contributed to the translation of this projec
 - Ukrainian: [ArtemVideoGames](https://github.com/ArtemVideoGames) _(Revision by ThatSameGuy)_
 - Dutch: [MrSn0wy](https://github.com/MrSn0wy)
 - Arabic: [Shrvzr](https://github.com/Shrvzr)
+- Turkish: [phyesix](https://github.com/phyesix)
