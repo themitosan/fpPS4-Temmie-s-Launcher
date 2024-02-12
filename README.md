@@ -45,5 +45,3 @@ run `npm install`
 when it's done, run `Compile.bat`.
 
 Your files should be on `./build/fpPS4 Temmie's Launcher (2.0.0)/win64`
-
-Pro tip: refuse imitations, you know what I mean™ <!-- giggles -->
