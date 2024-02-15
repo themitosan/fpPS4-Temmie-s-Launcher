@@ -57,18 +57,19 @@
 		"updateEmu-2-4": "Extraíndo update",
 		"updateEmu-3-4": "Removendo arquivos de sobra",
 		"updateEmu-4-4": "Update concluído!",
-		"settingsLogEmuSha": "INFO - Versão do fpPS4: (%VARIABLE_0%)",
+		"settingsLogEmuSha": "INFO - Versão do fpPS4: %VARIABLE_0%",
 		"dumpStatus_OK": "Perfeito",
 		"dumpStatus_WARN": "Faltam arquivos",
 		"dumpStatus_HB": "Homebrew",
-		"updateEmuWorkflow404": "ERRO - (Updater) Não foi possivel localizar a CI selecionada na lista de workflows do GitHub!",
+		"updateEmuWorkflow404": "ERRO - (Updater) Não foi possivel obter a lista de workflows do projeto no GitHub!",
 		"updater_noWorkflowListAvailable": "Não foi possivel obter lista de CI!",
 		"Sdl2NotFound": "Não foi possível encontrar SDL2.dll na pasta Emu, verifique se o mesmo se encontra lá para habilitar \"SDL\".",
-		"errorListUnableLocateGamePath": "ERRO - Não foi possível localizar a pasta de configurações para \"%VARIABLE_0%\"! Para prevenir erros, a lista de Apps / Games foi atualizada.\nCaminho: %VARIABLE_1%"
+		"errorListUnableLocateGamePath": "ERRO - Não foi possível localizar a pasta de configurações para \"%VARIABLE_0%\"! Para prevenir erros, a lista de Apps / Games foi atualizada.\nCaminho: %VARIABLE_1%",
+		"updateEmuSettingsWorkflow404": "ERRO - (Updater) Não foi possível encontrar a worflow %VARIABLE_0%! A workflow %VARIABLE_1% será usada no lugar."
 	},
 
 	"input_text": {
-		"INPUT_gameListSearch": {"placeholder": "Pesquisa: Nome do game...", "value": ""}
+		"INPUT_gameListSearch": { "placeholder": "Pesquisa: Nome do game...", "value": "" }
 	},
 
 	"title": {

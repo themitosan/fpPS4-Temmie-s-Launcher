@@ -51,10 +51,8 @@ temp_EMU_UPDATE = {
 		// Process workflows
 		const processWorkflows = function(data){
 
-			// Variables
+			// Create variables and check if data was provided
 			var htmlTemp = `<option disabled>${APP.lang.getVariable('updater_noWorkflowListAvailable')}</option>`;
-
-			// Check if data is provided
 			if (data !== void 0){
 
 				// Reset html temp and process workflow list
@@ -67,6 +65,7 @@ temp_EMU_UPDATE = {
 
 			// Append HTML
 			document.getElementById('SELECT_settingsUpdaterCurrentCI').innerHTML = htmlTemp;
+			document.getElementById('SELECT_settingsUpdaterCurrentCI').value = APP.settings.data.fpps4selectedCI;
 
 		}
 
@@ -117,42 +116,40 @@ temp_EMU_UPDATE = {
 		// If Emu updates is available, has internet and fpPS4 isn't running
 		if (APP.settings.data.enableEmuUpdates === !0 && navigator.onLine === !0 && APP.emuManager.emuRunning === !1){
 
-			// Disable check for updates emu
+			// Disable check for updates emu and fetch workflow list
 			document.getElementById('BTN_UPDATE_FPPS4').disabled = 'disabled';
-
-			// Fetch worflow list
 			fetchData(workflowLink, function(data){
 
-				// Set json
+				// Set json and declare variables
 				options['wList'] = data;
-
-				// Variables
 				var sWorkflow,
 					wList = options.wList.workflows;
 
-				// Seek selected ci
-				for (var i = 0; i < wList.length; i++){
-					if (wList[i].name === APP.settings.data.fpps4selectedCI){
-						sWorkflow = i;
-						break;
+				// Check if workflow list has items
+				if (wList.length !== 0){
+
+					// Seek selected ci
+					for (var i = 0; i < wList.length; i++){
+						if (wList[i].name === APP.settings.data.fpps4selectedCI){
+							sWorkflow = i;
+							break;
+						}
 					}
-				}
 
-				// Get workflow runs
-				if (sWorkflow !== void 0){
-
+					// Check if workflow was found. If not, use first available!
+					if (sWorkflow === void 0){
+						sWorkflow = 0;
+						APP.log(APP.lang.getVariable('updateEmuSettingsWorkflow404', [APP.settings.data.fpps4selectedCI, wList[sWorkflow]]));
+					}
 					fetchData(`${workflowLink}/${wList[sWorkflow].id}/runs`, function(data){
 						options['runs'] = data;
 						APP.emuManager.update.processActions(options);
 					});
-				
-				} else {
 
-					// If not found, log it
+				} else {
 					const errMsg = APP.lang.getVariable('updateEmuWorkflow404');
 					console.error(errMsg);
 					APP.log(errMsg);
-
 				}
 
 			});
@@ -180,10 +177,8 @@ temp_EMU_UPDATE = {
 			// Seek for latest success run
 			for (var i = 0; i < options.runs.workflow_runs.length; i++){
 
-				// Get current run data
+				// Get current run data, check if status is completed (with a success build) and if is from same branch
 				const cRun = options.runs.workflow_runs[i];
-
-				// Check if status is completed (with a success build) and it is from same branch
 				if (cRun.status === 'completed' && cRun.conclusion === 'success' && cRun.head_branch === settingsData.fpps4BranchName){
 
 					// Set can update on

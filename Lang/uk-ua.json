@@ -61,10 +61,11 @@
 		"dumpStatus_OK": "Добре",
 		"dumpStatus_WARN": "Недостатньо файлів",
 		"dumpStatus_HB": "",
-		"updateEmuWorkflow404": "ПОМИЛКА - (Оновлення) Неможливо знайти обраний робочий процес на GitHub fpPS4!",
+		"updateEmuWorkflow404": "",
 		"updater_noWorkflowListAvailable": "Немає доступного списку робочих процесів",
 		"Sdl2NotFound": "SDL2.dll не знайдено в папці Emu, будь ласка встановіть його щоб використовувати SDL2.",
-		"errorListUnableLocateGamePath": ""
+		"errorListUnableLocateGamePath": "",
+		"updateEmuSettingsWorkflow404": ""
 	},
 
 	"input_text": {

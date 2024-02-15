@@ -105,14 +105,15 @@ temp_LANGUAGE = {
 			"updateEmu-2-4": "Extracting update",
 			"updateEmu-3-4": "Removing leftover files",
 			"updateEmu-4-4": "Update complete!",
-			"settingsLogEmuSha": "INFO - fpPS4 version: (%VARIABLE_0%)",
+			"settingsLogEmuSha": "INFO - fpPS4 version: %VARIABLE_0%",
 			"dumpStatus_OK": "Fine",
 			"dumpStatus_WARN": "Missing files",
 			"dumpStatus_HB": "Homebrew",
-			"updateEmuWorkflow404": "ERROR - (Updater) Unable to locate selected CI workflow from fpPS4 GitHub!",
+			"updateEmuWorkflow404": "ERROR - (Updater) Unable to load workflow list from fpPS4 GitHub!",
 			"updater_noWorkflowListAvailable": "No workflow list available",
             "Sdl2NotFound": "SDL2.dll is not found in the Emu folder, please install it to use SDL2.",
-            "errorListUnableLocateGamePath": "ERROR - Unable to locate \"%VARIABLE_0%\" settings path! In order to prevent issues, game list will be reloaded.\nPath: %VARIABLE_1%"
+            "errorListUnableLocateGamePath": "ERROR - Unable to locate \"%VARIABLE_0%\" settings path! In order to prevent issues, game list will be reloaded.\nPath: %VARIABLE_1%",
+            "updateEmuSettingsWorkflow404": "ERROR - (Updater) Unable to find (%VARIABLE_0%) on fpPS4 worflow list! %VARIABLE_1% will be used as fallback."
 		},
 
 		"title": {

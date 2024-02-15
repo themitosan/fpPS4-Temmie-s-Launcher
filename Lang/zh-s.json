@@ -61,10 +61,11 @@
 		"dumpStatus_OK": "完成",
 		"dumpStatus_WARN": "文件缺失",
 		"dumpStatus_HB": "自制",
-		"updateEmuWorkflow404": "ERROR - 无法在 fpPS4 GitHub 上找到当前选择的 CI Workflow",
+		"updateEmuWorkflow404": "",
 		"updater_noWorkflowListAvailable": "Workflow 列表无法读取",
 		"Sdl2NotFound": "模拟器文件夹中未发现 SDL2.dll , 请安装并使用 SDL2",
-		"errorListUnableLocateGamePath": ""
+		"errorListUnableLocateGamePath": "",
+		"updateEmuSettingsWorkflow404": ""
 	},
 
 	"input_text": {

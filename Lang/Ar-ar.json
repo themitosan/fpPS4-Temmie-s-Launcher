@@ -61,10 +61,11 @@
 		"dumpStatus_OK": "جيد",
 		"dumpStatus_WARN": "ملفات مفقودة",
 		"dumpStatus_HB": "Homebrew",
-		"updateEmuWorkflow404": "خطأ - لا يمكن العثور على CI workflow من fpPS4 GitHub ",
+		"updateEmuWorkflow404": "",
 		"updater_noWorkflowListAvailable": "لم يتم العثور على قائمة workflow",
 		"Sdl2NotFound": "",
-		"errorListUnableLocateGamePath": ""
+		"errorListUnableLocateGamePath": "",
+		"updateEmuSettingsWorkflow404": ""
 	},
 
 	"input_text": {

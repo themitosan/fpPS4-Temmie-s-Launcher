@@ -64,7 +64,8 @@
 		"updateEmuWorkflow404": "",
 		"updater_noWorkflowListAvailable": "",
 		"Sdl2NotFound": "",
-		"errorListUnableLocateGamePath": ""
+		"errorListUnableLocateGamePath": "",
+		"updateEmuSettingsWorkflow404": ""
 	},
 
 	"input_text": {

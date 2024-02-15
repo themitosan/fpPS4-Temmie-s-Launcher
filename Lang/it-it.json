@@ -61,10 +61,11 @@
 		"dumpStatus_OK": "Perfetto",
 		"dumpStatus_WARN": "File mancanti",
 		"dumpStatus_HB": "Homebrew",
-		"updateEmuWorkflow404": "ERRORE - Impossibile trovare l'elemento di configurazione principale nell'elenco dei workflows di fpPS4 su GitHub!",
+		"updateEmuWorkflow404": "",
 		"updater_noWorkflowListAvailable": "Impossibile ottenere l'elenco CI!",
 		"Sdl2NotFound": "",
-		"errorListUnableLocateGamePath": ""
+		"errorListUnableLocateGamePath": "",
+		"updateEmuSettingsWorkflow404": ""
 	},
 
 	"input_text": {

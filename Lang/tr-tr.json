@@ -59,10 +59,11 @@
 		"dumpStatus_OK": "Mükemmel",
 		"dumpStatus_WARN": "Eksik dosyalar",
 		"dumpStatus_HB": "Homebrew",
-		"updateEmuWorkflow404": "HATA - (Güncelleme) GitHub iş akışları listesinde bir CI seçimi bulunamadı!",
+		"updateEmuWorkflow404": "",
 		"updater_noWorkflowListAvailable": "CI listesi alınamadı!",
 		"Sdl2NotFound": "SDL2.dll, Emu klasöründe bulunamadı, \"SDL\"yi etkinleştirmek için orada olduğundan emin olun.",
-		"errorListUnableLocateGamePath": "HATA - \"%VARIABLE_0%\" için ayar klasörü bulunamadı! Hatalardan kaçınmak için uygulama/oyun listesi güncellendi.\nYol: %VARIABLE_1%"
+		"errorListUnableLocateGamePath": "HATA - \"%VARIABLE_0%\" için ayar klasörü bulunamadı! Hatalardan kaçınmak için uygulama/oyun listesi güncellendi.\nYol: %VARIABLE_1%",
+		"updateEmuSettingsWorkflow404": ""
 	},
 	"input_text": {
 		"INPUT_gameListSearch": {

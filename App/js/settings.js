@@ -75,8 +75,8 @@ temp_SETTINGS = {
 		*/
 		latestCommitSha: '',
 		enableEmuUpdates: !0,
-		fpps4selectedCI: 'CI',
 		fpps4BranchName: 'trunk',
+		fpps4selectedCI: 'Main CI',
 
 		/*
 			Debug
@@ -123,10 +123,8 @@ temp_SETTINGS = {
 
 			});
 
-			// Load settings
+			// Load settings and check if needs to update settings file
 			this.data = loadSettings;
-
-			// Check if need to update settings file
 			if (updateSettings === !0){
 				APP.log(APP.lang.getVariable('infoSettingsUpdated'));
 				APP.settings.save();
