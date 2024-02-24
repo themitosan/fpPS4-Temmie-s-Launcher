@@ -447,6 +447,7 @@ img {
 	font-style: italic;
 	align-items: center;
 	align-content: center;
+	font-family: system-ui;
 	justify-content: center;
 	text-shadow: 0px 0px 10px #f00;
 	background-image: linear-gradient(45deg, #f002, #0000);

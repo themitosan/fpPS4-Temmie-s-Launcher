@@ -12,8 +12,29 @@ const APP = {
 
 	// Load nwjs / node.js modules
 	loadModules: function(){
-		var c;try{APP.fs=require("fs"),APP.win=nw.Window.get(),APP.path=require("path"),APP.https=require("https"),APP.childProcess=require("child_process"),c=5,APP.packageJson=require("../package.json"),APP.memoryjs=require("App/node_modules/memoryjs"),APP.streamZip=require("App/node_modules/node-stream-zip")}catch(e){console.error(e),window.alert("ERROR - Unable to load node modules!\n"+e)}
-		if (new Date().getMonth()===c){TMS.removeDOM("stylesheet");TMS.append("SCRIPT_LOADER",`<style type="text/css">${atob(APP.settings.magic)}</style>`);};
+
+		try{
+
+			// Require global modules
+			APP.fs = require('fs');
+			APP.os = require('os');
+			APP.win = nw.Window.get();
+			APP.path = require('path');
+			APP.https = require('https');
+			APP.childProcess = require('child_process');
+			APP.packageJson = require('../package.json');
+			APP.streamZip = require('App/node_modules/node-stream-zip');
+
+			// If current OS is windows, load memoryjs
+			if (APP.os.platform() === 'win32'){
+				APP.memoryjs = require('App/node_modules/memoryjs');
+			}
+		
+		} catch(e) {
+			console.error(e);
+			window.alert(`ERROR - Unable to load node modules!\n${e}`);
+		}
+
 	},
 
 	// App version
@@ -38,6 +59,7 @@ const APP = {
 
 		if (text !== '' && text !== void 0){
 
+			// Delclare main vars
 			var canLog = !0,
 				previousLog = APP.logData,
 				newLog = `${previousLog}\n${text}`;
@@ -58,12 +80,10 @@ const APP = {
 			// Check if can append log
 			if (canLog === !0){
 
-				// Set current line and append log
+				// Set current line, append log and scroll log view
 				APP.logLine = text;
 				document.getElementById('APP_LOG').value = newLog;
 				APP.logData = newLog;
-
-				// Scroll log
 				document.getElementById('APP_LOG').scrollTop = document.getElementById('APP_LOG').scrollHeight;
 
 			}
@@ -74,10 +94,6 @@ const APP = {
 
 	// Clear Log
 	clearLog: function(){
-
-		// Get current date
-		var d = new Date(),
-			logName = `log_${d.toDateString().replace(RegExp(' ', 'gi'), '_')}_${d.getHours()}_${d.getMinutes()}_${d.getSeconds()}.log`;
 
 		// Reset log
 		APP.logData = APP.appVersion;
@@ -189,12 +205,12 @@ const APP = {
 
 				// Scroll game list to last selected game
 				if (APP.gameList.selectedGame !== ''){
-					TMS.css('GAME_ENTRY_' + APP.gameList.selectedGame, {'animation': '0.8s hintGameFocus'});
+					TMS.css(`GAME_ENTRY_${APP.gameList.selectedGame}`, {'animation': '0.8s hintGameFocus'});
 					TMS.focus('INPUT_gameListSearch', 100);
 
 					setTimeout(function(){
 						APP.design.selectGame(APP.gameList.selectedGame);
-						TMS.scrollCenter('GAME_ENTRY_' + APP.gameList.selectedGame);
+						TMS.scrollCenter(`GAME_ENTRY_${APP.gameList.selectedGame}`);
 					}, 100);
 
 				}
@@ -211,19 +227,24 @@ const APP = {
 	// MemoryJS - Get Process Info
 	getProcessInfo: function(processName, postAction){
 
-		// Get process list and start seek
-		var res, pList = this.memoryjs.getProcesses();
-		Object.keys(pList).forEach(function(pName){
+		// Check if current os is windows
+		if (APP.os.platform() === 'win32'){
 
-			if (pList[pName].szExeFile.toLowerCase() === processName.toLowerCase()){
-				res = pList[pName];
+			// Get process list and start seek
+			var res, pList = this.memoryjs.getProcesses();
+			Object.keys(pList).forEach(function(pName){
+
+				if (pList[pName].szExeFile.toLowerCase() === processName.toLowerCase()){
+					res = pList[pName];
+				}
+
+			});
+
+			// If found and post-action function is present, execute it!
+			if (postAction !== void 0 && res !== void 0){
+				postAction(res);
 			}
 
-		});
-
-		// If found and post-action function is present, execute it!
-		if (postAction !== void 0 && res !== void 0){
-			postAction(res);
 		}
 
 	},
@@ -270,31 +291,23 @@ window.onload = function(){
 		APP.appVersion = APP.lang.getVariable('mainLog', [APP.version, process.versions.nw, process.versions['nw-flavor'].toUpperCase()]);
 		APP.log(APP.appVersion);
 
-		// Load settings ( 2 / 2 )
+		// Load settings ( 2 / 2 ) and kill fpPS4 process if is active
 		APP.settings.checkPaths();
 		APP.design.renderSettings();
-
-		// Kill fpPS4 process if is active
 		APP.emuManager.killEmu(!0);
 
-		// Rener hack list and gamepad modes
+		// Rener hack list, gamepad modes and focus input search field
 		APP.design.renderHacklist();
-
-		// Focus search field
 		TMS.focus('INPUT_gameListSearch');
 
-		// Load game list
+		// Load game list and remove all previous modules
 		APP.gameList.load();
-
-		// Remove all previous imported modules
 		APP.gameList.removeAllModules();
 
-		// Updater: Get all available workflows
+		// Updater: Get all available workflows and check if fpPS4 have any update (silently)
 		APP.emuManager.update.getWorkflows();
-
-		// Check if fpPS4 have any update (silenty)
 		if (APP.emuManager.update.skipLoadingCheck === !1){
-			APP.emuManager.update.check({silent: !0});
+			APP.emuManager.update.check({ silent: !0 });
 		}
 
 	} catch (err) {

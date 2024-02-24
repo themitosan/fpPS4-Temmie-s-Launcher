@@ -57,7 +57,7 @@ temp_LANGUAGE = {
 			"killEmuStatus": "Main process closed - close fpPS4 log window to go back",
 			"logCleared": "INFO - Previous log was cleared!",
 			"about": "fpPS4 Temmie\'s Launcher - Version: %VARIABLE_0%\n\nCreated by TheMitoSan [Previously known as TemmieHeartz]\n(https://twitter.com/themitosan)\n\nfpPS4 is created by red-prig\n(https://github.com/red-prig/fpPS4)\n\nPlugin memoryjs is created by Rob--\n(https://github.com/rob--/memoryjs)\n\nPlugin node-stream-zip is created by antelle\n(https://github.com/antelle/node-stream-zip)\n\nSVG icons were obtained from https://www.svgrepo.com/",
-			"mainLog": 'fpPS4 Temmie\'s Launcher - Version: %VARIABLE_0%\nRunning on nw.js (node-webkit) version %VARIABLE_1% [%VARIABLE_2%]',
+			"mainLog": 'fpPS4 Temmie\'s Launcher - Version: %VARIABLE_0%\nRunning on nw.js version %VARIABLE_1% [%VARIABLE_2%]',
 			"settingsErrorCreatePath": "ERROR - Unable to create path!\n(%VARIABLE_0%)\n%VARIABLE_1%",
 			"settingsErrorfpPS4NotFound": "ERROR - Unable to locate main fpPS4 executable!\nMake sure to select it in Settings or insert it in \"Emu\" folder and click OK.",
 			"settingsConfirmRemoveAllGameSettings": "WARNING - This option will remove all saved settings from your game list.\nDo you want to continue?",

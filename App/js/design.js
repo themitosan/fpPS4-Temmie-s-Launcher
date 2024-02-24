@@ -104,14 +104,16 @@ temp_DESIGN = {
 	// Render game list
 	renderGameList: function(data){
 
+		// Create main vars
 		var tempHtml = '',
-			gList = APP.gameList.list,
-			sQuery = document.getElementById('INPUT_gameListSearch').value;
+			gList = APP.gameList.list;
 
-		if (data === void 0){
+		// Check data var
+		if (data === void 0 || typeof data !== 'object'){
 			data = {};
 		}
 
+		// Check custom list
 		if (data.customList !== void 0){
 			gList = data.customList;
 		}
@@ -132,23 +134,19 @@ temp_DESIGN = {
 				settingsFile = gList[cGame].settingsFile,
 				gridIconSize = APP.settings.data.gridIconSize,
 				gameMetadata = `<br>${APP.lang.getVariable('path')}: ${gList[cGame].exe}`,
-				bgPath = 'url(\'' + gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'') + '\')';
+				bgPath = `url(\'file://${gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'')}\')`;
 
 			// Disable background image
 			if (APP.settings.data.showBgOnEntry !== !0){
 				bgPath = 'none';
 			}
 
-			// Background and icon
-			gameBgAndIcon = `<div class="GAME_ENTRY_BG" style="background-image: ${bgPath};"></div><img class="IMG_GAME_ICON" src="${gList[cGame].icon}">`;
-
-			// Check if patch is available and active
+			// Set background, icon and check if path is available / active
+			gameBgAndIcon = `<div class="GAME_ENTRY_BG" style="background-image: ${bgPath};"></div><img class="IMG_GAME_ICON" src="file://${gList[cGame].icon}">`;
 			if (Object.keys(settingsFile).length !== 0 && settingsFile.usePatch === !0 && APP.fs.existsSync(`${settingsFile.patchLocation}/sce_sys/param.sfo`) === !0){
 
-				// Get PARAM.SFO patch data
+				// Get PARAM.SFO patch data and check if PARAM.SFO from patch is loaded and isn't an DLC
 				patchParamSfo = APP.paramSfo.parse(`${settingsFile.patchLocation}/sce_sys/param.sfo`);
-
-				// Check if PARAM.SFO from patch is loaded and isn't an DLC
 				if (Object.keys(patchParamSfo).keys !== 0 && patchParamSfo.CATEGORY !== 'ac'){
 					appVersion = `<label class="LABEL_emuColor">${patchParamSfo.APP_VER}</label>`;
 				}
@@ -208,7 +206,7 @@ temp_DESIGN = {
 					classDisplayEntryMode = ' GAME_ENTRY_GRID';
 					gameMetadata = `<div class="GAME_DETAILS_GRID">${appVersion}</div>`;
 					gameEntryStyle = `border-radius: ${APP.settings.data.gridBorderRadius}px;`;
-					gameBgAndIcon = `<div class="none" style="background-image: ${bgPath}";></div><img class="IMG_GAME_ICON IMG_GRID" style="width: ${gridIconSize}px;" src="${gList[cGame].icon}">`;
+					gameBgAndIcon = `<div class="none" style="background-image: ${bgPath};"></div><img class="IMG_GAME_ICON IMG_GRID" style="width: ${gridIconSize}px;" src="file://${gList[cGame].icon}">`;
 					break;
 
 			}
@@ -218,11 +216,9 @@ temp_DESIGN = {
 				gameName = `<label class="${appNameClass}">${gList[cGame].name}</label>`;
 			}
 
-			/*
-				Add entry
-			*/
-			tempHtml = tempHtml + '<div class="GAME_ENTRY' + classDisplayEntryMode + '" title="' + appTitle + '" style="' + gameEntryStyle + '" onclick="APP.design.selectGame(\'' + cGame + '\');" id="GAME_ENTRY_' + cGame + '">' +
-								   gameBgAndIcon + '<div class="' + classGameDetailsMode + '">' + gameName + gameMetadata + '</div></div>';
+			// Add entry
+			tempHtml = `${tempHtml}<div class="GAME_ENTRY${classDisplayEntryMode}" title="${appTitle}" style="${gameEntryStyle}" onclick="APP.design.selectGame(\'${cGame}\');" id="GAME_ENTRY_${cGame}">${gameBgAndIcon}<div class="${classGameDetailsMode}">${gameName + gameMetadata}</div></div>`;
+
 		});
 
 		// Insert HTML
@@ -235,13 +231,10 @@ temp_DESIGN = {
 
 		// Clear BG image
 		TMS.css('DIV_GAMELIST_BG', {'background-image': 'none'});
-
 		TMS.css('DIV_GAME_DETAILS', {'display': 'none'});
 
-		// Focus search field
+		// Focus search field and update GUI
 		TMS.focus('INPUT_gameListSearch');
-
-		// Update GUI
 		this.update();
 
 	},
@@ -256,8 +249,7 @@ temp_DESIGN = {
 			updatesettingsFile = !1,
 			gData = APP.gameList.list[gameName],
 			folderName = gData.folderName, 
-			exportButtonStatus = 'disabled',
-			settingsFile = APP.settings.data.gamePath + '/' + folderName + '/launcherSettings.json';
+			settingsFile = `${APP.settings.data.gamePath}/${folderName}/launcherSettings.json`;
 
 		if (gData !== void 0){
 
@@ -289,14 +281,14 @@ temp_DESIGN = {
 			}
 
 			// Load settings file
-			const gSettings = JSON.parse(APP.fs.readFileSync(settingsFile, 'utf8'));
+			const gSettings = JSON.parse(APP.fs.readFileSync(settingsFile, 'utf-8'));
 			APP.gameList.cGameSettings = gSettings;
 
 			// Check if settings file has all available hacks - if so, set flag to update settings file
 			this.hackList.forEach(function(cHack){
 				if (gSettings.hacks[cHack] === void 0){
 					updatesettingsFile = !0;
-					document.getElementById('CHECK_' + cHack).checked = !1;
+					document.getElementById(`CHECK_${cHack}`).checked = !1;
 				}
 			});
 			if (updatesettingsFile === !0){
@@ -305,7 +297,7 @@ temp_DESIGN = {
 
 			// Enable / disable selected hacks on settings file
 			Object.keys(gSettings.hacks).forEach(function(hackName){
-				document.getElementById('CHECK_' + hackName).checked = JSON.parse(gSettings.hacks[hackName]);
+				document.getElementById(`CHECK_${hackName}`).checked = JSON.parse(gSettings.hacks[hackName]);
 			});
 
 			// Load patch data
@@ -316,7 +308,7 @@ temp_DESIGN = {
 				try {
 
 					// Get PARAM.SFO data
-					var paramSfoMetadata = APP.paramSfo.parse(gSettings.patchLocation + '/sce_sys/param.sfo'),
+					var paramSfoMetadata = APP.paramSfo.parse(`${gSettings.patchLocation}/sce_sys/param.sfo`),
 						patchVersion = paramSfoMetadata.VERSION;
 
 					// If App version is available, show it instead
@@ -324,11 +316,9 @@ temp_DESIGN = {
 						patchVersion = paramSfoMetadata.APP_VER;
 					}
 
-					// Update GUI
+					// Update GUI and set patch loaded flag
 					document.getElementById('LABEL_launcherOptionsPatchVersion').innerHTML = patchVersion;
 					document.getElementById('LABEL_launcherOptionsPatchType').innerHTML = APP.paramSfo.database.DB_CATEGORY[paramSfoMetadata.CATEGORY];
-
-					// Set patch loaded flag
 					APP.design.gamePatchLoaded = !0;
 
 				} catch (err) {
@@ -358,12 +348,13 @@ temp_DESIGN = {
 		// Update background image
 		const sGame = APP.gameList.list[APP.gameList.selectedGame];
 		if (sGame !== '' && sGame !== void 0){
-			TMS.css('DIV_GAMELIST_BG', {'background-image': 'url("' + sGame.bg + '")'});
+			TMS.css('DIV_GAMELIST_BG', { 'background-image': `url('file://${sGame.bg}')` });
 		}
 
 		// Check if emu is present before allowing to run
 		if (APP.fs.existsSync(APP.settings.data.emuPath) === !0 && APP.gameList.selectedGame !== ''){
 
+			// Create main vars
 			var btnDisabled = '',
 				btnKill = 'disabled',
 				emuRunPath = 'block',
@@ -399,7 +390,7 @@ temp_DESIGN = {
 			TMS.css('DIV_OPTIONS', optionsCss);
 			TMS.css('DIV_GAME_DETAILS', showGuiMetadata);
 			TMS.css('DIV_GAME_DETAILS_currentExec', {'display': emuRunPath});
-			TMS.css('DIV_GAMELIST_BG', {'filter': 'blur(' + bgBlur + 'px) opacity(' + bgOpacity + ')'});
+			TMS.css('DIV_GAMELIST_BG', {'filter': `blur(${bgBlur}px) opacity(${bgOpacity})`});
 
 			// Update Buttons
 			document.getElementById('BTN_KILL').disabled = btnKill;
@@ -442,10 +433,8 @@ temp_DESIGN = {
 		// If selected game exists
 		if (cGame !== void 0){
 
-			// Set game name
-			gName = '<div class="LABEL_gameTitleOptions">' + cGame.name + '</div>';
-
-			// If PARAM.SFO exists for selected game
+			// Set game name and check if param.sfo exists for current title
+			gName = `<div class="LABEL_gameTitleOptions">${cGame.name}</div>`;
 			if (Object.keys(cGame.paramSfo).length !== 0){
 				
 				// Enable GUI
@@ -454,7 +443,7 @@ temp_DESIGN = {
 
 				// Set data
 				cGameVersion = cGame.paramSfo.APP_VER;
-				gName = '<div class="LABEL_gameTitleOptions">' + cGame.name + '</div><br><label class="user-can-select">' + cGame.paramSfo.TITLE_ID + '</label>';
+				gName = `<div class="LABEL_gameTitleOptions">${cGame.name}</div><br><label class="user-can-select">${cGame.paramSfo.TITLE_ID}</label>`;
 
 			}
 
@@ -465,10 +454,8 @@ temp_DESIGN = {
 
 		}
 
-		// Enable / disable export metadata 
+		// Enable / disable export metadata  and show / hide patch
 		document.getElementById('BTN_launcherOptionsExportMetadata').disabled = exportButtonStatus;
-
-		// Show / hide patch
 		TMS.css('DIV_launcherOptionsPatchVersion', {'display': displayPatchContainer});
 
 		// Show / hide patch details
@@ -477,14 +464,10 @@ temp_DESIGN = {
 		}
 		TMS.css('DIV_launcherOptionsPatchVersionMetadata', {'display': displayPatchData});
 
-		// Render current game name
+		// Render current game name, version and settings
 		document.getElementById('DIV_labelSelectedGame').innerHTML = gName;
-
-		// Render current game version
 		document.getElementById('LABEL_FPPS4_OPTIONS_APP_VER').innerHTML = cGameVersion;
 		TMS.css('DIV_FPPS4_OPTIONS_APP_VERSION', {'display': displayGameVersion});
-
-		// Render Settings
 		this.renderSettings();
 
 	},
@@ -492,56 +475,58 @@ temp_DESIGN = {
 	// Change game list to display mode
 	toggleDisplayMode: function(gameData){
 
+		// Check if game data exists
 		if (gameData !== void 0){
 
+			// Declare default var
 			var gameVersion = '',
 				patchParamSfo = {},
 				disableGridIconSize = '',
-				gameDetails = {'display': 'flex'},
+				gameDetails = { 'display': 'flex' },
 				usePatch = APP.gameList.cGameSettings.usePatch,
 				patchLocation = APP.gameList.cGameSettings.patchLocation,
-				gameMetadata = APP.lang.getVariable('path') + ': <label class="user-can-select">' + gameData.appPath + '</label>',
-				listInternal = {'transition': '0.4s', 'filter': 'blur(' + APP.settings.data.bgEmuBlur +'px) opacity(' + APP.settings.data.bgEmuOpacity + ')'};
+				gameMetadata = `${APP.lang.getVariable('path')}: <label class="user-can-select">${gameData.appPath}</label>`,
+				listInternal = {
+					'transition': '0.4s',
+					'filter': `blur(${APP.settings.data.bgEmuBlur}px) opacity(${APP.settings.data.bgEmuOpacity})`
+				};
 	
 			// If emu isn't running
 			if (APP.emuManager.emuRunning === !1){
 
-				gameDetails = {'display': 'none'};
-				listInternal = {'transition': 'none', 'filter': 'blur(' + APP.settings.data.bgListBlur +'px) opacity(' + APP.settings.data.bgListOpacity + ')'};
+				// Update CSS
+				gameDetails = { 'display': 'none' };
+				listInternal = {
+					'transition': 'none',
+					'filter': `blur(${APP.settings.data.bgListBlur}px) opacity(${APP.settings.data.bgListOpacity})`
+				};
 
 				// Restore app title
 				document.title = APP.title;
-
 				APP.design.renderGameList();
 				APP.design.updateLauncherSettingsGUI();
 
 			} else {
 
-				// Disable grid size
+				// Disable grid size, update app title and hide game metadata
 				disableGridIconSize = 'disabled';
-
-				// Update app title
-				document.title = APP.title + ' - ' + APP.lang.getVariable('logWindowTitle') + ' [ ' + APP.gameList.selectedGame + ' ]';
-
-				// Hide game metadata
+				document.title = `${APP.title} - ${APP.lang.getVariable('logWindowTitle')} [ ${APP.gameList.selectedGame} ]`;
 				if (APP.settings.data.showGuiMetadata === !1){
 					gameDetails.display = 'none';
 				}
 
-				// Clear search input
+				// Clear search input and disable display mode buttons
 				document.getElementById('INPUT_gameListSearch').value = '';
-
-				// Disable display mode buttons
 				APP.design.gameListDisplayModes.forEach(function(cMode){
-					document.getElementById('BTN_displayMode_' + cMode).disabled = 'disabled';
+					document.getElementById(`BTN_displayMode_${cMode}`).disabled = 'disabled';
 				});
 
 				// Check if PARAM.SFO patch exists
 				if (APP.fs.existsSync(patchLocation) === !0){
-					patchParamSfo = APP.paramSfo.parse(patchLocation + '/sce_sys/param.sfo');
+					patchParamSfo = APP.paramSfo.parse(`${patchLocation}/sce_sys/param.sfo`);
 				}
 				if (Object.keys(patchParamSfo).length !== 0 && usePatch === !0){
-					gameVersion = '<label class="LABEL_emuColor">' + patchParamSfo.APP_VER + '</label>';
+					gameVersion = `<label class="LABEL_emuColor">${patchParamSfo.APP_VER}</label>`;
 				}
 
 				// If PARAM.SFO metadata exists, display serial and game version instead
@@ -553,7 +538,7 @@ temp_DESIGN = {
 					}
 
 					// Set new game data
-					gameMetadata = gameData.paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameListVersion') + ' ' + gameVersion;
+					gameMetadata = `${gameData.paramSfo.TITLE_ID} - ${APP.lang.getVariable('gameListVersion')} ${gameVersion}`;
 				}
 
 				// Clear game list
@@ -563,7 +548,7 @@ temp_DESIGN = {
 
 			// Fix undefined path
 			if (gameData.appIcon === void 0){
-				gameData.appIcon = APP.settings.data.nwPath + '/App/img/404.png';
+				gameData.appIcon = `file://${APP.settings.data.nwPath}/App/img/404.png`;
 			}
 
 			// Set game metadata
@@ -596,10 +581,8 @@ temp_DESIGN = {
 			hideList = ['DIV_SETTINGS'];
 			showList = [];
 
-			// Render game list
+			// Render game list and update GUI
 			APP.design.renderGameList();
-
-			// Update GUI
 			APP.design.update();
 
 		}
@@ -631,20 +614,18 @@ temp_DESIGN = {
 			APP.design.saveSettings(requestSave);
 		}
 
-		// Shortcut
+		// Create shortcut const and get lang files
 		const cSettings = APP.settings.data;
-
-		// Get lang files
 		var langSelectHtml = '<option value="english">English (Default)</option>',
-			langList = APP.fs.readdirSync(APP.settings.data.nwPath + '/Lang');
+			langList = APP.fs.readdirSync(`${APP.settings.data.nwPath}/Lang`);
 
+		// Process file list
 		langList.forEach(function(cEntry){
 
+			// Check if file extension is json. If so, include on lang list
 			if (APP.path.parse(cEntry).ext.toLowerCase() === '.json'){
-
-				const getLangInfo = JSON.parse(APP.fs.readFileSync(APP.settings.data.nwPath + '/Lang/' + cEntry, 'utf8'));
-				langSelectHtml = langSelectHtml + '<option value="' + APP.path.parse(cEntry).name + '">' + getLangInfo.lang + '</option>';
-
+				const getLangInfo = JSON.parse(APP.fs.readFileSync(`${APP.settings.data.nwPath}/Lang/${cEntry}`, 'utf-8'));
+				langSelectHtml = `${langSelectHtml}<option value="${APP.path.parse(cEntry).name}">${getLangInfo.lang}</option>`;
 			}
 
 		});
@@ -834,7 +815,7 @@ temp_DESIGN = {
 
 	// Update status
 	updateProgressbarStatus: function(percentage, status){
-		TMS.css('DIV_PROGRESSBAR_UPDATE_FPPS4', {'width': percentage + '%'});
+		TMS.css('DIV_PROGRESSBAR_UPDATE_FPPS4', {'width': `${percentage}%`});
 		document.getElementById('LABEL_FPPS4_UPDATER_STATUS').innerHTML = status;
 	}
 

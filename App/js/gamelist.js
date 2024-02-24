@@ -273,10 +273,10 @@ temp_GAMELIST = {
 
 					// Check if Icon and Background exists - if not, use 404
 					if (APP.fs.existsSync(appIcon) === !1){
-						appIcon = `${APP.settings.data.nwPath}/app/img/404.png`; 
+						appIcon = `${APP.settings.data.nwPath}/App/img/404.png`; 
 					}
 					if (APP.fs.existsSync(appBg) === !1){
-						appBg = `${APP.settings.data.nwPath}/app/img/404_BG.png`;
+						appBg = `${APP.settings.data.nwPath}/App/img/404_BG.png`;
 					}
 
 					// Warn if playgo-chunk.dat isn't available
