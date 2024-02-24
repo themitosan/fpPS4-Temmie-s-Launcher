@@ -552,7 +552,7 @@ temp_DESIGN = {
 			}
 
 			// Set game metadata
-			document.getElementById('IMG_APP_ICON').src = gameData.appIcon;
+			document.getElementById('IMG_APP_ICON').src = `file://${gameData.appIcon}`;
 			document.getElementById('DIV_GAME_DETAILS_currentExec').innerHTML = gameMetadata;
 			document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = gameData.appStatus;
 			document.getElementById('LABEL_GAME_DETAILS_APP_NAME').innerHTML = gameData.appName;
