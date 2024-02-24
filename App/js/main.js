@@ -267,18 +267,11 @@ const APP = {
 	checkCurrentOs: function(){
 
 		// Check if needs to display warn
-		if (APP.os.platform() !== 'win32'){
-
-			// Get fpPS4 wine dir
-
-
-			// Check if needs to display warn
-			if (APP.settings.data.nonWindowsOsWarn === !1){
-				window.alert(APP.lang.getVariable('nonWindowsOsWarn'));
-				APP.settings.data.nonWindowsOsWarn = !0;
-				APP.settings.save();
-			}
-
+		if (APP.os.platform() !== 'win32' && APP.settings.data.nonWindowsOsWarn === !1){
+			window.alert(APP.lang.getVariable('nonWindowsOsWarn'));
+			APP.log(APP.lang.getVariable('nonWindowsOsWarn'));
+			APP.settings.data.nonWindowsOsWarn = !0;
+			APP.settings.save();
 		}
 
 	},

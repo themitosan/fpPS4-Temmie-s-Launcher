@@ -119,7 +119,7 @@ temp_DESIGN = {
 		}
 
 		// Process game list
-		Object.keys(gList).forEach(function(cGame){
+		Object.keys(gList).forEach(function(cGame, cIndex){
 
 			// Settings for display mode: Normal
 			var appTitle = '',
@@ -139,6 +139,11 @@ temp_DESIGN = {
 			// Disable background image
 			if (APP.settings.data.showBgOnEntry !== !0){
 				bgPath = 'none';
+			}
+
+			// Check if current entry is the first one
+			if (cIndex === 0){
+				classDisplayEntryMode = ' GAME_ENTRY_FIRST_INDEX';
 			}
 
 			// Set background, icon and check if path is available / active
@@ -179,7 +184,7 @@ temp_DESIGN = {
 					gameMetadata = '';
 					gameBgAndIcon = '';
 					appNameClass = 'LABEL_gameTitleCompact';
-					classDisplayEntryMode = ' GAME_ENTRY_COMPACT';
+					classDisplayEntryMode = `${classDisplayEntryMode}  GAME_ENTRY_COMPACT`;
 					classGameDetailsMode = 'GAME_DETAILS GAME_DETAILS_COMPACT';
 
 					// Check if PARAM.SFO is available
@@ -363,7 +368,7 @@ temp_DESIGN = {
 				bgOpacity = APP.settings.data.bgListOpacity,
 				logCss = {'display' :'block', 'width': 'calc(100% - 280px)'},
 				optionsCss = {'height': 'calc(100% - 50px)', 'display': 'block'},
-				listCss = {'width': 'calc(100% - 280px)', 'height': 'calc(100% - 202px)'};
+				listCss = {'width': 'calc(100% - 280px)', 'height': 'calc(100% - 164px)'};
 
 			// If emu is running
 			if (APP.emuManager.emuRunning === !0){
@@ -393,7 +398,9 @@ temp_DESIGN = {
 			TMS.css('DIV_GAMELIST_BG', {'filter': `blur(${bgBlur}px) opacity(${bgOpacity})`});
 
 			// Update Buttons
-			document.getElementById('BTN_KILL').disabled = btnKill;
+			if (APP.os.platform() === 'win32'){
+				document.getElementById('BTN_KILL').disabled = btnKill;
+			}
 			document.getElementById('BTN_RUN').disabled = btnDisabled;
 			document.getElementById('BTN_REFRESH').disabled = btnDisabled;
 			document.getElementById('BTN_SETTINGS').disabled = btnDisabled;
@@ -692,7 +699,9 @@ temp_DESIGN = {
 
 		// Variables
 		var guiZoomScale = APP.settings.data.guiZoomScale,
-			cDisplayMode = APP.settings.data.gameListMode;
+			cDisplayMode = APP.settings.data.gameListMode,
+			gListMode = { 'top': '0px', 'height': 'calc(100% - 164px)' };
+			extraCss = '<style>div.DIV_LIST_INTERNAL::-webkit-scrollbar-track { margin: 50px 0px 14px 0px; }</style>';
 
 		// Grid options
 		switch (cDisplayMode){
@@ -707,13 +716,17 @@ temp_DESIGN = {
 				break;
 
 			case 'grid':
+				extraCss = '';
+				gListMode = { 'top': '38px', 'height': 'calc(100% - 202px)' };
 				TMS.css('DIV_settingsShowBgOnGameEntry', {'display': 'none'});
 				document.getElementById('RANGE_settingsGridIconSize').disabled = '';
 				break;
 
 		}
 
-		// Reset display modes and update zoom scale
+		// Update display modes and update zoom scale
+		TMS.css('DIV_LIST', gListMode);
+		document.getElementById('DIV_EXTRA_CSS').innerHTML = extraCss;
 		this.gameListDisplayModes.forEach(function(cMode){
 			document.getElementById(`BTN_displayMode_${cMode}`).disabled = '';
 		});

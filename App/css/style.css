@@ -88,7 +88,7 @@ img {
 	Divs
 */
 .DIV_LIST {
-	top: 38px;
+	top: 0;
 	left: 0px;
 	z-index: 20;
 	width: 100%;
@@ -96,7 +96,7 @@ img {
 	overflow: hidden;
 	position: absolute;
 	background-color: #162a50;
-	height: calc(100% - 202px);
+	height: calc(100% - 164px);
 	transition-timing-function: cubic-bezier(0,1,0,1);
 	background-image: linear-gradient(146deg, #090f1b, #162a50);
 }
@@ -118,6 +118,7 @@ img {
 	top: 0px;
 	left: 0px;
 	width: 100%;
+	z-index: 30;
 	height: 22px;
 	padding: 8px;
 	display: flex;
@@ -126,7 +127,9 @@ img {
 	align-items: center;
 	align-content: center;
 	justify-content: center;
-	background-image: linear-gradient(45deg, #28467f, #1c325f);
+	background-color: #0000;
+	backdrop-filter: blur(4px);
+	background-image: linear-gradient(45deg, #28467fe0, #1c325fe0);
 }
 .DIV_OPTIONS {
 	top: 38px;
@@ -220,6 +223,9 @@ img {
 .GAME_ENTRY:active {
 	backdrop-filter: sepia(0.5) blur(6px);
 	background-image: linear-gradient(180deg, #97a7ff85, #6464a578);
+}
+.GAME_ENTRY_FIRST_INDEX	{
+	margin-top: 44px;
 }
 .GAME_ENTRY_COMPACT {
     display: flex;
