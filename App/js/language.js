@@ -113,7 +113,8 @@ temp_LANGUAGE = {
 			"updater_noWorkflowListAvailable": "No workflow list available",
             "Sdl2NotFound": "SDL2.dll is not found in the Emu folder, please install it to use SDL2.",
             "errorListUnableLocateGamePath": "ERROR - Unable to locate \"%VARIABLE_0%\" settings path! In order to prevent issues, game list will be reloaded.\nPath: %VARIABLE_1%",
-            "updateEmuSettingsWorkflow404": "ERROR - (Updater) Unable to find (%VARIABLE_0%) on fpPS4 worflow list! %VARIABLE_1% will be used as fallback."
+            "updateEmuSettingsWorkflow404": "ERROR - (Updater) Unable to find (%VARIABLE_0%) on fpPS4 worflow list! %VARIABLE_1% will be used as fallback.",
+			"nonWindowsOsWarn": "WARN - You are running fpPS4 Temmie's Launcher on a non-windows operating system!\n\nIn order to run fpPS4, you will need Wine installed on your OS.\n\nBe aware that running main compatibility layer through tools like Wine can result in more glitches, degraded performance / experience."
 		},
 
 		"title": {

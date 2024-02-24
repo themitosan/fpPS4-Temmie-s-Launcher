@@ -65,7 +65,8 @@
 		"updater_noWorkflowListAvailable": "Impossibile ottenere l'elenco CI!",
 		"Sdl2NotFound": "",
 		"errorListUnableLocateGamePath": "",
-		"updateEmuSettingsWorkflow404": ""
+		"updateEmuSettingsWorkflow404": "",
+		"nonWindowsOsWarn": ""
 	},
 
 	"input_text": {

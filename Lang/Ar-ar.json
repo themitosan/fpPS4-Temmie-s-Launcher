@@ -65,7 +65,8 @@
 		"updater_noWorkflowListAvailable": "لم يتم العثور على قائمة workflow",
 		"Sdl2NotFound": "",
 		"errorListUnableLocateGamePath": "",
-		"updateEmuSettingsWorkflow404": ""
+		"updateEmuSettingsWorkflow404": "",
+		"nonWindowsOsWarn": ""
 	},
 
 	"input_text": {

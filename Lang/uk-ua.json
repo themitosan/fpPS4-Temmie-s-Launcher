@@ -65,7 +65,8 @@
 		"updater_noWorkflowListAvailable": "Немає доступного списку робочих процесів",
 		"Sdl2NotFound": "SDL2.dll не знайдено в папці Emu, будь ласка встановіть його щоб використовувати SDL2.",
 		"errorListUnableLocateGamePath": "",
-		"updateEmuSettingsWorkflow404": ""
+		"updateEmuSettingsWorkflow404": "",
+		"nonWindowsOsWarn": ""
 	},
 
 	"input_text": {

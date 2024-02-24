@@ -65,7 +65,8 @@
 		"updater_noWorkflowListAvailable": "Impossible d'obtenir la liste CI !",
 		"Sdl2NotFound": "Impossible de trouver SDL2.dll dans le dossier Emu, vérifiez s'il est là pour activer \"SDL\".",
 		"errorListUnableLocateGamePath": "ERREUR - Impossible de trouver le dossier de paramètres pour \"%VARIABLE_0%\" ! Pour éviter les erreurs, la liste des applications/jeux a été mise à jour.\nChemin : %VARIABLE_1%",
-		"updateEmuSettingsWorkflow404": ""
+		"updateEmuSettingsWorkflow404": "",
+		"nonWindowsOsWarn": ""
 	},
 
 	"input_text": {

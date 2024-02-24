@@ -63,7 +63,8 @@
 		"updater_noWorkflowListAvailable": "CI listesi alınamadı!",
 		"Sdl2NotFound": "SDL2.dll, Emu klasöründe bulunamadı, \"SDL\"yi etkinleştirmek için orada olduğundan emin olun.",
 		"errorListUnableLocateGamePath": "HATA - \"%VARIABLE_0%\" için ayar klasörü bulunamadı! Hatalardan kaçınmak için uygulama/oyun listesi güncellendi.\nYol: %VARIABLE_1%",
-		"updateEmuSettingsWorkflow404": ""
+		"updateEmuSettingsWorkflow404": "",
+		"nonWindowsOsWarn": ""
 	},
 	"input_text": {
 		"INPUT_gameListSearch": {

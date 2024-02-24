@@ -65,7 +65,8 @@
 		"updater_noWorkflowListAvailable": "geen workflow lijst beschikbaar",
         "Sdl2NotFound": "SDL2.dll is niet gevonden in de Emu map, installeer het om SDL2 te gebruiken.",
         "errorListUnableLocateGamePath": "",
-        "updateEmuSettingsWorkflow404": ""
+        "updateEmuSettingsWorkflow404": "",
+		"nonWindowsOsWarn": ""
 	},
 
 	"input_text": {

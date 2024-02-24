@@ -65,7 +65,8 @@
 		"updater_noWorkflowListAvailable": "Workflow 列表无法读取",
 		"Sdl2NotFound": "模拟器文件夹中未发现 SDL2.dll , 请安装并使用 SDL2",
 		"errorListUnableLocateGamePath": "",
-		"updateEmuSettingsWorkflow404": ""
+		"updateEmuSettingsWorkflow404": "",
+		"nonWindowsOsWarn": ""
 	},
 
 	"input_text": {

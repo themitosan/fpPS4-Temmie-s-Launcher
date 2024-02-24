@@ -79,6 +79,11 @@ temp_SETTINGS = {
 		fpps4selectedCI: 'Main CI',
 
 		/*
+			Warning messages
+		*/
+		nonWindowsOsWarn: !1,
+
+		/*
 			Debug
 		*/
 		debugTestLog: !1

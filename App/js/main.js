@@ -249,6 +249,18 @@ const APP = {
 
 	},
 
+	// Check current operating system
+	checkCurrentOs: function(){
+
+		// Check if needs to display warn
+		if (APP.os.platform() !== 'win32' && APP.settings.data.nonWindowsOsWarn === !1){
+			window.alert(APP.lang.getVariable('nonWindowsOsWarn'));
+			APP.settings.data.nonWindowsOsWarn = !0;
+			APP.settings.save();
+		}
+
+	},
+
 	// About screen
 	about: function(){
 		window.alert(this.lang.getVariable('about', [this.version]));
@@ -291,10 +303,11 @@ window.onload = function(){
 		APP.appVersion = APP.lang.getVariable('mainLog', [APP.version, process.versions.nw, process.versions['nw-flavor'].toUpperCase()]);
 		APP.log(APP.appVersion);
 
-		// Load settings ( 2 / 2 ) and kill fpPS4 process if is active
+		// Load remaining settings, kill fpPS4 process if is active and check currert OS
 		APP.settings.checkPaths();
 		APP.design.renderSettings();
 		APP.emuManager.killEmu(!0);
+		APP.checkCurrentOs();
 
 		// Rener hack list, gamepad modes and focus input search field
 		APP.design.renderHacklist();
