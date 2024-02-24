@@ -19,16 +19,12 @@ temp_EMUMANAGER = {
 	// Run emu
 	runGame: function(){
 
-		// Get selected game details
+		// Get selected game details and check if user selected a game
 		const mainGameData = APP.gameList.list[APP.gameList.selectedGame];
-
-		// If user selected a game
 		if (mainGameData !== void 0){
 
-			// Reset Error List
+			// Reset Error List and clear log on emu running (if needed)
 			APP.emuManager.emuErrorList = [];
-
-			// Options: Clear log on emu starts
 			if (APP.settings.data.clearLogOnEmuLoad === !0 && APP.emuManager.emuRunCounter !== 0){
 				APP.clearLog(!0);
 			}
@@ -47,7 +43,7 @@ temp_EMUMANAGER = {
 
 			// Get enabled hacks
 			hList.forEach(function(hackName){
-				if (document.getElementById('CHECK_' + hackName).checked === !0){
+				if (document.getElementById(`CHECK_${hackName}`).checked === !0){
 					emuArgs.push('-h');
 					emuArgs.push(hackName);
 				}

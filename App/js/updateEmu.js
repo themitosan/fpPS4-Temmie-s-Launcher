@@ -170,7 +170,6 @@ temp_EMU_UPDATE = {
 				artifactData,
 				canPrompt = !0,
 				canUpdate = !1,
-				latestCommit = '',
 				msgMode = 'confirm',
 				settingsData = APP.settings.data;
 
@@ -181,10 +180,8 @@ temp_EMU_UPDATE = {
 				const cRun = options.runs.workflow_runs[i];
 				if (cRun.status === 'completed' && cRun.conclusion === 'success' && cRun.head_branch === settingsData.fpps4BranchName){
 
-					// Set can update on
+					// Set canUpdate on and run info
 					canUpdate = !0;
-
-					// Set run info
 					artifactData = {
 						artifact: cRun.id,
 						sha: cRun.head_sha
@@ -256,11 +253,9 @@ temp_EMU_UPDATE = {
 		// If (by some reason) fpPS4 is running - close it!
 		APP.emuManager.killEmu();
 
-		// Display GUI
+		// Display GUI and start download
 		APP.design.toggleEmuUpdateGUI('show');
 		APP.design.updateProgressbarStatus(25, APP.lang.getVariable('updateEmu-1-4', [actionsData.sha.slice(0, 7)]));
-
-		// Start download
 		fetch(`https://nightly.link/red-prig/fpPS4/actions/runs/${actionsData.artifact}/fpPS4.zip`).then(function(resp){
 
 			if (resp.ok === !0){
@@ -319,10 +314,8 @@ temp_EMU_UPDATE = {
 	// Finish process
 	finish: function(data){
 
-		// Update status
+		// Update status, remove download file and update settings
 		APP.design.updateProgressbarStatus(75, APP.lang.getVariable('updateEmu-3-4'));
-
-		// Remove download file and update settings
 		APP.fs.unlinkSync(data.path);
 		APP.settings.data.latestCommitSha = data.actions.sha;
 		APP.settings.data.emuPath = `${APP.path.parse(data.path).dir}/fpPS4.exe`;

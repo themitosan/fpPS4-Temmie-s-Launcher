@@ -695,7 +695,7 @@ temp_DESIGN = {
 			cDisplayMode = APP.settings.data.gameListMode;
 
 		// Grid options
-		switch (cDisplayMode) {
+		switch (cDisplayMode){
 
 			case 'normal':
 				document.getElementById('RANGE_settingsGridIconSize').disabled = 'disabled';
@@ -713,13 +713,11 @@ temp_DESIGN = {
 
 		}
 
-		// Reset display modes
+		// Reset display modes and update zoom scale
 		this.gameListDisplayModes.forEach(function(cMode){
-			document.getElementById('BTN_displayMode_' + cMode).disabled = '';
+			document.getElementById(`BTN_displayMode_${cMode}`).disabled = '';
 		});
-		document.getElementById('BTN_displayMode_' + cDisplayMode).disabled = 'disabled';
-
-		// Update zoom scale
+		document.getElementById(`BTN_displayMode_${cDisplayMode}`).disabled = 'disabled';
 		document.body.style.zoom = guiZoomScale;
 
 	},

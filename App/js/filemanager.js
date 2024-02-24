@@ -92,6 +92,7 @@ temp_FILEMANAGER = {
 
 		}
 
+		// Open save dialog
 		TMS.triggerClick('APP_FILE_SAVE');
 
 	},
@@ -99,8 +100,18 @@ temp_FILEMANAGER = {
 	// Open game folder
 	openDir: function(path){
 
-		// Spawn explorer
-		APP.childProcess.exec(`start "" "${path}"`);
+		// Switch platform
+		switch (APP.os.platform()){
+
+			case 'win32':
+				APP.childProcess.exec(`start "" "${path}"`);
+				break;
+
+			case 'linux':
+				APP.childProcess.exec(`browse "${path}"`);
+				break;
+
+		}
 
 	}
 

@@ -27,7 +27,6 @@ temp_SETTINGS = {
 		nwPath: '',
 		emuPath: '',
 		gamePath: '',
-		emuWinePath: '',
 
 		// Run fpPS4 on fullscreen
 		enableEmuFullscreen: !1,
@@ -106,10 +105,8 @@ temp_SETTINGS = {
 
 		try {
 
-			// Read settings file
+			// Read settings file and check for obsolete keys
 			var loadSettings = JSON.parse(APP.fs.readFileSync(settingsPath, 'utf8'));
-			
-			// Check for obsolete settings
 			Object.keys(loadSettings).forEach(function(cSettings){
 
 				if (APP.settings.data[cSettings] === void 0){
@@ -155,7 +152,7 @@ temp_SETTINGS = {
 		this.data.launcherVersion = APP.packageJson.version;
 
 		try {
-			APP.fs.writeFileSync(`${nwPath}/Settings.json`, JSON.stringify(this.data), 'utf8');
+			APP.fs.writeFileSync(`${nwPath}/Settings.json`, JSON.stringify(this.data), 'utf-8');
 		} catch (err) {
 			console.error(APP.lang.getVariable('settingsSaveError', [err]));
 		}
@@ -175,7 +172,7 @@ temp_SETTINGS = {
 			if (cLang !== 'english' && APP.fs.existsSync(fileLocation) === !0){
 
 				// Get selected lang
-				var getLangFile = APP.fs.readFileSync(fileLocation, 'utf8');
+				var getLangFile = APP.fs.readFileSync(fileLocation, 'utf-8');
 				APP.lang.selected = JSON.parse(getLangFile);
 
 			} else {
@@ -199,6 +196,7 @@ temp_SETTINGS = {
 	// Check paths
 	checkPaths: function(){
 
+		// Create main vars
 		var logMessage = '',
 			mainPath = this.data.nwPath,
 			pathList = ['/Emu', '/Games', '/Lang'];
@@ -233,7 +231,6 @@ temp_SETTINGS = {
 
 			// Set flag to skip update check on window.onload
 			APP.emuManager.update.skipLoadingCheck = !0;
-			
 			this.data.latestCommitSha = '';
 			APP.emuManager.update.check();
 			
@@ -243,8 +240,6 @@ temp_SETTINGS = {
 		if (this.data.latestCommitSha !== ''){
 			APP.log(APP.lang.getVariable('settingsLogEmuSha', [APP.settings.data.latestCommitSha.slice(0, 7)]));
 		}
-
-		// Log message
 		APP.log(logMessage);
 
 	},	

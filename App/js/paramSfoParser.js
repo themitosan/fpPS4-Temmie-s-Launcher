@@ -72,9 +72,8 @@ temp_PARAMSFO_PARSER = {
 		// Get key table data info
 		listAttrArray.forEach(function(cAttr){
 
-			// Slice Current Data
+			// Slice current data and set current read mode
 			const cReadingMode = hexStartLocation.slice(readerLocation, parseInt(readerLocation + 32));
-
 			readMode[cAttr] = {
 
 				keyTableOffset: cReadingMode.slice(0, 4),   // Key table offset
@@ -91,7 +90,7 @@ temp_PARAMSFO_PARSER = {
 		});
 
 		/*
-			Set Metadata Info
+			Set metadata info
 		*/
 		
 		// Set location to data table start create first slice
@@ -104,7 +103,6 @@ temp_PARAMSFO_PARSER = {
 			// Get hex file starting from current location
 			var keyData = '',
 				convertUft8 = !1,
-				cSlice = dataTableSlice.slice(pointerLocation),
 				stopLocation = parseInt(pointerLocation + 8); // Default: int32
 			
 			/*

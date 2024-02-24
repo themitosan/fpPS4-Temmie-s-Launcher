@@ -38,7 +38,7 @@ temp_GAMELIST = {
 
 			// Write file
 			try {
-				APP.fs.writeFileSync(data.path, JSON.stringify(gameSettings), 'utf8');
+				APP.fs.writeFileSync(data.path, JSON.stringify(gameSettings), 'utf-8');
 				logMessage = APP.lang.getVariable('createdSettingsFile', [data.name]);
 			} catch (err) {
 				console.error(err);
@@ -87,7 +87,7 @@ temp_GAMELIST = {
 			// Write file
 			try {
 
-				APP.fs.writeFileSync(fPath, JSON.stringify(tempData), 'utf8');
+				APP.fs.writeFileSync(fPath, JSON.stringify(tempData), 'utf-8');
 				logMessage = APP.lang.getVariable('updateGameSettings', [APP.gameList.selectedGame]);
 
 			} catch (err) {
@@ -156,6 +156,7 @@ temp_GAMELIST = {
 
 		if (this.selectedGame !== ''){
 
+			// Create main vars
 			var logMessage = '',
 				cGame = this.selectedGame;
 			
@@ -213,11 +214,13 @@ temp_GAMELIST = {
 			document.getElementById('INPUT_gameListSearch').value = '';
 			const gList = APP.fs.readdirSync(APP.settings.data.gamePath);
 
+			// Check if game list isn't empty
 			if (gList.length > 0){
 
 				// Process game list
 				gList.forEach(function(gPath){
-		
+
+					// Create main vars
 					var appBg,
 						appIcon,
 						addGame = !0,
@@ -307,6 +310,7 @@ temp_GAMELIST = {
 					// If executable exists, set data
 					if (addGame === !0){
 
+						// Create metadata
 						const metadata = {
 							bg: appBg,
 							name: appName,
@@ -351,6 +355,7 @@ temp_GAMELIST = {
 	// Process search list
 	search: function(){
 
+		// Create main search vars
 		var gameListArray = Object.keys(APP.gameList.list),
 			searchQuery = document.getElementById('INPUT_gameListSearch').value;
 
@@ -437,10 +442,10 @@ temp_GAMELIST = {
 		});
 
 		// Check if playgo-chunk.dat exists
-		if (APP.fs.existsSync(gPath + '/sce_sys/playgo-chunk.dat') !== !0){
-			cGameStatus = 'WARN';
+		if (APP.fs.existsSync(`${gPath}/sce_sys/playgo-chunk.dat`) !== !0){
 			
-			// Check if playgo-chunk.dat is inside app folder
+			// Set current game status to warn and check if playgo-chunk.dat is inside app folder
+			cGameStatus = 'WARN';
 			if (APP.fs.existsSync(`${gPath}/sce_sys/app/playgo-chunk.dat`) === !0){
 				APP.fs.copyFileSync(`${gPath}/sce_sys/app/playgo-chunk.dat`, `${gPath}/sce_sys/playgo-chunk.dat`);
 				APP.log(APP.lang.getVariable('checkDumpPlayGoOnApp', [this.list[this.selectedGame].name]));
@@ -465,6 +470,7 @@ temp_GAMELIST = {
 	// Open selected game location
 	openGameLocation: function(){
 
+		// Check if there's game selected
 		if (this.selectedGame !== ''){
 			APP.fileManager.openDir(`${APP.settings.data.gamePath}/${this.list[this.selectedGame].folderName}`);
 		}
@@ -504,7 +510,7 @@ temp_GAMELIST = {
 					APP.gameList.selectedGame = '';
 					APP.gameList.load();
 					APP.design.selectGame(cGame);
-					TMS.scrollCenter('GAME_ENTRY_' + cGame);
+					TMS.scrollCenter(`GAME_ENTRY_${cGame}`);
 				}, 50);
 
 			} catch (err) {

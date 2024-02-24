@@ -1,3 +1,3 @@
 clear
-./Nwjs/nw ../
+./Nwjs/nw .
 exit

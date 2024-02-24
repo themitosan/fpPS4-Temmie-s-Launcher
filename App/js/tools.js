@@ -41,7 +41,7 @@ temp_TOOLS = {
 
 		var textValue = '';
 		if (hex !== void 0 && hex !== ''){
-			textValue = decodeURIComponent('%' + hex.match(/.{2,2}/g).join('%'));
+			textValue = decodeURIComponent(`%${hex.match(/.{2,2}/g).join('%')}`);
 		}
 
 		return textValue;
