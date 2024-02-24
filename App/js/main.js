@@ -132,7 +132,13 @@ const APP = {
 			if (APP.settings.data.debugTestLog === !1){
 
 				// Window state
-				var winMode, pressAnyKey = '';
+				var winMode,
+					wineCommand = '',
+					pressAnyKey = '',
+					emuExecPath = APP.path.parse(APP.settings.data.emuPath).base,
+					cmdWinTitle = `"${APP.lang.getVariable('logWindowTitle')} - ${APP.gameList.selectedGame}"`;
+
+				// Switch cmd window mode
 				switch (APP.settings.data.logExternalWindowStartMode){
 
 					case 'normal':
@@ -154,10 +160,18 @@ const APP = {
 					pressAnyKey = '^& pause';
 				}
 
+				// Check if needs to append wine command
+				if (APP.os.platform !== 'win32'){
+					cmdWinTitle = '',
+					pressAnyKey = '';
+					wineCommand = 'wine ';
+					emuExecPath = `Z:${APP.settings.data.emuPath.replace(RegExp('\\\\', 'gi'), '/')}`;
+				}
+
 				// Transform args into string
 				var gPath = `"${args[args.indexOf('-e') + 1]}"`,
 					parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
-					execLine = 'start "' + APP.lang.getVariable('logWindowTitle') + ' - ' + APP.gameList.selectedGame + '" ' + winMode + ' cmd /C ' + APP.path.parse(APP.settings.data.emuPath).base + ' ' + parseArgs + ' ' + pressAnyKey;
+					execLine = `${wineCommand}start ${cmdWinTitle} ${winMode} cmd /C ${emuExecPath} ${parseArgs} ${pressAnyKey}`;
 
 				APP.execProcess = APP.childProcess.exec(execLine);
 
@@ -253,10 +267,18 @@ const APP = {
 	checkCurrentOs: function(){
 
 		// Check if needs to display warn
-		if (APP.os.platform() !== 'win32' && APP.settings.data.nonWindowsOsWarn === !1){
-			window.alert(APP.lang.getVariable('nonWindowsOsWarn'));
-			APP.settings.data.nonWindowsOsWarn = !0;
-			APP.settings.save();
+		if (APP.os.platform() !== 'win32'){
+
+			// Get fpPS4 wine dir
+
+
+			// Check if needs to display warn
+			if (APP.settings.data.nonWindowsOsWarn === !1){
+				window.alert(APP.lang.getVariable('nonWindowsOsWarn'));
+				APP.settings.data.nonWindowsOsWarn = !0;
+				APP.settings.save();
+			}
+
 		}
 
 	},

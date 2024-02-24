@@ -27,6 +27,7 @@ temp_SETTINGS = {
 		nwPath: '',
 		emuPath: '',
 		gamePath: '',
+		emuWinePath: '',
 
 		// Run fpPS4 on fullscreen
 		enableEmuFullscreen: !1,
