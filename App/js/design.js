@@ -517,6 +517,7 @@ temp_DESIGN = {
 
 				// Disable grid size, update app title and hide game metadata
 				disableGridIconSize = 'disabled';
+				TMS.css('DIV_LIST', { 'top': '0px', 'height': '100%' });
 				document.title = `${APP.title} - ${APP.lang.getVariable('logWindowTitle')} [ ${APP.gameList.selectedGame} ]`;
 				if (APP.settings.data.showGuiMetadata === !1){
 					gameDetails.display = 'none';
@@ -703,7 +704,7 @@ temp_DESIGN = {
 			gListMode = { 'top': '0px', 'height': 'calc(100% - 164px)' };
 			extraCss = '<style>div.DIV_LIST_INTERNAL::-webkit-scrollbar-track { margin: 50px 0px 14px 0px; }</style>';
 
-		// Grid options
+		// Switch options
 		switch (cDisplayMode){
 
 			case 'normal':
@@ -782,10 +783,8 @@ temp_DESIGN = {
 			End
 		*/
 
-		// Save settings
+		// Save settings and close settings 
 		APP.settings.save();
-
-		// GUI: Close settings
 		if (skipCloseSettings !== !0){
 			APP.design.toggleSettings(!0);
 		}
@@ -816,10 +815,8 @@ temp_DESIGN = {
 
 		}
 
-		// Reset progressbar status
+		// Reset progressbar status abd update display mode
 		TMS.css('DIV_PROGRESSBAR_UPDATE_FPPS4', {'width': '0%'});
-
-		// Update display mode
 		TMS.css('DIV_FPPS4_UPDATER', cssData);
 
 	},
