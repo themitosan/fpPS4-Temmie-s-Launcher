@@ -13,6 +13,14 @@ temp_EMU_UPDATE = {
 	// Skip main loading call
 	skipLoadingCheck: !1,
 
+	// Log fetch error
+	logFetchError: function(msg){
+		const errMsg = APP.lang.getVariable(msg);
+		document.getElementById('BTN_UPDATE_FPPS4').disabled = '';
+		console.error(errMsg);
+		APP.log(errMsg);
+	},
+
 	// Fetch data from url
 	fetchData: async function(url, callback){
 
@@ -20,7 +28,6 @@ temp_EMU_UPDATE = {
 		if (url !== void 0 && navigator.onLine === !0 && typeof callback === 'function'){
 
 			// Get error message and fetch data
-			const errMsg = APP.lang.getVariable('updateEmuFetchActionsError');
 			fetch(url).then(function(resp){
 
 				// Check if fetch status is ok
@@ -31,14 +38,12 @@ temp_EMU_UPDATE = {
 					});
 
 				} else {
-
-					// If launcher can't get data, log error and reset button
-					document.getElementById('BTN_UPDATE_FPPS4').disabled = '';
-					console.error(errMsg);
-					APP.log(errMsg);
-
+					APP.emuManager.update.logFetchError('updateEmuFetchActionsError');
 				}
 
+			}, function(err){
+				APP.emuManager.update.logFetchError('updateEmuFetchActionsError');
+				console.error(err);
 			});
 
 		}
@@ -80,13 +85,12 @@ temp_EMU_UPDATE = {
 				});
 
 			} else {
-
-				// If launcher can't get data, log error and reset button
-				console.error(errMsg);
-				APP.log(errMsg);
-
+				APP.emuManager.update.logFetchError('updateEmuFetchActionsError');
 			}
 
+		}, function(err){
+			APP.emuManager.update.logFetchError('updateEmuFetchActionsError');
+			console.error(err);
 		});
 
 	},

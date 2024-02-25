@@ -690,6 +690,11 @@ temp_DESIGN = {
 			cSettings.gridBorderRadius = 15;
 		}
 
+		// Check if needs to disable options if current os isn't windows
+		if (APP.os.platform() !== 'win32'){
+			document.getElementById('CHECKBOX_settingsExternalWindowPrompt').disabled = !0;
+		}
+
 		// Update settings GUI
 		this.updateLauncherSettingsGUI();
 

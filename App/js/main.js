@@ -161,7 +161,7 @@ const APP = {
 				}
 
 				// Check if needs to append wine command
-				if (APP.os.platform !== 'win32'){
+				if (APP.os.platform() !== 'win32'){
 					cmdWinTitle = '',
 					pressAnyKey = '';
 					wineCommand = 'wine ';
