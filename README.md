@@ -53,8 +53,4 @@ You can see all required procedures on main [fpPS4 discord server](https://disco
 - [node-stream-zip](https://github.com/antelle/node-stream-zip) - created by [antelle](https://github.com/antelle)
 - [TMS.js](https://github.com/themitosan/TMS.js) by [TheMitoSan](https://github.com/themitosan) <sup>*(Hi!)*</sup>
 
-<p align="center">
-
 _**IMPORTANT**: This software does not allow you to obtain free PS4 Games / Apps._
-
-</p>
