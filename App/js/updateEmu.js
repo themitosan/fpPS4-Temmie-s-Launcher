@@ -129,6 +129,11 @@ temp_EMU_UPDATE = {
 				var sWorkflow,
 					wList = options.wList.workflows;
 
+				// Fix empty ci
+				if (APP.settings.data.fpps4selectedCI === ''){
+					APP.settings.data.fpps4selectedCI = 'Main CI';
+				}
+
 				// Check if workflow list has items
 				if (wList.length !== 0){
 
