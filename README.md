@@ -1,5 +1,5 @@
 <h1 align="center">
-	<img src="App/img/logo.png" width="200" alt="fpPS4_TL_Logo"><br>
+	<img src="App/img/logo.png" width="140" alt="fpPS4_TL_Logo"><br>
 	fpPS4 Temmie's Launcher
 </h1>
 
