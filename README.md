@@ -15,7 +15,7 @@ Created by TheMitoSan _(Previously known as TemmieHeartz)_, This is a simple lau
 
 #### Stable Version
 
-- Download latest release (you can get it [here](https://github.com/themitosan/fpPS4-Temmie-s-Launcher/releases))
+- Download latest release _(you can get it [here](https://github.com/themitosan/fpPS4-Temmie-s-Launcher/releases))_
 - Extract all files on your desired location
 - Run `Launcher.exe`
 
