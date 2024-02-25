@@ -129,7 +129,7 @@ img {
 	justify-content: center;
 	background-color: #0000;
 	backdrop-filter: blur(4px);
-	background-image: linear-gradient(45deg, #28467fe0, #1c325fe0);
+	background-image: linear-gradient(45deg, #28467fc0, #1c325fc0);
 }
 .DIV_OPTIONS {
 	top: 38px;
