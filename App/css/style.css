@@ -614,13 +614,13 @@ img {
     background-color: #000;
 }
 .BTN_displayMode_normal {
-	background-image: url('../img/svg/list-filled-svgrepo-com.svg');
+	background-image: url('../img/svg/list-filled.svg');
 }
 .BTN_displayMode_compact {
-	background-image: url('../img/svg/view-list-svgrepo-com.svg');
+	background-image: url('../img/svg/view-list.svg');
 }
 .BTN_displayMode_grid {
-	background-image: url('../img/svg/app-menu-svgrepo-com.svg');
+	background-image: url('../img/svg/app-menu.svg');
 }
 .BTN_displayMode_holder {
 	width: auto;
