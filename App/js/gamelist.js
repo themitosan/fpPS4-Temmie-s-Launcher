@@ -421,8 +421,8 @@ temp_GAMELIST = {
 
 	},
 
-	// Check dump status
-	checkDumpStatus: function(){
+	// Check game status
+	checkGameStatus: function(){
 
 		// Declare main vars
 		var cGameStatus = 'OK',

@@ -216,27 +216,23 @@ temp_DESIGN = {
 
 			}
 
-			// Fix for non-grid mode
+			// Fix for non-grid mode and add entry
 			if (APP.settings.data.gameListMode !== 'grid'){
 				gameName = `<label class="${appNameClass}">${gList[cGame].name}</label>`;
 			}
-
-			// Add entry
 			tempHtml = `${tempHtml}<div class="GAME_ENTRY${classDisplayEntryMode}" title="${appTitle}" style="${gameEntryStyle}" onclick="APP.design.selectGame(\'${cGame}\');" id="GAME_ENTRY_${cGame}">${gameBgAndIcon}<div class="${classGameDetailsMode}">${gameName + gameMetadata}</div></div>`;
 
 		});
 
-		// Insert HTML
+		// Insert HTML and log status
 		document.getElementById('DIV_LIST_INTERNAL').innerHTML = tempHtml;
-
-		// Log status
 		if (data.displayLog !== !1){
 			APP.log(APP.lang.getVariable('gameListLoadSuccessful', [Object.keys(gList).length]));
 		}
 
 		// Clear BG image
-		TMS.css('DIV_GAMELIST_BG', {'background-image': 'none'});
-		TMS.css('DIV_GAME_DETAILS', {'display': 'none'});
+		TMS.css('DIV_GAMELIST_BG', { 'background-image': 'none' });
+		TMS.css('DIV_GAME_DETAILS', { 'display': 'none' });
 
 		// Focus search field and update GUI
 		TMS.focus('INPUT_gameListSearch');
@@ -260,7 +256,7 @@ temp_DESIGN = {
 
 			// Select game and update GUI
 			APP.gameList.selectedGame = gameName;
-			APP.gameList.checkDumpStatus();
+			APP.gameList.checkGameStatus();
 
 			// Check if game config exists
 			if (APP.fs.existsSync(settingsFile) === !1){
@@ -353,7 +349,7 @@ temp_DESIGN = {
 		// Update background image
 		const sGame = APP.gameList.list[APP.gameList.selectedGame];
 		if (sGame !== '' && sGame !== void 0){
-			TMS.css('DIV_GAMELIST_BG', { 'background-image': `url('file://${sGame.bg}')` });
+			TMS.css('DIV_GAMELIST_BG', { 'background-image': `url(\"file://${sGame.bg}\")` });
 		}
 
 		// Check if emu is present before allowing to run
