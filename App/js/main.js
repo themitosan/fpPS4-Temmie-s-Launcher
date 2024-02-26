@@ -42,6 +42,9 @@ const APP = {
 	version: '',
 	appVersion: void 0,
 
+	// Internet connection
+	webConnection: !1,
+
 	// Import app modules
 	tools: temp_TOOLS,
 	lang: temp_LANGUAGE,
@@ -173,6 +176,7 @@ const APP = {
 					parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
 					execLine = `${wineCommand}start ${cmdWinTitle} ${winMode} cmd /C ${emuExecPath} ${parseArgs} ${pressAnyKey}`;
 
+				// Run process
 				APP.execProcess = APP.childProcess.exec(execLine);
 
 			} else {
@@ -187,8 +191,8 @@ const APP = {
 			
 			// Set emu running and stream as string (UTF-8)
 			APP.emuManager.emuRunning = !0;
-			APP.execProcess.stdout.setEncoding('utf8');
-			APP.execProcess.stderr.setEncoding('utf8');
+			APP.execProcess.stdout.setEncoding('utf-8');
+			APP.execProcess.stderr.setEncoding('utf-8');
 
 			// Log on stdout and stderr
 			APP.execProcess.stdout.on('data', function(data){
@@ -276,6 +280,28 @@ const APP = {
 
 	},
 
+	// Check current user internet connection
+	startOnlineCheck: function(){
+
+		// Create update connection function
+		const updateConnectionStatus = function(){
+			APP.webConnection = navigator.onLine;	
+		};
+
+		// Set current connection status and crerate event listeners
+		APP.webConnection = navigator.onLine;
+		window.addEventListener('online', function(){
+			updateConnectionStatus();
+			document.getElementById('BTN_UPDATE_FPPS4').disabled = !1;
+		});
+		window.addEventListener('offline', function(){
+			updateConnectionStatus();
+			APP.log(APP.lang.getVariable('warnUserOffline'));
+			document.getElementById('BTN_UPDATE_FPPS4').disabled = !0;
+		});
+
+	},
+
 	// About screen
 	about: function(){
 		window.alert(this.lang.getVariable('about', [this.version]));
@@ -318,21 +344,19 @@ window.onload = function(){
 		APP.appVersion = APP.lang.getVariable('mainLog', [APP.version, process.versions.nw, process.versions['nw-flavor'].toUpperCase()]);
 		APP.log(APP.appVersion);
 
-		// Load remaining settings, kill fpPS4 process if is active and check currert OS
+		// Start connection check, load remaining settings, kill fpPS4 process if is active and check currert OS
 		APP.settings.checkPaths();
 		APP.design.renderSettings();
 		APP.emuManager.killEmu(!0);
+		APP.startOnlineCheck();
 		APP.checkCurrentOs();
 
 		// Rener hack list, gamepad modes and focus input search field
 		APP.design.renderHacklist();
 		TMS.focus('INPUT_gameListSearch');
 
-		// Load game list and remove all previous modules
+		// Load game list, Get all available workflows from updater and check if fpPS4 have any update (silently)
 		APP.gameList.load();
-		APP.gameList.removeAllModules();
-
-		// Updater: Get all available workflows and check if fpPS4 have any update (silently)
 		APP.emuManager.update.getWorkflows();
 		if (APP.emuManager.update.skipLoadingCheck === !1){
 			APP.emuManager.update.check({ silent: !0 });

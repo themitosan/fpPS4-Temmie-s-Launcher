@@ -29,8 +29,7 @@ temp_GAMELIST = {
 				usePatch: data.usePatch,
 				isHomebrew: data.isHomebrew,
 				gamepadMode: data.gamepadMode,
-				patchLocation: data.patchLocation,
-				importedModules: data.importedModules
+				patchLocation: data.patchLocation
 			};
 
 		// Check if title location exists
@@ -237,7 +236,7 @@ temp_GAMELIST = {
 						paramSfoAvailable = APP.fs.existsSync(paramSfoPath),
 						iconList = ['sce_sys/icon0.png', 'sce_sys/icon1.png'],
 						backgroundList = ['sce_sys/pic1.png', 'sce_sys/pic0.png'];
-		
+
 					// If eboot.bin doesn't exists, look for any .elf file
 					if (APP.fs.existsSync(executableName) !== !0){
 
@@ -265,7 +264,7 @@ temp_GAMELIST = {
 							break;
 						}
 					}
-					
+
 					// Seek App Background
 					for (var i = 0; i < backgroundList.length; i++){
 						if (APP.fs.existsSync(pathBase + backgroundList[i]) === !0){
@@ -330,7 +329,7 @@ temp_GAMELIST = {
 						}
 
 					}
-		
+
 				});
 
 			} else {
@@ -367,10 +366,8 @@ temp_GAMELIST = {
 				APP.design.update();
 			}
 
-			// Process search query
+			// Create vars and process search query if current search mode is title id
 			var tempList, listRender = {};
-			
-			// Case game search mode is TITLE_ID
 			if (APP.settings.data.gameSearchMode === 'titleId'){
 
 				tempList = gameListArray.filter(function(cItem){ 
@@ -384,11 +381,12 @@ temp_GAMELIST = {
 			// If game search mode is APP_NAME
 			if (APP.settings.data.gameSearchMode === 'appName'){
 
+				// Reset temp list and process game list
 				tempList = [];
 				gameListArray.forEach(function(cTitle){
 
+					// Get title name and check if current search is case-sensitive
 					var titleName = APP.gameList.list[cTitle].name;
-
 					if (APP.settings.data.searchCaseSensitive === !1){
 						titleName = APP.gameList.list[cTitle].name.toLowerCase();
 						searchQuery = searchQuery.toLowerCase();
@@ -418,7 +416,7 @@ temp_GAMELIST = {
 
 			// Render normal game list
 			APP.gameList.load();
-		
+
 		}
 
 	},
@@ -426,13 +424,15 @@ temp_GAMELIST = {
 	// Check dump status
 	checkDumpStatus: function(){
 
+		// Declare main vars
 		var cGameStatus = 'OK',
+			fileList = [ 'param.sfo' ],
+			cGameComapStatus = 'UNKNOWN',
 			cGame = this.list[this.selectedGame],
-			fileList = [
-				'param.sfo'
-			],
-			cGameStatusList = ['DIV_ICON_STATUS_OK', 'DIV_ICON_STATUS_WARN', 'DIV_ICON_STATUS_HB'],
-			gPath = `${APP.settings.data.gamePath}/${cGame.folderName}`;
+			displayGameCompatHolderCss = { 'display': 'none' },
+			gPath = `${APP.settings.data.gamePath}/${cGame.folderName}`,
+			cDumpStatusList = [ 'DIV_ICON_STATUS_OK', 'DIV_ICON_STATUS_WARN', 'DIV_ICON_STATUS_HB' ],
+			cGameComapStatusList = [ 'BOOTS', 'MENUS', 'INGAME', 'UNKNOWN', 'NOTHING', 'PLAYABLE', 'HOMEBREW' ];
 
 		// Process check for single files (like param.sfo)
 		fileList.forEach(function(cFile){
@@ -443,27 +443,87 @@ temp_GAMELIST = {
 
 		// Check if playgo-chunk.dat exists
 		if (APP.fs.existsSync(`${gPath}/sce_sys/playgo-chunk.dat`) !== !0){
-			
+
 			// Set current game status to warn and check if playgo-chunk.dat is inside app folder
 			cGameStatus = 'WARN';
 			if (APP.fs.existsSync(`${gPath}/sce_sys/app/playgo-chunk.dat`) === !0){
 				APP.fs.copyFileSync(`${gPath}/sce_sys/app/playgo-chunk.dat`, `${gPath}/sce_sys/playgo-chunk.dat`);
-				APP.log(APP.lang.getVariable('checkDumpPlayGoOnApp', [this.list[this.selectedGame].name]));
+				APP.log(APP.lang.getVariable('checkDumpPlayGoOnApp', [cGame.name]));
 			}
-		
+
+		}
+
+		// Set current compat css / status
+		const updateCompat = function(){
+
+			// Remove all other conditions and set current one
+			TMS.css('DIV_FPPS4_GAME_STATUS', displayGameCompatHolderCss);
+			cGameComapStatusList.forEach(function(cStatus){
+				TMS.removeClass('DIV_selectedGameStatus_compat', `DIV_COMPAT_STATUS_${cStatus}`);
+			});
+			TMS.addClass('DIV_selectedGameStatus_compat', `DIV_COMPAT_STATUS_${cGameComapStatus}`);
+			document.getElementById('DIV_selectedGameStatus_compat').innerHTML = APP.lang.getVariable(`cGameCompatStatus_${cGameComapStatus}`);
+
+		}
+
+		// Check if can display game compat status
+		if (APP.webConnection === !0){
+			
+			// Update display css and if game isn't a homebrew, get compat data from fpps4.net
+			displayGameCompatHolderCss = { 'display': 'flex' };
+			if (cGame.isHomebrew !== !0){
+
+				// Get current game conde and try getting data
+				const cGameCode = structuredClone(APP.gameList.selectedGame);
+				fetch(`https://fpps4.net/_scripts/search.php?q=${cGameCode}`)
+				.then(function(resp){
+					return resp.json();
+				}).then(function(gData){
+
+					// Check if data is defined
+					if (gData !== void 0){
+
+						// Process game list
+						var gFound = !1;
+						for (let i = 0; i < gData.games.length; i++){
+
+							// Check if current game code matches
+							if (gData.games[i].code === cGameCode){
+								cGameComapStatus = gData.games[i].tag.toUpperCase();
+								gFound = !0;
+								break;
+							}
+
+						}
+
+						// Log warn if failed to find game compat status
+						if (gFound === !1){
+							APP.log(APP.lang.getVariable('warnUnableFindGameCompatDb', [APP.gameList.list[cGameCode].name, cGameCode]));
+						}
+						updateCompat();
+
+					}
+
+				});
+
+			} else {
+				updateCompat();
+			}
+
 		}
 
 		// Check if is homebrew (.elf)
 		if (cGame.isHomebrew === !0){
 			cGameStatus = 'HB';
+			cGameComapStatus = 'UNKNOWN';
 		}
 
 		// Set app / game dump status
-		cGameStatusList.forEach(function(cList){
-			TMS.removeClass('DIV_selectedGameStatus', cList);
+		cDumpStatusList.forEach(function(cList){
+			TMS.removeClass('DIV_selectedGameStatus_dump', cList);
 		});
-		TMS.addClass('DIV_selectedGameStatus', `DIV_ICON_STATUS_${cGameStatus}`);
-		document.getElementById('DIV_selectedGameStatus').innerHTML = APP.lang.getVariable(`dumpStatus_${cGameStatus}`);
+		TMS.addClass('DIV_selectedGameStatus_dump', `DIV_ICON_STATUS_${cGameStatus}`);
+		document.getElementById('DIV_selectedGameStatus_dump').innerHTML = APP.lang.getVariable(`dumpStatus_${cGameStatus}`);
 
 	},
 
@@ -494,6 +554,7 @@ temp_GAMELIST = {
 	// Reset current game settings
 	resetGameSettings: function(){
 
+		// Create main vars
 		const
 			cGame = this.selectedGame,
 			fName = `${APP.settings.data.gamePath}/${this.list[cGame].folderName}/launcherSettings.json`,
@@ -515,79 +576,10 @@ temp_GAMELIST = {
 
 			} catch (err) {
 
-				console.error(err);
 				APP.log(APP.lang.getVariable('settingsRemoveGameSettingsError', [cGame, err]));
-
-			}
-
-		}
-
-	},
-
-	// Process remove modules
-	removeAllModules: function(){
-
-		// Check if this process already happened
-		if (APP.settings.data.removedLibModules === !1){
-
-			try {
-
-				const gList = Object.keys(APP.gameList.list);
-				gList.forEach(function(gName){
-
-					APP.design.selectGame(gName);
-					APP.gameList.removeImportedModules();
-
-				}); 
-
-				// Update settings
-				APP.settings.data.removedLibModules = !0;
-				APP.settings.save();
-
-				// Log
-				APP.log(APP.lang.getVariable('removedLibModules'));
-
-			} catch (err) {
 				console.error(err);
+
 			}
-
-		}
-
-	},
-
-	// Removed Imported modules
-	removeImportedModules: function(){
-
-		if (this.selectedGame !== '' && this.cGameSettings.importedModules.length > 0){
-
-			var cMessage = '',
-				gName = this.selectedGame,
-				mList = this.cGameSettings.importedModules,
-				mDir = `${APP.settings.data.gamePath}/${APP.gameList.list[gName].folderName}/sce_module/`;
-
-			// Try removing modules
-			mList.forEach(function(mName){
-
-				try {
-
-					APP.fs.unlinkSync(mDir + mName);
-					mList.splice(mList.indexOf(mName), 1);
-					cMessage = APP.lang.getVariable('removeLibModule', [gName, mName]);
-
-				} catch (err) {
-					
-					console.error(err);
-					cMessage = APP.lang.getVariable('removeModuleError', [err]);
-					
-				}
-
-				// Log status
-				APP.log(cMessage);
-
-			});
-
-			// Update settings file
-			this.saveGameSettings(!0);
 
 		}
 

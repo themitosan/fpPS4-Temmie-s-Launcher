@@ -114,11 +114,20 @@ temp_LANGUAGE = {
             "Sdl2NotFound": "SDL2.dll is not found in the Emu folder, please install it to use SDL2.",
             "errorListUnableLocateGamePath": "ERROR - Unable to locate \"%VARIABLE_0%\" settings path! In order to prevent issues, game list will be reloaded.\nPath: %VARIABLE_1%",
             "updateEmuSettingsWorkflow404": "ERROR - (Updater) Unable to find (%VARIABLE_0%) on fpPS4 worflow list! %VARIABLE_1% will be used as fallback.",
-			"nonWindowsOsWarn": "WARN - You are running fpPS4 Temmie's Launcher on a non-windows operating system!\n\nIn order to run fpPS4, you will need Wine installed on your OS.\n\nBe aware that running main compatibility layer through tools like Wine can result in more glitches, degraded performance / experience."
+			"nonWindowsOsWarn": "WARN - You are running fpPS4 Temmie's Launcher on a non-windows operating system!\n\nIn order to run fpPS4, you will need Wine installed on your OS.\n\nBe aware that running main compatibility layer through tools like Wine can result in more glitches, degraded performance / experience.",
+			"cGameCompatStatus_BOOTS": "Boots",
+			"cGameCompatStatus_MENUS": "Menus",
+			"cGameCompatStatus_INGAME": "In-Game",
+			"cGameCompatStatus_UNKNOWN": "Unknown",
+			"cGameCompatStatus_NOTHING": "Nothing",
+			"cGameCompatStatus_PLAYABLE": "Playable",
+			"warnUnableFindGameCompatDb": "WARN - Unable to find game compatibility for %VARIABLE_0% (%VARIABLE_1%) on fpPS4 game database!",
+			"warnUserOffline": "WARN - You are offline! Some features (like game compatibility status and fpPS4 updater) will not be available until you connect to the internet again."
 		},
 
 		"title": {
-			"DIV_selectedGameStatus": "Green: All files are present\nYellow: Some files are missing - check log for more details\nCyan: Executable is a .elf file"
+			"DIV_selectedGameStatus_dump": "Green: All files are present\nYellow: Some files are missing - check log for more details\nCyan: Executable is a .elf file",
+			"DIV_selectedGameStatus_compat": "Playable: You can play this title from start to end.\nIn-game: You can play parts / segments of this title, but can't finish.\nMenus: This title boots into main menu, but can't start main game.\nBoots: This title start loading main game contents, but fails at some point.\nNothing: This title doesn't display nothing on window.\nUnknown: There is no data about this title on fpPS4 database."
 		}
 
 	},

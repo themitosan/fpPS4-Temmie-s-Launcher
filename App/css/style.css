@@ -415,10 +415,10 @@ img {
 	cursor: help;
 	display: flex;
 	overflow: hidden;
+	font-size: small;
 	max-width: 114px;
 	max-height: 42px;
 	margin-left: 4px;
-	font-size: small;
 	flex-wrap: nowrap;
 	align-items: center;
 	flex-direction: row;
@@ -427,7 +427,9 @@ img {
 	background-color: #000;
 	justify-content: center;
 	padding: 4px 0px 4px 0px;
+	transition-duration: 0.4s;
 	text-shadow: 1px 1px 2px #000;
+	box-shadow: 0px 0px 0px #0000 inset;
 }
 .DIV_ICON_STATUS_OK {
 	background-image: linear-gradient(180deg, #0f0, #0b0);
@@ -440,6 +442,36 @@ img {
 	border-radius: 3px 8px 3px 8px;
 	background-image: linear-gradient(180deg, #63fdf6, #28b1ab);
 }
+
+/*
+	Game compat status
+*/
+.DIV_COMPAT_STATUS_UNKNOWN {
+	border-radius: 0px;
+	background-image: linear-gradient(180deg, #aaa, #666);
+}
+.DIV_COMPAT_STATUS_BOOTS {
+	border-radius: 10px 4px 10px 4px;
+	background-image: linear-gradient(180deg, #f00, #a00);
+}
+.DIV_COMPAT_STATUS_MENUS {
+	border-radius: 4px;
+	background-image: linear-gradient(180deg, #45a6ff, #2157a5);
+}
+.DIV_COMPAT_STATUS_INGAME {
+	border-radius: 8px 8px 4px 4px;
+	background-image: linear-gradient(180deg, #fbe800, #9f8d0c);
+}
+.DIV_COMPAT_STATUS_NOTHING {
+	border-radius: 4px;
+	box-shadow: 0px 0px 10px #000 inset;
+	background-image: linear-gradient(180deg, #000, #282828);
+}
+.DIV_COMPAT_STATUS_PLAYABLE {
+	border-radius: 10px;
+	background-image: linear-gradient(180deg, #0f0, #0b0);
+}
+
 .DIV_noGameFound {
 	top: 0px;
 	left: 0px;

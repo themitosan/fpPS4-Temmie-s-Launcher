@@ -25,7 +25,7 @@ temp_EMU_UPDATE = {
 	fetchData: async function(url, callback){
 
 		// If url was provided
-		if (url !== void 0 && navigator.onLine === !0 && typeof callback === 'function'){
+		if (url !== void 0 && APP.webConnection === !0 && typeof callback === 'function'){
 
 			// Get error message and fetch data
 			fetch(url).then(function(resp){
