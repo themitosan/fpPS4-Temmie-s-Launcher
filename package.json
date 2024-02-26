@@ -6,7 +6,6 @@
     "name": "fpPS4 Temmie's Launcher",
     "chromium-args": "--disable-raf-throttling",
     "description": "A simple launcher for fpPS4 project",
-    "repository": "https://github.com/themitosan/fpPS4-Temmie-s-Launcher",
     "window": {
         "frame": true,
         "width": 1186,
@@ -19,5 +18,12 @@
         "theme-color": "#000",
         "icon": "App/img/logo.png",
         "title": "fpPS4 Temmie's Launcher - Please wait..."
+    },
+    "bugs": {
+        "url": "https://github.com/themitosan/fpPS4-Temmie-s-Launcher/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/themitosan/fpPS4-Temmie-s-Launcher.git"
     }
 }
