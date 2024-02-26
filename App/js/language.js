@@ -18,6 +18,7 @@ temp_LANGUAGE = {
 			this.selected = this.english;
 		}
 
+		// Declare main var
 		var lPatch = [],
 			res = this.selected.variables[name];
 
@@ -31,11 +32,10 @@ temp_LANGUAGE = {
 			lPatch = list;
 		}
 
-		// Apply variables
+		// Apply variables and return string
 		lPatch.forEach(function(fix, entry){
 			res = res.replace(`%VARIABLE_${entry}%`, fix);
 		});
-
 		return res;
 
 	},
@@ -121,7 +121,7 @@ temp_LANGUAGE = {
 			"cGameCompatStatus_UNKNOWN": "Unknown",
 			"cGameCompatStatus_NOTHING": "Nothing",
 			"cGameCompatStatus_PLAYABLE": "Playable",
-			"warnUnableFindGameCompatDb": "WARN - Unable to find game compatibility status for %VARIABLE_0% (%VARIABLE_1%) on fpPS4 game database!",
+			"warnUnableFindGameCompatDb": "WARN - Unable to find game compatibility status for \"%VARIABLE_0%\" (%VARIABLE_1%) on fpPS4 game database!",
 			"warnUserOffline": "WARN - You are offline! Some features (like game compatibility status and fpPS4 updater) will not be available until you connect to the internet again."
 		},
 

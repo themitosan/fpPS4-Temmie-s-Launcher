@@ -64,7 +64,15 @@
 		"Sdl2NotFound": "SDL2.dll, Emu klasöründe bulunamadı, \"SDL\"yi etkinleştirmek için orada olduğundan emin olun.",
 		"errorListUnableLocateGamePath": "HATA - \"%VARIABLE_0%\" için ayar klasörü bulunamadı! Hatalardan kaçınmak için uygulama/oyun listesi güncellendi.\nYol: %VARIABLE_1%",
 		"updateEmuSettingsWorkflow404": "",
-		"nonWindowsOsWarn": ""
+		"nonWindowsOsWarn": "",
+		"cGameCompatStatus_BOOTS": "",
+		"cGameCompatStatus_MENUS": "",
+		"cGameCompatStatus_INGAME": "",
+		"cGameCompatStatus_UNKNOWN": "",
+		"cGameCompatStatus_NOTHING": "",
+		"cGameCompatStatus_PLAYABLE": "",
+		"warnUnableFindGameCompatDb": "",
+		"warnUserOffline": ""
 	},
 	"input_text": {
 		"INPUT_gameListSearch": {
@@ -73,7 +81,8 @@
 		}
 	},
 	"title": {
-		"DIV_selectedGameStatus": "Yeşil: tüm dosyalar mevcut\nSarı: bazı dosyalar eksik - detaylar için loglara bakın\nCamgöbeği: yürütülebilir dosya bir .elf dosyası"
+		"DIV_selectedGameStatus_dump": "Yeşil: tüm dosyalar mevcut\nSarı: bazı dosyalar eksik - detaylar için loglara bakın\nCamgöbeği: yürütülebilir dosya bir .elf dosyası",
+		"DIV_selectedGameStatus_compat": ""
 	},
 	"innerHTML": {
 		"DIV_SETTINGS_TITLE": "Ayarlar",
@@ -120,7 +129,8 @@
 		"DIV_SETTINGS_GENERAL": "Genel",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Arayüz boyutu (ölçek)",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Uyarı: Ekran çözünürlüğünüz <code>1920x1080</code>'den düşükse bu ayarı değiştirmeniz önerilmez",
-		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "fpPS4'ü tam ekran modunda başlat"
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "fpPS4'ü tam ekran modunda başlat",
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": ""
 	},
 	"select": {
 		"SELECT_settingsSearchMode": {

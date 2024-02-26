@@ -66,7 +66,15 @@
         "Sdl2NotFound": "SDL2.dll is niet gevonden in de Emu map, installeer het om SDL2 te gebruiken.",
         "errorListUnableLocateGamePath": "",
         "updateEmuSettingsWorkflow404": "",
-		"nonWindowsOsWarn": ""
+		"nonWindowsOsWarn": "",
+		"cGameCompatStatus_BOOTS": "",
+		"cGameCompatStatus_MENUS": "",
+		"cGameCompatStatus_INGAME": "",
+		"cGameCompatStatus_UNKNOWN": "",
+		"cGameCompatStatus_NOTHING": "",
+		"cGameCompatStatus_PLAYABLE": "",
+		"warnUnableFindGameCompatDb": "",
+		"warnUserOffline": ""
 	},
 
 	"input_text": {
@@ -74,7 +82,8 @@
 	},
 
 	"title": {
-		"DIV_selectedGameStatus": "Groen: Alle bestanden zijn aanwezig\nGeel: Sommige bestanden ontbreken - Bekijk de logs voor meer details.\nCyaan: Executable is een .elf-bestand"
+		"DIV_selectedGameStatus_dump": "Groen: Alle bestanden zijn aanwezig\nGeel: Sommige bestanden ontbreken - Bekijk de logs voor meer details.\nCyaan: Executable is een .elf-bestand",
+		"DIV_selectedGameStatus_compat": ""
 	},
 
 	"innerHTML": {
@@ -122,7 +131,8 @@
 		"DIV_SETTINGS_GENERAL": "Generaal",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Interface grootte (schaal)",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Waarschuwing: Het wordt afgeraden deze instelling te wijzigen als uw schermresolutie lager is dan <code>1920x1080</code>",
-		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Start fpPS4 in volledig scherm"
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Start fpPS4 in volledig scherm",
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": ""
 	},
 
 	"select": {

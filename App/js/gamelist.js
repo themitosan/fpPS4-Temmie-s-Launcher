@@ -467,7 +467,7 @@ temp_GAMELIST = {
 		}
 
 		// Check if can display game compat status
-		if (APP.webConnection === !0){
+		if (APP.webConnection === !0 && APP.settings.data.enableCompatStatusCheck === !0){
 			
 			// Update display css and if game isn't a homebrew, get compat data from fpps4.net
 			displayGameCompatHolderCss = { 'display': 'flex' };

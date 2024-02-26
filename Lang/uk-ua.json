@@ -66,7 +66,15 @@
 		"Sdl2NotFound": "SDL2.dll не знайдено в папці Emu, будь ласка встановіть його щоб використовувати SDL2.",
 		"errorListUnableLocateGamePath": "",
 		"updateEmuSettingsWorkflow404": "",
-		"nonWindowsOsWarn": ""
+		"nonWindowsOsWarn": "",
+		"cGameCompatStatus_BOOTS": "",
+		"cGameCompatStatus_MENUS": "",
+		"cGameCompatStatus_INGAME": "",
+		"cGameCompatStatus_UNKNOWN": "",
+		"cGameCompatStatus_NOTHING": "",
+		"cGameCompatStatus_PLAYABLE": "",
+		"warnUnableFindGameCompatDb": "",
+		"warnUserOffline": ""
 	},
 
 	"input_text": {
@@ -74,7 +82,8 @@
 	},
 
 	"title": {
-		"DIV_selectedGameStatus": "Зелений: Всі файли присутні\nЖовтий: Деякі файли відсутні - дивіться лог для більш детальної інформації\nГолубий: Виконавчий файл представляє собою файл .elf"
+		"DIV_selectedGameStatus_dump": "Зелений: Всі файли присутні\nЖовтий: Деякі файли відсутні - дивіться лог для більш детальної інформації\nГолубий: Виконавчий файл представляє собою файл .elf",
+		"DIV_selectedGameStatus_compat": ""
 	},
 
 	"innerHTML": {
@@ -124,7 +133,8 @@
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Розмір інтерфейсу: ",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Увага: Не рекомендується зміняти цей параметр якщо розмір екрану менше ніж <code>1920x1080</code>",
 		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Статус",
-		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Запустити fpPS4 в повноекранному режимі"
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Запустити fpPS4 в повноекранному режимі",
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": ""
 
 	},
 

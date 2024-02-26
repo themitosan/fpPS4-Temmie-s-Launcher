@@ -66,7 +66,15 @@
 		"Sdl2NotFound": "模拟器文件夹中未发现 SDL2.dll , 请安装并使用 SDL2",
 		"errorListUnableLocateGamePath": "",
 		"updateEmuSettingsWorkflow404": "",
-		"nonWindowsOsWarn": ""
+		"nonWindowsOsWarn": "",
+		"cGameCompatStatus_BOOTS": "",
+		"cGameCompatStatus_MENUS": "",
+		"cGameCompatStatus_INGAME": "",
+		"cGameCompatStatus_UNKNOWN": "",
+		"cGameCompatStatus_NOTHING": "",
+		"cGameCompatStatus_PLAYABLE": "",
+		"warnUnableFindGameCompatDb": "",
+		"warnUserOffline": ""
 	},
 
 	"input_text": {
@@ -74,7 +82,8 @@
 	},
 
 	"title": {
-		"DIV_selectedGameStatus": "绿色: 所有的文件都存在\n黄色: 缺失一些文件 - 更多细节请查看日志\n青色: 可执行文件是一个 .elf 文件"
+		"DIV_selectedGameStatus_dump": "绿色: 所有的文件都存在\n黄色: 缺失一些文件 - 更多细节请查看日志\n青色: 可执行文件是一个 .elf 文件",
+		"DIV_selectedGameStatus_compat": ""
 	},
 	
 	"innerHTML": {
@@ -123,7 +132,8 @@
 		"DIV_SETTINGS_GENERAL": "通用",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "界面缩放比例",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "警告：如果你的屏幕分辨率低于 <code>1920x1080</code>，不建议更改这个设置。",
-		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "以全屏模式启动 fpPS4"
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "以全屏模式启动 fpPS4",
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": ""
 
 	},
 

@@ -66,7 +66,15 @@
 		"Sdl2NotFound": "Não foi possível encontrar SDL2.dll na pasta Emu, verifique se o mesmo se encontra lá para habilitar \"SDL\".",
 		"errorListUnableLocateGamePath": "ERRO - Não foi possível localizar a pasta de configurações para \"%VARIABLE_0%\"! Para prevenir erros, a lista de Apps / Games foi atualizada.\nCaminho: %VARIABLE_1%",
 		"updateEmuSettingsWorkflow404": "ERRO - (Updater) Não foi possível encontrar a worflow %VARIABLE_0%! A workflow %VARIABLE_1% será usada no lugar.",
-		"nonWindowsOsWarn": "AVSIO - Você está rodando fpPS4 Temmie's Launcher em um sistema não-windows!\n\nPara iniciar fpPS4, você irá precisar ter Wine instalado no seu sistema.\n\nAliás - Tenha em mente que rodar a camada de compatibilidade usando ferramentas como Wine podem (e provavelmente irão) causar glitches, rodar com menos performance do que o esperado."
+		"nonWindowsOsWarn": "AVSIO - Você está rodando fpPS4 Temmie's Launcher em um sistema não-windows!\n\nPara iniciar fpPS4, você irá precisar ter Wine instalado no seu sistema.\n\nAliás - Tenha em mente que rodar a camada de compatibilidade usando ferramentas como Wine podem (e provavelmente irão) causar glitches, rodar com menos performance do que o esperado.",
+		"cGameCompatStatus_BOOTS": "Inicia",
+		"cGameCompatStatus_MENUS": "Menu Inicial",
+		"cGameCompatStatus_INGAME": "In-Game",
+		"cGameCompatStatus_UNKNOWN": "Desconhecido",
+		"cGameCompatStatus_NOTHING": "Nada",
+		"cGameCompatStatus_PLAYABLE": "Jogável",
+		"warnUnableFindGameCompatDb": "AVISO - Não possível obter informações de \"%VARIABLE_0%\" (%VARIABLE_1%) no banco de dados do fpPS4!",
+		"warnUserOffline": "WARN - Você está offline! Algumas funcionalidades (como obter status de compatibilidade e atualizador do fpPS4) não estarão disponíveis até que você se conecte a internet novamente."
 	},
 
 	"input_text": {
@@ -74,7 +82,8 @@
 	},
 
 	"title": {
-		"DIV_selectedGameStatus": "Verde: Todos os arquivos estão presentes\nAmarelo: Alguns arquivos estão faltando - veja o log para obter mais detalhes\nCiano: O executável é um arquivo .elf"
+		"DIV_selectedGameStatus_dump": "Verde: Todos os arquivos estão presentes\nAmarelo: Alguns arquivos estão faltando - veja o log para obter mais detalhes\nCiano: O executável é um arquivo .elf",
+		"DIV_selectedGameStatus_compat": "Jogável: Pode ser jogado / executado do começo ao fim.\nIn-Game: Pode ser iniciado / executado, porém até certo ponto.\nMenu Inicial: O título consegue chegar apenas no o menu inicial.\nInicia: O título inicia, sem conseguir chegar ao menu inicial.\nNada: O título não apresenta nenhum gráfico, travando nos primeiros momentos após iniciar a execução\nDesconhecido: Não se sabe o que acontece com o título em questão ou o mesmo não se encontra no banco de dados do fpPS4."
 	},
 
 	"innerHTML": {
@@ -123,7 +132,8 @@
 		"DIV_SETTINGS_GENERAL": "Geral",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Tamanho da interface (escala)",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Aviso: Não é recomendado alterar essa configuração caso sua resolução de tela seja menor que <code>1920x1080</code>",
-		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Iniciar fpPS4 em modo de tela cheia"
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Iniciar fpPS4 em modo de tela cheia",
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": "Habilitar verificação de compatibilidade de títulos / games"
 
 	},
 

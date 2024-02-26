@@ -662,6 +662,7 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsStartEmuFullscreen').checked = JSON.parse(cSettings.enableEmuFullscreen);
 		document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked = JSON.parse(cSettings.searchCaseSensitive);
 		document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked = JSON.parse(cSettings.logExternalWindowPrompt);
+		document.getElementById('CHECKBOX_enableCompatStatusCheck').checked = JSON.parse(APP.settings.data.enableCompatStatusCheck);
 
 		// Debug
 		document.getElementById('CHECKBOX_settingsExperimentalIntLog').checked = JSON.parse(cSettings.debugTestLog);
@@ -754,6 +755,7 @@ temp_DESIGN = {
 		APP.settings.data.showGuiMetadata = JSON.parse(document.getElementById('CHECKBOX_settingsShowGameMetadata').checked);
 		APP.settings.data.enableEmuUpdates = JSON.parse(document.getElementById('CHECKBOX_settingsEnableFpps4Updates').checked);
 		APP.settings.data.enableEmuFullscreen = JSON.parse(document.getElementById('CHECKBOX_settingsStartEmuFullscreen').checked);
+		APP.settings.data.enableCompatStatusCheck = JSON.parse(document.getElementById('CHECKBOX_enableCompatStatusCheck').checked);
 		APP.settings.data.searchCaseSensitive = JSON.parse(document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked);
 		APP.settings.data.logExternalWindowPrompt = JSON.parse(document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked);
 

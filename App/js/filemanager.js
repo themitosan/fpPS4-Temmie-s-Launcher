@@ -12,7 +12,7 @@ temp_FILEMANAGER = {
 	// Select path
 	selectPath: function(postAction){
 
-		if (postAction !== void 0){
+		if (postAction !== void 0 && typeof postAction === 'function'){
 
 			document.getElementById('APP_FOLDER_LOADER').onchange = function(){
 
@@ -35,7 +35,7 @@ temp_FILEMANAGER = {
 	// Select file
 	selectFile: function(ext, postAction){
 
-		if (ext !== void 0 && postAction !== void 0){
+		if (ext !== void 0 && postAction !== void 0 && typeof postAction === 'function'){
 
 			if (ext === ''){
 				ext = '*.*';
@@ -75,7 +75,7 @@ temp_FILEMANAGER = {
 				try {
 
 					APP.fs.writeFileSync(location, content, mode);
-					if (postAction !== void 0){
+					if (postAction !== void 0 && typeof postAction === 'function'){
 						postAction(APP.tools.fixPath(location));
 					}
 

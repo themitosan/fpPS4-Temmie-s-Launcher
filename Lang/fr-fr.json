@@ -66,7 +66,15 @@
 		"Sdl2NotFound": "Impossible de trouver SDL2.dll dans le dossier Emu, vérifiez s'il est là pour activer \"SDL\".",
 		"errorListUnableLocateGamePath": "ERREUR - Impossible de trouver le dossier de paramètres pour \"%VARIABLE_0%\" ! Pour éviter les erreurs, la liste des applications/jeux a été mise à jour.\nChemin : %VARIABLE_1%",
 		"updateEmuSettingsWorkflow404": "",
-		"nonWindowsOsWarn": ""
+		"nonWindowsOsWarn": "",
+		"cGameCompatStatus_BOOTS": "",
+		"cGameCompatStatus_MENUS": "",
+		"cGameCompatStatus_INGAME": "",
+		"cGameCompatStatus_UNKNOWN": "",
+		"cGameCompatStatus_NOTHING": "",
+		"cGameCompatStatus_PLAYABLE": "",
+		"warnUnableFindGameCompatDb": "",
+		"warnUserOffline": ""
 	},
 
 	"input_text": {
@@ -74,7 +82,8 @@
 	},
 
 	"title": {
-		"DIV_selectedGameStatus": "Vert: tous les fichiers sont présents\nJaune: certains fichiers sont manquants - consultez le journal pour plus de détails\nCyan: l'exécutable est un fichier .elf"
+		"DIV_selectedGameStatus_dump": "Vert: tous les fichiers sont présents\nJaune: certains fichiers sont manquants - consultez le journal pour plus de détails\nCyan: l'exécutable est un fichier .elf",
+		"DIV_selectedGameStatus_compat": ""
 	},
 
 	"innerHTML": {
@@ -123,7 +132,8 @@
 		"DIV_SETTINGS_GENERAL": "Général",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Taille de l'interface (échelle)",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Avertissement : La modification de ce paramètre n'est pas recommandée si la résolution de votre écran est inférieure à <code>1920x1080</code>",
-		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Démarrer fpPS4 en mode plein écran"
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Démarrer fpPS4 en mode plein écran",
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": ""
 	},
 
 	"select": {

@@ -15,7 +15,7 @@
         "min_height": 680,
         "fullscreen": false,
         "position": "center",
-        "theme-color": "#000",
+        "theme-color": "#002",
         "icon": "App/img/logo.png",
         "title": "fpPS4 Temmie's Launcher - Please wait..."
     },

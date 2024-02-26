@@ -66,7 +66,15 @@
 		"Sdl2NotFound": "",
 		"errorListUnableLocateGamePath": "",
 		"updateEmuSettingsWorkflow404": "",
-		"nonWindowsOsWarn": ""
+		"nonWindowsOsWarn": "",
+		"cGameCompatStatus_BOOTS": "",
+		"cGameCompatStatus_MENUS": "",
+		"cGameCompatStatus_INGAME": "",
+		"cGameCompatStatus_UNKNOWN": "",
+		"cGameCompatStatus_NOTHING": "",
+		"cGameCompatStatus_PLAYABLE": "",
+		"warnUnableFindGameCompatDb": "",
+		"warnUserOffline": ""
 	},
 
 	"input_text": {
@@ -74,7 +82,8 @@
 	},
 
 	"title": {
-		"DIV_selectedGameStatus": "緑 : すべてのファイルが存在します\n黄 : 一部のファイルが欠落しています-詳細についてはログを確認してください\nシアン : 実行可能ファイルは.elfファイルです"
+		"DIV_selectedGameStatus_dump": "緑 : すべてのファイルが存在します\n黄 : 一部のファイルが欠落しています-詳細についてはログを確認してください\nシアン : 実行可能ファイルは.elfファイルです",
+		"DIV_selectedGameStatus_compat": ""
 	},
 
 	"innerHTML": {
@@ -122,7 +131,8 @@
 		"DIV_SETTINGS_GENERAL": "全般",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "インターフェースのサイズ(スケール)",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "警告 : 画面の解像度が<code>1920x1080</code>未満の場合、この設定を変更することはおすすめしません",
-		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "フルスクリーンでfpPS4を起動"
+		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "フルスクリーンでfpPS4を起動",
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": ""
 	},
 
 	"select": {

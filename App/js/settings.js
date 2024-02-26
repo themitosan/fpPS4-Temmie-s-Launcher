@@ -70,6 +70,9 @@ temp_SETTINGS = {
 		gridIconSize: 116,
 		gridBorderRadius: 8,
 
+		// Enable compat status check
+		enableCompatStatusCheck: !0,
+
 		/*
 			fpPS4 Update
 		*/

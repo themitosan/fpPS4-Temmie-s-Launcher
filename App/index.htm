@@ -148,7 +148,6 @@
 	
 					</div>
 	
-	
 					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 						<input type="checkbox" id="CHECKBOX_settingsGameSearchCaseSensitive">
 						<label class="LABEL_checkbox" id="LABEL_SETTINGS_GAME_LIST_SEARCH_CASE_SENSITIVE" onclick="APP.tools.processCheckbox('CHECKBOX_settingsGameSearchCaseSensitive');">
@@ -169,10 +168,17 @@
 							Show app / game metadata (or executable path) for every title in game list
 						</label>
 					</div>
+
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="checkbox" id="CHECKBOX_enableCompatStatusCheck">
+						<label class="LABEL_checkbox" id="LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK" onclick="APP.tools.processCheckbox('CHECKBOX_enableCompatStatusCheck');">
+							Enable game compatibility check
+						</label>
+					</div>
 	
-					<!-- Emu running -->
+					<!-- fpPS4 running -->
 					<div class="SEPARATOR_00"></div>
-					<div class="DIV_settingsH2" id="DIV_SETTINGS_EMU_RUNNING">Emu Running</div>
+					<div class="DIV_settingsH2" id="DIV_SETTINGS_EMU_RUNNING">fpPS4 Running</div>
 	
 					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 						<label id="LABEL_SETTINGS_EMU_RUNNING_BACKGROUND_BLUR">Background Blur</label>: 
@@ -292,9 +298,11 @@
 			<input type="text" class="INPUT_gameListSearch" id="INPUT_gameListSearch" placeholder="Search: Insert game name..." oninput="APP.gameList.search();">
 
 			<!-- Display modes -->
-			<input type="button" onclick="APP.settings.setDisplayMode('normal');" class="BTN_displayMode BTN_displayMode_normal" id="BTN_displayMode_normal">
-			<input type="button" onclick="APP.settings.setDisplayMode('compact');" class="BTN_displayMode BTN_displayMode_compact" id="BTN_displayMode_compact">
-			<input type="button" onclick="APP.settings.setDisplayMode('grid');" class="BTN_displayMode BTN_displayMode_grid" id="BTN_displayMode_grid">
+			<div class="BTN_displayMode_holder">
+				<input type="button" onclick="APP.settings.setDisplayMode('normal');" class="BTN_displayMode BTN_displayMode_normal" id="BTN_displayMode_normal">
+				<input type="button" onclick="APP.settings.setDisplayMode('compact');" class="BTN_displayMode BTN_displayMode_compact" id="BTN_displayMode_compact">
+				<input type="button" onclick="APP.settings.setDisplayMode('grid');" class="BTN_displayMode BTN_displayMode_grid" id="BTN_displayMode_grid">
+			</div>
 
 			<!-- Grid icon size -->
 			<input type="range" min="92.93" max="512" step="0.01" value="116" id="RANGE_settingsGridIconSize" oninput="APP.design.renderSettings(!0);APP.design.renderGameList({displayLog: !1});">
