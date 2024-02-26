@@ -510,6 +510,8 @@ temp_GAMELIST = {
 				updateCompat();
 			}
 
+		} else {
+			updateCompat();
 		}
 
 		// Check if is homebrew (.elf)
