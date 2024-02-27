@@ -213,7 +213,6 @@ img {
 	align-items: center;
 	align-content: center;
 	width: calc(100% - 12px);
-	box-shadow: 0px 0px 4px #000;
 	backdrop-filter: blur(4px) invert(0.1);
 	background-image: linear-gradient(90deg, #3a4b6b82, #0000);
 }
@@ -249,8 +248,9 @@ img {
 	height: max-content;
 	max-width: max-content;
 	max-height: max-content;
-	background-color: #0000;
 	text-align: -webkit-right;
+	backdrop-filter: blur(10px);
+	background-color: #192e546e;
 }
 .GAME_ENTRY_GRID:hover {
 	animation-duration: 4s;
@@ -566,12 +566,10 @@ img {
 	cursor: pointer;
 	border-radius: 6px;
 	margin: 6px 10px 6px 6px;
-	box-shadow: 0px 0px 10px #0006;
 }
 .IMG_APP_ICON {
 	width: 256px;
 	border-radius: 6px;
-	box-shadow: 0px 0px 10px #000;
 }
 .IMG_GRID {
 	width: 116px;
@@ -660,8 +658,10 @@ img {
 	backdrop-filter: blur(10px);
 	background-repeat: no-repeat;
 	text-shadow: 2px 2px 2px #000;
+	box-shadow: 0px 0px 6px #000 inset;
 }
 .BTN_RUN {
+	color: #000;
 	height: 50px;
 	border: none;
 	font-size: 18px;
@@ -670,7 +670,9 @@ img {
 	background-image: linear-gradient(180deg, #fff, #ccc);
 }
 .BTN_RUN:active {
-	background-image: linear-gradient(0deg, #fff, #ccc);	
+	color: #888;
+	box-shadow: 0px 0px 6px #000 inset;
+	background-image: linear-gradient(0deg, #fff, #ccc);
 }
 .BTN_STOP {
 	margin: 0px 4px 0px 4px;

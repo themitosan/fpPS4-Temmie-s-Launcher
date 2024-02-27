@@ -390,7 +390,7 @@ temp_DESIGN = {
 			TMS.css('DIV_LIST', listCss);
 			TMS.css('DIV_OPTIONS', optionsCss);
 			TMS.css('DIV_GAME_DETAILS', showGuiMetadata);
-			TMS.css('DIV_GAME_DETAILS_currentExec', {'display': emuRunPath});
+			TMS.css('DIV_GAME_DETAILS_currentExec', { 'display': emuRunPath });
 			TMS.css('DIV_GAMELIST_BG', {'filter': `blur(${bgBlur}px) opacity(${bgOpacity})`});
 
 			// Update Buttons
@@ -692,7 +692,15 @@ temp_DESIGN = {
 			document.getElementById('CHECKBOX_settingsExternalWindowPrompt').disabled = !0;
 		}
 
-		// Update settings GUI
+		// Get number of all homebrews + normal titles
+		const
+			cCompat_cusa = Object.keys(APP.gameList.cCompatList.cusacode).length,
+			cCompat_homebrew = Object.keys(APP.gameList.cCompatList.cusacode).length;
+
+		// Check if needs to update game compat and update settings GUI
+		if (APP.settings.data.enableCompatStatusCheck === !0 && Number(cCompat_cusa + cCompat_homebrew) === 0){
+			APP.gameList.createCompatList();
+		}
 		this.updateLauncherSettingsGUI();
 
 	},

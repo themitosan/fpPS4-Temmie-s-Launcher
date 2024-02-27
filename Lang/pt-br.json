@@ -83,7 +83,7 @@
 
 	"title": {
 		"DIV_selectedGameStatus_dump": "Verde: Todos os arquivos estão presentes\nAmarelo: Alguns arquivos estão faltando - veja o log para obter mais detalhes\nCiano: O executável é um arquivo .elf",
-		"DIV_selectedGameStatus_compat": "Jogável: Pode ser jogado / executado do começo ao fim.\nIn-Game: Pode ser iniciado / executado, porém até certo ponto.\nMenu Inicial: O título consegue chegar apenas no o menu inicial.\nInicia: O título inicia, sem conseguir chegar ao menu inicial.\nNada: O título não apresenta nenhum gráfico, travando nos primeiros momentos após iniciar a execução\nDesconhecido: Não se sabe o que acontece com o título em questão ou o mesmo não se encontra no banco de dados do fpPS4."
+		"DIV_selectedGameStatus_compat": "Jogável: Pode ser jogado / executado do começo ao fim.\nIn-Game: Pode ser iniciado / executado, porém até certo ponto.\nMenu Inicial: O título consegue chegar apenas no menu inicial.\nInicia: O título inicia, sem conseguir chegar ao menu inicial.\nNada: O título não apresenta nenhum gráfico, travando nos primeiros momentos após iniciar a execução ou o mesmo não se encontra no banco de dados do fpPS4.\nDesconhecido: O fpPS4 Temmie's Launcher não conseguiu obter informações sobre esse título."
 	},
 
 	"innerHTML": {

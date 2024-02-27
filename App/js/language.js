@@ -127,7 +127,7 @@ temp_LANGUAGE = {
 
 		"title": {
 			"DIV_selectedGameStatus_dump": "Green: All files are present\nYellow: Some files are missing - check log for more details\nCyan: Executable is a .elf file",
-			"DIV_selectedGameStatus_compat": "Playable: You can play this title from start to end.\nIn-game: You can play parts / segments of this title, but can't finish.\nMenus: This title boots into main menu, but can't start main game.\nBoots: This title start loading main game contents, but fails at some point.\nNothing: This title doesn't display nothing on window.\nUnknown: There is no data about this title on fpPS4 database."
+			"DIV_selectedGameStatus_compat": "Playable: You can play this title from start to end.\nIn-game: You can play parts / segments of this title, but can't finish.\nMenus: This title boots into main menu, but can't start main game.\nBoots: This title start loading main game contents, but fails at some point.\nNothing: This title doesn't show nothing or there is no data about this title on fpPS4 database.\nUnknown: fpPS4 Temmie's Launcher was unable to retreive information about this title."
 		}
 
 	},

@@ -18,6 +18,63 @@ temp_GAMELIST = {
 	// Selected game settings
 	cGameSettings: {},
 
+	// Current compat list
+	cCompatList: {
+		cusacode: {},
+		homebrew: {},
+	},
+
+	// Create compat list
+	createCompatList: function(){
+
+		// Requisites to create compat list
+		const proceedCheck = [
+			APP.webConnection === !0,
+			Object.keys(APP.gameList.list).length !== 0,
+			APP.settings.data.enableCompatStatusCheck === !0
+		];
+
+		// Check if can create list
+		if (proceedCheck.indexOf(!1) === -1){
+
+			// Create main vars
+			var cGameList = '',
+				cHomebrewList = '';
+
+			// Reset current compat list and process current game list
+			APP.gameList.cCompatList = { cusacode: {}, homebrew: {} };
+			Object.keys(APP.gameList.list).forEach(function(cGameId){
+
+				// Create main vars and check if current title is homebrew
+				const cGameData = APP.gameList.list[cGameId];
+				if (cGameData.isHomebrew === !0){
+					cHomebrewList = `${cHomebrewList},${cGameData.name}`;
+				} else {
+					cGameList = `${cGameList},${cGameData.paramSfo.TITLE_ID}`;
+				}
+
+			});
+
+			// Trim strings and make search
+			cGameList = cGameList.slice(1);
+			cHomebrewList = cHomebrewList.slice(1);
+			fetch(`https://fpps4.net/_scripts/api.php?token=3g4YNf7XvchD&cusa=${cGameList}&homebrew=${cHomebrewList}`)
+			.then(function(resp){
+				return resp.json();
+			})
+			.then(function(respData){
+				
+				// If response data exists, update current compat list
+				if (respData !== void 0){
+					APP.gameList.cCompatList = respData;
+				}
+
+			});
+
+		}
+
+	},
+
 	// Make game settings
 	createGameSettings: function(data){
 
@@ -85,15 +142,11 @@ temp_GAMELIST = {
 
 			// Write file
 			try {
-
 				APP.fs.writeFileSync(fPath, JSON.stringify(tempData), 'utf-8');
 				logMessage = APP.lang.getVariable('updateGameSettings', [APP.gameList.selectedGame]);
-
 			} catch (err) {
-
 				console.error(err);
 				logMessage = APP.lang.getVariable('updateGameSettingsError', [APP.gameList.selectedGame, fPath, err]);
-
 			}
 
 		} else {
@@ -219,6 +272,21 @@ temp_GAMELIST = {
 				// Process game list
 				gList.forEach(function(gPath){
 
+					// Create skip homebrew list
+					const commonHbList = [
+						'CUSA00000',
+						'CUSA11111',
+						'CUSA22222',
+						'CUSA33333',
+						'CUSA44444',
+						'CUSA55555',
+						'CUSA66666',
+						'CUSA77777',
+						'CUSA88888',
+						'CUSA99999',
+						'CUSA36666'
+					];
+
 					// Create main vars
 					var appBg,
 						appIcon,
@@ -301,6 +369,11 @@ temp_GAMELIST = {
 
 					}
 
+					// Check if current game matches CUSA pattern. if not, set as homebrew
+					if (appId.indexOf('CUSA') === -1 || commonHbList.indexOf(appId) !== -1){
+						isHomebrew = !0;
+					}
+
 					// Check if settings file exists for current game
 					if (APP.fs.existsSync(`${pathBase}/launcherSettings.json`) === !0){
 						settingsFile = JSON.parse(APP.fs.readFileSync(`${pathBase}/launcherSettings.json`));
@@ -340,6 +413,7 @@ temp_GAMELIST = {
 			}
 
 			// Render game list
+			APP.gameList.createCompatList();
 			APP.design.renderGameList();
 
 		} else {
@@ -424,15 +498,19 @@ temp_GAMELIST = {
 	// Check game status
 	checkGameStatus: function(){
 
-		// Declare main vars
-		var cGameStatus = 'OK',
+		// Declare main consts
+		const
 			fileList = [ 'param.sfo' ],
-			cGameComapStatus = 'UNKNOWN',
 			cGame = this.list[this.selectedGame],
-			displayGameCompatHolderCss = { 'display': 'none' },
+			cGameId = structuredClone(APP.gameList.selectedGame),
 			gPath = `${APP.settings.data.gamePath}/${cGame.folderName}`,
 			cDumpStatusList = [ 'DIV_ICON_STATUS_OK', 'DIV_ICON_STATUS_WARN', 'DIV_ICON_STATUS_HB' ],
 			cGameComapStatusList = [ 'BOOTS', 'MENUS', 'INGAME', 'UNKNOWN', 'NOTHING', 'PLAYABLE', 'HOMEBREW' ];
+
+		// Declare main vars
+		var cGameStatus = 'OK',
+			cGameComapStatus = 'UNKNOWN',
+			displayGameCompatHolderCss = { 'display': 'none' };
 
 		// Process check for single files (like param.sfo)
 		fileList.forEach(function(cFile){
@@ -453,7 +531,7 @@ temp_GAMELIST = {
 
 		}
 
-		// Set current compat css / status
+		// Set current compat CSS / status
 		const updateCompat = function(){
 
 			// Remove all other conditions and set current one
@@ -469,13 +547,20 @@ temp_GAMELIST = {
 		// Check if can display game compat status
 		if (APP.webConnection === !0 && APP.settings.data.enableCompatStatusCheck === !0){
 			
-			// Update display css and if game isn't a homebrew, get compat data from fpps4.net
+			// Update display CSS
+			var searchQuery = structuredClone(cGameId);
 			displayGameCompatHolderCss = { 'display': 'flex' };
-			if (cGame.isHomebrew !== !0){
+
+			// If current title is a homebrew, search for game name
+			if (cGame.isHomebrew === !0){
+				searchQuery = cGame.name;
+			}
+
+			// If current title isn't on local compat list, try get data from fpps4.net
+			if (APP.gameList.cCompatList.cusacode[searchQuery] === void 0 && APP.gameList.cCompatList.homebrew[searchQuery] === void 0){
 
 				// Get current game conde and try getting data
-				const cGameCode = structuredClone(APP.gameList.selectedGame);
-				fetch(`https://fpps4.net/_scripts/search.php?q=${cGameCode}`)
+				fetch(`https://fpps4.net/_scripts/search.php?q=${searchQuery}`)
 				.then(function(resp){
 					return resp.json();
 				}).then(function(gData){
@@ -488,7 +573,7 @@ temp_GAMELIST = {
 						for (let i = 0; i < gData.games.length; i++){
 
 							// Check if current game code matches
-							if (gData.games[i].code === cGameCode){
+							if (gData.games[i].code === searchQuery){
 								cGameComapStatus = gData.games[i].tag.toUpperCase();
 								gFound = !0;
 								break;
@@ -496,9 +581,10 @@ temp_GAMELIST = {
 
 						}
 
-						// Log warn if failed to find game compat status
+						// Log warn if failed to find game compat and set status to unknown 
 						if (gFound === !1){
-							APP.log(APP.lang.getVariable('warnUnableFindGameCompatDb', [APP.gameList.list[cGameCode].name, cGameCode]));
+							cGameComapStatus = 'UNKNOWN';
+							APP.log(APP.lang.getVariable('warnUnableFindGameCompatDb', [APP.gameList.list[searchQuery].name, searchQuery]));
 						}
 						updateCompat();
 
@@ -507,7 +593,15 @@ temp_GAMELIST = {
 				});
 
 			} else {
+
+				// Get data from current database and update compat mode
+				cGameComapStatus = APP.gameList.cCompatList.cusacode[searchQuery];
+				if (APP.gameList.cCompatList.cusacode[searchQuery] === void 0){
+					cGameComapStatus = APP.gameList.cCompatList.homebrew[searchQuery];
+				}
+				cGameComapStatus = cGameComapStatus.toUpperCase();
 				updateCompat();
+				
 			}
 
 		} else {
@@ -517,7 +611,6 @@ temp_GAMELIST = {
 		// Check if is homebrew (.elf)
 		if (cGame.isHomebrew === !0){
 			cGameStatus = 'HB';
-			cGameComapStatus = 'UNKNOWN';
 		}
 
 		// Set app / game dump status
