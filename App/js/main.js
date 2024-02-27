@@ -272,6 +272,7 @@ const APP = {
 			APP.log(APP.lang.getVariable('nonWindowsOsWarn'));
 			APP.settings.data.nonWindowsOsWarn = !0;
 			APP.settings.save();
+			APP.emuManager.update.check({forceUpdate: !0, silent: !0});
 		}
 
 	},
