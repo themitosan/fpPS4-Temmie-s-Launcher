@@ -168,7 +168,7 @@ const APP = {
 					cmdWinTitle = '',
 					pressAnyKey = '';
 					wineCommand = 'wine ';
-					emuExecPath = `Z:${APP.settings.data.emuPath.replace(RegExp('\\\\', 'gi'), '/')}`;
+					emuExecPath = `"Z:${APP.settings.data.emuPath.replace(RegExp('\\\\', 'gi'), '/')}"`;
 				}
 
 				// Transform args into string
