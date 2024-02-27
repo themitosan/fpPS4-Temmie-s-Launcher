@@ -65,16 +65,17 @@
 		"updater_noWorkflowListAvailable": "Impossible d'obtenir la liste CI !",
 		"Sdl2NotFound": "Impossible de trouver SDL2.dll dans le dossier Emu, vérifiez s'il est là pour activer \"SDL\".",
 		"errorListUnableLocateGamePath": "ERREUR - Impossible de trouver le dossier de paramètres pour \"%VARIABLE_0%\" ! Pour éviter les erreurs, la liste des applications/jeux a été mise à jour.\nChemin : %VARIABLE_1%",
-		"updateEmuSettingsWorkflow404": "",
-		"nonWindowsOsWarn": "",
-		"cGameCompatStatus_BOOTS": "",
-		"cGameCompatStatus_MENUS": "",
-		"cGameCompatStatus_INGAME": "",
-		"cGameCompatStatus_UNKNOWN": "",
-		"cGameCompatStatus_NOTHING": "",
-		"cGameCompatStatus_PLAYABLE": "",
-		"warnUnableFindGameCompatDb": "",
-		"warnUserOffline": ""
+		"updateEmuSettingsWorkflow404": "ERREUR - (Updater) Impossible de trouver le flux de travail %VARIABLE_0%! Le flux de travail %VARIABLE_1% sera utilisé à la place.",
+		"nonWindowsOsWarn": "AVERTISSEMENT - Vous exécutez le lanceur fpPS4 Temmie sur un système non-Windows !\n\nPour démarrer fpPS4, vous devez avoir Wine installé sur votre système.\n\nDe plus, gardez à l'esprit que l'exécution de la couche de compatibilité à l'aide d'outils comme Wine peut (et probablement causera) des problèmes, fonctionnant avec moins de performances que prévu.",
+		"cGameCompatStatus_BOOTS": "Démarre",
+		"cGameCompatStatus_MENUS": "Menu principal",
+		"cGameCompatStatus_INGAME": "En jeu",
+		"cGameCompatStatus_UNKNOWN": "Inconnu",
+		"cGameCompatStatus_NOTHING": "Rien",
+		"cGameCompatStatus_PLAYABLE": "Jouable",
+		"warnUnableFindGameCompatDb": "AVERTISSEMENT - Impossible d'obtenir des informations sur \"%VARIABLE_0%\" (%VARIABLE_1%) dans la base de données de compatibilité des fpPS4 !",
+		"warnUserOffline": "AVERTISSEMENT - Vous êtes hors ligne ! Certaines fonctionnalités (comme l'obtention de l'état de compatibilité et la mise à jour de fpPS4) ne seront pas disponibles tant que vous ne serez pas connecté à Internet."
+	
 	},
 
 	"input_text": {
@@ -83,7 +84,7 @@
 
 	"title": {
 		"DIV_selectedGameStatus_dump": "Vert: tous les fichiers sont présents\nJaune: certains fichiers sont manquants - consultez le journal pour plus de détails\nCyan: l'exécutable est un fichier .elf",
-		"DIV_selectedGameStatus_compat": ""
+		"DIV_selectedGameStatus_compat": "Jouable : Peut être joué / exécuté du début à la fin.\nEn jeu : Peut être démarré / exécuté, mais jusqu'à un certain point.\nMenu principal : Le titre peut accéder uniquement au menu principal.\nDémarre : Le titre démarre mais ne parvient pas à atteindre le menu principal.\nRien : Le titre n'affiche aucun graphique, se bloque peu de temps après le démarrage de l'exécution ou n'est pas présent dans la base de données des fpPS4.\nInconnu : Le lanceur fpPS4 Temmie n'a pas pu obtenir d'informations sur ce titre."
 	},
 
 	"innerHTML": {
@@ -133,7 +134,7 @@
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Taille de l'interface (échelle)",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Avertissement : La modification de ce paramètre n'est pas recommandée si la résolution de votre écran est inférieure à <code>1920x1080</code>",
 		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Démarrer fpPS4 en mode plein écran",
-		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": ""
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": "Activer la vérification de compatibilité des titres / jeux"
 	},
 
 	"select": {
