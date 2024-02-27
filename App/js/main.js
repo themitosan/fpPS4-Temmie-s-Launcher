@@ -136,7 +136,6 @@ const APP = {
 
 				// Window state
 				var winMode,
-					wineCommand = '',
 					pressAnyKey = '',
 					emuExecPath = APP.path.parse(APP.settings.data.emuPath).base,
 					cmdWinTitle = `"${APP.lang.getVariable('logWindowTitle')} - ${APP.gameList.selectedGame}"`;
@@ -163,18 +162,15 @@ const APP = {
 					pressAnyKey = '^& pause';
 				}
 
-				// Check if needs to append wine command
-				if (APP.os.platform() !== 'win32'){
-					cmdWinTitle = '',
-					pressAnyKey = '';
-					wineCommand = 'wine ';
-					emuExecPath = `"Z:${APP.settings.data.emuPath.replace(RegExp('\\\\', 'gi'), '/')}"`;
-				}
-
 				// Transform args into string
 				var gPath = `"${args[args.indexOf('-e') + 1]}"`,
 					parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
-					execLine = `${wineCommand}start ${cmdWinTitle} ${winMode} cmd /C ${emuExecPath} ${parseArgs} ${pressAnyKey}`;
+					execLine = `start ${cmdWinTitle} ${winMode} cmd /C ${emuExecPath} ${parseArgs} ${pressAnyKey}`;
+
+				// Check if needs to change exec line
+				if (APP.os.platform() !== 'win32'){
+					execLine = `wine wineconsole "Z:${APP.settings.data.emuPath}" ${parseArgs}`
+				}
 
 				// Run process
 				APP.execProcess = APP.childProcess.exec(execLine);
