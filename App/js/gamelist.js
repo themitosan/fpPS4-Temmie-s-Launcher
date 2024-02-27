@@ -305,78 +305,85 @@ temp_GAMELIST = {
 						iconList = ['sce_sys/icon0.png', 'sce_sys/icon1.png'],
 						backgroundList = ['sce_sys/pic1.png', 'sce_sys/pic0.png'];
 
-					// If eboot.bin doesn't exists, look for any .elf file
-					if (APP.fs.existsSync(executableName) !== !0){
+					// Check if can skip entry
+					if (gPath.slice(0, 1) !== '!'){
 
-						// Seek .elf files on root dir
-						var fList = APP.fs.readdirSync(pathBase),
-							execName = fList.filter(function(fName){
-								if (fName.toLowerCase().indexOf('.elf') !== -1){
-									isHomebrew = !0;
-									return fName;
-								}
-							})[0];
+						// If eboot.bin doesn't exists, look for any .elf file
+						if (APP.fs.existsSync(executableName) !== !0){
 
-						// Set executable name - if not found (undefined), skip entry!
-						executableName = pathBase + execName;
-						if (execName === void 0){
-							addGame = !1;
+							// Seek .elf files on root dir
+							var fList = APP.fs.readdirSync(pathBase),
+								execName = fList.filter(function(fName){
+									if (fName.toLowerCase().indexOf('.elf') !== -1){
+										isHomebrew = !0;
+										return fName;
+									}
+								})[0];
+
+							// Set executable name - if not found (undefined), skip entry!
+							executableName = pathBase + execName;
+							if (execName === void 0){
+								addGame = !1;
+							}
+
 						}
 
-					}
-
-					// Seek App Icon
-					for (var i = 0; i < iconList.length; i++){
-						if (APP.fs.existsSync(pathBase + iconList[i]) === !0){
-							appIcon = pathBase + iconList[i];
-							break;
+						// Seek App Icon
+						for (var i = 0; i < iconList.length; i++){
+							if (APP.fs.existsSync(pathBase + iconList[i]) === !0){
+								appIcon = pathBase + iconList[i];
+								break;
+							}
 						}
-					}
 
-					// Seek App Background
-					for (var i = 0; i < backgroundList.length; i++){
-						if (APP.fs.existsSync(pathBase + backgroundList[i]) === !0){
-							appBg = pathBase + backgroundList[i];
-							break;
+						// Seek App Background
+						for (var i = 0; i < backgroundList.length; i++){
+							if (APP.fs.existsSync(pathBase + backgroundList[i]) === !0){
+								appBg = pathBase + backgroundList[i];
+								break;
+							}
 						}
-					}
 
-					// Check if Icon and Background exists - if not, use 404
-					if (APP.fs.existsSync(appIcon) === !1){
-						appIcon = `${APP.settings.data.nwPath}/App/img/404.png`; 
-					}
-					if (APP.fs.existsSync(appBg) === !1){
-						appBg = `${APP.settings.data.nwPath}/App/img/404_BG.png`;
-					}
+						// Check if Icon and Background exists - if not, use 404
+						if (APP.fs.existsSync(appIcon) === !1){
+							appIcon = `${APP.settings.data.nwPath}/App/img/404.png`; 
+						}
+						if (APP.fs.existsSync(appBg) === !1){
+							appBg = `${APP.settings.data.nwPath}/App/img/404_BG.png`;
+						}
 
-					// Warn if playgo-chunk.dat isn't available
-					if (isHomebrew === !1 && playGoAvailable !== !0){
-						APP.log(APP.lang.getVariable('gameListLoadWarnPlayGo', [appName]));
-					}
+						// Warn if playgo-chunk.dat isn't available
+						if (isHomebrew === !1 && playGoAvailable !== !0){
+							APP.log(APP.lang.getVariable('gameListLoadWarnPlayGo', [appName]));
+						}
 
-					// Warn if PARAM.SFO isn't available
-					if (isHomebrew === !1 && paramSfoAvailable !== !0){
-						APP.log(APP.lang.getVariable('gameListLoadWarnParamSfo', [appName]));
-					}
+						// Warn if PARAM.SFO isn't available
+						if (isHomebrew === !1 && paramSfoAvailable !== !0){
+							APP.log(APP.lang.getVariable('gameListLoadWarnParamSfo', [appName]));
+						}
 
-					// If PARAM.SFO is present (and enabled), get metadata
-					if (APP.settings.data.enableParamSfo === !0 && paramSfoAvailable === !0){
-						
-						// Set PARAM.SFO variables and game entry
-						paramSfo = APP.paramSfo.parse(paramSfoPath);
-						appId = paramSfo.TITLE_ID;
-						appName = paramSfo.TITLE;
+						// If PARAM.SFO is present (and enabled), get metadata
+						if (APP.settings.data.enableParamSfo === !0 && paramSfoAvailable === !0){
 
-					}
+							// Set PARAM.SFO variables and game entry
+							paramSfo = APP.paramSfo.parse(paramSfoPath);
+							appId = paramSfo.TITLE_ID;
+							appName = paramSfo.TITLE;
 
-					// Check if current game matches CUSA pattern. if not, set as homebrew
-					if (appId.indexOf('CUSA') === -1 || commonHbList.indexOf(appId) !== -1){
-						isHomebrew = !0;
-					}
+						}
 
-					// Check if settings file exists for current game
-					if (APP.fs.existsSync(`${pathBase}/launcherSettings.json`) === !0){
-						settingsFile = JSON.parse(APP.fs.readFileSync(`${pathBase}/launcherSettings.json`));
+						// Check if current game matches CUSA pattern. if not, set as homebrew
+						if (appId.indexOf('CUSA') === -1 || commonHbList.indexOf(appId) !== -1){
+							isHomebrew = !0;
+						}
+
+						// Check if settings file exists for current game
+						if (APP.fs.existsSync(`${pathBase}/launcherSettings.json`) === !0){
+							settingsFile = JSON.parse(APP.fs.readFileSync(`${pathBase}/launcherSettings.json`));
+						}
+
+					} else {
+						addGame = !1;
 					}
 
 					// If executable exists, set data
