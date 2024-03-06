@@ -133,7 +133,9 @@
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "تكبير الواجهة",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "تحذير: لا ينصح بتغيير هذا الاعداد اذا كانت شاشتك وضوحها اقل من <code>1920x1080</code>",
 		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "تشغيل المحاكي في نظام ملء الشاشة",
-		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": ""
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": "",
+		"LABEL_SETTINGS_GAMEPAD_LED_COLOR": "",
+		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_LED_COLOR": ""
 
 	},
 

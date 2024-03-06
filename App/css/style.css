@@ -41,6 +41,9 @@ input[type='checkbox'] {
 	margin-right: 8px;
 	vertical-align: middle;
 }
+input[type='color'] {
+	cursor: pointer;
+}
 img {
 	-webkit-user-drag: none;
 }
@@ -134,7 +137,7 @@ img {
 	right: 0px;
 	z-index: 20;
 	padding: 6px;
-	width: 268px;
+	width: 288px;
 	display: none;
 	transition: 0.1s;
 	position: absolute;
@@ -145,7 +148,7 @@ img {
 	background-image: linear-gradient(0deg, #162a50b0, #2a4a86b0);
 }
 .DIV_GAME_OPTIONS {
-	width: 268px;
+	width: 288px;
 	bottom: 68px;
 	overflow: auto;
 	font-size: 14px;
@@ -675,6 +678,7 @@ img {
 	background-image: linear-gradient(0deg, #fff, #ccc);
 }
 .BTN_STOP {
+	max-height: 28px;
 	margin: 0px 4px 0px 4px;
 	padding: 5px 30px 5px 30px;
 }

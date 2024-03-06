@@ -132,7 +132,9 @@
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Interface grootte (schaal)",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Waarschuwing: Het wordt afgeraden deze instelling te wijzigen als uw schermresolutie lager is dan <code>1920x1080</code>",
 		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Start fpPS4 in volledig scherm",
-		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": ""
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": "",
+		"LABEL_SETTINGS_GAMEPAD_LED_COLOR": "",
+		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_LED_COLOR": ""
 	},
 
 	"select": {

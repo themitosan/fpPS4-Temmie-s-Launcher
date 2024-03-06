@@ -266,11 +266,18 @@
 					<!-- Misc. -->
 					<div class="SEPARATOR_00"></div>
 					<div class="DIV_settingsH2" id="DIV_SETTINGS_MISC">Misc.</div>
-	
+
 					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
 						<input type="checkbox" id="CHECKBOX_settingsEnableParamSfo">
 						<label class="LABEL_checkbox" id="LABEL_SETTINGS_ENABLE_PARAMSFO_SUPPORT" onclick="APP.tools.processCheckbox('CHECKBOX_settingsEnableParamSfo');">
 							Enable <code>PARAM.SFO</code> support <i>(Click on "Delete all game settings" and restart launcher to take effect)</i>
+						</label>
+					</div>
+
+					<div class="DIV_settingsEntry DIV_settingsEntryFlex">
+						<input type="checkbox" id="CHECKBOX_settingsEnableChangeGamepadLedColor">
+						<label class="LABEL_checkbox" id="LABEL_SETTINGS_GAMEPAD_LED_COLOR" onclick="APP.tools.processCheckbox('CHECKBOX_settingsEnableChangeGamepadLedColor');">
+							Enable change gamepad led color (requires <code>SDL2.dll</code>)
 						</label>
 					</div>
 
@@ -384,12 +391,18 @@
 					</div>
 
                 	<!-- Select gamepad mode -->
-                	<label class="LABEL_checkbox" id="LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_MODE">Select gamepad mode:</label><br>
+                	<label class="LABEL_checkbox" id="LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_MODE">Select gamepad mode:</label>
                 	<select class="SELECT_settings" id="FPPS4_OPTIONS_SELECT_GAMEPAD_MODE" onchange="APP.gameList.saveGameSettings(!0);APP.gameList.checkSdl2();APP.design.update();">
                 		<option value="xinput">xinput</option>
                 		<option value="sdl2">sdl2</option>
                 		<option value="keyboard">Keyboard</option>
                 	</select>
+
+                	<!-- (SDL2) Select gamepad led color -->
+                	<div id="DIV_sdlSelectGamepadColor" style="display: none;">
+                		<label id="LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_LED_COLOR">Gamepad led color:</label>
+                		<input type="color" id="INPUT_cGameLedColor" onchange="APP.gameList.saveGameSettings(!0);APP.gameList.checkSdl2();APP.design.update();console.table(APP.gameList.cGameSettings);">
+                	</div>
 
                 </div>
 

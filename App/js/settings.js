@@ -31,7 +31,10 @@ temp_SETTINGS = {
 		// Run fpPS4 on fullscreen
 		enableEmuFullscreen: !1,
 
-		// Enable / Disable PARAM.SFO support
+		// Enable / disable change led color
+		sdlEnableGamepadLed: !0, 
+
+		// Enable / disable PARAM.SFO support
 		enableParamSfo: !0,
 
 		// Log External window

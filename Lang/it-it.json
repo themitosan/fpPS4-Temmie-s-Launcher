@@ -133,7 +133,9 @@
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Dimensione dell'interfaccia (scala)",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Avviso: la modifica di questa impostazione non è consigliata se la risoluzione dello schermo è inferiore a <code>1920x1080</code>",
 		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Avvia fpPS4 in modalità a schermo intero",
-		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": ""
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": "",
+		"LABEL_SETTINGS_GAMEPAD_LED_COLOR": "",
+		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_LED_COLOR": ""
 
 	},
 

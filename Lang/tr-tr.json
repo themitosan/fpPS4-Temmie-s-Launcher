@@ -130,7 +130,9 @@
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Arayüz boyutu (ölçek)",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Uyarı: Ekran çözünürlüğünüz <code>1920x1080</code>'den düşükse bu ayarı değiştirmeniz önerilmez",
 		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "fpPS4'ü tam ekran modunda başlat",
-		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": ""
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": "",
+		"LABEL_SETTINGS_GAMEPAD_LED_COLOR": "",
+		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_LED_COLOR": ""
 	},
 	"select": {
 		"SELECT_settingsSearchMode": {

@@ -134,7 +134,9 @@
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Внимание: Не рекомендуется изменять этот параметр если разреш. экрана меньше чем <code>1920x1080</code>",
 		"LABEL_FPPS4_UPDATER_STATUS_LANG": "Статус",
 		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Запустить fpPS4 в полноэкранном режиме",
-		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": ""
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": "",
+		"LABEL_SETTINGS_GAMEPAD_LED_COLOR": "",
+		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_LED_COLOR": ""
 
 	},
 

@@ -167,12 +167,10 @@ const APP = {
 					parseArgs = args.toString().replace(RegExp(',', 'gi'), ' ').replace(args[args.indexOf('-e') + 1], gPath),
 					execLine = `start ${cmdWinTitle} ${winMode} cmd /C ${emuExecPath} ${parseArgs} ${pressAnyKey}`;
 
-				// Check if needs to change exec line
+				// Check if needs to change exec line and run process
 				if (APP.os.platform() !== 'win32'){
 					execLine = `wine wineconsole "Z:${APP.settings.data.emuPath}" ${parseArgs}`
 				}
-
-				// Run process
 				APP.execProcess = APP.childProcess.exec(execLine);
 
 			} else {

@@ -31,10 +31,10 @@ temp_EMUMANAGER = {
 
 			// If (by some reason) main emu still running, close it and set main variables
 			this.killEmu(!0);
-			var ebootPath = APP.gameList.list[APP.gameList.selectedGame].exe,
+			var ebootPath = mainGameData.exe,
 				emuArgs = ['-e', ebootPath],
 				hList = APP.design.hackList;
-			
+
 			// Check if patches are available
 			if (APP.gameList.cGameSettings.usePatch === !0 && APP.design.gamePatchLoaded === !0){
 				emuArgs.push('-p');
@@ -55,6 +55,11 @@ temp_EMUMANAGER = {
 				emuArgs.push('-pad "keyboard"');
 			} else {
 				emuArgs.push(`-pad "${padMode}"`);
+			}
+
+			// If current gameppad mode is SDL2 and change led bar color is enabled, push led args
+			if (padMode === 'sdl2' && APP.settings.data.sdlEnableGamepadLed === !0){
+				emuArgs.push(`-led $${APP.gameList.cGameSettings.gPadLedColor}`);
 			}
 
 			// Add fullscreen flag if it's enabled

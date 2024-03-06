@@ -86,6 +86,7 @@ temp_GAMELIST = {
 				usePatch: data.usePatch,
 				isHomebrew: data.isHomebrew,
 				gamepadMode: data.gamepadMode,
+				gPadLedColor: data.gPadLedColor,
 				patchLocation: data.patchLocation
 			};
 
@@ -131,7 +132,8 @@ temp_GAMELIST = {
 		});
 		tempData.hacks = cHacks;
 
-		// Update patch data and gamepad mode
+		// Update patch data, gamepad mode and led color
+		tempData.gPadLedColor = document.getElementById('INPUT_cGameLedColor').value.slice(1);
 		tempData.gamepadMode = document.getElementById('FPPS4_OPTIONS_SELECT_GAMEPAD_MODE').value;
 		tempData.usePatch = JSON.parse(document.getElementById('CHECKBOX_optionsEnablePatch').checked);
 
@@ -222,13 +224,11 @@ temp_GAMELIST = {
 					const getParamSfo = APP.paramSfo.parse(`${pLocation}/sce_sys/param.sfo`);
 					if (getParamSfo.TITLE_ID === cGame && getParamSfo.CATEGORY !== 'ac'){
 
-						// Set variables
+						// Set variables and log message
 						APP.gameList.cGameSettings.patchLocation = pLocation;
 						APP.gameList.saveGameSettings(!0);
 						APP.gameList.load();
 						APP.design.selectGame(cGame);
-
-						// Set log message
 						logMessage = APP.lang.getVariable('patchLoadedSucessfully', [getParamSfo.TITLE, APP.paramSfo.database.DB_CATEGORY[getParamSfo.CATEGORY]]);
 
 					} else {

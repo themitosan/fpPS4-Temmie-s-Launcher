@@ -133,7 +133,9 @@
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Tamanho da interface (escala)",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Aviso: Não é recomendado alterar essa configuração caso sua resolução de tela seja menor que <code>1920x1080</code>",
 		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Iniciar fpPS4 em modo de tela cheia",
-		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": "Habilitar verificação de compatibilidade de títulos / games"
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": "Habilitar verificação de compatibilidade de títulos / games",
+		"LABEL_SETTINGS_GAMEPAD_LED_COLOR": "Habilitar opção de alterar cor do controle (requer <code>SDL2.dll</code>)",
+		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_LED_COLOR": "(Controle) Cor do led:"
 
 	},
 

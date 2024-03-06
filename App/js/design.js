@@ -276,6 +276,7 @@ temp_DESIGN = {
 					path: settingsFile,
 					importedModules: [],
 					gamepadMode: 'xinput',
+					gPadLedColor: '5232E6',
 					isHomebrew: gData.isHomebrew
 				});
 
@@ -331,10 +332,11 @@ temp_DESIGN = {
 
 			}
 
-			// Load gamepad mode
+			// Load gamepad mode and led color
 			if (gSettings.gamepadMode === void 0){
 				gSettings.gamepadMode = 'xinput';
 			}
+			document.getElementById('INPUT_cGameLedColor').value = `#${gSettings.gPadLedColor}`;
 			document.getElementById('FPPS4_OPTIONS_SELECT_GAMEPAD_MODE').value = gSettings.gamepadMode;
 
 			// Update GUI
@@ -362,9 +364,9 @@ temp_DESIGN = {
 				bgBlur = APP.settings.data.bgListBlur,
 				showGuiMetadata = {'display': 'none'},
 				bgOpacity = APP.settings.data.bgListOpacity,
-				logCss = {'display' :'block', 'width': 'calc(100% - 280px)'},
+				logCss = {'display' :'block', 'width': 'calc(100% - 300px)'},
 				optionsCss = {'height': 'calc(100% - 50px)', 'display': 'block'},
-				listCss = {'width': 'calc(100% - 280px)', 'height': 'calc(100% - 164px)'};
+				listCss = {'width': 'calc(100% - 300px)', 'height': 'calc(100% - 164px)'};
 
 			// If emu is running
 			if (APP.emuManager.emuRunning === !0){
@@ -449,6 +451,13 @@ temp_DESIGN = {
 				gName = `<div class="LABEL_gameTitleOptions">${cGame.name}</div><br><label class="user-can-select">${cGame.paramSfo.TITLE_ID}</label>`;
 
 			}
+
+			// (SDL2) Display led color
+			var displayLedColorGui = { 'display': 'none' };
+			if (APP.gameList.cGameSettings.gamepadMode === 'sdl2' && APP.settings.data.sdlEnableGamepadLed === !0){
+				displayLedColorGui.display = 'block';
+			}
+			TMS.css('DIV_sdlSelectGamepadColor', displayLedColorGui);
 
 			// If app / game patch is enabled, show metadata
 			if (APP.gameList.cGameSettings.usePatch === !0){
@@ -660,9 +669,10 @@ temp_DESIGN = {
 		document.getElementById('CHECKBOX_settingsShowGameMetadata').checked = JSON.parse(cSettings.showGuiMetadata);
 		document.getElementById('CHECKBOX_settingsEnableFpps4Updates').checked = JSON.parse(cSettings.enableEmuUpdates);
 		document.getElementById('CHECKBOX_settingsStartEmuFullscreen').checked = JSON.parse(cSettings.enableEmuFullscreen);
+		document.getElementById('CHECKBOX_enableCompatStatusCheck').checked = JSON.parse(cSettings.enableCompatStatusCheck);
 		document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked = JSON.parse(cSettings.searchCaseSensitive);
 		document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked = JSON.parse(cSettings.logExternalWindowPrompt);
-		document.getElementById('CHECKBOX_enableCompatStatusCheck').checked = JSON.parse(APP.settings.data.enableCompatStatusCheck);
+		document.getElementById('CHECKBOX_settingsEnableChangeGamepadLedColor').checked = JSON.parse(cSettings.sdlEnableGamepadLed);
 
 		// Debug
 		document.getElementById('CHECKBOX_settingsExperimentalIntLog').checked = JSON.parse(cSettings.debugTestLog);
@@ -766,6 +776,7 @@ temp_DESIGN = {
 		APP.settings.data.enableCompatStatusCheck = JSON.parse(document.getElementById('CHECKBOX_enableCompatStatusCheck').checked);
 		APP.settings.data.searchCaseSensitive = JSON.parse(document.getElementById('CHECKBOX_settingsGameSearchCaseSensitive').checked);
 		APP.settings.data.logExternalWindowPrompt = JSON.parse(document.getElementById('CHECKBOX_settingsExternalWindowPrompt').checked);
+		APP.settings.data.sdlEnableGamepadLed = JSON.parse(document.getElementById('CHECKBOX_settingsEnableChangeGamepadLedColor').checked);
 
 		// Debug
 		APP.settings.data.debugTestLog = JSON.parse(document.getElementById('CHECKBOX_settingsExperimentalIntLog').checked);
