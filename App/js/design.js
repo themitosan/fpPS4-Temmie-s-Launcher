@@ -495,6 +495,7 @@ temp_DESIGN = {
 				patchParamSfo = {},
 				disableGridIconSize = '',
 				gameDetails = { 'display': 'flex' },
+				displayListMode = { 'display': 'block' },
 				usePatch = APP.gameList.cGameSettings.usePatch,
 				patchLocation = APP.gameList.cGameSettings.patchLocation,
 				gameMetadata = `${APP.lang.getVariable('path')}: <label class="user-can-select">${gameData.appPath}</label>`,
@@ -522,6 +523,7 @@ temp_DESIGN = {
 
 				// Disable grid size, update app title and hide game metadata
 				disableGridIconSize = 'disabled';
+				displayListMode.display = 'none';
 				TMS.css('DIV_LIST', { 'top': '0px', 'height': '100%' });
 				document.title = `${APP.title} - ${APP.lang.getVariable('logWindowTitle')} [ ${APP.gameList.selectedGame} ]`;
 				if (APP.settings.data.showGuiMetadata === !1){
@@ -574,6 +576,7 @@ temp_DESIGN = {
 			// Set CSS
 			TMS.css('DIV_GAMELIST_BG', listInternal);
 			TMS.css('DIV_GAME_DETAILS', gameDetails);
+			TMS.css('BTN_displayMode_holder', displayListMode);
 
 		}
 
