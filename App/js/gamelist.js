@@ -63,7 +63,7 @@ temp_GAMELIST = {
 				return resp.json();
 			})
 			.then(function(respData){
-				
+
 				// If response data exists, update current compat list
 				if (respData !== void 0){
 					APP.gameList.cCompatList = respData;
@@ -213,7 +213,7 @@ temp_GAMELIST = {
 			// Create main vars
 			var logMessage = '',
 				cGame = this.selectedGame;
-			
+
 			// Read path
 			APP.fileManager.selectPath(function(pLocation){
 

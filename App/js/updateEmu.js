@@ -220,7 +220,7 @@ temp_EMU_UPDATE = {
 					if (options.silent === !0){
 						canPrompt = !1;
 					}
-					
+
 					// User already have latest version
 					if (settingsData.latestCommitSha === artifactData.sha && APP.fs.existsSync(settingsData.emuPath) === !0){
 

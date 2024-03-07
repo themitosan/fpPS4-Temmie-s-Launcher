@@ -9,7 +9,7 @@
 */
 
 temp_SETTINGS = {
-	
+
 	// Settings list
 	data: {
 
@@ -152,7 +152,7 @@ temp_SETTINGS = {
 
 	// Save settings
 	save: function(){
-		
+
 		// Get launcher main dir before settings load and include current launcher version on settings
 		const nwPath = APP.tools.fixPath(nw.__dirname);
 		this.data.launcherVersion = APP.packageJson.version;
@@ -184,8 +184,8 @@ temp_SETTINGS = {
 			} else {
 
 				// Set english as default lang
-				APP.lang.selected = APP.lang.english;			
-			
+				APP.lang.selected = APP.lang.english;
+
 			}
 
 			// Update GUI
@@ -217,7 +217,7 @@ temp_SETTINGS = {
 				} catch (err) {
 					APP.log(APP.lang.getVariable(settingsErrorCreatePath, [mainPath + cPath, err]));
 				}
-				
+
 			}
 
 		});
@@ -276,9 +276,9 @@ temp_SETTINGS = {
 
 	// Set display mode from buttons
 	setDisplayMode: function(cMode){
-		
+
 		if (cMode !== void 0){
-			
+
 			// Update display mode and clear previous search
 			this.data.gameListMode = cMode;
 			document.getElementById('INPUT_gameListSearch').value = '';

@@ -90,7 +90,7 @@ temp_EMUMANAGER = {
 
 	// Stop fpPS4
 	killEmu: function(){
-		
+
 		// Update status
 		if (this.emuRunning === !0){
 			document.getElementById('LABEL_GAME_DETAILS_STATUS').innerHTML = APP.lang.getVariable('killEmuStatus');

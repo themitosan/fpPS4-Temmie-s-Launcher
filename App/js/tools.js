@@ -11,7 +11,7 @@ temp_TOOLS = {
 
 	// Solve Hex
 	solveHex: function(hex){
-		
+
 		if (hex !== void 0){
 			return hex.toLowerCase().replace(RegExp(' ', 'gi'), '');
 		}
@@ -55,7 +55,7 @@ temp_TOOLS = {
 		if (current !== void 0 && maximum !== void 0){
 			res = Math.floor((current / maximum) * 100);
 		}
-		
+
 		return res;
 
 	},

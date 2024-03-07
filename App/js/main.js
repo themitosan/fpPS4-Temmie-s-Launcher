@@ -29,7 +29,7 @@ const APP = {
 			if (APP.os.platform() === 'win32'){
 				APP.memoryjs = require('App/node_modules/memoryjs');
 			}
-		
+
 		} catch(e) {
 			console.error(e);
 			window.alert(`ERROR - Unable to load node modules!\n${e}`);
@@ -182,7 +182,7 @@ const APP = {
 				APP.execProcess = APP.childProcess.spawn(exe, args, { detached: !0 });
 
 			}
-			
+
 			// Set emu running and stream as string (UTF-8)
 			APP.emuManager.emuRunning = !0;
 			APP.execProcess.stdout.setEncoding('utf-8');

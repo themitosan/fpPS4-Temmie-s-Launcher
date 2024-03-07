@@ -79,7 +79,7 @@ temp_DESIGN = {
 
 					// Append HTML
 					document.getElementById(domId).innerHTML = optionsHtml;
-	
+
 				}
 			});
 
@@ -160,7 +160,7 @@ temp_DESIGN = {
 
 			// If PARAM.SFO metadata exists, show serial and game version instead
 			if (Object.keys(gList[cGame].paramSfo).length !== 0){
-				
+
 				// If patch isn't enabled or patch location does not exists but is enabled
 				if (settingsFile.usePatch !== !0 || settingsFile.usePatch === !0 && APP.fs.existsSync(`${settingsFile.patchLocation}/sce_sys/param.sfo`) !== !0){
 					appVersion = gList[cGame].paramSfo.APP_VER;
@@ -441,7 +441,7 @@ temp_DESIGN = {
 			// Set game name and check if param.sfo exists for current title
 			gName = `<div class="LABEL_gameTitleOptions">${cGame.name}</div>`;
 			if (Object.keys(cGame.paramSfo).length !== 0){
-				
+
 				// Enable GUI
 				exportButtonStatus = '';
 				displayGameVersion = 'block';
@@ -503,7 +503,7 @@ temp_DESIGN = {
 					'transition': '0.4s',
 					'filter': `blur(${APP.settings.data.bgEmuBlur}px) opacity(${APP.settings.data.bgEmuOpacity})`
 				};
-	
+
 			// If emu isn't running
 			if (APP.emuManager.emuRunning === !1){
 
