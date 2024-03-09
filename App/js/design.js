@@ -495,7 +495,7 @@ temp_DESIGN = {
 				patchParamSfo = {},
 				disableGridIconSize = '',
 				gameDetails = { 'display': 'flex' },
-				displayListMode = { 'display': 'block' },
+				displayListMode = { 'display': 'flex' },
 				usePatch = APP.gameList.cGameSettings.usePatch,
 				patchLocation = APP.gameList.cGameSettings.patchLocation,
 				gameMetadata = `${APP.lang.getVariable('path')}: <label class="user-can-select">${gameData.appPath}</label>`,
