@@ -113,21 +113,21 @@ temp_LANGUAGE = {
 			"updater_noWorkflowListAvailable": "No workflow list available",
             "Sdl2NotFound": "SDL2.dll is not found in the Emu folder, please install it to use SDL2.",
             "errorListUnableLocateGamePath": "ERROR - Unable to locate \"%VARIABLE_0%\" settings path! In order to prevent issues, game list will be reloaded.\nPath: %VARIABLE_1%",
-            "updateEmuSettingsWorkflow404": "ERROR - (Updater) Unable to find (%VARIABLE_0%) on fpPS4 worflow list! %VARIABLE_1% will be used as fallback.",
-			"nonWindowsOsWarn": "WARN - You are running fpPS4 Temmie's Launcher on a non-windows operating system!\n\nIn order to run fpPS4, you will need Wine installed on your OS.\n\nBe aware that running main compatibility layer through tools like Wine can result in more glitches, degraded performance / experience.",
+            "updateEmuSettingsWorkflow404": "ERROR - (Updater) Unable to find (%VARIABLE_0%) on the fpPS4 workfow list! %VARIABLE_1% will be used as a fallback.",
+			"nonWindowsOsWarn": "WARN - You are running fpPS4 Temmie's Launcher on a non-windows operating system!\n\nIn order to run fpPS4, you will need Wine installed on your OS.\n\nBe aware that running fpPS4 through tools like Wine can result in more glitches and a degraded performance / experience.",
 			"cGameCompatStatus_BOOTS": "Boots",
 			"cGameCompatStatus_MENUS": "Menus",
 			"cGameCompatStatus_INGAME": "In-Game",
 			"cGameCompatStatus_UNKNOWN": "Unknown",
 			"cGameCompatStatus_NOTHING": "Nothing",
 			"cGameCompatStatus_PLAYABLE": "Playable",
-			"warnUnableFindGameCompatDb": "WARN - Unable to find game compatibility status for \"%VARIABLE_0%\" (%VARIABLE_1%) on fpPS4 game database!",
-			"warnUserOffline": "WARN - You are offline! Some features (like game compatibility status and fpPS4 updater) will not be available until you connect to the internet again."
+			"warnUnableFindGameCompatDb": "WARN - Unable to find the compatibility status for \"%VARIABLE_0%\" (%VARIABLE_1%) on the fpPS4 game database!",
+			"warnUserOffline": "WARN - You are offline! Some features (like the game compatibility status and the fpPS4 updater) will not be available until you are reconnected to the internet."
 		},
 
 		"title": {
 			"DIV_selectedGameStatus_dump": "Green: All files are present\nYellow: Some files are missing - check log for more details\nCyan: Executable is a .elf file",
-			"DIV_selectedGameStatus_compat": "Playable: You can play this title from start to end.\nIn-game: You can play parts / segments of this title, but can't finish.\nMenus: This title boots into main menu, but can't start main game.\nBoots: This title start loading main game contents, but fails at some point.\nNothing: This title doesn't show nothing or there is no data about this title on fpPS4 database.\nUnknown: fpPS4 Temmie's Launcher was unable to retreive information about this title."
+			"DIV_selectedGameStatus_compat": "Playable: You can play this title from start to end.\nIn-game: You can play parts / segments of this title, but you can't finish it.\nMenus: This title boots into the main menu, but you can't play the main game.\nBoots: This title starts loading the game, but fails at some point.\nNothing: This title doesn't do anything or there is no data about this title on the fpPS4 database.\nUnknown: fpPS4 Temmie's Launcher was unable to retreive information about this title."
 		}
 
 	},
