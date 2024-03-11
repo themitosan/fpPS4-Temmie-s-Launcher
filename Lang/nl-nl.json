@@ -1,5 +1,4 @@
 {
-
 	"lang": "Dutch (nl-NL)",
 
 	"variables": {
@@ -61,29 +60,29 @@
 		"dumpStatus_OK": "Prima",
 		"dumpStatus_WARN": "Missende bestanden",
 		"dumpStatus_HB": "Homebrew",
-		"updateEmuWorkflow404": "",
-		"updater_noWorkflowListAvailable": "geen workflow lijst beschikbaar",
+		"updateEmuWorkflow404": "ERROR - Workflow kan niet geupdate worden!",
+		"updater_noWorkflowListAvailable": "Geen workflow lijst beschikbaar",
         "Sdl2NotFound": "SDL2.dll is niet gevonden in de Emu map, installeer het om SDL2 te gebruiken.",
-        "errorListUnableLocateGamePath": "",
-        "updateEmuSettingsWorkflow404": "",
-		"nonWindowsOsWarn": "",
-		"cGameCompatStatus_BOOTS": "",
-		"cGameCompatStatus_MENUS": "",
-		"cGameCompatStatus_INGAME": "",
-		"cGameCompatStatus_UNKNOWN": "",
-		"cGameCompatStatus_NOTHING": "",
-		"cGameCompatStatus_PLAYABLE": "",
-		"warnUnableFindGameCompatDb": "",
-		"warnUserOffline": ""
+        "errorListUnableLocateGamePath": "ERROR - Kan niet de settings voor \"%VARIABLE_0%\" vinden! Om problemen te voorkomen wordt de spel lijst ververst.\nPad: %VARIABLE_1%",
+        "updateEmuSettingsWorkflow404": "ERROR - Kan %VARIABLE_0% niet vinden in de workflow lijst van fpPS4! %VARIABLE_1% wordt tijdelijk gebruikt.",
+		"nonWindowsOsWarn": "WAARSCHUWING - Je gebruikt fpPS4 Temmie's Launcher op een niet-Windows besturingssysteem!\n\nOm fpPS4 te gebruiken moet je Wine hebben geinstalleerd op je systeem.\n\nWeet dat het uitvoeren van fpps4 met tools zoals Wine kan resulteren in meer problemen en een verminderde snelheid/ervaring.",
+		"cGameCompatStatus_BOOTS": "Opent",
+		"cGameCompatStatus_MENUS": "Menu",
+		"cGameCompatStatus_INGAME": "In-Game",
+		"cGameCompatStatus_UNKNOWN": "Onbekend",
+		"cGameCompatStatus_NOTHING": "Niks",
+		"cGameCompatStatus_PLAYABLE": "Speelbaar",
+		"warnUnableFindGameCompatDb": "WAARSCHUWING - Kon niet de compatibiliteit status vinden voor dit spel \"%VARIABLE_0%\" (%VARIABLE_1%) op de fpPS4 database!",
+		"warnUserOffline": "WAARSCHUWING - Je bent offline! Sommige functies (zoals de compatibiliteit status voor spellen en de updater voor fpPS4) zijn niet beschikbaar todat je weer met het internet verbonden bent."
 	},
 
 	"input_text": {
-		"INPUT_gameListSearch": {"placeholder": "Zoeken: Geef een game naam", "value": ""}
+		"INPUT_gameListSearch": {"placeholder": "Zoeken: Geef een spel naam", "value": ""}
 	},
 
 	"title": {
 		"DIV_selectedGameStatus_dump": "Groen: Alle bestanden zijn aanwezig\nGeel: Sommige bestanden ontbreken - Bekijk de logs voor meer details.\nCyaan: Executable is een .elf-bestand",
-		"DIV_selectedGameStatus_compat": ""
+		"DIV_selectedGameStatus_compat": "Speelbaar: Deze titel is volledig speelbaar.\nIn-Game Je kunt delen of segmenten spelen, maar je kunt deze titel niet voltooien.\nMenu: Deze titel werkt tot het menu en kan niet de rest laden.\nOpent: Deze titel start met laden, maar faalt op een gegeven moment.\nNiks: deze titel doet niks of er zijn geen gevens over deze titel in de fpPS4 database.\nOnbekend: fpPS4 Temmie's Launcher kon geen informatie vinden over deze titel."
 	},
 
 	"innerHTML": {
@@ -115,7 +114,7 @@
 		"LABEL_FPPS4_OPTIONS": "<label class=\"LABEL_emuColor\">fp</label>PS4 Opties",
 		"LABEL_FPPS4_OPTIONS_DUMP_STATUS": "Dump Status",
 		"LABEL_FPPS4_OPTIONS_ENABLE_PATCHES": "Patches Activeren",
-        "LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_MODE": "",
+        "LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_MODE": "Selecteer de gamepad modus:",
 		"LABEL_FPPS4_OPTIONS_PATCH_VERSION": "Versie",
 		"LABEL_FPPS4_OPTIONS_PATCH_TYPE": "Type",
 		"LABEL_EMU_RUNNING_STATUS": "Status",
@@ -123,7 +122,7 @@
 		"LABEL_FPPS4_OPTIONS_LAUNCHER_OPTIONS": "Launcher Instellingen",
 		"LABEL_FPPS4_OPTIONS_HACKS": "Hacks",
 		"LABEL_SETTINGS_SHOW_METADATA_GUI": "Toon de pictogram/naam GUI terwijl fpPS4 draaiend is",
-		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">EXPERIMENTAL</label> Log de fpPs4 output (<code>stdout</code> & <code>stderr</code>) in de interne log (Druk op F12 ---> Console)",
+		"LABEL_SETTINGS_EXPERIMENTAL_FPPS4_INTERNAL_LOG": "<label class=\"LABEL_settingsExperimental\">EXPERIMENTEEL</label> Log de fpPs4 output (<code>stdout</code> & <code>stderr</code>) in de interne log (Druk op F12 ---> Console)",
 		"DIV_SETTINGS_FPPS4_UPDATER": "fpPS4 Updater",
 		"LABEL_SETTINGS_ENABLE_LAUNCHER_FPPS4_UPDATES": "fpPS4 updater inschakelen",
 		"LABEL_SETTINGS_FPPS4_UPDATE_BRANCH": "Zoek updates van de branche",
@@ -132,9 +131,9 @@
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE": "Interface grootte (schaal)",
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Waarschuwing: Het wordt afgeraden deze instelling te wijzigen als uw schermresolutie lager is dan <code>1920x1080</code>",
 		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Start fpPS4 in volledig scherm",
-		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": "",
-		"LABEL_SETTINGS_GAMEPAD_LED_COLOR": "",
-		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_LED_COLOR": ""
+		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": "Activeer de compatibiliteit status voor titels/games",
+		"LABEL_SETTINGS_GAMEPAD_LED_COLOR": "Activeer het veranderen can de led kleur voor de gamepad (vereist <code>SDL2.dll</code>)",
+		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_LED_COLOR": "Gamepad led kleur:"
 	},
 
 	"select": {
