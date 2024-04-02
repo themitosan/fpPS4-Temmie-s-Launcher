@@ -63,7 +63,7 @@
 		"dumpStatus_HB": "Homebrew",
 		"updateEmuWorkflow404": "ERRO - (Updater) Não foi possivel obter a lista de workflows do projeto no GitHub!",
 		"updater_noWorkflowListAvailable": "Não foi possivel obter lista de CI!",
-		"Sdl2NotFound": "Não foi possível encontrar SDL2.dll na pasta Emu, verifique se o mesmo se encontra lá para habilitar \"SDL\".",
+		"Sdl2NotFound": "Não foi possível encontrar SDL2.dll na pasta Emu!\nVerifique se o mesmo se encontra antes de habilitar \"SDL\".",
 		"errorListUnableLocateGamePath": "ERRO - Não foi possível localizar a pasta de configurações para \"%VARIABLE_0%\"! Para prevenir erros, a lista de Apps / Games foi atualizada.\nCaminho: %VARIABLE_1%",
 		"updateEmuSettingsWorkflow404": "ERRO - (Updater) Não foi possível encontrar a worflow %VARIABLE_0%! A workflow %VARIABLE_1% será usada no lugar.",
 		"nonWindowsOsWarn": "AVSIO - Você está rodando fpPS4 Temmie's Launcher em um sistema não-windows!\n\nPara iniciar fpPS4, você irá precisar ter Wine instalado no seu sistema.\n\nAliás - Tenha em mente que rodar a camada de compatibilidade usando ferramentas como Wine podem (e provavelmente irão) causar glitches, rodar com menos performance do que o esperado.",
