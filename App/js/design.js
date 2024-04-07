@@ -378,8 +378,8 @@ temp_DESIGN = {
 		const settingsData = APP.settings.data;
 
 		// Update CSS
-		TMS.css('APP_CANVAS_BG_COLOR', {'background-image': 'linear-gradient(140deg, ' + settingsData.backgroundGradient.toString() + ')'});
-		TMS.css('APP_CANVAS', {'box-shadow': '0px 0px 120px ' + settingsData.backgroundGradient[0] + '90'});
+		TMS.css('APP_CANVAS_BG_COLOR', {'background-image': `linear-gradient(140deg, ${settingsData.backgroundGradient.toString()})`});
+		TMS.css('APP_CANVAS', {'box-shadow': `0px 0px 120px ${settingsData.backgroundGradient[0]}90`});
 
 		// End
 		return 0;
@@ -406,29 +406,21 @@ temp_DESIGN = {
 	// Cache all images on img dir
 	cacheImagesBoot: function(){
 
-		// Variables
+		// Create vars and process img path
 		var htmlTemp = '<div class="none" id="IMG_CACHE_DIV">';
+		APP.tools.getDirFiles(`${APP.settings.appPath}/img`).forEach(function(cImg){
 
-		// Process img path
-		APP.tools.getDirFiles(APP.settings.appPath + '/img').forEach(function(cImg){
-
-		    // Fix path
+		    // Fix path and check if current entry is a file
 		    const cDir = APP.tools.fixPath(cImg);
-
-		    // Check if current entry is a file
 		    if (APP.path.parse(cDir).ext !== '') {
-		        APP.log.add({
-		            data: 'INFO - (Design) Caching image: ' + cDir
-		        });
-		        htmlTemp = htmlTemp + '<img src="' + cDir + '">';
+		        APP.log.add({ data: `INFO - (Design) Caching image: ${cDir}` });
+		        htmlTemp = htmlTemp + `<img src="file://${cDir}">`;
 		    }
 
 		});
 
 		// Append HTML
-		TMS.append('ASSETS_LIST', htmlTemp + '</div>');
-
-		// End
+		TMS.append('ASSETS_LIST', `${htmlTemp}</div>`);
 		return 0;
 
 	},
@@ -475,7 +467,6 @@ temp_DESIGN = {
 		var nextBtn = '', 
 			prevBtn = '',
 			entryClass = '',
-			metadataTemplate = '',
 			gList = Object.keys(APP.gameList.list),
 			displayMode = APP.settings.data.gameListMode,
 			tempHtml = APP.lang.getVariable('gameList_errorEntryListEmpty');
@@ -563,7 +554,6 @@ temp_DESIGN = {
 
 				// Get entry name from PARAM.SFO and set metadata html
 				if (Object.keys(entryMetadata.paramSfo).length !== 0){
-
 					entryName = entryMetadata.paramSfo['TITLE' + langId];
 					metadataHtml = getMetadataInfo(displayMode, {name: entryName, status: entryMetadata.status, missingFiles: APP.tools.convertArrayToString(entryMetadata.missingFiles),
 								   info: entryMetadata.paramSfo.TITLE_ID + ' - ' + APP.lang.getVariable('gameList_entryVersion', [entryMetadata.paramSfo.VERSION])});
@@ -686,7 +676,7 @@ temp_DESIGN = {
 			}
 
 			// Set background image
-			TMS.css('APP_CANVAS_BG', {'background-image': 'url(\"' + entryMetadata.img_background + '\")'});
+			TMS.css('APP_CANVAS_BG', {'background-image': `url(\"${entryMetadata.img_background}\")`});
 
 			// Check if app is loading
 			if (APP.settings.appIsLoading === !0){

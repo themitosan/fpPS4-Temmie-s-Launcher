@@ -23,7 +23,16 @@ temp_EMUMANAGER = {
 	loadErrorReason: '',
 
 	// Hack list
-	hackList: {},
+	hackList: {
+		'DEPTH_DISABLE_HACK': "Disables depth buffer",
+		'COMPUTE_DISABLE_HACK': "Disables compute shaders",
+		'MEMORY_BOUND_HACK': "Limits the amount of GPU allocated memory (iGPU)",
+		'IMAGE_TEST_HACK': "Always marks that the texture has changed",
+		'IMAGE_LOAD_HACK': "Never reload textures (improves performance on many games)",
+		'DISABLE_SRGB_HACK': "Disables hacked SRGB display",
+		'DISABLE_FMV_HACK': "Disables in-game movies",
+		'SKIP_UNKNOW_TILING': "Skip unknown tiling texture types"
+	},
 
 	// Selected game metadata
 	tempSettings: '',

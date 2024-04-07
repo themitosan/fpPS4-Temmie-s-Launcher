@@ -157,6 +157,11 @@ temp_EXEC = {
 				data['exe'] = APP.path.parse(APP.settings.data.fpPS4_Path).base;
 			}
 
+			// Force running using log window if launcher is running on a non-windows os
+			if (APP.os.platform() !== 'win32'){
+				data.useLogWindow = !0;
+			}
+
 			// Run external window
 			if (data.useLogWindow === !0){
 
@@ -191,15 +196,18 @@ temp_EXEC = {
 					parseArgs = data.args.toString().replace(RegExp(',', 'gi'), ' ').replace(data.args[data.args.indexOf('-e') + 1], gPath),
 					execLine = 'start ' + winMode + 'cmd /C ' + data.exe + ' ' + parseArgs + pressAnyKey;
 
+				// Check for non-windows OS
+				if (APP.os.platform() !== 'win32'){
+					execLine = `wine wineconsole "Z:${data.exe}" ${parseArgs}`;
+				}
+
 				// Exec process
 				APP.exec['processData'] = APP.childProcess.exec(execLine);
 
 			} else {
 
-				// Log on window console
+				// Log on window console and set stream as string (utf-8)
 				APP.exec['processData'] = APP.childProcess.spawn(APP.tools.fixPath(data.exe), data.args, {detached: !0});
-
-				// Set stream as string (UTF-8)
 				APP.exec.processData.stdout.setEncoding('utf8');
 				APP.exec.processData.stderr.setEncoding('utf8');
 

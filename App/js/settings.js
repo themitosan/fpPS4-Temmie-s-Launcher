@@ -481,10 +481,8 @@ temp_SETTINGS = {
 		// Check if fpPS4 exists on selected path
 		if (APP.fs.existsSync(emuPath) === !1){
 
-			// Set default path
-			emuPath = APP.settings.nwPath + '/fpPS4/fpPS4.exe';
-
-			// Check if emu is found
+			// Set fpPS4 default path and check if it was found
+			emuPath = `${APP.settings.nwPath}/fpPS4/fpPS4.exe`;
 			if (APP.fs.existsSync(emuPath) === !1){
 
 				// Push error
@@ -514,93 +512,91 @@ temp_SETTINGS = {
 			res, nextAction = 'fetchGitHubData',
 			enableHackString = '  -h <name>   //enable hack\r';
 
-		// Create promise
-		return new Promise(function(resolve){
+		// HACK: For non-windows os
+		if (APP.os.platform() !== 'win32'){
+			APP.settings[nextAction](!0);
+		} else {
+			return new Promise(function(resolve){
 
-			// Get fpPS4 main output
-			APP.exec.run({exe: emuPath, useLogWindow: !1, printLog: !1, callback: function(exitCode){
-
-				// If exit code is ok
-			    if (exitCode === 0){
-
-	    			// Reset hack list
-					APP.emumanager.hackList = {};
-
-			    	// Generate list
-			    	var outData = APP.exec.outputData.split('\n'),
-			    		hList = outData.splice((outData.indexOf(enableHackString) + 1));
-
-			    	// Check if is a valid fpPS4 file
-			    	if (outData.indexOf(enableHackString) !== -1){
-
-						// Process list
-			    		hList.forEach(function(cHack){
-
-			    			// Check if string is empty
-			    			if (cHack !== ''){
-
-			    				// Get hack data
-			    				var hackName = cHack.slice(0, cHack.indexOf('//')).replace(RegExp(' ', 'gi'), ''),
-			    					hackDesc = cHack.slice((cHack.indexOf('//') + 2), cHack.indexOf('\r'));
-
-			    				// Set hack data
-			    				APP.emumanager.hackList[hackName] = hackDesc;
-
-			    				// Log data
-			    				APP.log.add({data: 'INFO - (Setitngs) Updating hack list database (Loading ' + hackName + ')'});
-
-			    			}
-
-			    		});
-
-			    	} else {
-			    		throw new Error('This is not a valid fpPS4 executable!');
-			    	}
-
-			    } else {
-
-			    	// Set default error type
-			    	var errorType = 'errorLoadHackList';
-
-			    	// Switch error types
-			    	switch (exitCode){
-
-			    		// Missing DLL
-			    		case 3221225781:
-			    			errorType = 'errorLoadHackListDLL';
-			    			break;
-
-			    	}
-
-			    	// Check if is on app is on boot process
-			    	if (isBootProcess === !0){
-
-			    		// Push error list
-			    		APP.settings.sLoadError.push(errorType);
-				    	nextAction = 'bootCheck';
-
-			    	}
-
-			    }
-
-		    	// Load next action
-			    if (isBootProcess === !0){
-				    res = APP.settings[nextAction](!0);
-			    } else {
-
-			    	// Check if callback exists
-			    	if (typeof cb === 'function'){
-			    		res = cb(exitCode);
-			    	}
-
-			    }
-
-			    // End
-			    resolve(res);
-
-			}});
-
-		});
+				// Get fpPS4 main output
+				APP.exec.run({exe: emuPath, useLogWindow: !1, printLog: !1, callback: function(exitCode){
+	
+					// If exit code is ok
+					if (exitCode === 0){
+	
+						// Reset current hack list and generate new one 
+						APP.emumanager.hackList = {};
+						var outData = APP.exec.outputData.split('\n'),
+							hList = outData.splice((outData.indexOf(enableHackString) + 1));
+	
+						// Check if is a valid fpPS4 file
+						if (outData.indexOf(enableHackString) !== -1){
+	
+							// Process updated entries
+							hList.forEach(function(cHack){
+	
+								// Check if string is empty
+								if (cHack !== ''){
+	
+									// Get hack data
+									var hackName = cHack.slice(0, cHack.indexOf('//')).replace(RegExp(' ', 'gi'), ''),
+										hackDesc = cHack.slice((cHack.indexOf('//') + 2), cHack.indexOf('\r'));
+	
+									// Set hack data and add log
+									APP.emumanager.hackList[hackName] = hackDesc;
+									APP.log.add({data: `INFO - (Setitngs) Updating hack list database (Loading ${hackName})`});
+	
+								}
+	
+							});
+	
+						} else {
+							throw new Error('This is not a valid fpPS4 executable!');
+						}
+	
+					} else {
+	
+						// Set default error type and process swicth
+						var errorType = 'errorLoadHackList';
+						switch (exitCode){
+	
+							// Missing DLL
+							case 3221225781:
+								errorType = 'errorLoadHackListDLL';
+								break;
+	
+						}
+	
+						// Check if is on app is on boot process
+						if (isBootProcess === !0){
+	
+							// Push error list
+							APP.settings.sLoadError.push(errorType);
+							nextAction = 'bootCheck';
+	
+						}
+	
+					}
+	
+					// Load next action
+					if (isBootProcess === !0){
+						res = APP.settings[nextAction](!0);
+					} else {
+	
+						// Check if callback exists
+						if (typeof cb === 'function'){
+							res = cb(exitCode);
+						}
+	
+					}
+	
+					// End
+					resolve(res);
+	
+				}});
+	
+			});
+		}
 
 	},
 

@@ -160,6 +160,7 @@ window['APP'] = {
 
 			// Load modules
 			APP['fs'] = require('fs');
+			APP['os'] = require('os');
 			APP['win'] = nw.Window.get();
 			APP['path'] = require('path');
 			APP['https'] = require('https');

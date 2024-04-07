@@ -44,12 +44,16 @@ Thumbs.db
 *.wmv
 
 # fpPS4 Temmie's Launcher files / folders
+Settings.json
 Settings/
 Assets/
+Games/
 Build/
 build/
 cache/
 Cache/
 fpPS4/
+Nwjs/
+Emu/
 *.inc
 *.ttf

@@ -235,7 +235,7 @@ temp_GAMELIST = {
 							// Seek entry icon
 							for (var i = 0; i < iconList.length; i++){
 								if (APP.fs.existsSync(sceSysPath + iconList[i]) === !0){
-									finalMetadata.img_icon = sceSysPath + iconList[i];
+									finalMetadata.img_icon = `file://${sceSysPath}${iconList[i]}`;
 									break;
 								}
 							}
@@ -243,7 +243,7 @@ temp_GAMELIST = {
 							// Seek entry background image
 							for (var i = 0; i < bgList.length; i++){
 								if (APP.fs.existsSync(sceSysPath + bgList[i]) === !0){
-									finalMetadata.img_background = sceSysPath + bgList[i];
+									finalMetadata.img_background = `file://${sceSysPath}${bgList[i]}`;
 									break;
 								}
 							}
@@ -270,7 +270,7 @@ temp_GAMELIST = {
 						}
 
 						// Add image to be cached
-						var newImg = '<img src="' + finalMetadata.img_background + '">';
+						var newImg = `<img src="${finalMetadata.img_background}">`;
 						if (tempHtml.indexOf(newImg) === -1){
 							tempHtml = tempHtml + newImg;
 						}
