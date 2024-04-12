@@ -5,7 +5,8 @@ echo
 echo "   fpPS4 Temmie's Launcher - Install Script"
 echo "   Written by @themitosan"
 echo 
-echo "   IMPORTANT: This script requires curl and tar to work!"
+echo "   IMPORTANT: This script requires internet connection and"
+echo "   curl / tar packages installed to work!"
 echo 
 echo "#===========================================================#"
 
@@ -48,12 +49,13 @@ echo
 echo "=== Updating permissions for running / updating launcher (chmod)"
 chmod +x launcher.sh
 chmod +x update.sh
+chmod +x Nwjs/nw
 echo Done!
 
 echo 
 echo "==== Process Complete! ===="
-echo '---> In order to start fpPS4 Temmie's Launcher, run "./launcher.sh" (without quotes)'
-echo '---> To update, run "./update.sh" (without quotes)'
+echo '---> In order to start fpPS4 Temmie's Launcher, run "./launcher.sh"'
+echo '---> To update, run "./update.sh"'
 echo 
 echo 'TIP: You can add "launcher.sh" as a non-steam game on your Steam!'
 echo 
