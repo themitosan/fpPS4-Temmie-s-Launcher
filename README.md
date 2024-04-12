@@ -3,7 +3,7 @@
 	fpPS4 Temmie's Launcher
 </h1>
 
-Created by TheMitoSan _(Previously known as TemmieHeartz)_, This is a simple launcher created for [fpPS4](https://github.com/red-prig/fpPS4) compatibility layer.
+Created by [TheMitoSan](https://github.com/themitosan) <sup>_(Previously known as **Temmie**Heartz)_</sup>, This is a simple launcher created for [fpPS4](https://github.com/red-prig/fpPS4) compatibility layer.
 
 <p align="center">
 	<img src="App/img/banner.jpg" width="750">
@@ -48,8 +48,8 @@ In order to start, run `./launcher.sh`
 
 ### General Tips
 
-- You can add `launcher.sh` as a *non-steam game* in your Steam!
-- You can hide a specific title to show on list by appending `!` before folder name (Example: `!Apollo Save Tool`)
+- You can add `launcher.sh` as a *non-steam game* in your **Steam**!
+- You can hide a specific title to show on list by appending `!` before folder name _(Example: `!Apollo Save Tool`)_
 - If you want to update launcher and have `git` installed, run these commands below:
 
 ```
