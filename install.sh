@@ -30,7 +30,7 @@ echo
 echo "=== Prepare nwjs folder"
 cd Nwjs
 rm -rf *
-echo "" >> .gitkeep
+echo "" > .gitkeep
 cd ..
 echo Done!
 
