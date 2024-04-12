@@ -17,14 +17,14 @@ Created by TheMitoSan _(Previously known as TemmieHeartz)_, This is a simple lau
 
 - Download latest release _(you can get it [here](https://github.com/themitosan/fpPS4-Temmie-s-Launcher/releases))_
 - Extract all files on your desired location
-- Run `Launcher.exe`
+- Run `launcher.exe`
 
 #### Latest Features (recommended)
 
 - [Download / Clone this repo](https://github.com/themitosan/fpPS4-Temmie-s-Launcher/archive/refs/heads/main.zip)
 - Download [nw.js](https://dl.nwjs.io/v0.70.1/nwjs-sdk-v0.70.1-win-x64.zip) version `0.70.1`
 - Extract all files from `nw` on `Nwjs` folder
-- Run `Launcher.bat`
+- Run `launcher.bat`
 
 If you want to update launcher and have `git` installed, run these commands below:
 
@@ -39,11 +39,21 @@ git pull origin main
 
 [Click here to know how to install Wine](https://wiki.winehq.org/Download)
 
+### Simple Method
+
+- [Download / Clone this repo](https://github.com/themitosan/fpPS4-Temmie-s-Launcher/archive/refs/heads/main.zip)
+- To run installer script, run `chmod +x install.sh && ./install.sh` 
+
+### Manual Installation
+
 - [Download / Clone this repo](https://github.com/themitosan/fpPS4-Temmie-s-Launcher/archive/refs/heads/main.zip)
 - Download [nw.js](https://dl.nwjs.io/v0.70.1/nwjs-sdk-v0.70.1-linux-x64.tar.gz) version `0.70.1`
 - Extract all files from `nw` on `Nwjs` folder
-- Open terminal on main project path and run `chmod +x ./Launcher.sh`
-- To start, run `./Launcher.sh`
+- Open terminal on main project path and run `chmod +x ./launcher.sh`
+
+In order to start, run `./launcher.sh`
+
+**TIP**: You can add `launcher.sh` as a *non-steam game* in your Steam!
 
 ### How to import your dumps
 You can see all required procedures on main [fpPS4 discord server](https://discord.gg/up9qatpX7M).
