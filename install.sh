@@ -54,7 +54,7 @@ echo Done!
 
 echo 
 echo "==== Process Complete! ===="
-echo '---> In order to start fpPS4 Temmie's Launcher, run "./launcher.sh"'
+echo '---> In order to start Launcher, run "./launcher.sh"'
 echo '---> To update, run "./update.sh"'
 echo 
 echo 'TIP: You can add "launcher.sh" as a non-steam game on your Steam!'
