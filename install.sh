@@ -1,14 +1,14 @@
 clear
 echo 
-echo "#===========================================================#"
+echo "  #===========================================================#"
 echo 
-echo "   fpPS4 Temmie's Launcher - Install Script"
-echo "   Written by @themitosan"
+echo "     fpPS4 Temmie's Launcher - Install Script"
+echo "     Written by @themitosan"
 echo 
-echo "   IMPORTANT: This script requires internet connection and"
-echo "   curl / tar packages installed to work!"
+echo "     IMPORTANT: This script requires internet connection and"
+echo "     curl / tar packages installed to work!"
 echo 
-echo "#===========================================================#"
+echo "  #===========================================================#"
 
 echo 
 echo "=== Removing previous files"

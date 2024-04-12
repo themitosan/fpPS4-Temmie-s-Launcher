@@ -26,13 +26,6 @@ Created by TheMitoSan _(Previously known as TemmieHeartz)_, This is a simple lau
 - Extract all files from `nw` on `Nwjs` folder
 - Run `launcher.bat`
 
-If you want to update launcher and have `git` installed, run these commands below:
-
-```
-git reset --hard
-git pull origin main
-```
-
 ### Linux [WIP]
 
 **WARNING**: Running fpPS4 / Launcher on a Non-Windows OS <u>**isn't the best way / recommended to test / use this software!**</u> The main compatibility layer is being developed to <u>**run only on Windows**</u>. In order to run fpPS4, you will need [Wine](https://www.winehq.org) installed - but be aware that it will result in <u>**less performance with bugs / glitches**</u>.
@@ -53,7 +46,16 @@ git pull origin main
 
 In order to start, run `./launcher.sh`
 
-**TIP**: You can add `launcher.sh` as a *non-steam game* in your Steam!
+### General Tips
+
+- You can add `launcher.sh` as a *non-steam game* in your Steam!
+- You can hide a specific title to show on list by appending `!` before folder name (Example: `!Apollo Save Tool`)
+- If you want to update launcher and have `git` installed, run these commands below:
+
+```
+git reset --hard
+git pull origin main
+```
 
 ### How to import your dumps
 You can see all required procedures on main [fpPS4 discord server](https://discord.gg/up9qatpX7M).
