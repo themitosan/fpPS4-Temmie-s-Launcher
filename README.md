@@ -32,7 +32,13 @@ Created by [TheMitoSan](https://github.com/themitosan) <sup>_(Previously known a
 
 [Click here to know how to install Wine](https://wiki.winehq.org/Download)
 
-### Simple Method
+### Release Version
+
+- Download latest release _(you can get it [here](https://github.com/themitosan/fpPS4-Temmie-s-Launcher/releases))_
+- Extract all files on your desired location
+- Run `chmod +x launcher.sh && ./launcher.sh`
+
+### Installer Method
 
 - [Download / Clone this repo](https://github.com/themitosan/fpPS4-Temmie-s-Launcher/archive/refs/heads/main.zip)
 - To run installer script, run `chmod +x install.sh && ./install.sh` 
