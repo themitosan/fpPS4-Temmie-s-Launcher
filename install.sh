@@ -1,29 +1,52 @@
+#########################################################################
+
+### === Variables ===
+### In order to update this file with more ease, just update those 
+### variables below
+
+### nw.js version
+NWJS_VER="0.87.0"
+
+#########################################################################
+
 clear
 echo 
-echo "  #===========================================================#"
+echo "  #=============================================================#"
 echo 
 echo "     fpPS4 Temmie's Launcher - Install Script"
 echo "     Written by @themitosan"
 echo 
 echo "     IMPORTANT: This script requires internet connection and"
-echo "     curl / tar packages installed to work!"
+echo "     curl, tar and unzip packages installed to work!"
 echo 
-echo "  #===========================================================#"
+echo "  #=============================================================#"
 
 echo 
 echo "=== Removing previous files"
 rm nwjs.tar.gz
-rm -rf nwjs-sdk-v0.86.0-linux-x64
+rm sdl2.zip
+rm -rf "nwjs-sdk-v$NWJS_VER-linux-x64"
+rm -rf sdl2
 echo Done!
 
 echo 
 echo "=== Downloading nwjs"
-curl https://dl.nwjs.io/v0.86.0/nwjs-sdk-v0.86.0-linux-x64.tar.gz -o nwjs.tar.gz
+curl https://dl.nwjs.io/v$NWJS_VER/nwjs-sdk-v$NWJS_VER-linux-x64.tar.gz -o nwjs.tar.gz
+echo Done!
+
+echo 
+echo "=== Downloading SDL2"
+curl -L https://github.com/libsdl-org/SDL/releases/download/release-2.30.2/SDL2-2.30.2-win32-x64.zip -o sdl2.zip
 echo Done!
 
 echo 
 echo "=== Extracting nwjs"
 tar -xvzf nwjs.tar.gz
+echo Done!
+
+echo 
+echo "=== Extracting SDL2"
+unzip -d sdl2 sdl2.zip
 echo Done!
 
 echo 
@@ -35,14 +58,25 @@ cd ..
 echo Done!
 
 echo 
-echo "=== Moving files"
-mv -f nwjs-sdk-v0.86.0-linux-x64/* Nwjs/
+echo "=== Checking if Emu folder exists"
+if ! [ -d Emu ]; then
+	echo "Creating Emu dir..."
+	mkdir Emu
+fi
 echo Done!
 
 echo 
-echo "=== Removing leftover files"
+echo "=== Moving files"
+mv -f nwjs-sdk-v$NWJS_VER-linux-x64/* Nwjs/
+mv -f sdl2/SDL2.dll Emu/
+echo Done!
+
+echo 
+echo "=== Removing leftover files / folders"
 rm nwjs.tar.gz
-rm -rf nwjs-sdk-v0.86.0-linux-x64
+rm sdl2.zip
+rm -rf nwjs-sdk-v$NWJS_VER-linux-x64
+rm -rf sdl2
 echo Done!
 
 echo 
