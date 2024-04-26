@@ -40,6 +40,7 @@ Created by [TheMitoSan](https://github.com/themitosan) <sup>_(Previously known a
 
 ### Installer Method
 
+**IMPORTANT**: Make sure to have `curl`, `tar` and `unzip` packages installed on your system!
 - [Download / Clone this repo](https://github.com/themitosan/fpPS4-Temmie-s-Launcher/archive/refs/heads/main.zip)
 - To run installer script, run `chmod +x install.sh && ./install.sh` 
 
