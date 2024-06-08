@@ -135,8 +135,8 @@
 		"LABEL_SETTINGS_GUI_ZOOM_SCALE_INFO": "Avertissement : La modification de ce paramètre n'est pas recommandée si la résolution de votre écran est inférieure à <code>1920x1080</code>",
 		"LABEL_SETTINGS_START_EMU_FULLSCREEN": "Démarrer fpPS4 en mode plein écran",
 		"LABEL_SETTINGS_ENABLE_GAME_COMPAT_CHECK": "Activer la vérification de compatibilité des titres / jeux",
-		"LABEL_SETTINGS_GAMEPAD_LED_COLOR": "AVERTISSEMENT - Impossible d'obtenir les informations \"%VARIABLE_0%\" (%VARIABLE_1%) à partir de la base de données fpPS4 !",
-		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_LED_COLOR": "AVERTISSEMENT - Vous êtes hors ligne ! Certaines fonctionnalités (telles que l'obtention de l'état de compatibilité et le programme de mise à jour fpPS4) ne seront disponibles que lorsque vous vous connecterez à nouveau à Internet."
+		"LABEL_SETTINGS_GAMEPAD_LED_COLOR": "Possibilité de modifier le code de contrôle (demander <code>SDL2.dll</code>)",
+		"LABEL_FPPS4_OPTIONS_SELECT_GAMEPAD_LED_COLOR": "(Contrôle) Couleur de LED :"
 	},
 
 	"select": {
