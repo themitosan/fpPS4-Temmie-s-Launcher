@@ -26,21 +26,22 @@ Created by [TheMitoSan](https://github.com/themitosan) <sup>_(Previously known a
 - Extract all files from `nw` on `Nwjs` folder
 - Run `launcher.bat`
 
-### Linux [WIP]
-
-**WARNING**: Running fpPS4 / Launcher on a Non-Windows OS <u>**isn't the best way / recommended to test / use this software!**</u> The main compatibility layer is being developed to <u>**run only on Windows**</u>. In order to run fpPS4, you will need [Wine](https://www.winehq.org) installed - but be aware that it will result in <u>**less performance with bugs / glitches**</u>.
+### Linux
+> [!WARNING]\
+> Running fpPS4 / Launcher on a Non-Windows OS <u>**isn't the best way / recommended to test / use this software!**</u> The main compatibility layer is being developed to <u>**run only on Windows**</u>. In order to run fpPS4, you will need [Wine](https://www.winehq.org) installed - <ins>but be aware that it will result in **less performance with bugs / glitches**</ins>.
 
 [Click here to know how to install Wine](https://wiki.winehq.org/Download)
 
-### Release Version
+#### Release Version
 
 - Download latest release _(you can get it [here](https://github.com/themitosan/fpPS4-Temmie-s-Launcher/releases))_
 - Extract all files on your desired location
 - Run `chmod +x launcher.sh && ./launcher.sh`
 
-### Installer Method
+#### Installer Method
 
-**IMPORTANT**: Make sure to have `curl`, `tar` and `unzip` packages installed on your system!
+> [!IMPORTANT]\
+> Make sure to have `curl`, `tar` and `unzip` packages installed on your system!
 - [Download / Clone this repo](https://github.com/themitosan/fpPS4-Temmie-s-Launcher/archive/refs/heads/main.zip)
 - To run installer script, run `chmod +x install.sh && ./install.sh` 
 
