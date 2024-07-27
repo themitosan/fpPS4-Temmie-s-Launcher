@@ -28,7 +28,7 @@ Created by [TheMitoSan](https://github.com/themitosan) <sup>_(Previously known a
 
 ### Linux
 > [!WARNING]\
-> Running fpPS4 / Launcher on a Non-Windows OS <u>**isn't the best way / recommended to test / use this software!**</u> The main compatibility layer is being developed to <u>**run only on Windows**</u>. In order to run fpPS4, you will need [Wine](https://www.winehq.org) installed - <ins>but be aware that it will result in **less performance with bugs / glitches**</ins>.
+> Running fpPS4 / Launcher on a Non-Windows OS <u>**isn't the best way / recommended to test / use this software!**</u> The main compatibility layer is being developed to <u>**run only on Windows**</u>. In order to run fpPS4, you will need [Wine](https://www.winehq.org) installed - <ins>but be aware that it may result in **less performance with bugs / glitches**</ins>.
 
 [Click here to know how to install Wine](https://wiki.winehq.org/Download)
 
