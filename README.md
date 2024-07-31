@@ -38,7 +38,7 @@ Created by [TheMitoSan](https://github.com/themitosan) <sup>_(Previously known a
 - Extract all files on your desired location
 - Run `chmod +x launcher.sh && ./launcher.sh`
 
-#### Installer Method
+#### Installer Method (recomended)
 
 > [!IMPORTANT]\
 > Make sure to have `curl`, `tar` and `unzip` packages installed on your system!
@@ -48,7 +48,7 @@ Created by [TheMitoSan](https://github.com/themitosan) <sup>_(Previously known a
 ### Manual Installation
 
 - [Download / Clone this repo](https://github.com/themitosan/fpPS4-Temmie-s-Launcher/archive/refs/heads/main.zip)
-- Download [nw.js](https://dl.nwjs.io/v0.70.1/nwjs-sdk-v0.70.1-linux-x64.tar.gz) version `0.70.1`
+- Download latest [nw.js](https://nwjs.io/) version
 - Extract all files from `nw` on `Nwjs` folder
 - Open terminal on main project path and run `chmod +x ./launcher.sh`
 
