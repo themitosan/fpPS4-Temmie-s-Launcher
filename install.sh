@@ -1,12 +1,49 @@
 #########################################################################
-
 ### === Variables ===
-### In order to update this file with more ease, just update those 
-### variables below
+#########################################################################
 
-### nw.js version
-NWJS_VER="0.87.0"
+# NW.js Version
+NWJS_VER="0.90.0"
 
+# SDL Version
+SDL_VER="2.30.5"
+
+# Files / dirs to be removed
+REM_FILES_DIR_LIST=(
+	"sdl2"
+	"sdl2.zip"
+	"nwjs.tar.gz"
+	"nwjs-sdk-v$NWJS_VER-linux-x64"
+)
+
+
+#########################################################################
+### === Functions ===
+#########################################################################
+
+# Remove files and dirs
+removeFilesDirs(){
+
+	# Process remove list
+	for entry in "${REM_FILES_DIR_LIST[@]}"
+	do
+
+		# Check if file / dir exists. If so, remove it.
+		if [ -f $entry ]; then
+			echo -e "Removing $entry"
+			rm "$entry"
+		fi
+		if [ -d $entry ]; then
+			echo -e "Removing $entry"
+			rm -rf "$entry"
+		fi
+
+	done
+
+}
+
+#########################################################################
+### === Main Script ===
 #########################################################################
 
 clear
@@ -22,25 +59,22 @@ echo
 echo "  #=============================================================#"
 
 echo 
-echo "=== Removing previous files"
-rm nwjs.tar.gz
-rm sdl2.zip
-rm -rf "nwjs-sdk-v$NWJS_VER-linux-x64"
-rm -rf sdl2
+echo "=== Removing possible leftover files / folders"
+removeFilesDirs
 echo Done!
 
 echo 
-echo "=== Downloading nwjs"
+echo "=== Downloading nw.js (Ver. $NWJS_VER)"
 curl https://dl.nwjs.io/v$NWJS_VER/nwjs-sdk-v$NWJS_VER-linux-x64.tar.gz -o nwjs.tar.gz
 echo Done!
 
 echo 
-echo "=== Downloading SDL2"
-curl -L https://github.com/libsdl-org/SDL/releases/download/release-2.30.2/SDL2-2.30.2-win32-x64.zip -o sdl2.zip
+echo "=== Downloading SDL2 (Ver. $SDL_VER)"
+curl -L https://github.com/libsdl-org/SDL/releases/download/release-$SDL_VER/SDL2-$SDL_VER-win32-x64.zip -o sdl2.zip
 echo Done!
 
 echo 
-echo "=== Extracting nwjs"
+echo "=== Extracting nw.js"
 tar -xvzf nwjs.tar.gz
 echo Done!
 
@@ -50,7 +84,7 @@ unzip -d sdl2 sdl2.zip
 echo Done!
 
 echo 
-echo "=== Prepare nwjs folder"
+echo "=== Prepare nw.js folder"
 cd Nwjs
 rm -rf *
 echo "" > .gitkeep
@@ -73,10 +107,7 @@ echo Done!
 
 echo 
 echo "=== Removing leftover files / folders"
-rm nwjs.tar.gz
-rm sdl2.zip
-rm -rf nwjs-sdk-v$NWJS_VER-linux-x64
-rm -rf sdl2
+removeFilesDirs
 echo Done!
 
 echo 
@@ -87,7 +118,7 @@ chmod +x Nwjs/nw
 echo Done!
 
 echo 
-echo "==== Process Complete! ===="
+echo -e "\033[1;32m==== Process Complete! ====\033[0m"
 echo '---> In order to start Launcher, run "./launcher.sh"'
 echo '---> To update, run "./update.sh"'
 echo 
@@ -97,3 +128,4 @@ echo Also - You will need wine to run fpPS4 on non-windows systems!
 echo The installation process may change depending of which distro you are running.
 echo 
 read -p "Press [ENTER] to exit"
+clear

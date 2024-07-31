@@ -11,6 +11,7 @@ savedata/
 Settings.json
 
 # Misc. Files
+*.tar.gz
 *.info
 *.nexe
 *.dump
