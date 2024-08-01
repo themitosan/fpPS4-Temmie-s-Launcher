@@ -54,7 +54,7 @@ Created by [TheMitoSan](https://github.com/themitosan) <sup>_(Previously known a
 
 In order to start, run `./launcher.sh`
 
-### General Tips
+## General Tips
 
 - You can add `launcher.sh` as a *non-steam game* in your **Steam**!
 - You can hide a specific title to show on list by appending `!` before folder name _(Example: `!Apollo Save Tool`)_
