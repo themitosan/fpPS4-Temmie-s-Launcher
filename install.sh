@@ -3,10 +3,10 @@
 #########################################################################
 
 # NW.js Version
-NWJS_VER="0.90.0"
+NWJS_VER="0.91.0"
 
 # SDL Version
-SDL_VER="2.30.5"
+SDL_VER="2.30.7"
 
 # Files / dirs to be removed
 REM_FILES_DIR_LIST=(
