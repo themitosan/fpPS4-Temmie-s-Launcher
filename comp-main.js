@@ -15,10 +15,8 @@
 // Get compiler
 var COMPILER = require('./compile.js');
 
-// Set values
+// Set values and start process
 COMPILER.nwFlavor = 'normal';
-COMPILER.nwVersion = '0.72.0';
+COMPILER.nwVersion = '0.91.0';
 COMPILER.projectVersion = '2.0.0';
-
-// Start process
 COMPILER.run();

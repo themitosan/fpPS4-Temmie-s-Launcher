@@ -32,8 +32,8 @@ module.exports = {
 		// Get main data
 		var date = new Date,
 			packageJson = this.packageJson,
-			buildHash = this.fs.readFileSync('hash.inc', 'utf8'),
-			nwPackageJson = JSON.parse(this.fs.readFileSync('App/package.json', 'utf8')),
+			buildHash = this.fs.readFileSync('hash.inc', 'utf-8'),
+			nwPackageJson = JSON.parse(this.fs.readFileSync('App/package.json', 'utf-8')),
 
 			// Get run data
 			nwFlavor = this.nwFlavor;
@@ -46,7 +46,7 @@ module.exports = {
 		nwPackageJson.version = this.projectVersion;
 
 		// Write new package.json file
-		this.fs.writeFileSync('App/package.json', JSON.stringify(nwPackageJson), 'utf8');
+		this.fs.writeFileSync('App/package.json', JSON.stringify(nwPackageJson), 'utf-8');
 		this.fs.unlinkSync('hash.inc');
 
 		// Log data
@@ -89,13 +89,9 @@ module.exports = {
 
 		try {
 
-			// Run nw-builder
+			// Run nw-builder, create hash file and log success
 			compileData.build();
-
-			// Create new hash file
 			this.fs.writeFileSync('hash.inc', '', 'utf8');
-
-			// log success
 			console.info('\n--- PROCESS COMPLETE ---\n');
 
 		} catch (err) {
@@ -107,4 +103,4 @@ module.exports = {
 
 	}
 
-};
+}
