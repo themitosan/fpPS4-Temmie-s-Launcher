@@ -19,10 +19,7 @@ temp_GAMELIST = {
 	cGameSettings: {},
 
 	// Current compat list
-	cCompatList: {
-		cusacode: {},
-		homebrew: {},
-	},
+	cCompatList: [],
 
 	// Create compat list
 	createCompatList: function(){
@@ -37,28 +34,11 @@ temp_GAMELIST = {
 		// Check if can create list
 		if (proceedCheck.indexOf(!1) === -1){
 
-			// Create main vars
-			var cGameList = '',
-				cHomebrewList = '';
+			// Reset the current compat list
+			APP.gameList.cCompatList = [];
 
-			// Reset current compat list and process current game list
-			APP.gameList.cCompatList = { cusacode: {}, homebrew: {} };
-			Object.keys(APP.gameList.list).forEach(function(cGameId){
-
-				// Create main vars and check if current title is homebrew
-				const cGameData = APP.gameList.list[cGameId];
-				if (cGameData.isHomebrew === !0){
-					cHomebrewList = `${cHomebrewList},${cGameData.name}`;
-				} else {
-					cGameList = `${cGameList},${cGameData.paramSfo.TITLE_ID}`;
-				}
-
-			});
-
-			// Trim strings and make search
-			cGameList = cGameList.slice(1);
-			cHomebrewList = cHomebrewList.slice(1);
-			fetch(`https://fpps4.net/_scripts/api.php?token=3g4YNf7XvchD&cusa=${cGameList}&homebrew=${cHomebrewList}`)
+			// fetch database
+			fetch(`https://api.fpps4.net/database.json`)
 			.then(function(resp){
 				return resp.json();
 			})
@@ -66,7 +46,14 @@ temp_GAMELIST = {
 
 				// If response data exists, update current compat list
 				if (respData !== void 0){
-					APP.gameList.cCompatList = respData;
+
+					// renames some variables and discards unneeded ones
+					APP.gameList.cCompatList = respData.map(({title, code, status, labels}) => ({
+						title: title,
+						id: code,
+						status: status,
+						labels: labels // maybe you can do something cool with this ;)
+					}));
 				}
 
 			});
@@ -563,52 +550,20 @@ temp_GAMELIST = {
 				searchQuery = cGame.name;
 			}
 
-			// If current title isn't on local compat list, try get data from fpps4.net
-			if (APP.gameList.cCompatList.cusacode[searchQuery] === void 0 && APP.gameList.cCompatList.homebrew[searchQuery] === void 0){
+			// get the current issues matching either the id or title
+			let foundIssues = APP.gameList.cCompatList.filter( issue => issue.id.toUpperCase() === searchQuery.toUpperCase() || issue.title.toUpperCase() === searchQuery.toUpperCase() );
 
-				// Get current game conde and try getting data
-				fetch(`https://fpps4.net/_scripts/search.php?q=${searchQuery}`)
-				.then(function(resp){
-					return resp.json();
-				}).then(function(gData){
+			// Check if the current title isn't on the compat list
+			if (foundIssues.length <= 0) {
 
-					// Check if data is defined
-					if (gData !== void 0){
-
-						// Process game list
-						var gFound = !1;
-						for (let i = 0; i < gData.games.length; i++){
-
-							// Check if current game code matches
-							if (gData.games[i].code === searchQuery){
-								cGameComapStatus = gData.games[i].tag.toUpperCase();
-								gFound = !0;
-								break;
-							}
-
-						}
-
-						// Log warn if failed to find game compat and set status to unknown 
-						if (gFound === !1){
-							cGameComapStatus = 'UNKNOWN';
-							APP.log(APP.lang.getVariable('warnUnableFindGameCompatDb', [APP.gameList.list[searchQuery].name, searchQuery]));
-						}
-						updateCompat();
-
-					}
-
-				});
+				cGameComapStatus = 'UNKNOWN';
+				APP.log(APP.lang.getVariable('warnUnableFindGameCompatDb', [APP.gameList.list[searchQuery].name, searchQuery]));
+				updateCompat();
 
 			} else {
-
 				// Get data from current database and update compat mode
-				cGameComapStatus = APP.gameList.cCompatList.cusacode[searchQuery];
-				if (APP.gameList.cCompatList.cusacode[searchQuery] === void 0){
-					cGameComapStatus = APP.gameList.cCompatList.homebrew[searchQuery];
-				}
-				cGameComapStatus = cGameComapStatus.toUpperCase();
+				cGameComapStatus = foundIssues[0].status.toUpperCase();
 				updateCompat();
-				
 			}
 
 		} else {
