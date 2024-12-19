@@ -82,7 +82,7 @@
 
 	"title": {
 		"DIV_selectedGameStatus_dump": "Groen: Alle bestanden zijn aanwezig\nGeel: Sommige bestanden ontbreken - Bekijk de logs voor meer details.\nCyaan: Executable is een .elf-bestand",
-		"DIV_selectedGameStatus_compat": "Speelbaar: Deze titel is volledig speelbaar.\nIn-Game Je kunt delen of segmenten spelen, maar je kunt deze titel niet voltooien.\nMenu: Deze titel werkt tot het menu maar kan de rest niet laden.\nOpent: Deze titel start met laden, maar faalt op een gegeven moment.\nNiks: deze titel doet niks of er zijn geen gevens over deze titel in de fpPS4 database.\nOnbekend: fpPS4 Temmie's Launcher kon geen informatie vinden over deze titel."
+		"DIV_selectedGameStatus_compat": "Speelbaar: Deze titel is volledig speelbaar.\nIn-Game Je kunt delen of segmenten spelen, maar je kunt deze titel niet voltooien.\nMenu: Deze titel werkt tot het menu maar kan de rest niet laden.\nOpent: Deze titel start met laden, maar faalt op een gegeven moment.\nNiks: deze titel doet niks\nOnbekend: Er zijn geen gevens over deze titel in de fpPS4 database gevonden."
 	},
 
 	"innerHTML": {
