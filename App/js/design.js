@@ -705,17 +705,7 @@ temp_DESIGN = {
 			document.getElementById('CHECKBOX_settingsExternalWindowPrompt').disabled = !0;
 		}
 
-		// Get number of all homebrews + normal titles
-		const
-			cCompat_cusa = Object.keys(APP.gameList.cCompatList.cusacode).length,
-			cCompat_homebrew = Object.keys(APP.gameList.cCompatList.cusacode).length;
-
-		// Check if needs to update game compat and update settings GUI
-		if (APP.settings.data.enableCompatStatusCheck === !0 && Number(cCompat_cusa + cCompat_homebrew) === 0){
-			APP.gameList.createCompatList();
-		}
 		this.updateLauncherSettingsGUI();
-
 	},
 
 	// Update settings GUI without loading / save data
