@@ -52,9 +52,7 @@ temp_DESIGN = {
 
 		// Update titles
 		Object.keys(APP.lang.selected.title).forEach(function(domId){
-			if (document.getElementById(domId) !== null && APP.lang.selected.title[domId] !== ''){
-				document.getElementById(domId).title = APP.lang.selected.title[domId];
-			}
+			if (document.getElementById(domId) !== null && APP.lang.selected.title[domId] !== '') document.getElementById(domId).title = APP.lang.selected.title[domId];
 		});
 
 		// If current lang isn't english, update remaining GUI
@@ -85,16 +83,12 @@ temp_DESIGN = {
 
 			// Update innerHTML
 			Object.keys(APP.lang.selected.innerHTML).forEach(function(domId){
-				if (document.getElementById(domId) !== null && APP.lang.selected.innerHTML[domId] !== ''){
-					document.getElementById(domId).innerHTML = APP.lang.selected.innerHTML[domId];
-				}
+				if (document.getElementById(domId) !== null && APP.lang.selected.innerHTML[domId] !== '') document.getElementById(domId).innerHTML = APP.lang.selected.innerHTML[domId];
 			});
 
 			// Update value
 			Object.keys(APP.lang.selected.value).forEach(function(domId){
-				if (document.getElementById(domId) !== null && APP.lang.selected.value[domId] !== ''){
-					document.getElementById(domId).value = APP.lang.selected.value[domId];
-				}
+				if (document.getElementById(domId) !== null && APP.lang.selected.value[domId] !== '') document.getElementById(domId).value = APP.lang.selected.value[domId];
 			});
 
 		}
@@ -109,14 +103,10 @@ temp_DESIGN = {
 			gList = APP.gameList.list;
 
 		// Check data var
-		if (data === void 0 || typeof data !== 'object'){
-			data = {};
-		}
+		if (data === void 0 || typeof data !== 'object') data = {};
 
 		// Check custom list
-		if (data.customList !== void 0){
-			gList = data.customList;
-		}
+		if (data.customList !== void 0) gList = data.customList;
 
 		// Process game list
 		Object.keys(gList).forEach(function(cGame, cIndex){
@@ -137,14 +127,10 @@ temp_DESIGN = {
 				bgPath = `url(\'file://${gList[cGame].bg.replace(RegExp('\'', 'gi'), '\\\'')}\')`;
 
 			// Disable background image
-			if (APP.settings.data.showBgOnEntry !== !0){
-				bgPath = 'none';
-			}
+			if (APP.settings.data.showBgOnEntry !== !0) bgPath = 'none';
 
 			// Check if current entry is the first one
-			if (cIndex === 0){
-				classDisplayEntryMode = ' GAME_ENTRY_FIRST_INDEX';
-			}
+			if (cIndex === 0) classDisplayEntryMode = ' GAME_ENTRY_FIRST_INDEX';
 
 			// Set background, icon and check if path is available / active
 			gameBgAndIcon = `<div class="GAME_ENTRY_BG" style="background-image: ${bgPath};"></div><img class="IMG_GAME_ICON" src="file://${gList[cGame].icon}">`;
@@ -152,9 +138,7 @@ temp_DESIGN = {
 
 				// Get PARAM.SFO patch data and check if PARAM.SFO from patch is loaded and isn't an DLC
 				patchParamSfo = APP.paramSfo.parse(`${settingsFile.patchLocation}/sce_sys/param.sfo`);
-				if (Object.keys(patchParamSfo).keys !== 0 && patchParamSfo.CATEGORY !== 'ac'){
-					appVersion = `<label class="LABEL_emuColor">${patchParamSfo.APP_VER}</label>`;
-				}
+				if (Object.keys(patchParamSfo).keys !== 0 && patchParamSfo.CATEGORY !== 'ac') appVersion = `<label class="LABEL_emuColor">${patchParamSfo.APP_VER}</label>`;
 
 			}
 
@@ -162,9 +146,7 @@ temp_DESIGN = {
 			if (Object.keys(gList[cGame].paramSfo).length !== 0){
 
 				// If patch isn't enabled or patch location does not exists but is enabled
-				if (settingsFile.usePatch !== !0 || settingsFile.usePatch === !0 && APP.fs.existsSync(`${settingsFile.patchLocation}/sce_sys/param.sfo`) !== !0){
-					appVersion = gList[cGame].paramSfo.APP_VER;
-				}
+				if (settingsFile.usePatch !== !0 || settingsFile.usePatch === !0 && APP.fs.existsSync(`${settingsFile.patchLocation}/sce_sys/param.sfo`) !== !0) appVersion = gList[cGame].paramSfo.APP_VER;
 
 				// Set game data
 				gameMetadata = `<br>${gList[cGame].paramSfo.TITLE_ID} - ${APP.lang.getVariable('gameListVersion')} ${appVersion}`;
@@ -172,9 +154,7 @@ temp_DESIGN = {
 			}
 
 			// Settings: Show App / Game version (or executable path) for every title in game list
-			if (APP.settings.data.showPathEntry !== !0){
-				gameMetadata = '';
-			}
+			if (APP.settings.data.showPathEntry !== !0) gameMetadata = '';
 
 			// Display modes
 			switch (APP.settings.data.gameListMode){
@@ -188,23 +168,17 @@ temp_DESIGN = {
 					classGameDetailsMode = 'GAME_DETAILS GAME_DETAILS_COMPACT';
 
 					// Check if PARAM.SFO is available
-					if (Object.keys(gList[cGame].paramSfo).length !== 0){
-						gameMetadata = `<div class="float-right">${gList[cGame].paramSfo.TITLE_ID} - ${APP.lang.getVariable('gameListVersion')} ${appVersion}</div>`;
-					}
+					if (Object.keys(gList[cGame].paramSfo).length !== 0) gameMetadata = `<div class="float-right">${gList[cGame].paramSfo.TITLE_ID} - ${APP.lang.getVariable('gameListVersion')} ${appVersion}</div>`;
 
 					// Check if is Homebrew
-					if (gList[cGame].isHomebrew === !0){
-						gameMetadata = '<div class="float-right">Homebrew</div>';
-					}
+					if (gList[cGame].isHomebrew === !0) gameMetadata = '<div class="float-right">Homebrew</div>';
 					break;
 
 				// Display mode: Grid
 				case 'grid':
 
 					// Check if is Homebrew
-					if (gList[cGame].isHomebrew === !0){
-						appVersion = 'HB';
-					}
+					if (gList[cGame].isHomebrew === !0) appVersion = 'HB';
 
 					classGameDetailsMode = '';
 					appTitle = gList[cGame].name;
@@ -217,18 +191,14 @@ temp_DESIGN = {
 			}
 
 			// Fix for non-grid mode and add entry
-			if (APP.settings.data.gameListMode !== 'grid'){
-				gameName = `<label class="${appNameClass}">${gList[cGame].name}</label>`;
-			}
+			if (APP.settings.data.gameListMode !== 'grid') gameName = `<label class="${appNameClass}">${gList[cGame].name}</label>`;
 			tempHtml = `${tempHtml}<div class="GAME_ENTRY${classDisplayEntryMode}" title="${appTitle}" style="${gameEntryStyle}" onclick="APP.design.selectGame(\'${cGame}\');" id="GAME_ENTRY_${cGame}">${gameBgAndIcon}<div class="${classGameDetailsMode}">${gameName + gameMetadata}</div></div>`;
 
 		});
 
 		// Insert HTML and log status
 		document.getElementById('DIV_LIST_INTERNAL').innerHTML = tempHtml;
-		if (data.displayLog !== !1){
-			APP.log(APP.lang.getVariable('gameListLoadSuccessful', [Object.keys(gList).length]));
-		}
+		if (data.displayLog !== !1) APP.log(APP.lang.getVariable('gameListLoadSuccessful', [Object.keys(gList).length]));
 
 		// Clear BG image
 		TMS.css('DIV_GAMELIST_BG', { 'background-image': 'none' });
@@ -293,9 +263,7 @@ temp_DESIGN = {
 					document.getElementById(`CHECK_${cHack}`).checked = !1;
 				}
 			});
-			if (updatesettingsFile === !0){
-				APP.gameList.saveGameSettings();
-			}
+			if (updatesettingsFile === !0) APP.gameList.saveGameSettings();
 
 			// Enable / disable selected hacks on settings file
 			Object.keys(gSettings.hacks).forEach(function(hackName){
@@ -314,9 +282,7 @@ temp_DESIGN = {
 						patchVersion = paramSfoMetadata.VERSION;
 
 					// If App version is available, show it instead
-					if (paramSfoMetadata.APP_VER !== void 0){
-						patchVersion = paramSfoMetadata.APP_VER;
-					}
+					if (paramSfoMetadata.APP_VER !== void 0) patchVersion = paramSfoMetadata.APP_VER;
 
 					// Update GUI and set patch loaded flag
 					document.getElementById('LABEL_launcherOptionsPatchVersion').innerHTML = patchVersion;
@@ -333,9 +299,7 @@ temp_DESIGN = {
 			}
 
 			// Load gamepad mode and led color
-			if (gSettings.gamepadMode === void 0){
-				gSettings.gamepadMode = 'xinput';
-			}
+			if (gSettings.gamepadMode === void 0) gSettings.gamepadMode = 'xinput';
 			document.getElementById('INPUT_cGameLedColor').value = `#${gSettings.gPadLedColor}`;
 			document.getElementById('FPPS4_OPTIONS_SELECT_GAMEPAD_MODE').value = gSettings.gamepadMode;
 
@@ -350,9 +314,7 @@ temp_DESIGN = {
 
 		// Update background image
 		const sGame = APP.gameList.list[APP.gameList.selectedGame];
-		if (sGame !== '' && sGame !== void 0){
-			TMS.css('DIV_GAMELIST_BG', { 'background-image': `url(\"file://${sGame.bg}\")` });
-		}
+		if (sGame !== '' && sGame !== void 0) TMS.css('DIV_GAMELIST_BG', { 'background-image': `url(\"file://${sGame.bg}\")` });
 
 		// Check if emu is present before allowing to run
 		if (APP.fs.existsSync(APP.settings.data.emuPath) === !0 && APP.gameList.selectedGame !== ''){
@@ -383,9 +345,7 @@ temp_DESIGN = {
 			}
 
 			// Show / Hide path on game run
-			if (APP.settings.data.showPathRunning === !1){
-				emuRunPath = 'none';
-			}
+			if (APP.settings.data.showPathRunning === !1) emuRunPath = 'none';
 
 			// Update GUI
 			TMS.css('DIV_LOG', logCss);
@@ -396,9 +356,7 @@ temp_DESIGN = {
 			TMS.css('DIV_GAMELIST_BG', {'filter': `blur(${bgBlur}px) opacity(${bgOpacity})`});
 
 			// Update Buttons
-			if (APP.os.platform() === 'win32'){
-				document.getElementById('BTN_KILL').disabled = btnKill;
-			}
+			if (APP.os.platform() === 'win32') document.getElementById('BTN_KILL').disabled = btnKill;
 			document.getElementById('BTN_RUN').disabled = btnDisabled;
 			document.getElementById('BTN_REFRESH').disabled = btnDisabled;
 			document.getElementById('BTN_SETTINGS').disabled = btnDisabled;
@@ -431,9 +389,7 @@ temp_DESIGN = {
 			cGameVersion = '';
 
 		// If no game is selected, disable run button
-		if (APP.gameList.selectedGame === ''){
-			document.getElementById('BTN_RUN').disabled = 'disabled';
-		}
+		if (APP.gameList.selectedGame === '') document.getElementById('BTN_RUN').disabled = 'disabled';
 
 		// If selected game exists
 		if (cGame !== void 0){
@@ -454,15 +410,11 @@ temp_DESIGN = {
 
 			// (SDL2) Display led color
 			var displayLedColorGui = { 'display': 'none' };
-			if (APP.gameList.cGameSettings.gamepadMode === 'sdl2' && APP.settings.data.sdlEnableGamepadLed === !0){
-				displayLedColorGui.display = 'block';
-			}
+			if (APP.gameList.cGameSettings.gamepadMode === 'sdl2' && APP.settings.data.sdlEnableGamepadLed === !0) displayLedColorGui.display = 'block';
 			TMS.css('DIV_sdlSelectGamepadColor', displayLedColorGui);
 
 			// If app / game patch is enabled, show metadata
-			if (APP.gameList.cGameSettings.usePatch === !0){
-				displayPatchContainer = 'block';
-			}
+			if (APP.gameList.cGameSettings.usePatch === !0) displayPatchContainer = 'block';
 
 		}
 
@@ -471,9 +423,7 @@ temp_DESIGN = {
 		TMS.css('DIV_launcherOptionsPatchVersion', {'display': displayPatchContainer});
 
 		// Show / hide patch details
-		if (this.gamePatchLoaded === !0){
-			displayPatchData = 'block';
-		}
+		if (this.gamePatchLoaded === !0) displayPatchData = 'block';
 		TMS.css('DIV_launcherOptionsPatchVersionMetadata', {'display': displayPatchData});
 
 		// Render current game name, version and settings
@@ -526,9 +476,7 @@ temp_DESIGN = {
 				displayListMode.display = 'none';
 				TMS.css('DIV_LIST', { 'top': '0px', 'height': '100%' });
 				document.title = `${APP.title} - ${APP.lang.getVariable('logWindowTitle')} [ ${APP.gameList.selectedGame} ]`;
-				if (APP.settings.data.showGuiMetadata === !1){
-					gameDetails.display = 'none';
-				}
+				if (APP.settings.data.showGuiMetadata === !1) gameDetails.display = 'none';
 
 				// Clear search input and disable display mode buttons
 				document.getElementById('INPUT_gameListSearch').value = '';
@@ -537,20 +485,14 @@ temp_DESIGN = {
 				});
 
 				// Check if PARAM.SFO patch exists
-				if (APP.fs.existsSync(patchLocation) === !0){
-					patchParamSfo = APP.paramSfo.parse(`${patchLocation}/sce_sys/param.sfo`);
-				}
-				if (Object.keys(patchParamSfo).length !== 0 && usePatch === !0){
-					gameVersion = `<label class="LABEL_emuColor">${patchParamSfo.APP_VER}</label>`;
-				}
+				if (APP.fs.existsSync(patchLocation) === !0) patchParamSfo = APP.paramSfo.parse(`${patchLocation}/sce_sys/param.sfo`);
+				if (Object.keys(patchParamSfo).length !== 0 && usePatch === !0) gameVersion = `<label class="LABEL_emuColor">${patchParamSfo.APP_VER}</label>`;
 
 				// If PARAM.SFO metadata exists, display serial and game version instead
 				if (Object.keys(gameData.paramSfo).length !== 0){
 
 					// Check if patch is enabled
-					if (usePatch !== !0){
-						gameVersion = gameData.paramSfo.APP_VER;
-					}
+					if (usePatch !== !0) gameVersion = gameData.paramSfo.APP_VER;
 
 					// Set new game data
 					gameMetadata = `${gameData.paramSfo.TITLE_ID} - ${APP.lang.getVariable('gameListVersion')} ${gameVersion}`;
@@ -562,9 +504,7 @@ temp_DESIGN = {
 			}
 
 			// Fix undefined path
-			if (gameData.appIcon === void 0){
-				gameData.appIcon = `file://${APP.settings.data.nwPath}/App/img/404.png`;
-			}
+			if (gameData.appIcon === void 0) gameData.appIcon = `file://${APP.settings.data.nwPath}/App/img/404.png`;
 
 			// Set game metadata
 			document.getElementById('IMG_APP_ICON').src = `file://${gameData.appIcon}`;
@@ -626,9 +566,7 @@ temp_DESIGN = {
 	renderSettings: function(requestSave){
 
 		// If need to save
-		if (requestSave === !0){
-			APP.design.saveSettings(requestSave);
-		}
+		if (requestSave === !0) APP.design.saveSettings(requestSave);
 
 		// Create shortcut const and get lang files
 		const cSettings = APP.settings.data;
@@ -693,17 +631,11 @@ temp_DESIGN = {
 		document.getElementById('INPUT_settingsUpdateFpps4Branch').value = cSettings.fpps4BranchName;
 
 		// Fix for grid size / border-radius
-		if (cSettings.gridIconSize > 512){
-			cSettings.gridIconSize = 512;
-		}
-		if (cSettings.gridBorderRadius > 15){
-			cSettings.gridBorderRadius = 15;
-		}
+		if (cSettings.gridIconSize > 512) cSettings.gridIconSize = 512;
+		if (cSettings.gridBorderRadius > 15) cSettings.gridBorderRadius = 15;
 
 		// Check if needs to disable options if current os isn't windows
-		if (APP.os.platform() !== 'win32'){
-			document.getElementById('CHECKBOX_settingsExternalWindowPrompt').disabled = !0;
-		}
+		if (APP.os.platform() !== 'win32') document.getElementById('CHECKBOX_settingsExternalWindowPrompt').disabled = !0;
 
 		this.updateLauncherSettingsGUI();
 	},
@@ -787,12 +719,8 @@ temp_DESIGN = {
 		APP.settings.data.fpps4BranchName = document.getElementById('INPUT_settingsUpdateFpps4Branch').value;
 
 		// Fix gui zoom scale
-		if (APP.settings.data.guiZoomScale > 1.5){
-			APP.settings.data.guiZoomScale = 1.5;
-		}
-		if (APP.settings.data.guiZoomScale < 1){
-			APP.settings.data.guiZoomScale = 1;
-		}
+		if (APP.settings.data.guiZoomScale > 1.5) APP.settings.data.guiZoomScale = 1.5;
+		if (APP.settings.data.guiZoomScale < 1) APP.settings.data.guiZoomScale = 1;
 
 		/*
 			End
@@ -800,9 +728,7 @@ temp_DESIGN = {
 
 		// Save settings and close settings 
 		APP.settings.save();
-		if (skipCloseSettings !== !0){
-			APP.design.toggleSettings(!0);
-		}
+		if (skipCloseSettings !== !0) APP.design.toggleSettings(!0);
 
 	},
 

@@ -146,9 +146,7 @@ temp_GAMELIST = {
 		}
 
 		// Log message
-		if (bypassCheck !== !0){
-			APP.log(logMessage);
-		}
+		if (bypassCheck !== !0) APP.log(logMessage);
 
 	},
 
@@ -182,10 +180,8 @@ temp_GAMELIST = {
             const
             	sdl2Path = `${APP.tools.fixPath(nw.__dirname)}/Emu/SDL2.dll`,
             	dllExists = APP.fs.existsSync(sdl2Path);
-            if (!dllExists){
-                window.alert(APP.lang.getVariable("Sdl2NotFound"));
-            }
 
+            if (!dllExists) window.alert(APP.lang.getVariable("Sdl2NotFound"));
             return dllExists;
 
         }
@@ -309,9 +305,7 @@ temp_GAMELIST = {
 
 							// Set executable name - if not found (undefined), skip entry!
 							executableName = pathBase + execName;
-							if (execName === void 0){
-								addGame = !1;
-							}
+							if (execName === void 0) addGame = !1;
 
 						}
 
@@ -332,22 +326,14 @@ temp_GAMELIST = {
 						}
 
 						// Check if Icon and Background exists - if not, use 404
-						if (APP.fs.existsSync(appIcon) === !1){
-							appIcon = `${APP.settings.data.nwPath}/App/img/404.png`; 
-						}
-						if (APP.fs.existsSync(appBg) === !1){
-							appBg = `${APP.settings.data.nwPath}/App/img/404_BG.png`;
-						}
+						if (APP.fs.existsSync(appIcon) === !1) appIcon = `${APP.settings.data.nwPath}/App/img/404.png`;
+						if (APP.fs.existsSync(appBg) === !1) appBg = `${APP.settings.data.nwPath}/App/img/404_BG.png`;
 
 						// Warn if playgo-chunk.dat isn't available
-						if (isHomebrew === !1 && playGoAvailable !== !0){
-							APP.log(APP.lang.getVariable('gameListLoadWarnPlayGo', [appName]));
-						}
+						if (isHomebrew === !1 && playGoAvailable !== !0) APP.log(APP.lang.getVariable('gameListLoadWarnPlayGo', [appName]));
 
 						// Warn if PARAM.SFO isn't available
-						if (isHomebrew === !1 && paramSfoAvailable !== !0){
-							APP.log(APP.lang.getVariable('gameListLoadWarnParamSfo', [appName]));
-						}
+						if (isHomebrew === !1 && paramSfoAvailable !== !0) APP.log(APP.lang.getVariable('gameListLoadWarnParamSfo', [appName]));
 
 						// If PARAM.SFO is present (and enabled), get metadata
 						if (APP.settings.data.enableParamSfo === !0 && paramSfoAvailable === !0){
@@ -360,14 +346,10 @@ temp_GAMELIST = {
 						}
 
 						// Check if current game matches CUSA pattern. if not, set as homebrew
-						if (appId.indexOf('CUSA') === -1 || commonHbList.indexOf(appId) !== -1){
-							isHomebrew = !0;
-						}
+						if (appId.indexOf('CUSA') === -1 || commonHbList.indexOf(appId) !== -1) isHomebrew = !0;
 
 						// Check if settings file exists for current game
-						if (APP.fs.existsSync(`${pathBase}/launcherSettings.json`) === !0){
-							settingsFile = JSON.parse(APP.fs.readFileSync(`${pathBase}/launcherSettings.json`));
-						}
+						if (APP.fs.existsSync(`${pathBase}/launcherSettings.json`) === !0) settingsFile = JSON.parse(APP.fs.readFileSync(`${pathBase}/launcherSettings.json`));
 
 					} else {
 						addGame = !1;
@@ -439,9 +421,7 @@ temp_GAMELIST = {
 			if (APP.settings.data.gameSearchMode === 'titleId'){
 
 				tempList = gameListArray.filter(function(cItem){ 
-					if(cItem.indexOf(searchQuery) !== -1){
-						return cItem;
-					}
+					if(cItem.indexOf(searchQuery) !== -1) return cItem;
 				});
 
 			}
@@ -460,9 +440,7 @@ temp_GAMELIST = {
 						searchQuery = searchQuery.toLowerCase();
 					}
 
-					if (titleName.indexOf(searchQuery) !== -1){
-						tempList.push(cTitle);
-					}
+					if (titleName.indexOf(searchQuery) !== -1) tempList.push(cTitle);
 
 				});
 
@@ -508,9 +486,7 @@ temp_GAMELIST = {
 
 		// Process check for single files (like param.sfo)
 		fileList.forEach(function(cFile){
-			if (APP.fs.existsSync(`${gPath}/sce_sys/${cFile}`) !== !0){
-				cGameStatus = 'WARN';
-			}
+			if (APP.fs.existsSync(`${gPath}/sce_sys/${cFile}`) !== !0) cGameStatus = 'WARN';
 		});
 
 		// Check if playgo-chunk.dat exists
@@ -546,9 +522,7 @@ temp_GAMELIST = {
 			displayGameCompatHolderCss = { 'display': 'flex' };
 
 			// If current title is a homebrew, search for game name
-			if (cGame.isHomebrew === !0){
-				searchQuery = cGame.name;
-			}
+			if (cGame.isHomebrew === !0) searchQuery = cGame.name;
 
 			// get the current issues matching either the id or title
 			let foundIssues = APP.gameList.cCompatList.filter( issue => issue.id.toUpperCase() === searchQuery.toUpperCase() || issue.title.toUpperCase() === searchQuery.toUpperCase() );
@@ -571,9 +545,7 @@ temp_GAMELIST = {
 		}
 
 		// Check if is homebrew (.elf)
-		if (cGame.isHomebrew === !0){
-			cGameStatus = 'HB';
-		}
+		if (cGame.isHomebrew === !0) cGameStatus = 'HB';
 
 		// Set app / game dump status
 		cDumpStatusList.forEach(function(cList){
@@ -588,9 +560,7 @@ temp_GAMELIST = {
 	openGameLocation: function(){
 
 		// Check if there's game selected
-		if (this.selectedGame !== ''){
-			APP.fileManager.openDir(`${APP.settings.data.gamePath}/${this.list[this.selectedGame].folderName}`);
-		}
+		if (this.selectedGame !== '') APP.fileManager.openDir(`${APP.settings.data.gamePath}/${this.list[this.selectedGame].folderName}`);
 
 	},
 

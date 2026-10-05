@@ -105,9 +105,7 @@ temp_SETTINGS = {
 			settingsPath = `${nwPath}/Settings.json`;
 
 		// Create save
-		if (APP.fs.existsSync(settingsPath) === !1){
-			APP.settings.save();
-		}
+		if (APP.fs.existsSync(settingsPath) === !1) APP.settings.save();
 
 		try {
 
@@ -223,14 +221,10 @@ temp_SETTINGS = {
 		});
 
 		// Set Games / Emu paths and check if both exists
-		if (this.data.gamePath === '' && APP.fs.existsSync(this.data.gamePath) === !1){
-			APP.settings.data.gamePath = `${mainPath}/Games`;
-		}
+		if (this.data.gamePath === '' && APP.fs.existsSync(this.data.gamePath) === !1) APP.settings.data.gamePath = `${mainPath}/Games`;
 
 		// fpPS4 path
-		if (this.data.emuPath === '' || APP.fs.existsSync(this.data.emuPath) === !1){
-			APP.settings.data.emuPath = `${mainPath}/Emu/fpPS4.exe`;
-		}
+		if (this.data.emuPath === '' || APP.fs.existsSync(this.data.emuPath) === !1) APP.settings.data.emuPath = `${mainPath}/Emu/fpPS4.exe`;
 
 		// If fpPS4 is not found, reset latest commit sha and request update 
 		if (APP.fs.existsSync(this.data.emuPath) !== !0){
@@ -243,9 +237,7 @@ temp_SETTINGS = {
 		}
 
 		// If latestCommitSha isn't empty, log it
-		if (this.data.latestCommitSha !== ''){
-			APP.log(APP.lang.getVariable('settingsLogEmuSha', [APP.settings.data.latestCommitSha.slice(0, 7)]));
-		}
+		if (this.data.latestCommitSha !== '') APP.log(APP.lang.getVariable('settingsLogEmuSha', [APP.settings.data.latestCommitSha.slice(0, 7)]));
 		APP.log(logMessage);
 
 	},	

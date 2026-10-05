@@ -26,9 +26,7 @@ const APP = {
 			APP.streamZip = require('App/node_modules/node-stream-zip');
 
 			// If current OS is windows, load memoryjs
-			if (APP.os.platform() === 'win32'){
-				APP.memoryjs = require('App/node_modules/memoryjs');
-			}
+			if (APP.os.platform() === 'win32') APP.memoryjs = require('App/node_modules/memoryjs');
 
 		} catch(e) {
 			console.error(e);
@@ -68,17 +66,11 @@ const APP = {
 				newLog = `${previousLog}\n${text}`;
 
 			// Fix log with white line
-			if (previousLog == ''){
-				newLog = text;
-			}
-			if (previousLog.slice(previousLog.length - 1, previousLog.length) === '\n'){
-				newLog = previousLog + text;
-			}
+			if (previousLog == '') newLog = text;
+			if (previousLog.slice(previousLog.length - 1, previousLog.length) === '\n') newLog = previousLog + text;
 
 			// Fix duplicate lines
-			if (APP.logLine === text){
-				canLog = !1;
-			}
+			if (APP.logLine === text) canLog = !1;
 
 			// Check if can append log
 			if (canLog === !0){
@@ -111,9 +103,7 @@ const APP = {
 		const logSplit = data.split('\n');
 		logSplit.forEach(function(logLine){
 
-			if (logLine !== '' && logLine !== '\r'){
-				console[type](logLine);
-			}
+			if (logLine !== '' && logLine !== '\r') console[type](logLine);
 
 		});
 
@@ -168,9 +158,7 @@ const APP = {
 					execLine = `start ${cmdWinTitle} ${winMode} cmd /C ${emuExecPath} ${parseArgs} ${pressAnyKey}`;
 
 				// Check if needs to change exec line and run process
-				if (APP.os.platform() !== 'win32'){
-					execLine = `wine wineconsole "Z:${APP.settings.data.emuPath}" ${parseArgs}`
-				}
+				if (APP.os.platform() !== 'win32') execLine = `wine wineconsole "Z:${APP.settings.data.emuPath}" ${parseArgs}`;
 				APP.execProcess = APP.childProcess.exec(execLine);
 
 			} else {
@@ -205,15 +193,11 @@ const APP = {
 
 				// Update GUI
 				APP.design.update();
-				APP.design.toggleDisplayMode({
-					appStatus: 'idle'
-				});
+				APP.design.toggleDisplayMode({ appStatus: 'idle' });
 
 				// Log exit code and save log if APP.settings.data.saveLogOnEmuClose is true
 				APP.log(APP.lang.getVariable('closeEmuStatus', [APP.path.parse(exe).base, code]));
-				if (APP.settings.data.saveLogOnEmuClose === !0){
-					APP.clearLog();
-				}
+				if (APP.settings.data.saveLogOnEmuClose === !0) APP.clearLog();
 
 				// Scroll game list to last selected game
 				if (APP.gameList.selectedGame !== ''){
@@ -245,17 +229,11 @@ const APP = {
 			// Get process list and start seek
 			var res, pList = this.memoryjs.getProcesses();
 			Object.keys(pList).forEach(function(pName){
-
-				if (pList[pName].szExeFile.toLowerCase() === processName.toLowerCase()){
-					res = pList[pName];
-				}
-
+				if (pList[pName].szExeFile.toLowerCase() === processName.toLowerCase()) res = pList[pName];
 			});
 
 			// If found and post-action function is present, execute it!
-			if (postAction !== void 0 && res !== void 0){
-				postAction(res);
-			}
+			if (postAction !== void 0 && res !== void 0) postAction(res);
 
 		}
 
@@ -353,9 +331,7 @@ window.onload = function(){
 		// Load game list, Get all available workflows from updater and check if fpPS4 have any update (silently)
 		APP.gameList.load();
 		APP.emuManager.update.getWorkflows();
-		if (APP.emuManager.update.skipLoadingCheck === !1){
-			APP.emuManager.update.check({ silent: !0 });
-		}
+		if (APP.emuManager.update.skipLoadingCheck === !1) APP.emuManager.update.check({ silent: !0 });
 
 	} catch (err) {
 

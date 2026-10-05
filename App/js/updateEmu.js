@@ -106,15 +106,11 @@ temp_EMU_UPDATE = {
 	check: function(options){
 		
 		// Process options
-		if (options === void 0){
-			options = { forceUpdate: !1, silent: !1 };
-		}
+		if (options === void 0) options = { forceUpdate: !1, silent: !1 };
 		var fetchData = this.fetchData,
 			workflowLink = 'https://api.github.com/repos/red-prig/fpPS4/actions/workflows',
 			optionsList = ['forceUpdate', 'silent'].forEach(function(optId){
-				if (options[optId] === void 0){
-					options[optId] = !1;
-				}
+				if (options[optId] === void 0) options[optId] = !1;
 			});
 
 		// If Emu updates is available, has internet and fpPS4 isn't running
@@ -130,9 +126,7 @@ temp_EMU_UPDATE = {
 					wList = options.wList.workflows;
 
 				// Fix empty ci
-				if (APP.settings.data.fpps4selectedCI === ''){
-					APP.settings.data.fpps4selectedCI = 'Main CI';
-				}
+				if (APP.settings.data.fpps4selectedCI === '') APP.settings.data.fpps4selectedCI = 'Main CI';
 
 				// Check if workflow list has items
 				if (wList.length !== 0){
@@ -210,16 +204,12 @@ temp_EMU_UPDATE = {
 					msgData = APP.lang.getVariable('updateEmuShaAvailable', [settingsData.latestCommitSha.slice(0, 7), artifactData.sha.slice(0, 7)]);
 
 					// If user didn't updated yet using launcher or executable was not found
-					if (settingsData.latestCommitSha === '' || APP.fs.existsSync(settingsData.emuPath) === !1){
-						msgData = APP.lang.getVariable('updateEmuShaUnavailable');
-					}
+					if (settingsData.latestCommitSha === '' || APP.fs.existsSync(settingsData.emuPath) === !1) msgData = APP.lang.getVariable('updateEmuShaUnavailable');
 
 				} else {
 
 					// If silent is active
-					if (options.silent === !0){
-						canPrompt = !1;
-					}
+					if (options.silent === !0) canPrompt = !1;
 
 					// User already have latest version
 					if (settingsData.latestCommitSha === artifactData.sha && APP.fs.existsSync(settingsData.emuPath) === !0){
@@ -235,14 +225,11 @@ temp_EMU_UPDATE = {
 			}
 
 			// Check if can update
-			if (canUpdate === !0 && canPrompt === !0){
-				winConf = window[msgMode](msgData);
-			}
+			if (canUpdate === !0 && canPrompt === !0) winConf = window[msgMode](msgData);
 
 			// If can update and user confirms action or can update and force update is on
-			if (msgMode === 'confirm' && winConf === !0 || canUpdate === !0 && options.forceUpdate === !0){
-				this.getZipFile(artifactData);
-			}
+			if (msgMode === 'confirm' && winConf === !0 || canUpdate === !0 && options.forceUpdate === !0) this.getZipFile(artifactData);
+				
 
 		}
 
@@ -305,11 +292,12 @@ temp_EMU_UPDATE = {
 
 		// Update status, open and extract zip file
 		APP.design.updateProgressbarStatus(50, APP.lang.getVariable('updateEmu-2-4'));
+
 		const updateFile = new APP.streamZip.async({ file: data.path });
 		updateFile.extract(null, `${APP.path.parse(data.path).dir}/`, function(err){
-			if (err){
-				console.error(err);
-			}
+
+			if (err) console.error(err);
+
 		}).then(function(){
 
 			// Close zip and finish process

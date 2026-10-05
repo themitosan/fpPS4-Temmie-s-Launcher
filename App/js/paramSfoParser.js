@@ -26,7 +26,7 @@ temp_PARAMSFO_PARSER = {
 		To read 0x04 bytes, Slice current string from starting point (0x00) to selection length (0x04) using it's hex value converted to int * 2
 
 					   parseInt
-		(Start)  0x00 ---------> 0
+		(Start)  0x00 --------->  0
 		(Length) 0x04 ---------> (4 * 2) = 8;
 
 		JS: sfoHex.slice(0, 8); ---> 00 50 53 46 (" PSF")
@@ -129,9 +129,7 @@ temp_PARAMSFO_PARSER = {
 			}
 
 			// Update reader location
-			if (listAttrArray[(cIndex + 1)] !== void 0){
-				pointerLocation = (parseInt(APP.tools.parseEndian(readMode[listAttrArray[(cIndex + 1)]].dataOffset), 16) * 2);
-			}
+			if (listAttrArray[(cIndex + 1)] !== void 0) pointerLocation = (parseInt(APP.tools.parseEndian(readMode[listAttrArray[(cIndex + 1)]].dataOffset), 16) * 2);
 
 		});
 

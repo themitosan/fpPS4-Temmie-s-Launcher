@@ -25,9 +25,7 @@ temp_EMUMANAGER = {
 
 			// Reset Error List and clear log on emu running (if needed)
 			APP.emuManager.emuErrorList = [];
-			if (APP.settings.data.clearLogOnEmuLoad === !0 && APP.emuManager.emuRunCounter !== 0){
-				APP.clearLog(!0);
-			}
+			if (APP.settings.data.clearLogOnEmuLoad === !0 && APP.emuManager.emuRunCounter !== 0) APP.clearLog(!0);
 
 			// If (by some reason) main emu still running, close it and set main variables
 			this.killEmu(!0);
@@ -58,14 +56,10 @@ temp_EMUMANAGER = {
 			}
 
 			// If current gameppad mode is SDL2 and change led bar color is enabled, push led args
-			if (padMode === 'sdl2' && APP.settings.data.sdlEnableGamepadLed === !0){
-				emuArgs.push(`-led $${APP.gameList.cGameSettings.gPadLedColor}`);
-			}
+			if (padMode === 'sdl2' && APP.settings.data.sdlEnableGamepadLed === !0) emuArgs.push(`-led $${APP.gameList.cGameSettings.gPadLedColor}`);
 
 			// Add fullscreen flag if it's enabled
-			if (APP.settings.data.enableEmuFullscreen === !0){
-				emuArgs.push('-w');
-			}
+			if (APP.settings.data.enableEmuFullscreen === !0) emuArgs.push('-w');
 
 			// Log emu location and args and run fpPS4
 			APP.log(APP.lang.getVariable('runEmuArgs', [emuArgs.toString().replace(RegExp(',', 'gi'), ' '), APP.settings.data.emuPath]));

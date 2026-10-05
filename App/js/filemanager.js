@@ -37,9 +37,7 @@ temp_FILEMANAGER = {
 
 		if (ext !== void 0 && postAction !== void 0 && typeof postAction === 'function'){
 
-			if (ext === ''){
-				ext = '*.*';
-			}
+			if (ext === '') ext = '*.*';
 
 			document.getElementById('APP_FILE_LOADER').value = '';
 			document.getElementById('APP_FILE_LOADER').files = null;
@@ -75,9 +73,7 @@ temp_FILEMANAGER = {
 				try {
 
 					APP.fs.writeFileSync(location, content, mode);
-					if (postAction !== void 0 && typeof postAction === 'function'){
-						postAction(APP.tools.fixPath(location));
-					}
+					if (postAction !== void 0 && typeof postAction === 'function') postAction(APP.tools.fixPath(location));
 
 				} catch (err) {
 					console.error(err);

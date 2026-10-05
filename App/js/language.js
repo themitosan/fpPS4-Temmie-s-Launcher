@@ -14,23 +14,17 @@ temp_LANGUAGE = {
 	getVariable: function(name, list){
 
 		// Fix settings
-		if (Object.keys(this.selected).length === 0){
-			this.selected = this.english;
-		}
+		if (Object.keys(this.selected).length === 0) this.selected = this.english;
 
 		// Declare main var
 		var lPatch = [],
 			res = this.selected.variables[name];
 
 		// If variable is not found or an empty string, get English instead
-		if (res === void 0 || res === ''){
-			res = this.english.variables[name];
-		}
+		if (res === void 0 || res === '') res = this.english.variables[name];
 
 		// If list is undefined, set patch list as a empty array
-		if (list !== void 0){
-			lPatch = list;
-		}
+		if (list !== void 0) lPatch = list;
 
 		// Apply variables and return string
 		lPatch.forEach(function(fix, entry){
