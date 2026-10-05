@@ -49,24 +49,16 @@ temp_SCENEMANAGER = {
 				prevScene = this.currentScene;
 
 			// Check transition time
-			if (data.duration !== void 0 && parseInt(data.duration) !== NaN){
-				transTime = data.duration;
-			}
+			if (data.duration !== void 0 && parseInt(data.duration) !== NaN) transTime = data.duration;
 
 			// Check for release input
-			if (data.releaseInput === void 0){
-				data.releaseInput = !0;
-			}
+			if (data.releaseInput === void 0) data.releaseInput = !0;
 
 			// Display mode
-			if (data.displayMode === void 0 || data.displayMode === ''){
-				data.displayMode = 'block';
-			}
+			if (data.displayMode === void 0 || data.displayMode === '') data.displayMode = 'block';
 
 			// Next opacity
-			if (data.nextOpacity === void 0 || data.nextOpacity === ''){
-				data.nextOpacity = '1';
-			}
+			if (data.nextOpacity === void 0 || data.nextOpacity === '') data.nextOpacity = '1';
 
 			/*
 				Start animation
@@ -95,17 +87,13 @@ temp_SCENEMANAGER = {
 			setTimeout(function(){
 
 				// Enable input
-				if (data.releaseInput === !0){
-					APP.input.releaseInput();
-				}
+				if (data.releaseInput === !0) APP.input.releaseInput();
 
 				// Set current scene
 				APP.design.sceneManager.currentScene = data.nextScene;
 
 				// If callback exists, execute it
-				if (typeof data.callback === 'function'){
-					data.callback();
-				}
+				if (typeof data.callback === 'function') data.callback();
 
 			}, parseInt((transTime * 2) + 10));
 
@@ -115,9 +103,7 @@ temp_SCENEMANAGER = {
 			APP.log.add({mode: 'warn', data: 'WARN - Unable to run sceneManager! If callback was provided, it will be executed.'});
 
 			// Execute callback if
-			if (typeof data.callback === 'function'){
-				data.callback();
-			}
+			if (typeof data.callback === 'function') data.callback();
 
 		}
 

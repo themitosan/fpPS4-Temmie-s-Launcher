@@ -113,9 +113,7 @@ temp_DESIGN = {
 		APP.win.focus();
 
 		// Update scaling
-		setTimeout(function(){
-			APP.design.updateCanvasScale();
-		}, 100);
+		setTimeout(APP.design.updateCanvasScale, 100);
 
 	},
 
@@ -123,30 +121,18 @@ temp_DESIGN = {
 	initWindowFn: function(){
 
 		// Update canvas scaling
-		APP.win.on('resize', function(){
-			APP.design.updateCanvasScale();
-		});
-		APP.win.on('maximize', function(){
-			APP.design.toggleFullscreen();
-		});
-		APP.win.on('restore', function(){
-			APP.design.updateCanvasScale();
-		});
+		APP.win.on('resize', APP.design.updateCanvasScale);
+		APP.win.on('maximize', APP.design.toggleFullscreen);
+		APP.win.on('restore', APP.design.updateCanvasScale);
 
 		// On focus
-		APP.win.on('focus', function(){
-			APP.design.winOnFocusAction();
-		});
+		APP.win.on('focus', APP.design.winOnFocusAction);
 
 		// On blur
-		APP.win.on('blur', function(){
-			APP.design.winOnBlurAction();
-		});
+		APP.win.on('blur', APP.design.winOnBlurAction);
 
 		// On close
-		APP.win.on('close', function(){
-			APP.exit();
-		});
+		APP.win.on('close', APP.exit);
 
 		// Start canvas check
 		window.requestAnimationFrame(APP.design.updateCanvas);
@@ -206,18 +192,10 @@ temp_DESIGN = {
 			h = APP.settings.data.screenHeight;
 
 		// Check provided res
-		if (width !== void 0 && parseInt(width) !== NaN){
-			w = parseInt(width);
-		}
-		if (height !== void 0 && parseInt(height) !== NaN){
-			h = parseInt(height);
-		}
-		if (w < 1000){
-			w = 1000;
-		}
-		if (h < 720){
-			h = 720;
-		}
+		if (width !== void 0 && parseInt(width) !== NaN) w = parseInt(width);
+		if (height !== void 0 && parseInt(height) !== NaN) h = parseInt(height);
+		if (w < 1000) w = 1000;
+		if (h < 720) h = 720;
 
 		// Perform update
 		TMS.css('APP_CANVAS', {'width': w + 'px', 'height': h + 'px'});
@@ -249,9 +227,7 @@ temp_DESIGN = {
 		}
 
 		// Update canvas scale
-		setTimeout(function(){
-			APP.design.updateCanvasScale();
-		}, 50);
+		setTimeout(APP.design.updateCanvasScale, 50);
 
 	},
 
@@ -259,9 +235,7 @@ temp_DESIGN = {
 	toggleFullscreen: function(){
 
 		// Check if isn't running on editor
-		if (APP.urlParams.get('dev') !== 'true'){
-			APP.win.toggleFullscreen();
-		}
+		if (APP.urlParams.get('dev') !== 'true') APP.win.toggleFullscreen();
 
 	},
 
@@ -291,14 +265,10 @@ temp_DESIGN = {
 				replaceData = innerData;
 
 			// Check if innerData is available
-			if (innerData === void 0){
-				replaceData = '';
-			}
+			if (innerData === void 0) replaceData = '';
 
 			// Set default location
-			if (location === void 0){
-				sLocation = 'APP_CANVAS_INNER';
-			}
+			if (location === void 0) sLocation = 'APP_CANVAS_INNER';
 
 			// Get form data
 			const formHtml = this.formList[formId].replace('%_DATA_%', replaceData);
@@ -518,9 +488,7 @@ temp_DESIGN = {
 				gMetadata = '<label class="LABEL_ENTRY_METADATA">' + data.info + '</label><br>';
 
 			// Empty game metadata if is homebrew
-			if (data.status === 'hb'){
-				gMetadata = '';
-			}
+			if (data.status === 'hb') gMetadata = '';
 
 			switch (mode){
 
@@ -590,14 +558,10 @@ temp_DESIGN = {
 					});
 
 					// Open hack list
-					APP.input.setActionFn('ACTION_2', function(){
-						APP.design.bakedFunctions.GAMELIST_gotoHackList();
-					});
+					APP.input.setActionFn('ACTION_2', APP.design.bakedFunctions.GAMELIST_gotoHackList);
 
 					// Home: Goto top
-					APP.input.setActionFn('ACTION_12', function(){
-						APP.design.bakedFunctions.GAMELIST_gotoTop();
-					});
+					APP.input.setActionFn('ACTION_12', APP.design.bakedFunctions.GAMELIST_gotoTop);
 
 					// Next / Prev buttons
 					APP.input.setActionFn(prevBtn, function(){
@@ -638,9 +602,7 @@ temp_DESIGN = {
 		APP.design.winOnBlurAction = function(){return;}
 
 		// Execute callback
-		if (typeof callback === 'function'){
-			callback();
-		}
+		if (typeof callback === 'function') callback();
 
 		// End
 		return 0;
@@ -672,21 +634,19 @@ temp_DESIGN = {
 
 			// Scroll entry to center
 			if (APP.settings.data.gameListMode !== 'orbis'){
-				TMS.scrollCenter('APP_GAMELIST_ENTRY_' + cIndex);
+				TMS.scrollCenter(`APP_GAMELIST_ENTRY_${cIndex}`);
 			}
 
 			// Set background image
 			TMS.css('APP_CANVAS_BG', {'background-image': `url(\"${entryMetadata.img_background}\")`});
 
 			// Check if app is loading
-			if (APP.settings.appIsLoading === !0){
-				res = 0;
-			}
+			if (APP.settings.appIsLoading === !0) res = 0;
 
 		} else {
 
 			// Focus current index
-			TMS.focus(APP.design.input.currentList + '_' + cIndex);
+			TMS.focus(`${APP.design.input.currentList}_${cIndex}`);
 			res = 0;
 
 		}
@@ -712,9 +672,7 @@ temp_DESIGN = {
 				status = JSON.parse(APP.tools.getVariable(target));
 
 			// Get state
-			if (status === !1){
-				res = 'off';
-			}
+			if (status === !1) res = 'off';
 
 			return res;
 
@@ -746,9 +704,7 @@ temp_DESIGN = {
 				checkboxState = APP.tools.getVariable(data.target);
 
 			// Check if toggle class is defined
-			if (data.toggleClass !== void 0 && data.toggleClass !== ''){
-				toggleClass = data.toggleClass;
-			}
+			if (data.toggleClass !== void 0 && data.toggleClass !== '') toggleClass = data.toggleClass;
 
 			// Process state
 			if (checkboxState === !0){
@@ -767,19 +723,13 @@ temp_DESIGN = {
 			TMS.removeClass(data.domId, toggleClass + '_' + removeClass);
 
 			// Update icon
-			if (document.getElementById(data.domId) !== null){
-				document.getElementById(data.domId).src = 'img/svg/checkbox-' + svgState + '.svg';
-			}
+			if (document.getElementById(data.domId) !== null) document.getElementById(data.domId).src = `img/svg/checkbox-${svgState}.svg`;
 
 			// Save settings
-			if (data.saveSettings === !0){
-				APP.settings.save();
-			}
+			if (data.saveSettings === !0) APP.settings.save();
 
 			// Callback
-			if (typeof data.callback === 'function'){
-				data.callback();
-			}
+			if (typeof data.callback === 'function') data.callback();
 
 		}
 
@@ -801,9 +751,7 @@ temp_DESIGN = {
 		GAMELIST_showAbout: function(){
 
 			// Save current cursor index
-			if (APP.design.input.currentList === 'APP_GAMELIST_ENTRY'){
-				APP.design.input.gListIndexPos = APP.design.input.currentIndex;
-			}
+			if (APP.design.input.currentList === 'APP_GAMELIST_ENTRY') APP.design.input.gListIndexPos = APP.design.input.currentIndex;
 
 			// Fade out bg and fade in "4" icon
 			TMS.css('APP_CANVAS_BG', {'opacity': '0'});
@@ -867,9 +815,7 @@ temp_DESIGN = {
 				callback: function(){
 
 					// Bind buttons
-					APP.input.setActionFn('ACTION_0', function(){
-						APP.design.input.selectMainAction();
-					});
+					APP.input.setActionFn('ACTION_0', APP.design.input.selectMainAction);
 					APP.input.setActionFn('ARROW_LEFT', function(){
 						APP.design.input.moveCursor('prev');
 					});
@@ -879,13 +825,13 @@ temp_DESIGN = {
 
 					// Home, Down Arrow and Back: Return to list
 					APP.input.setActionFn('ARROW_DOWN', function(){
-						APP.design.renderGameList(function(){ APP.design.displaySelectedGame(); });
+						APP.design.renderGameList(APP.design.displaySelectedGame);
 					});
 					APP.input.setActionFn('ACTION_1', function(){
-						APP.design.renderGameList(function(){ APP.design.displaySelectedGame(); });
+						APP.design.renderGameList(APP.design.displaySelectedGame);
 					});
 					APP.input.setActionFn('ACTION_12', function(){
-						APP.design.renderGameList(function(){ APP.design.displaySelectedGame(); });
+						APP.design.renderGameList(APP.design.displaySelectedGame);
 					});
 
 					// Release input
@@ -993,9 +939,7 @@ temp_DESIGN = {
 							});
 
 							// Bind actions
-							APP.input.setActionFn(checkboxInput, function(){
-								APP.design.input.selectMainAction();
-							});
+							APP.input.setActionFn(checkboxInput, APP.design.input.selectMainAction);
 							APP.input.setActionFn('ARROW_UP', function(){
 								APP.design.input.moveCursor('prev');
 							});
@@ -1004,12 +948,8 @@ temp_DESIGN = {
 							});
 
 							// Close quick settings
-							APP.input.setActionFn('ACTION_1', function(){
-								APP.design.quickSettings.close();
-							});
-							APP.input.setActionFn('ARROW_LEFT', function(){
-								APP.design.quickSettings.close();
-							});
+							APP.input.setActionFn('ACTION_1', APP.design.quickSettings.close);
+							APP.input.setActionFn('ARROW_LEFT', APP.design.quickSettings.close);
 
 						}
 

@@ -45,9 +45,7 @@ temp_ANIMATIONS = {
 			APP.design.input.focus();
 
 			// Set actions
-			APP.input.setActionFn('ACTION_0', function(){
-				APP.design.input.selectMainAction();
-			});
+			APP.input.setActionFn('ACTION_0', APP.design.input.selectMainAction);
 
 			// Release input
 			APP.input.releaseInput();
@@ -102,19 +100,17 @@ temp_ANIMATIONS = {
 			cData = APP.gameList.list[APP.gameList.selectedGame];
 
 		// Check if PARAM.SFO exists
-		if (cData.status === 'ok'){
-			entryName = cData.paramSfo['TITLE' + cLangId];
-		}
+		if (cData.status === 'ok') entryName = cData.paramSfo[`TITLE${cLangId}`];
 
 		// Append fpPS4 options menu
 		APP.design.appendForm('emu_options', void 0, 'APP_CANVAS_INNER');
 
 		// Update button on fpPS4 options menu
-		document.getElementById('IMG_APP_EMU_OPTIONS_ACTION_0').src = 'img/input/' + iconStyle + '/INPUT_ACTION_0.png';
+		document.getElementById('IMG_APP_EMU_OPTIONS_ACTION_0').src = `img/input/${iconStyle}/INPUT_ACTION_0.png`;
 		document.getElementById('LABEL_APP_MENU_OPTIONS_CLOSE_FPPS4').innerHTML = APP.lang.getVariable('fpPS4_running_closeEmu');
 
 		// Update middle text
-		document.getElementById('LABEL_APP_MENU_OPTIONS_MIDDLE').innerHTML = entryName + '<br><label class="text-small">' + APP.lang.getVariable('fpPS4_running_middleTextRunning') + '</label>';
+		document.getElementById('LABEL_APP_MENU_OPTIONS_MIDDLE').innerHTML = `${entryName}<br><label class="text-small">${APP.lang.getVariable('fpPS4_running_middleTextRunning')}</label>`;
 
 		// Fade out list and background color
 		TMS.css('APP_MAIN', {'opacity': '0'});
@@ -194,9 +190,7 @@ temp_ANIMATIONS = {
 
 		// Reset window onBlur and onFocus events
 		APP.design.winOnBlurAction = function(){return;}
-		APP.design.winOnFocusAction = function(){
-			APP.design.input.focus();
-		}
+		APP.design.winOnFocusAction = APP.design.input.focus;
 
 		// Focus window
 		APP.design.focusMainWindow();
@@ -215,9 +209,7 @@ temp_ANIMATIONS = {
 		TMS.css('APP_MAIN', {'opacity': '1', 'display': 'block'});
 
 		// Callback
-		if (typeof callback === 'function'){
-			callback();
-		}
+		if (typeof callback === 'function') callback();
 
 	}
 

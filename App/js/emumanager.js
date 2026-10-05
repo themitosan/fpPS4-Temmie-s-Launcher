@@ -94,22 +94,16 @@ temp_EMUMANAGER = {
 		if (canRun === !0){
 
 			// Set window onFocus action
-			APP.design.winOnFocusAction = function(){
-				APP.design.animations.ANIMATION_showEmuRunningOptions();
-			};
+			APP.design.winOnFocusAction = APP.design.animations.ANIMATION_showEmuRunningOptions;
 
 			// Set window onBlur action
-			APP.design.winOnBlurAction = function(){
-				APP.design.animations.ANIMATION_hideEmuRunningOptions();
-			};
+			APP.design.winOnBlurAction = APP.design.animations.ANIMATION_hideEmuRunningOptions;
 
 			// Variables
 			var argList = ['-e', executablePath];
 
 			// Start fpPS4 in fullscreen mode
-			if (settingsList.fpPS4_enableFullScreen === !0){
-				argList.push('-w');
-			}
+			if (settingsList.fpPS4_enableFullScreen === !0) argList.push('-w');
 
 			// Get enabled hacks
 			Object.keys(entrySettings.hackList).forEach(function(cHack){

@@ -75,9 +75,7 @@ temp_LOG = {
 	add: function(data){
 
 		// Check if data exists
-		if (data === void 0){
-			data = {};
-		}
+		if (data === void 0) data = {};
 
 		// Variables
 		var cls = data.cls,
@@ -85,35 +83,23 @@ temp_LOG = {
 			mode = data.mode;
 
 		// Check if variables were provided
-		if (mode === void 0){
-			mode = 'info';
-		}
-		if (cls === void 0){
-			cls = !1;
-		}
+		if (mode === void 0) mode = 'info';
+		if (cls === void 0) cls = !1;
 
 		// Check if need to clear log
-		if (cls === !0){
-			console.clear();
-		}
+		if (cls === !0) console.clear();
 
 		// Check if can log
-		if (APP.settings.debug === !0){
-			console[mode](str);
-		}
+		if (APP.settings.debug === !0) console[mode](str);
 
 		// Check if current data can be added to log history
 		if (str !== '' && str !== '\n'){
 
 			// Check if is data need to be converted
-			if (mode === 'table' || typeof str === 'object'){
-				str = JSON.stringify(str);
-			}
+			if (mode === 'table' || typeof str === 'object') str = JSON.stringify(str);
 
 			// Check if is mode is error
-			if (mode === 'error'){
-				str = '\n\n' + str + '\n\n';
-			}
+			if (mode === 'error') str = '\n\n' + str + '\n\n';
 
 			// Append data
 			this.history = this.history + str + '\n';

@@ -26,13 +26,10 @@ temp_ABOUTSCREEN = {
 
 			// Check if need to break line
 			var breakLine = '<br>';
-			if (cIndex === (arr.length - 1)){
-				breakLine = '';
-			}
+			if (cIndex === (arr.length - 1)) breakLine = '';
 
 			// Create entry
-			res = res + '<a href="' + arr[cIndex].url + '" title="' + arr[cIndex].name + '" target="_blank">' +
-						arr[cIndex].name + '</a>' + breakLine;
+			res = res + '<a href="' + arr[cIndex].url + '" title="' + arr[cIndex].name + '" target="_blank">' + arr[cIndex].name + '</a>' + breakLine;
 
 		});
 
@@ -111,9 +108,7 @@ temp_ABOUTSCREEN = {
 
 				// Check if need to insert break line
 				var breakLine = '<br>';
-				if (cIndex === (pluginList.length - 1)){
-					breakLine = '';
-				}
+				if (cIndex === (pluginList.length - 1)) breakLine = '';
 
 				// Create entry
 				pluginsHtml = pluginsHtml + '<a href="' + pluginList[cIndex].urlPlugin + '" target="_blank">' + pluginList[cIndex].name + '</a> - ' + APP.lang.getVariable('aboutScreen_pluginCreatedBy') +
@@ -154,9 +149,7 @@ temp_ABOUTSCREEN = {
 					authorUrl = '<a href="' + langData.url + '" target="_blank">' + langData.author + '</a>';
 
 				// Check if is latest entry
-				if (cIndex === (legacyTranslationsArray.length - 1)){
-					breakLine = '';
-				}
+				if (cIndex === (legacyTranslationsArray.length - 1)) breakLine = '';
 
 				// Check if author has url
 				if (langData.url === null){

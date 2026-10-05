@@ -52,26 +52,14 @@ temp_QUICKSETTINGS = {
 			/*
 				Check for missing data
 			*/
-			if (data.showTitle === void 0 || data.showTitle === ''){
-				showTitle = !0;
-			}
-			if (data.title === void 0 || data.title === ''){
-				cTitle = 'UNKNOWN_TITLE';
-			}
-			if (data.content === void 0 || data.content === ''){
-				cContent = 'UNKNOWN_CONTENT';
-			}
-			if (data.width === void 0 || data.width === ''){
-				cWidth = 40;
-			}
-			if (data.onClose === void 0 || typeof data.onClose !== 'function'){
-				onClose = null;
-			}
+			if (data.showTitle === void 0 || data.showTitle === '') showTitle = !0;
+			if (data.title === void 0 || data.title === '') cTitle = 'UNKNOWN_TITLE';
+			if (data.content === void 0 || data.content === '') cContent = 'UNKNOWN_CONTENT';
+			if (data.width === void 0 || data.width === '') cWidth = 40;
+			if (data.onClose === void 0 || typeof data.onClose !== 'function') onClose = null;
 
 			// Save current cursor index
-			if (cList === 'APP_GAMELIST_ENTRY'){
-				APP.design.input.gListIndexPos = cIndex;
-			}
+			if (cList === 'APP_GAMELIST_ENTRY') APP.design.input.gListIndexPos = cIndex;
 
 			// Update onClose function
 			APP.design.quickSettings.onClose = onClose;
@@ -115,9 +103,7 @@ temp_QUICKSETTINGS = {
 					APP.input.releaseInput();
 
 					// If have callback, execute it
-					if (data.callback !== void 0 && typeof data.callback === 'function'){
-						data.callback();
-					}
+					if (data.callback !== void 0 && typeof data.callback === 'function') data.callback();
 
 				}, 148);
 
@@ -151,17 +137,13 @@ temp_QUICKSETTINGS = {
 			APP.input.releaseInput();
 
 			// If onClose is defined, execute it
-			if (typeof onClose === 'function'){
-				onClose();
-			}
+			if (typeof onClose === 'function') onClose();
 
 			// Reset onClose
 			APP.design.quickSettings.onClose = null;
 
 			// Execute callback
-			if (typeof callback === 'function'){
-				callback();
-			}
+			if (typeof callback === 'function') callback();
 
 		}, 50);
 

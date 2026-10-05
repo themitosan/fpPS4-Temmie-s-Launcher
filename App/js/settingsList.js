@@ -18,9 +18,7 @@ temp_SETTINGS_LIST = {
 		'changeLanguage': {
 			type: 'options',
 			labelReplace: ['lang.selected.lang', 'lang.selected.author', 'lang.selected.revision'],
-			action: function(){
-				APP.design.addErrorClass();
-			}
+			action: APP.design.addErrorClass
 		},
 
 		// Game list modes
@@ -48,9 +46,7 @@ temp_SETTINGS_LIST = {
 		// Change scheme colors
 		'changeSchemeColors': {
 			type: 'options',
-			action: function(){
-				APP.design.addErrorClass();
-			}
+			action: APP.design.addErrorClass
 		},
 
 		// Game list search mode
@@ -78,9 +74,7 @@ temp_SETTINGS_LIST = {
 		'changeScreenRes': {
 			type: 'options',
 			labelReplace: ['settings.data.screenWidth', 'settings.data.screenHeight'],
-			action: function(){
-				APP.design.settingsMenu.graphics.changeScreenRes();
-			}
+			action: APP.design.settingsMenu.graphics.changeScreenRes
 		},
 
 		// Start launcher on fullscreen mode
@@ -92,9 +86,7 @@ temp_SETTINGS_LIST = {
 		// Toggle fullscreen mode
 		'toggleFullscreenMode': {
 			type: 'options',
-			action: function(){
-				APP.design.toggleFullscreen();
-			}
+			action: APP.design.toggleFullscreen
 		},
 
 		// Change launcher screen scaling mode
@@ -128,35 +120,23 @@ temp_SETTINGS_LIST = {
 		'emuPath': {
 			type: 'options',
 			labelReplace: ['settings.data.fpPS4_Path'],
-			action: function(){
-				APP.design.settingsMenu.paths.selectEmuPath();
-			},
-			onFocus: function(){
-				APP.design.settingsMenu.rightSetInputDefault();
-			}
+			action: APP.design.settingsMenu.paths.selectEmuPath,
+			onFocus: APP.design.settingsMenu.rightSetInputDefault
 		},
 
 		// Default games path
 		'defaultGamesPath': {
 			type: 'options',
-			action: function(){
-				APP.design.addErrorClass();
-			},
-			onFocus: function(){
-				APP.design.settingsMenu.rightSetInputDefault();
-			}
+			action: APP.design.addErrorClass,
+			onFocus: APP.design.settingsMenu.rightSetInputDefault,
 		},
 
 		// Add game path
 		'addGamePath': {
 			type: 'options',
 			addMainLabelClass: 'display-flex-center',
-			action: function(){
-				APP.design.settingsMenu.paths.addPath();
-			},
-			onFocus: function(){
-				APP.design.settingsMenu.rightSetInputDefault();
-			}
+			action: APP.design.settingsMenu.paths.addPath,
+			onFocus: APP.design.settingsMenu.rightSetInputDefault
 		}
 
 	},
@@ -222,25 +202,19 @@ temp_SETTINGS_LIST = {
 		// Force update fpPS4
 		'forceUpdateEmu': {
 			type: 'options',
-			action: function(){
-				APP.design.addErrorClass();
-			}
+			action: APP.design.addErrorClass
 		},
 
 		// Force update Launcher
 		'forceUpdateLauncher': {
 			type: 'options',
-			action: function(){
-				APP.design.addErrorClass();
-			}
+			action: APP.design.addErrorClass
 		},
 
 		// Check for launcher updates
 		'checkUpdatesLauncher': {
 			type: 'options',
-			action: function(){
-				APP.design.addErrorClass();
-			}
+			action: APP.design.addErrorClass
 		},
 
 		// Check for fpPS4 updates
@@ -255,26 +229,20 @@ temp_SETTINGS_LIST = {
 		'selectEmuBranch': {
 			type: 'options',
 			labelReplace: ['settings.data.fpPS4_branch'],
-			action: function(){
-				APP.design.settingsMenu.updater.changeBranch();
-			}
+			action: APP.design.settingsMenu.updater.changeBranch
 		},
 
 		// Browse latest actions
 		'browseLatestActions': {
 			type: 'options',
-			action: function(){
-				APP.design.addErrorClass();
-			}
+			action: APP.design.addErrorClass
 		},
 
 		// Display current version info
 		'displayCurrentVersionInfo': {
 			type: 'options',
 			labelReplace: ['settings.emuCommitShaSmall'],
-			action: function(){
-				APP.design.addErrorClass();
-			}
+			action: APP.design.addErrorClass
 		}
 
 	},
@@ -285,9 +253,7 @@ temp_SETTINGS_LIST = {
 		// Increment interface size
 		'guiZoomScale': {
 			type: 'options',
-			action: function(){
-				APP.design.settingsMenu.accessibility.callGuiZoomScale();
-			}
+			action: APP.design.settingsMenu.accessibility.callGuiZoomScale
 		}
 
 	},
@@ -298,25 +264,19 @@ temp_SETTINGS_LIST = {
 		// Reset launcher settings
 		'resetLauncherSettings': {
 			type: 'options',
-			action: function() {
-				APP.design.addErrorClass();
-			}
+			action: APP.design.addErrorClass
 		},
 
 		// Reset game settings
 		'resetGameSettings': {
 			type: 'options',
-			action: function(){
-				APP.design.addErrorClass();
-			}
+			action: APP.design.addErrorClass
 		},
 
 		// Reload launcher
 		'reloadLauncher': {
 			type: 'options',
-			action: function(){
-				APP.design.settingsMenu.misc.reloadLauncher();
-			}
+			action: APP.design.settingsMenu.misc.reloadLauncher
 		}
 
 	}

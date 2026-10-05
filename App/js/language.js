@@ -71,17 +71,13 @@ temp_LANGUAGE = {
 			cIconStyle = APP.settings.data.input_iconStyle;
 
 		// If variable is not found or is a empty string, try get on english
-		if (res === void 0 || res === ''){
-			res = this.english.variables[name];
-		}
+		if (res === void 0 || res === '') res = this.english.variables[name];
 
 		// Check if variable exists on default location 
 		if (res !== void 0){
 
 			// If list is undefined, set patch list as a empty array
-			if (list !== void 0){
-				lPatch = list;
-			}
+			if (list !== void 0) lPatch = list;
 
 			// Apply variables
 			lPatch.forEach(function(fix, entry){
@@ -128,17 +124,13 @@ temp_LANGUAGE = {
 				cIconStyle = APP.settings.data.input_iconStyle;
 
 			// If variable is not found or an empty string, get from english instead
-			if (res === void 0 || res === ''){
-				res = this.english.msgsys[name];
-			}
+			if (res === void 0 || res === '') res = this.english.msgsys[name];
 
 			// Check if message exists
 			if (res !== void 0){
 
 				// If list is undefined, set patch list as a empty array
-				if (list !== void 0){
-					lPatch = list;
-				}
+				if (list !== void 0) lPatch = list;
 
 				// Get message from temp
 				tempString = res.message.toString();
@@ -156,22 +148,16 @@ temp_LANGUAGE = {
 						appIsLoading = APP.settings.appIsLoading;
 
 					// If app is loading and no class were defined, set custom class
-					if (appIsLoading === !0 && options.class === void 0 || appIsLoading === !0 && options.class === ''){
-						options.class = 'BTN_GUI_POPUP BTN_GUI_SAFE_MODE';
-					}
+					if (appIsLoading === !0 && options.class === void 0 || appIsLoading === !0 && options.class === '') options.class = 'BTN_GUI_POPUP BTN_GUI_SAFE_MODE';
 
 					// Check if class is present
-					if (appIsLoading === !1 && options.class === void 0 || appIsLoading === !1 && options.class === ''){
-						options.class = 'BTN_GUI_POPUP';
-					}
+					if (appIsLoading === !1 && options.class === void 0 || appIsLoading === !1 && options.class === '') options.class = 'BTN_GUI_POPUP';
 
 					// Process options list
 					options.list.forEach(function(cOption, cIndex){
 
 						// Check if action was defined
-						if (cOption.action === void 0 || cOption.action === ''){
-							cOption.action = 'return 0;';
-						}
+						if (cOption.action === void 0 || cOption.action === '') cOption.action = 'return 0;';
 
 						// Append option
 						tempOptions = tempOptions + '<input type="button" id="APP_MSGSYS_OPTION_' + cIndex + '" value="' + cOption.label + '" class="' + options.class + '" onclick="' + cOption.action + '">';

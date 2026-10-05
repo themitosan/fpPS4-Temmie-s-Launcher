@@ -51,9 +51,7 @@ temp_FILEMANAGER = {
 		if (ext !== void 0 && typeof callback === 'function'){
 
 			// Check for extension
-			if (ext === ''){
-				ext = '*.*';
-			}
+			if (ext === '') ext = '*.*';
 
 			// Reset file loader
 			document.getElementById('APP_FILE_LOADER').value = '';
@@ -84,9 +82,7 @@ temp_FILEMANAGER = {
 			callback = data.callback;
 
 		// Fix extension
-		if (ext === '' || typeof ext !== 'string'){
-			ext = '*.*';
-		}
+		if (ext === '' || typeof ext !== 'string') ext = '*.*';
 
 		// Set file info
 		document.getElementById('APP_FILE_SAVE').accept = ext;
@@ -108,9 +104,7 @@ temp_FILEMANAGER = {
 					APP.fs.writeFileSync(location, content, mode);
 
 					// Execute callback
-					if (typeof callback === 'function'){
-						callback(APP.tools.fixPath(location));
-					}
+					if (typeof callback === 'function') callback(APP.tools.fixPath(location));
 
 				} catch (err) {
 					throw new Error(err);

@@ -38,9 +38,7 @@ temp_INTERPRETER = {
 			const scriptList = fList.filter(function(cFile){
 
 				// Filter JSON files
-				if (APP.path.parse(cFile).ext.toLowerCase() === '.json'){
-					return cFile;
-				}
+				if (APP.path.parse(cFile).ext.toLowerCase() === '.json') return cFile;
 
 			});
 
@@ -97,19 +95,13 @@ temp_INTERPRETER = {
 			var errorReason = '';
 
 			// If script is already running
-			if (this.activeScripts[scriptName] !== void 0){
-				errorReason = 'This script is already running!';
-			}
+			if (this.activeScripts[scriptName] !== void 0) errorReason = 'This script is already running!';
 
 			// If script doesn't exists
-			if (this.scripts[scriptName] === void 0){
-				errorReason = 'This script doesn\'t exist on database! (' + scriptName + ')';
-			}
+			if (this.scripts[scriptName] === void 0) errorReason = 'This script doesn\'t exist on database! (' + scriptName + ')';
 
 			// If launcher is on boot process
-			if (APP.settings.appIsLoading === !0){
-				window.alert('ERROR - Unable to start interpreter!\nReason: ' + errorReason);
-			}
+			if (APP.settings.appIsLoading === !0) window.alert('ERROR - Unable to start interpreter!\nReason: ' + errorReason);
 
 			// Throw new error
 			throw new Error('ERROR - Unable to start interpreter!\nReason: ' + errorReason);
@@ -261,7 +253,8 @@ temp_INTERPRETER = {
 			*/
 
 			// Release semaphore 
-			const releaseSemaphore = function(){
+			const
+				releaseSemaphore = function(){
 					activeScripts[scriptName].semaphore = !0;
 				},
 
@@ -278,9 +271,7 @@ temp_INTERPRETER = {
 
 					// Filter list
 					return cList.filter(function(cFunction){
-						if (cFunction.opcode === opcode && cFunction.id === id){
-							return cFunction;
-						}
+						if (cFunction.opcode === opcode && cFunction.id === id) return cFunction;
 					});
 
 				},
@@ -300,9 +291,7 @@ temp_INTERPRETER = {
 
 					// Filter list
 					return cList.filter(function(cFunction){
-						if (cFunction.opcode === data.opcode && cFunction.data[data.key] === data.value){
-							return cFunction;
-						}
+						if (cFunction.opcode === data.opcode && cFunction.data[data.key] === data.value) return cFunction;
 					});
 
 				},
@@ -317,19 +306,13 @@ temp_INTERPRETER = {
 						endIfLocation = getMatchingFnId('END_IF', fnId);
 
 					// If is CHECK_IF
-					if (fName === 'CHECK_IF'){
-						endLocation = stepList.indexOf(elseLocation[0]);
-					}
+					if (fName === 'CHECK_IF') endLocation = stepList.indexOf(elseLocation[0]);
 
 					// If res stills undefined, seek for END_IF 
-					if (endLocation === -1){
-						endLocation = stepList.indexOf(endIfLocation[0]);
-					}
+					if (endLocation === -1) endLocation = stepList.indexOf(endIfLocation[0]);
 
 					// Check if (by some reason) it fails finding END_LIST. If so, return out of bounds
-					if (endLocation === -1){
-						endLocation = parseInt(activeScripts[scriptName].steps.length + 1);
-					}
+					if (endLocation === -1) endLocation = parseInt(activeScripts[scriptName].steps.length + 1);
 
 					console.debug('(' + fName + ') Jump to function: ' + (endLocation + 1));
 					console.debug(activeScripts[scriptName].steps);
@@ -351,9 +334,7 @@ temp_INTERPRETER = {
 						});
 
 					// Check if got result
-					if (seekPosition[0] !== void 0){
-						res = (activeScripts[scriptName].steps.indexOf(seekPosition[0]) - 1);
-					}
+					if (seekPosition[0] !== void 0) res = (activeScripts[scriptName].steps.indexOf(seekPosition[0]) - 1);
 
 					// End
 					return res;
@@ -367,9 +348,7 @@ temp_INTERPRETER = {
 					var fnData = fnString;
 
 					// Check string status
-					if (fnString === void 0 || fnString === ''){
-						fnData = 'return 0;';
-					}
+					if (fnString === void 0 || fnString === '') fnData = 'return 0;';
 
 					// End
 					return (Function('"use strict";' + fnData));
@@ -390,9 +369,7 @@ temp_INTERPRETER = {
 				case 'WAIT':
 
 					// Check if time was provided
-					if (cData.time === void 0 || parseInt(cData.time) === NaN){
-						cData['time'] = 0;
-					}
+					if (cData.time === void 0 || parseInt(cData.time) === NaN) cData['time'] = 0;
 
 					// Process timeout
 					setTimeout(function(){
@@ -443,9 +420,7 @@ temp_INTERPRETER = {
 					var setData = cData.value;
 
 					// Is value to be stored is from main APP object
-					if (cData.isFromMainObject === !0){
-						setData = APP.tools.getVariable(setData.toString());
-					}
+					if (cData.isFromMainObject === !0) setData = APP.tools.getVariable(setData.toString());
 
 					// Set data on target
 					APP.tools.setVariable(cData.target, setData);
@@ -461,9 +436,7 @@ temp_INTERPRETER = {
 					var innerData = cData.innerData;
 
 					// Check if there's lang string to get
-					if (cData.getLangVar === !0){
-						innerData = APP.lang.getVariable(cData.langVar);
-					}
+					if (cData.getLangVar === !0) innerData = APP.lang.getVariable(cData.langVar);
 
 					// Append form
 					APP.design.appendForm(cData.formId, innerData, cData.location);
@@ -480,9 +453,7 @@ temp_INTERPRETER = {
 
 							// Execute function and resolve
 							const fnData = (Function('"use strict";return ' + cData.execFn)());
-							if (fnData === 0){
-								resolve(0);
-							}
+							if (fnData === 0) resolve(0);
 
 						} catch (err) {
 
@@ -493,9 +464,7 @@ temp_INTERPRETER = {
 
 						}
 
-					}).then(function(){
-						releaseSemaphore();
-					});
+					}).then(releaseSemaphore);
 
 					break;
 
@@ -507,9 +476,7 @@ temp_INTERPRETER = {
 
 				// Save settings
 				case 'SAVE_SETTINGS':
-					APP.settings.save(function(){
-						releaseSemaphore();
-					});
+					APP.settings.save(releaseSemaphore);
 					break;
 
 				// Call msgsys window
@@ -517,9 +484,7 @@ temp_INTERPRETER = {
 					APP.design.msgsys.displayMsg({
 						msgName: cData.msgName,
 						showBgIcon: cData.showBgIcon, 
-						callback: function(){
-							releaseSemaphore();
-						}
+						callback: releaseSemaphore
 					});
 					break;
 
@@ -536,12 +501,8 @@ temp_INTERPRETER = {
 					} else {
 						animationTime = parseInt(cData.duration);
 					}
-					if (animationTime < 0){
-						animationTime = 0;
-					}
-					if (animationTime > 10000){
-						animationTime = 10000;
-					}
+					if (animationTime < 0) animationTime = 0;
+					if (animationTime > 10000) animationTime = 10000;
 
 					// If replace list is empty / undefined, convert all items on original list as main object variables
 					if (cData.replaceList === void 0){
@@ -555,6 +516,7 @@ temp_INTERPRETER = {
 
 						// Split all items per comma
 						msgsysReplaceList = cData.replaceList.split(',');
+
 					}
 
 					// Update animation time
@@ -571,16 +533,12 @@ temp_INTERPRETER = {
 					});
 
 					// Timeout function before releasing semaphore
-					setTimeout(function(){
-						releaseSemaphore();
-					}, (animationTime + 10));
+					setTimeout(releaseSemaphore, (animationTime + 10));
 					break;
 
 				// Close msgsys window
 				case 'END_MSGSYS':
-					APP.design.msgsys.endMessage(function(){
-						releaseSemaphore();
-					});
+					APP.design.msgsys.endMessage(releaseSemaphore);
 					break;
 
 				// Clear temp variable
@@ -599,9 +557,7 @@ temp_INTERPRETER = {
 					setTimeout(function(){
 
 						// Check if needs to kill current script
-						if (cData.killParent === !0){
-							killExecution();
-						}
+						if (cData.killParent === !0) killExecution();
 
 						// Release semaphore
 						releaseSemaphore();
@@ -735,9 +691,7 @@ temp_INTERPRETER = {
 				case 'SET_INPUT_LIST':
 
 					// Check if list length is from main object
-					if (cData.listLengthIsFromApp === !0){
-						cData.length = APP.tools.getVariable(cData.length);
-					}
+					if (cData.listLengthIsFromApp === !0) cData.length = APP.tools.getVariable(cData.length);
 
 					// Set input list
 					APP.design.input.setList({
@@ -763,19 +717,13 @@ temp_INTERPRETER = {
 				case 'SCENEMANAGER_LOAD':
 
 					// Check display mode
-					if (cData.displayMode === void 0){
-						cData.displayMode = 'block';
-					}
+					if (cData.displayMode === void 0) cData.displayMode = 'block';
 
 					// Check duration
-					if (cData.duration === void 0 || cData.duration < 400){
-						cData.duration = 400;
-					}
+					if (cData.duration === void 0 || cData.duration < 400) cData.duration = 400;
 
 					// Check if needs to get next scene from a variable
-					if (cData.getNextSceneVar === !0){
-						cData.nextScene = APP.tools.getVariable(cData.nextScene);
-					}
+					if (cData.getNextSceneVar === !0) cData.nextScene = APP.tools.getVariable(cData.nextScene);
 
 					// Check next scene
 					if (cData.nextScene === void 0){
@@ -790,9 +738,7 @@ temp_INTERPRETER = {
 						nextOpacity: cData.nextOpacity,
 						displayMode: cData.displayMode,
 						releaseInput: cData.releaseInput,
-						callback: function(){
-							releaseSemaphore();
-						}
+						callback: releaseSemaphore
 
 					});
 					break;

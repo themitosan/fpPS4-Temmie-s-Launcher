@@ -52,9 +52,7 @@ temp_SETTINGSGUI = {
 
 				// First entry
 				var firstEntry = '';
-				if (cIndex === 0){
-					firstEntry = 'BTN_GUI_OPTIONS_FIRST_ITEM';
-				}
+				if (cIndex === 0) firstEntry = 'BTN_GUI_OPTIONS_FIRST_ITEM';
 
 				// Create button
 				htmlTemp = htmlTemp + '<button id="BTN_APP_SETTINGS_' + cIndex + '" class="BTN_GUI_OPTIONS ' + firstEntry + '" onclick="APP.design.settingsMenu.renderMenu(\'' +
@@ -117,9 +115,7 @@ temp_SETTINGSGUI = {
 			});
 
 			// Execute callback
-			if (typeof callback === 'function'){
-				callback();
-			}
+			if (typeof callback === 'function') callback();
 
 		}
 
@@ -157,17 +153,11 @@ temp_SETTINGSGUI = {
 				const menuList = APP.design.settingsMenu.menuList;
 
 				// Default actions
-				APP.input.setActionFn('ACTION_0', function(){
-					APP.design.input.selectMainAction();
-				});
-				APP.input.setActionFn('ARROW_RIGHT', function(){
-					APP.design.input.selectMainAction();
-				});
+				APP.input.setActionFn('ACTION_0', APP.design.input.selectMainAction);
+				APP.input.setActionFn('ARROW_RIGHT', APP.design.input.selectMainAction);
 
 				// Go back
-				APP.input.setActionFn('ACTION_1', function(){
-					APP.design.settingsMenu.close();
-				});
+				APP.input.setActionFn('ACTION_1', APP.design.settingsMenu.close);
 
 				// Next / Prev buttons
 				APP.input.setActionFn('ARROW_UP', function(){
@@ -199,9 +189,7 @@ temp_SETTINGSGUI = {
 		APP.input.releaseInput();
 
 		// Execute callback
-		if (typeof callback === 'function'){
-			callback();
-		}
+		if (typeof callback === 'function') callback();
 
 	},
 
@@ -247,9 +235,7 @@ temp_SETTINGSGUI = {
 					cSettingsData = optionList[cSettings];
 
 				// If is first item from settings list, add class (BTN_GUI_OPTIONS_FIRST_ITEM)
-				if (cIndex === 0){
-					cFirstIndex = ' BTN_GUI_OPTIONS_FIRST_ITEM';
-				}
+				if (cIndex === 0) cFirstIndex = ' BTN_GUI_OPTIONS_FIRST_ITEM';
 
 				// Process settings data
 				switch (cSettingsData.type){
@@ -293,22 +279,16 @@ temp_SETTINGSGUI = {
 						}
 
 						// Check if must add special class to button
-						if (cSettingsData.addMainLabelClass !== void 0){
-							mainLabelClass = ' ' + cSettingsData.addMainLabelClass;
-						}
+						if (cSettingsData.addMainLabelClass !== void 0) mainLabelClass = ' ' + cSettingsData.addMainLabelClass;
 
 						// Get option desc
 						const textDesc = APP.lang.getVariable('launcherSettings_' + menuName + '_' + cSettings + '_desc', rList);
 
 						// Check if text desc is empty
-						if (textDesc !== ''){
-							textDescHtml = '<label class="text-small cursor-pointer">' + textDesc + '</label>';
-						}
+						if (textDesc !== '') textDescHtml = '<label class="text-small cursor-pointer">' + textDesc + '</label>';
 
 						// Check if on focus event is active
-						if (cSettingsData.onFocus !== void 0){
-							addFocus.push(cSettings);
-						}
+						if (cSettingsData.onFocus !== void 0) addFocus.push(cSettings);
 
 						// Set HTML
 						cSettingsHtml = '<!-- ' + cSettings + ' -->\n<button id="BTN_SETTINGS_OPTION_' + cIndex + '" class="BTN_GUI_OPTIONS BTN_LAUNCHER_SETTINGS' + cFirstIndex +
@@ -350,9 +330,7 @@ temp_SETTINGSGUI = {
 				const cIndex = optionArray.indexOf(cItem);
 
 				// Set on focus event
-				document.getElementById('BTN_SETTINGS_OPTION_' + cIndex).onfocus = function(){
-					optionList[cItem].onFocus();
-				}
+				document.getElementById('BTN_SETTINGS_OPTION_' + cIndex).onfocus = optionList[cItem].onFocus;
 
 			});
 
@@ -414,9 +392,7 @@ temp_SETTINGSGUI = {
 			this.rightSetInputDefault();
 
 			// Update cursor position
-			if (cPos !== void 0){
-				cursorIndex = parseInt(cPos);
-			}
+			if (cPos !== void 0) cursorIndex = parseInt(cPos);
 
 			// Set menu name
 			this.selectedMenuName = menuName;
@@ -435,9 +411,7 @@ temp_SETTINGSGUI = {
 			*/
 
 			// Execute callback
-			if (typeof callback === 'function'){
-				callback();
-			}
+			if (typeof callback === 'function') callback();
 
 			// Focus first button
 			APP.design.input.focus();
@@ -511,17 +485,11 @@ temp_SETTINGSGUI = {
 			callback: function(){
 
 				// Default actions
-				APP.input.setActionFn('ACTION_0', function(){
-					APP.design.input.selectMainAction();
-				});
+				APP.input.setActionFn('ACTION_0', APP.design.input.selectMainAction);
 
 				// Go back
-				APP.input.setActionFn('ACTION_1', function(){
-					APP.design.settingsMenu.renderLeft();
-				});
-				APP.input.setActionFn('ARROW_LEFT', function(){
-					APP.design.settingsMenu.renderLeft();
-				});
+				APP.input.setActionFn('ACTION_1', APP.design.settingsMenu.renderLeft);
+				APP.input.setActionFn('ARROW_LEFT', APP.design.settingsMenu.renderLeft);
 
 				// Next / Prev buttons
 				APP.input.setActionFn('ARROW_UP', function(){
@@ -565,17 +533,11 @@ temp_SETTINGSGUI = {
 				callback: function(){
 
 					// Select res.
-					APP.input.setActionFn('ACTION_0', function(){
-						APP.design.input.selectMainAction();
-					});
+					APP.input.setActionFn('ACTION_0', APP.design.input.selectMainAction);
 
 					// Go back
-					APP.input.setActionFn('ACTION_1', function(){
-						APP.design.quickSettings.close();
-					});
-					APP.input.setActionFn('ARROW_LEFT', function(){
-						APP.design.quickSettings.close();
-					});
+					APP.input.setActionFn('ACTION_1', APP.design.quickSettings.close);
+					APP.input.setActionFn('ARROW_LEFT', APP.design.quickSettings.close);
 
 					// Next / Prev buttons
 					APP.input.setActionFn('ARROW_UP', function(){
@@ -646,24 +608,12 @@ temp_SETTINGSGUI = {
 				modifierName = data.modifierName;
 
 			// Check for missing args
-			if (addBtnClass === void 0){
-				addBtnClass = '';
-			}
-			if (modifierName === void 0){
-				modifierName = '';
-			}
-			if (data.menuWidth === void 0){
-				data['menuWidth'] = 32;
-			}
-			if (data.getInfo === void 0){
-				data['getInfo'] = !1;
-			}
-			if (data.isNumber === void 0){
-				data['isNumber'] = !1;
-			}
-			if (data.disableCapitals === void 0){
-				data['disableCapitals'] = !1;
-			}
+			if (addBtnClass === void 0) addBtnClass = '';
+			if (modifierName === void 0) modifierName = '';
+			if (data.menuWidth === void 0) data['menuWidth'] = 32;
+			if (data.getInfo === void 0) data['getInfo'] = !1;
+			if (data.isNumber === void 0) data['isNumber'] = !1;
+			if (data.disableCapitals === void 0) data['disableCapitals'] = !1;
 
 			// Generate html
 			optionList.forEach(function(cMode, cIndex){
@@ -675,9 +625,7 @@ temp_SETTINGSGUI = {
 					modeName = cMode.toString().slice(0, 1).toUpperCase() + cMode.toString().slice(1);
 
 				// Check for disable capitals
-				if (data.disableCapitals === !0){
-					modeName = modeName.toLowerCase();
-				}
+				if (data.disableCapitals === !0) modeName = modeName.toLowerCase();
 
 				// Check if is selected option
 				if (APP.settings.data[data.settingsName] === cMode){
@@ -694,9 +642,7 @@ temp_SETTINGSGUI = {
 				}
 
 				// Get info
-				if (data.getInfo === !0){
-					modeInfo = '<br><label class="text-small cursor-pointer">' + APP.lang.getVariable('launcherSettings_' + data.menu + '_' + data.labelName + '_' + cMode) + '</label>';
-				}
+				if (data.getInfo === !0) modeInfo = '<br><label class="text-small cursor-pointer">' + APP.lang.getVariable('launcherSettings_' + data.menu + '_' + data.labelName + '_' + cMode) + '</label>';
 
 				// Default action on select
 				var defaultAction = 'APP.settings.apply({\'' + data.settingsName + '\': ' + newSetting + '});APP.design.quickSettings.close();';
@@ -726,9 +672,7 @@ temp_SETTINGSGUI = {
 					});
 
 					// Callback after closing quicksettings
-					if (typeof data.onCloseQs === 'function'){
-						data.onCloseQs();
-					}
+					if (typeof data.onCloseQs === 'function') data.onCloseQs();
 
 				}
 
@@ -781,9 +725,7 @@ temp_SETTINGSGUI = {
 					selectedClass = '';
 
 				// Check if there's labels for current res.
-				if (cL !== void 0 && cL !== ''){
-					selectedLabel = '<br><label class="text-small cursor-pointer">' + APP.lang.getVariable('launcherSettings_' + currentMenu + '_changeScreenRes_' + cL) + '</label>';
-				}
+				if (cL !== void 0 && cL !== '') selectedLabel = '<br><label class="text-small cursor-pointer">' + APP.lang.getVariable('launcherSettings_' + currentMenu + '_changeScreenRes_' + cL) + '</label>';
 
 				// Check if current entry is selected res.
 				if (cW === APP.settings.data.screenWidth && cH === APP.settings.data.screenHeight){
@@ -804,9 +746,7 @@ temp_SETTINGSGUI = {
 				width: 26,
 				showTitle: !1,
 				content: htmlTemp,
-				onClose: function(){
-					APP.design.settingsMenu.graphics.returnScreenResTest();
-				}
+				onClose: APP.design.settingsMenu.graphics.returnScreenResTest
 			});
 
 			// Set default actions for quicksettings
@@ -842,9 +782,7 @@ temp_SETTINGSGUI = {
 				APP.design.settingsMenu.tempData['newRes'] = newResData.w + 'x' + newResData.h;
 
 				// Reset interface scale if res is lower than 1600x900
-				if (newResData.w < 1600 && newResData.h < 900){
-					APP.settings.data.guiZoomScale = 1;
-				}
+				if (newResData.w < 1600 && newResData.h < 900) APP.settings.data.guiZoomScale = 1;
 
 				// Update screen res for testing
 				APP.design.updateCanvasRes(newResData.w, newResData.h);
@@ -856,9 +794,7 @@ temp_SETTINGSGUI = {
 				});
 
 				// Set timeout to revert screen res.
-				APP.design.settingsMenu.tempData['screenTimeout'] = setTimeout(function(){
-					APP.input.commandActions.ACTION_1();
-				}, 10000);
+				APP.design.settingsMenu.tempData['screenTimeout'] = setTimeout(APP.input.commandActions.ACTION_1, 10000);
 
 			} else {
 
@@ -983,17 +919,11 @@ temp_SETTINGSGUI = {
 				callback: function(){
 
 					// Delete entry
-					APP.input.setActionFn('ACTION_3', function(){
-						APP.design.settingsMenu.paths.removeEntry();
-					});
+					APP.input.setActionFn('ACTION_3', APP.design.settingsMenu.paths.removeEntry);
 
 					// Go back
-					APP.input.setActionFn('ACTION_1', function(){
-						APP.design.settingsMenu.renderLeft();
-					});
-					APP.input.setActionFn('ARROW_LEFT', function(){
-						APP.design.settingsMenu.renderLeft();
-					});
+					APP.input.setActionFn('ACTION_1', APP.design.settingsMenu.renderLeft);
+					APP.input.setActionFn('ARROW_LEFT', APP.design.settingsMenu.renderLeft);
 
 					// Next / Prev buttons
 					APP.input.setActionFn('ARROW_UP', function(){
@@ -1107,9 +1037,7 @@ temp_SETTINGSGUI = {
 					options: zoomOptions,
 					menu: 'accessibility',
 					settingsName: 'guiZoomScale',
-					onCloseQs: function(){
-						APP.design.updateCanvasRes();
-					}
+					onCloseQs: APP.design.updateCanvasRes
 				});
 
 			} else {

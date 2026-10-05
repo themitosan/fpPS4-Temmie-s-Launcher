@@ -106,9 +106,7 @@ window['APP'] = {
 	checkDebug: function(){
 
 		// Check if is running with dev flag from browser
-		if (this.urlParams.get('dev') === 'true' || nw.App.argv.indexOf('--dev') !== -1){
-			this.settings.debug = !0;
-		}
+		if (this.urlParams.get('dev') === 'true' || nw.App.argv.indexOf('--dev') !== -1) this.settings.debug = !0;
 
 	},
 
@@ -199,13 +197,12 @@ window['APP'] = {
 		if (this.memoryjs !== void 0 && processName !== void 0 && processName !== ''){
 
 			// Get process list
-			var res, pList = this.memoryjs.getProcesses();
+			var res,
+				pList = this.memoryjs.getProcesses();
 
 			// Seek process
 			Object.keys(pList).forEach(function(pName){
-				if (pList[pName].szExeFile.toLowerCase() === processName.toLowerCase()){
-					res = pList[pName];
-				}
+				if (pList[pName].szExeFile.toLowerCase() === processName.toLowerCase()) res = pList[pName];
 			});
 
 			// Return result
@@ -228,9 +225,7 @@ window['APP'] = {
 			if (APP.settings.settingsLoadError === ''){
 
 				// Save before closing
-				APP.settings.save(function(){
-					nw.App.quit();
-				});
+				APP.settings.save(nw.App.quit);
 
 			} else {
 
@@ -256,9 +251,7 @@ window['APP'] = {
 			if (this.settings.settingsLoadError === ''){
 
 				// Save before closing
-				this.settings.save(function(){
-					chrome.runtime.reload();
-				});
+				this.settings.save(chrome.runtime.reload);
 
 			} else {
 

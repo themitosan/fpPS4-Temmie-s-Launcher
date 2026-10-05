@@ -88,9 +88,7 @@ temp_GAMELIST = {
 			APP.settings.data.gamePaths.forEach(function(cPath){
 
 				// Check if current path already exists on list
-				if (pathList.indexOf(cPath) === -1){
-					pathList.push(cPath);
-				}
+				if (pathList.indexOf(cPath) === -1) pathList.push(cPath);
 
 			});
 
@@ -105,9 +103,7 @@ temp_GAMELIST = {
 		TMS.css('APP_CANVAS_BG', {'transition-duration': '0.2s', 'background-image': getPrevBG});
 
 		// Execute callback
-		if (typeof callback === 'function'){
-			callback();
-		}
+		if (typeof callback === 'function') callback();
 
 		// End
 		return 0;
@@ -163,18 +159,14 @@ temp_GAMELIST = {
 					*/
 
 					// If main eboot.bin exists
-					if (fileList.indexOf('eboot.bin') !== -1){
-						finalMetadata.execFile = 'eboot.bin';
-					}
+					if (fileList.indexOf('eboot.bin') !== -1) finalMetadata.execFile = 'eboot.bin';
 
 					// If main eboot.bin does not exists, seek any .elf file
 					if (finalMetadata.execFile === ''){
 
 						// Set executable as first entry of elf file present
 						finalMetadata.execFile = fileList.filter(function(elf){
-							if(elf.indexOf('.elf') !== -1){
-								return elf;
-							} 
+							if (elf.indexOf('.elf') !== -1) return elf;
 						})[0];
 
 						// If found .elf file, set current entry metadata as homebrew
@@ -271,9 +263,7 @@ temp_GAMELIST = {
 
 						// Add image to be cached
 						var newImg = `<img src="${finalMetadata.img_background}">`;
-						if (tempHtml.indexOf(newImg) === -1){
-							tempHtml = tempHtml + newImg;
-						}
+						if (tempHtml.indexOf(newImg) === -1) tempHtml = tempHtml + newImg;
 
 						// Add current entry to game list
 						APP.gameList.list[finalMetadata.entryName] = finalMetadata;

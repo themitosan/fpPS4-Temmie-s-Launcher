@@ -133,18 +133,10 @@ temp_EXEC = {
 		if (data.exe !== void 0 && data.exe !== ''){
 
 			// Check for missing data
-			if (data['isEmu'] === void 0){
-				data['isEmu'] = !1;
-			}
-			if (data['args'] === void 0){
-				data['args'] = [];
-			}
-			if (data['useLogWindow'] === void 0){
-				data['useLogWindow'] = !0;
-			}
-			if (data['printLog'] === void 0){
-				data['printLog'] = !0;
-			}
+			if (data['isEmu'] === void 0) data['isEmu'] = !1;
+			if (data['args'] === void 0) data['args'] = [];
+			if (data['useLogWindow'] === void 0) data['useLogWindow'] = !0;
+			if (data['printLog'] === void 0) data['printLog'] = !0;
 
 			// Reset sdt data
 			APP.exec.execOutputData = '';
@@ -153,14 +145,10 @@ temp_EXEC = {
 			process.chdir(APP.path.parse(data.exe).dir);
 
 			// If is fpPS4
-			if (data.isEmu === !0){
-				data['exe'] = APP.path.parse(APP.settings.data.fpPS4_Path).base;
-			}
+			if (data.isEmu === !0) data['exe'] = APP.path.parse(APP.settings.data.fpPS4_Path).base;
 
 			// Force running using log window if launcher is running on a non-windows os
-			if (APP.os.platform() !== 'win32'){
-				data.useLogWindow = !0;
-			}
+			if (APP.os.platform() !== 'win32') data.useLogWindow = !0;
 
 			// Run external window
 			if (data.useLogWindow === !0){
@@ -197,9 +185,7 @@ temp_EXEC = {
 					execLine = 'start ' + winMode + 'cmd /C ' + data.exe + ' ' + parseArgs + pressAnyKey;
 
 				// Check for non-windows OS
-				if (APP.os.platform() !== 'win32'){
-					execLine = `wine wineconsole "Z:${data.exe}" ${parseArgs}`;
-				}
+				if (APP.os.platform() !== 'win32') execLine = `wine wineconsole "Z:${data.exe}" ${parseArgs}`;
 
 				// Exec process
 				APP.exec['processData'] = APP.childProcess.exec(execLine);
@@ -234,9 +220,7 @@ temp_EXEC = {
 				const errData = APP.exec.exitCodeList[code];
 
 				// Return error code
-				if (code !== 0 && errData !== void 0){
-					console.error('ERROR - ' + errData.id + ' (' + code + ')\n' + errData.desc);
-				}
+				if (code !== 0 && errData !== void 0) console.error('ERROR - ' + errData.id + ' (' + code + ')\n' + errData.desc);
 
 				// Remove module
 				delete APP.exec['processData'];
@@ -251,14 +235,10 @@ temp_EXEC = {
 				}
 
 				// If was fpPS4 running a title, close emu options
-				if (data.isEmu === !0){
-					APP.emumanager.stop();
-				}
+				if (data.isEmu === !0) APP.emumanager.stop();
 
 				// Execute callback
-				if (data.callback !== void 0 && typeof data.callback === 'function'){
-					data.callback(code);
-				}
+				if (data.callback !== void 0 && typeof data.callback === 'function') data.callback(code);
 
 				// Reset fpPS4 error list
 				APP.emumanager.emuErrorList = [];

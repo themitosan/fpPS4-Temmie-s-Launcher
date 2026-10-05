@@ -339,9 +339,7 @@ temp_SETTINGS = {
 			localStorage.setItem('BACKUP_SETTINGS', JSON.stringify(this.data));
 
 			// Execute callback
-			if (typeof callback === 'function'){
-				callback();
-			}
+			if (typeof callback === 'function') callback();
 
 		} catch (err) {
 			throw new Error(APP.lang.getVariable('settingsSaveError', [err]));
@@ -427,9 +425,7 @@ temp_SETTINGS = {
 				const cPath = pathBase + '/' + fName;
 
 				// If current path does not exists, try creating it
-				if (APP.fs.existsSync(cPath) === !1){
-					APP.fs.mkdirSync(cPath);
-				}
+				if (APP.fs.existsSync(cPath) === !1) APP.fs.mkdirSync(cPath);
 
 			});
 
@@ -584,9 +580,7 @@ temp_SETTINGS = {
 					} else {
 	
 						// Check if callback exists
-						if (typeof cb === 'function'){
-							res = cb(exitCode);
-						}
+						if (typeof cb === 'function') res = cb(exitCode);
 	
 					}
 	
@@ -607,20 +601,14 @@ temp_SETTINGS = {
 		var nextAction = 'loadForms',
 			isBootProcess = this.appIsLoading,
 			nAction = function(){
-				if (typeof callback === 'function'){
-					callback();
-				}
-				if (isBootProcess === !0){
-					APP.settings[nextAction]();
-				}
+				if (typeof callback === 'function') callback();
+				if (isBootProcess === !0) APP.settings[nextAction]();
 			};
 
 		if (this.isOnline === !0){
 
 			// Get fpPS4 GitHub data
-			APP.updater.emu_getCI(function(){
-				nAction();
-			});
+			APP.updater.emu_getCI(nAction);
 
 		} else {
 
@@ -661,9 +649,7 @@ temp_SETTINGS = {
 		} catch (err) {
 
 			// On error, push to settings error list
-			if (isBootProcess === !0){
-				APP.settings.sLoadError.push(err);
-			}
+			if (isBootProcess === !0) APP.settings.sLoadError.push(err);
 
 			// Output error
 			throw new Error(err);
@@ -671,9 +657,7 @@ temp_SETTINGS = {
 		}
 
 		// If launcher is on boot process, run boot check
-		if (isBootProcess === !0){
-			APP.settings.bootCheck();
-		}
+		if (isBootProcess === !0) APP.settings.bootCheck();
 
 	},
 

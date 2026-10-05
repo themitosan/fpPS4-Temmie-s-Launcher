@@ -214,9 +214,7 @@ temp_INPUT = {
 			Object.keys(APP.input.commandActions).forEach(function(cInput){
 
 				const getButtonIndex = APP.settings.data['gPadInput_' + cInput];
-				if (APP.input.gamepadButtons[getButtonIndex] !== void 0){
-					APP.input.gamepadButtons[getButtonIndex].action = cInput;
-				}
+				if (APP.input.gamepadButtons[getButtonIndex] !== void 0) APP.input.gamepadButtons[getButtonIndex].action = cInput;
 
 			});
 
@@ -246,14 +244,10 @@ temp_INPUT = {
 		if (data !== void 0 && Object.keys(this.gamepadButtons).length !== 0){
 
 			// Update button action
-			if (data.action !== void 0){
-				this.gamepadButtons[data.id].action = data.action;
-			}
+			if (data.action !== void 0) this.gamepadButtons[data.id].action = data.action;
 			
 			// Update button hold
-			if (data.hold !== void 0){
-				this.gamepadButtons[data.id].hold = data.hold;
-			}
+			if (data.hold !== void 0) this.gamepadButtons[data.id].hold = data.hold;
 
 		}
 
@@ -287,10 +281,7 @@ temp_INPUT = {
 				}
 
 				// Set pressed button
-				if (bData.pressed === !0){
-					bPressed = cButton;
-					// console.info(cButton); 
-				}
+				if (bData.pressed === !0) bPressed = cButton;
 
 				// If action is defined
 				if (bData.action !== ''){
@@ -344,9 +335,7 @@ temp_INPUT = {
 			var mWheelDirection = 'MOUSE_WHEEL_DOWN';
 
 			// Check for mouse directions
-			if (evt.deltaY === -100){
-				mWheelDirection = 'MOUSE_WHEEL_UP';
-			}
+			if (evt.deltaY === -100) mWheelDirection = 'MOUSE_WHEEL_UP';
 
 			// Execute action
 			APP.input.commandActions[mWheelDirection]();
@@ -374,14 +363,10 @@ temp_INPUT = {
 			APP.log.add({data: kp});
 
 			// Debug: reload app with F5
-			if (APP.settings.debug === !0 && kp.code === 'F5'){
-				location.reload(!0);
-			}
+			if (APP.settings.debug === !0 && kp.code === 'F5') location.reload(!0);
 
 			// F11 - Toggle fullscreen
-			if (kp.code === 'F11'){
-				APP.design.toggleFullscreen();
-			}
+			if (kp.code === 'F11') APP.design.toggleFullscreen();
 
 			// Variables
 			var keyCode = kp.code,

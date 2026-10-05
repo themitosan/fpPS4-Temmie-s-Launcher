@@ -18,9 +18,7 @@ const TMS = Object.freeze(Object.seal({
 
 	// Warn if something go wrong
 	warn: function(warnText){
-		if (this.logWarnings === !0){
-			console.warn('[TMS] ' + warnText);
-		}
+		if (this.logWarnings === !0) console.warn('[TMS] ' + warnText);
 	},
 
 	/*
@@ -32,12 +30,8 @@ const TMS = Object.freeze(Object.seal({
 	*/
 	getElement: function(elementId){
 		var res = document.getElementById(elementId);
-		if (res === null){
-			res = document.getElementsByTagName(elementId)[0];
-		}
-		if (res === void 0){
-			res = null;
-		}
+		if (res === null) res = document.getElementsByTagName(elementId)[0];
+		if (res === void 0) res = null;
 		return res;
 	},
 
@@ -101,12 +95,8 @@ const TMS = Object.freeze(Object.seal({
 		// End
 		if (canStart === !0){
 
-			if (animationEase === void 0){
-				animationEase = '';
-			}
-			if (animationTime < 0){
-				animationTime = 0;
-			}
+			if (animationEase === void 0) animationEase = '';
+			if (animationTime < 0) animationTime = 0;
 
 			Object.keys(cssChanges).forEach(function(cItem){
 				elId.style[cItem] = cssChanges[cItem];
@@ -130,15 +120,10 @@ const TMS = Object.freeze(Object.seal({
 	focus: function(elementId, sTimeout){
 
 		const elId = this.getElement(elementId);
-
 		if (elId !== null){
 
 			if (sTimeout !== void 0 && parseInt(sTimeout) !== NaN){
-
-				setTimeout(function(){
-					elId.focus();
-				}, sTimeout);
-
+				setTimeout(elId.focus, sTimeout);
 			} else {
 				elId.focus();
 			}
@@ -207,18 +192,13 @@ const TMS = Object.freeze(Object.seal({
 			elId = this.getElement(elementId);
 
 		if (elId !== null){
-
 			result = elId.style[cssAttrName];
 
 			// Get computed style
-			if (result === ''){
-				result = window.getComputedStyle(elId)[cssAttrName];
-			}
+			if (result === '') result = window.getComputedStyle(elId)[cssAttrName];
 
 			// Get from DOM
-			if (result === void 0){
-				result = elId[cssAttrName];
-			}
+			if (result === void 0) result = elId[cssAttrName];
 
 		} else {
 			this.warn('Unable to get element because it does not exist! (' + elementId + ')');
@@ -235,7 +215,6 @@ const TMS = Object.freeze(Object.seal({
 		Object.keys(elementObjects).forEach(function(cItem){
 
 			const elId = TMS.getElement(elementId);
-
 			if (elId !== null){
 				elId.scrollTop = elementObjects[cItem];
 			} else {
@@ -251,7 +230,6 @@ const TMS = Object.freeze(Object.seal({
 	append: function(elementId, newData){
 
 		var elId = this.getElement(elementId);
-
 		if (elId !== null){
 			elId.insertAdjacentHTML('beforeend', newData);
 		} else {
@@ -266,12 +244,12 @@ const TMS = Object.freeze(Object.seal({
 	addClass: function(elementId, className){
 
 		const elId = this.getElement(elementId);
-
 		if (elId !== null){
 			elId.classList.add(className);
 		} else {
 			this.warn('Unable to add class because DOM does not exist! (' + elementId + ')');
 		}
+
 	},
 
 	/*
@@ -280,7 +258,6 @@ const TMS = Object.freeze(Object.seal({
 	removeClass: function(elementId, className){
 
 		const elId = this.getElement(elementId);
-
 		if (elId !== null){
 			elId.classList.remove(className);
 		} else {
@@ -294,24 +271,28 @@ const TMS = Object.freeze(Object.seal({
 		Removes all HTML inside
 	*/
 	clear: function(elementId){
+
 		const elId = this.getElement(elementId);
 		if (elId !== null){
 			elId.innerHTML = '';
 		} else {
 			this.warn('Unable to clear inner data because DOM does not exist! (' + elementId + ')');
 		}
+
 	},
 
 	/*
 		triggerClick
 	*/
 	triggerClick: function(elementId){
+
 		const elId = this.getElement(elementId);
 		if (elId !== null){
 			elId.click();
 		} else {
 			this.warn('Unable to clear inner data because DOM does not exist! (' + elementId + ')');
 		}
+
 	},
 
 	/*
@@ -334,16 +315,10 @@ const TMS = Object.freeze(Object.seal({
 
 			if (animationTime !== void 0 && animationTime !== NaN){
 				dTime = parseInt(animationTime);
-				if (dTime < 0){
-					dTime = 1;
-				}
+				if (dTime < 0) dTime = 1;
 			}
-			if (tagType[elId.tagType] !== void 0){
-				dMode = tagType[elId.tagType];
-			}
-			if (eStyles.opacity !== ''){
-				finalOpacity = eStyles.opacity;
-			}
+			if (tagType[elId.tagType] !== void 0) dMode = tagType[elId.tagType];
+			if (eStyles.opacity !== '') finalOpacity = eStyles.opacity;
 
 			TMS.css(elementId, {'display': dMode, 'opacity': finalOpacity, 'transition': 'opacity ' + dTime + 'ms'});
 
@@ -366,12 +341,9 @@ const TMS = Object.freeze(Object.seal({
 		if (elId !== null){
 
 			var dTime = 1000;
-
 			if (animationTime !== void 0 && animationTime !== NaN){
 				dTime = parseInt(animationTime);
-				if (dTime < 0){
-					dTime = 1;
-				}
+				if (dTime < 0) dTime = 1;
 			}
 
 			TMS.css(elementId, {'opacity': '0', 'transition': 'opacity ' + dTime + 'ms'});
@@ -392,16 +364,13 @@ const TMS = Object.freeze(Object.seal({
 	scrollCenter: function(elementId, delay){
 
 		const elId = this.getElement(elementId);
-
 		if (elId !== null){
 
 			var parentDom = elId.parentElement,
 				parentHeight = parentDom.offsetHeight,
 				elHeight = parseFloat(window.getComputedStyle(elId).height.replace('px', ''));
 
-			if (delay === void 0 || parseInt(delay) === NaN){
-				delay = 0;
-			}
+			if (delay === void 0 || parseInt(delay) === NaN) delay = 0;
 
 			setTimeout(function(){
 				parentDom.scrollTo(0, (elId.offsetTop - ((parentHeight / 2) - (elHeight / 2))));
@@ -417,12 +386,14 @@ const TMS = Object.freeze(Object.seal({
 		setInnerHtml
 	*/
 	setInnerHtml: function(elementId, htmlData){
+
 		const elId = this.getElement(elementId);
 		if (elId !== null){
 			document.getElementById(elementId).innerHTML = htmlData;
 		} else {
 			this.warn('Unable to set innerHTML because DOM does not exist! (' + elementId + ')');
 		}
+
 	},
 
 	/*
@@ -430,8 +401,7 @@ const TMS = Object.freeze(Object.seal({
 	*/
 	removeDOM: function(elementId){
 
-		const elId = this.getElement(elementId);
-
+		const elId = this.getElement(elementId);[]
 		if (elId !== null){
 			document.getElementById(elementId).remove();
 		} else {
@@ -444,12 +414,14 @@ const TMS = Object.freeze(Object.seal({
 		Blur element
 	*/
 	blur: function(elementId){
+
 		const elId = this.getElement(elementId);
 		if (elId !== null){
 			document.getElementById(elementId).blur();
 		} else {
 			this.warn('Unable to blur DOM because DOM does not exist! (' + elementId + ')');
 		}
+
 	},
 
 	/*
@@ -463,10 +435,7 @@ const TMS = Object.freeze(Object.seal({
 		if (elId !== null){
 
 			res = document.getElementById(elementId).childElementCount;
-			if (res < 0){
-				res = 0;
-			}
-
+			if (res < 0) res = 0;
 			return res;
 
 		} else {
@@ -481,7 +450,6 @@ const TMS = Object.freeze(Object.seal({
 	getRect: function(elementId){
 
 		var elId = this.getElement(elementId);
-
 		if (elId !== null){
 			return document.getElementById(elementId).getBoundingClientRect();
 		} else {

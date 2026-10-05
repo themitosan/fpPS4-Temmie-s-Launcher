@@ -110,14 +110,10 @@ temp_UPDATER = {
 				});
 
 				// Check if is on boot mode. If so, get fpPS4 available branches
-				if (APP.settings.appIsLoading === !0){
-					APP.updater.emu_getBranch();
-				}
+				if (APP.settings.appIsLoading === !0) APP.updater.emu_getBranch();
 
 				// Execute callback
-				if (typeof cb === 'function'){
-					cb();
-				}
+				if (typeof cb === 'function') cb();
 
 			},
 

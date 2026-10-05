@@ -66,9 +66,7 @@ temp_MSGSYS = {
 	displayMsg: function(data){
 
 		// Fix showBgIcon if not available
-		if (data.showBgIcon === void 0){
-			data['showBgIcon'] = !1;
-		}
+		if (data.showBgIcon === void 0) data['showBgIcon'] = !1;
 
 		// Set internal variables
 		this.msgSysRunning = !0;
@@ -127,9 +125,7 @@ temp_MSGSYS = {
 		document.getElementById('APP_POPUP_CONTENT_' + this.msgCurrentHolder).innerHTML = cMessage.message;
 
 		// If some scene is loaded, hide it
-		if (cScene !== ''){
-			TMS.css(cScene, {'display': 'none'});
-		}
+		if (cScene !== '') TMS.css(cScene, {'display': 'none'});
 
 		// Reset button labels and button actions
 		APP.design.input.updateButtonLabels({
@@ -166,17 +162,13 @@ temp_MSGSYS = {
 			TMS.css('APP_MSGSYS', {'opacity': '1'});
 
 			// Show bg icon if enabled 
-			if (data.showBgIcon === !0){
-				TMS.css('APP_CANVAS_BG_ICON', {'transition-duration': parseFloat(transTime / 1000) + 's', 'opacity': '1'});
-			}
+			if (data.showBgIcon === !0) TMS.css('APP_CANVAS_BG_ICON', {'transition-duration': parseFloat(transTime / 1000) + 's', 'opacity': '1'});
 
 			// Execute callback after animation and release input 
 			setTimeout(function(){
 
 				// Check for callback
-				if (typeof data.callback === 'function'){
-					data.callback();
-				}
+				if (typeof data.callback === 'function') data.callback();
 
 				// Release input
 				APP.input.releaseInput();
@@ -232,9 +224,7 @@ temp_MSGSYS = {
 						cMsgData = APP.lang.getMsgSys(msgData.data.msgName, msgData.replaceList, cMsgMetadata.options);
 
 					// Check focus index
-					if (focusIndex === void 0){
-						focusIndex = 0;
-					}
+					if (focusIndex === void 0) focusIndex = 0;
 
 					// Set previous / next content id
 					if (this.msgCurrentHolder === 1){
@@ -399,9 +389,7 @@ temp_MSGSYS = {
 			TMS.removeDOM('APP_MSGSYS');
 
 			// If some scene is loaded, hide it
-			if (cScene !== ''){
-				TMS.css(cScene, {'display': 'block'});
-			}
+			if (cScene !== '') TMS.css(cScene, {'display': 'block'});
 
 			// If has callback, execute it
 			switch (typeof callback){

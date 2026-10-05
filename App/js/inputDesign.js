@@ -65,38 +65,22 @@ temp_INPUT_DESIGN = {
 				focusDom = this.currentList + '_' + this.currentIndex;
 
 			// Blur previous selected index
-			if (this.currentList !== '' && document.getElementById(focusDom) !== null){
-				document.getElementById(focusDom).blur();
-			}
+			if (this.currentList !== '' && document.getElementById(focusDom) !== null) document.getElementById(focusDom).blur();
 
 			// Set cursor out of bounds functions
-			if (data.onStart !== void 0 && typeof data.onStart === 'function'){
-				onStart = data.onStart;
-			}
-			if (data.onEnd !== void 0 && typeof data.onEnd === 'function'){
-				onEnd = data.onEnd;
-			}
+			if (data.onStart !== void 0 && typeof data.onStart === 'function') onStart = data.onStart;
+			if (data.onEnd !== void 0 && typeof data.onEnd === 'function') onEnd = data.onEnd;
 			this.onCursorEnd = onEnd;
 			this.onCursorStart = onStart;
 
 			// Check selected index and it's length 
-			if (data.index !== void 0 && parseInt(data.index) !== NaN){
-				cIndex = data.index;
-			}
-			if (data.length !== void 0 && parseInt(data.length) !== NaN){
-				cLength = data.length;
-			}
-			if (cIndex > cLength){
-				cIndex = cLength;
-			}
-			if (cIndex < 0){
-				cIndex = 0;
-			}
+			if (data.index !== void 0 && parseInt(data.index) !== NaN) cIndex = data.index;
+			if (data.length !== void 0 && parseInt(data.length) !== NaN) cLength = data.length;
+			if (cIndex > cLength) cIndex = cLength;
+			if (cIndex < 0) cIndex = 0;
 
 			// Enable or disable out of bounds fn
-			if (data.enableOutOfBoundsFn !== void 0){
-				enableFn = data.enableOutOfBoundsFn;
-			}
+			if (data.enableOutOfBoundsFn !== void 0) enableFn = data.enableOutOfBoundsFn;
 
 			// Set remaining data
 			this.currentIndex = cIndex;
@@ -110,7 +94,7 @@ temp_INPUT_DESIGN = {
 			/*
 				End
 			*/
-			TMS.focus(this.currentList + '_' + this.currentIndex);
+			TMS.focus(`${this.currentList}_${this.currentIndex}`);
 
 		}
 
@@ -225,9 +209,7 @@ temp_INPUT_DESIGN = {
 			Object.keys(APP.input.commandActions).forEach(function(cId){
 
 				// Check if DOM exists
-				if (document.getElementById('APP_' + cWindow + '_BUTTON_ICON_' + cId) !== null){
-					document.getElementById('APP_' + cWindow + '_BUTTON_ICON_' + cId).src = 'img/input/' + iconStyle + '/INPUT_' + cId + '.png';
-				}
+				if (document.getElementById(`APP_${cWindow}_BUTTON_ICON_${cId}`) !== null) document.getElementById(`APP_${cWindow}_BUTTON_ICON_${cId}`).src = `img/input/${iconStyle}/INPUT_${cId}.png`;
 
 			});
 
@@ -253,22 +235,16 @@ temp_INPUT_DESIGN = {
 		if (data !== void 0){
 
 			// Fix default
-			if (data['resetInput'] === void 0){
-				data['resetInput'] = !1;
-			}
+			if (data['resetInput'] === void 0) data['resetInput'] = !1;
 
 			// Reset button labels and button actions
 			Object.keys(APP.input.commandActions).forEach(function(cAction, cIndex){
 
 				// Reset icon label
-				if (data.displayButtons.indexOf(cAction) === -1 && document.getElementById('APP_' + data.target + '_BUTTON_LABEL_ACTION_' + cIndex) !== null){
-					TMS.removeDOM('APP_' + data.target + '_BUTTON_LABEL_ACTION_' + cIndex);
-				}
+				if (data.displayButtons.indexOf(cAction) === -1 && document.getElementById('APP_' + data.target + '_BUTTON_LABEL_ACTION_' + cIndex) !== null) TMS.removeDOM('APP_' + data.target + '_BUTTON_LABEL_ACTION_' + cIndex);
 
 				// Reset provided action (Set as a empty function)
-				if (data.resetInput === !0){
-					APP.input.setActionFn(cAction, function(){ return; });
-				}
+				if (data.resetInput === !0) APP.input.setActionFn(cAction, function(){ return; });
 
 			});
 
@@ -296,9 +272,7 @@ temp_INPUT_DESIGN = {
 
 					// Update icon
 					var getSrc = document.getElementById(imgDomId).src;
-					if (getSrc !== newIcon){
-						document.getElementById(imgDomId).src = newIcon;
-					}
+					if (getSrc !== newIcon) document.getElementById(imgDomId).src = newIcon;
 
 					// Update label
 					document.getElementById(domId + '_TEXT').innerHTML = APP.lang.getVariable('MSGSYS_LABEL_' + data.buttonLabels[cButtonLabel]);
@@ -343,9 +317,7 @@ temp_INPUT_DESIGN = {
 			document.getElementById('APP_' + data.target + '_BUTTON_LABEL_HOLDER').innerHTML = tempHtml;
 
 			// Execute callback
-			if (data.callback !== void 0 && typeof data.callback === 'function'){
-				data.callback();
-			}
+			if (data.callback !== void 0 && typeof data.callback === 'function') data.callback();
 
 		}
 

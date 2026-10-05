@@ -13,38 +13,24 @@ temp_TOOLS = {
 
 	// Solve Hex
 	solveHex: function(hex){
-
-		if (hex !== void 0){
-			return hex.toLowerCase().replace(RegExp(' ', 'gi'), '');
-		}
-
+		if (hex !== void 0) return hex.toLowerCase().replace(RegExp(' ', 'gi'), '');
 	},
 
 	// Unsolve Hex
 	unsolveHex: function(hex){
-
-		if (hex !== void 0){
-			return hex.toUpperCase().match(/.{2,2}/g).toString().replace(RegExp(',', 'gi'), ' ')
-		}
-
+		if (hex !== void 0) return hex.toUpperCase().match(/.{2,2}/g).toString().replace(RegExp(',', 'gi'), ' ')
 	},
 
 	// Parse endian values
 	parseEndian: function(hex){
-
-		if (hex !== void 0){
-			return hex.match(/.{2,2}/g).reverse().toString().replace(RegExp(',', 'gi'), '');
-		}
-
+		if (hex !== void 0) return hex.match(/.{2,2}/g).reverse().toString().replace(RegExp(',', 'gi'), '');
 	},
 
 	// Convert Hex values to UTF-8 string
 	convertHexToUft8: function(hex){
 
 		var textValue = '';
-		if (hex !== void 0 && hex !== ''){
-			textValue = decodeURIComponent('%' + hex.match(/.{2,2}/g).join('%'));
-		}
+		if (hex !== void 0 && hex !== '') textValue = decodeURIComponent('%' + hex.match(/.{2,2}/g).join('%'));
 
 		return textValue;
 
@@ -54,10 +40,7 @@ temp_TOOLS = {
 	parsePercentage: function(current, maximum){
 
 		var res = 0;
-		if (current !== void 0 && maximum !== void 0){
-			res = Math.floor((current / maximum) * 100);
-		}
-
+		if (current !== void 0 && maximum !== void 0) res = Math.floor((current / maximum) * 100);
 		return res;
 
 	},
@@ -82,21 +65,14 @@ temp_TOOLS = {
 		var res = !1,
 		    domId = document.getElementById(domName).checked;
 
-		if (domId === !1){
-			res = !0;
-		}
-
+		if (domId === !1) res = !0;
 		document.getElementById(domName).checked = res;
 
 	},
 
 	// Fix paths
 	fixPath: function(path){
-
-		if (path !== void 0 && path !== ''){
-			return path.replace(RegExp('\\\\', 'gi'), '/');
-		}
-
+		if (path !== void 0 && path !== '') return path.replace(RegExp('\\\\', 'gi'), '/');
 	},
 
 	/*
@@ -104,9 +80,7 @@ temp_TOOLS = {
 		Original regex: https://css-tricks.com/snippets/javascript/strip-html-tags-in-javascript/
 	*/
 	removeHTML: function(str){
-		if (str !== void 0 && str !== ''){
-			return str.replace(/(<([^>]+)>)/gi, '');
-		}
+		if (str !== void 0 && str !== '') return str.replace(/(<([^>]+)>)/gi, '');
 	},
 
 	// Get data from main object (APP - main.js)
@@ -150,11 +124,7 @@ temp_TOOLS = {
 	// Convert array to string breaking lines
 	convertArrayToString: function(str){
 		var res = '';
-
-		if (str !== void 0 && str.length !== 0){
-			res = str.toString().replace(RegExp(',', 'gi'), '\n');
-		}
-
+		if (str !== void 0 && str.length !== 0) res = str.toString().replace(RegExp(',', 'gi'), '\n');
 		return res;
 	},
 
@@ -162,7 +132,6 @@ temp_TOOLS = {
 	cleanString: function(str, arr){
 
 		var res = '';
-
 		if (str !== void 0 && arr !== void 0){
 
 			res = str;
@@ -188,12 +157,8 @@ temp_TOOLS = {
 			size = parseInt(v),
 			input = inp.toString();
 
-		if (inp === void 0 || inp === ''){
-			input = '00';
-		}
-		if (v === void 0 || v === ''){
-			size = 2;
-		}
+		if (inp === void 0 || inp === '') input = '00';
+		if (v === void 0 || v === '') size = 2;
 
 		if (input.length < size){
 
@@ -203,9 +168,7 @@ temp_TOOLS = {
 
 		} else {
 
-			if (input.length !== size && input.toString().length > size){
-				input = input.slice(0, v);
-			}
+			if (input.length !== size && input.toString().length > size) input = input.slice(0, v);
 
 		}
 
@@ -215,28 +178,16 @@ temp_TOOLS = {
 
 	// Fix JSON quotes
 	fixJson: function(data){
-
 		var res = '';
-
-		if (data !== void 0){
-			res = data.replace(RegExp("'", 'gi'), '"');
-		}
-
+		if (data !== void 0) res = data.replace(RegExp("'", 'gi'), '"');
 		return res;
-
 	},
 
 	// Clean function
 	cleanFn: function(fnStr){
-
 		var res = '';
-
-		if (fnStr !== void 0){
-			res = fnStr.replace(RegExp('\n', 'gi'), ' ').replace(RegExp('	', 'gi'), '');
-		}
-
+		if (fnStr !== void 0) res = fnStr.replace(RegExp('\n', 'gi'), ' ').replace(RegExp('	', 'gi'), '');
 		return res;
-
 	},
 
 	// Prompt - a simple way to handle window.prompt call
