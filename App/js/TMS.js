@@ -427,7 +427,6 @@ const TMS = Object.freeze(Object.seal({
 
 			res = document.getElementById(elementId).childElementCount;
 			if (res < 0) res = 0;
-
 			return res;
 
 		} else {
