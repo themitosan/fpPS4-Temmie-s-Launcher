@@ -13,7 +13,7 @@ text_reset=$(tput sgr0)
 text_bold=$(tput bold)
 
 # NW.js Version
-NWJS_VER="0.92.0"
+NWJS_VER="0.117.0"
 
 # SDL Version
 SDL_VER="2.30.7"
